@@ -1,0 +1,78 @@
+"""
+Pytest configuration for wire tests.
+
+This module manages the WireMock container lifecycle for integration tests.
+"""
+
+import os
+import subprocess
+from typing import Any, Dict, Optional
+import pytest
+import requests
+
+
+@pytest.fixture(scope="session", autouse=True)
+def wiremock_container():
+    """
+    Session-scoped fixture that starts WireMock container before tests
+    and cleans it up after all tests complete.
+
+    The docker-compose healthcheck ensures WireMock is ready before tests run.
+    """
+    # Get the directory containing the docker-compose file
+    test_dir = os.path.dirname(__file__)
+    project_root = os.path.abspath(os.path.join(test_dir, "..", ".."))
+    wiremock_dir = os.path.join(project_root, "wiremock")
+
+    compose_file = os.path.join(wiremock_dir, "docker-compose.test.yml")
+
+    # Start WireMock container (--wait ensures healthcheck passes before returning)
+    print("\nStarting WireMock container...")
+    try:
+        subprocess.run(
+            ["docker", "compose", "-f", compose_file, "up", "-d", "--wait"], check=True, capture_output=True, text=True
+        )
+        print("WireMock container is ready")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to start WireMock: {e.stderr}")
+        raise
+
+    # Yield control to tests
+    yield
+
+    # Cleanup: stop and remove the container
+    print("\nStopping WireMock container...")
+    subprocess.run(["docker", "compose", "-f", compose_file, "down", "-v"], check=False, capture_output=True)
+
+def verify_request_count(
+    method: str,
+    url_path: str,
+    query_params: Optional[Dict[str, str]],
+    expected: int,
+) -> None:
+    """
+    Verifies the number of requests made to WireMock.
+    
+    This helper function queries the WireMock admin API to check how many requests
+    matching the specified criteria were recorded during test execution.
+    
+    Args:
+        method: HTTP method (GET, POST, etc.)
+        url_path: The URL path to match
+        query_params: Optional dict of query parameters to match
+        expected: Expected number of matching requests
+        
+    Raises:
+        AssertionError: If the actual request count doesn't match expected
+    """
+    wiremock_admin_url = "http://localhost:8080/__admin"
+    request_body: Dict[str, Any] = {"method": method, "urlPath": url_path}
+    if query_params:
+        query_parameters = {k: {"equalTo": v} for k, v in query_params.items()}
+        request_body["queryParameters"] = query_parameters
+    response = requests.post(f"{wiremock_admin_url}/requests/find", json=request_body)
+    assert response.status_code == 200, "Failed to query WireMock requests"
+    result = response.json()
+    requests_found = len(result.get("requests", []))
+    assert requests_found == expected, f"Expected {expected} requests, found {requests_found}"
+
