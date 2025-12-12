@@ -1,7 +1,5 @@
 # Payroc API Python SDK
 
-[![pypi](https://img.shields.io/pypi/v/payroc)](https://pypi.python.org/pypi/payroc)
-
 The Payroc API Python SDK provides convenient access to the Payroc API from Python.
 
 ## Contents
