@@ -21,27 +21,26 @@ class BankTransferPayment(UniversalBaseModel):
     Object that contains information about the sale and the customer's bank details.
     """
 
-    payment_id: typing_extensions.Annotated[str, FieldMetadata(alias="paymentId")] = pydantic.Field()
-    """
-    Unique identifier that we assigned to the payment.
-    """
-
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier that we assigned to the terminal.
-    """
-
+    payment_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="paymentId"),
+        pydantic.Field(alias="paymentId", description="Unique identifier that we assigned to the payment."),
+    ]
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(alias="processingTerminalId", description="Unique identifier that we assigned to the terminal."),
+    ]
     order: BankTransferPaymentOrder
     customer: typing.Optional[BankTransferCustomer] = None
-    bank_account: typing_extensions.Annotated[BankTransferPaymentBankAccount, FieldMetadata(alias="bankAccount")] = (
-        pydantic.Field()
-    )
-    """
-    Object that contains information about the bank account.
-    """
-
+    bank_account: typing_extensions.Annotated[
+        BankTransferPaymentBankAccount,
+        FieldMetadata(alias="bankAccount"),
+        pydantic.Field(
+            alias="bankAccount",
+            description="Polymorphic object that contains bank account information.  \nThe value of the type field determines which variant you should use:  \n-\t`ach` - Automated Clearing House (ACH) details\n-\t`pad` - Pre-authorized debit (PAD) details",
+        ),
+    ]
     refunds: typing.Optional[typing.List[RefundSummary]] = pydantic.Field(default=None)
     """
     List of refunds issued against the payment.
@@ -57,13 +56,14 @@ class BankTransferPayment(UniversalBaseModel):
     List of re-presented payments linked to the return.
     """
 
-    transaction_result: typing_extensions.Annotated[BankTransferResult, FieldMetadata(alias="transactionResult")]
+    transaction_result: typing_extensions.Annotated[
+        BankTransferResult, FieldMetadata(alias="transactionResult"), pydantic.Field(alias="transactionResult")
+    ]
     custom_fields: typing_extensions.Annotated[
-        typing.Optional[typing.List[CustomField]], FieldMetadata(alias="customFields")
-    ] = pydantic.Field(default=None)
-    """
-    Array of customField objects.
-    """
+        typing.Optional[typing.List[CustomField]],
+        FieldMetadata(alias="customFields"),
+        pydantic.Field(alias="customFields", description="Array of customField objects."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -19,18 +19,20 @@ class InstructionMerchantsItemRecipientsItem(UniversalBaseModel):
     Object that contains information about the target funding account.
     """
 
-    funding_account_id: typing_extensions.Annotated[int, FieldMetadata(alias="fundingAccountId")] = pydantic.Field()
-    """
-    Unique identifier that we assigned to the funding account.
-    """
-
+    funding_account_id: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="fundingAccountId"),
+        pydantic.Field(
+            alias="fundingAccountId", description="Unique identifier that we assigned to the funding account."
+        ),
+    ]
     payment_method: typing_extensions.Annotated[
-        InstructionMerchantsItemRecipientsItemPaymentMethod, FieldMetadata(alias="paymentMethod")
-    ] = pydantic.Field()
-    """
-    Payment method that we use to send funds to the funding account.
-    """
-
+        InstructionMerchantsItemRecipientsItemPaymentMethod,
+        FieldMetadata(alias="paymentMethod"),
+        pydantic.Field(
+            alias="paymentMethod", description="Payment method that we use to send funds to the funding account."
+        ),
+    ]
     amount: InstructionMerchantsItemRecipientsItemAmount = pydantic.Field()
     """
     Object that contains information about the funds that we send to the funding account.

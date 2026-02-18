@@ -17,33 +17,31 @@ class PaymentLinkEmailShareEvent(UniversalBaseModel):
     """
 
     sharing_method: typing_extensions.Annotated[
-        PaymentLinkEmailShareEventSharingMethod, FieldMetadata(alias="sharingMethod")
-    ] = pydantic.Field()
-    """
-    Method that the merchant uses to share the payment link.
-    """
-
-    sharing_event_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="sharingEventId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the sharing event.
-    """
-
-    date_time: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="dateTime")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that the merchant shared the link. Our gateway returns this value in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-    """
-
-    merchant_copy: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="merchantCopy")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if we send a copy of the email to the merchant. By default, we don't send a copy to the merchant.
-    """
-
+        PaymentLinkEmailShareEventSharingMethod,
+        FieldMetadata(alias="sharingMethod"),
+        pydantic.Field(alias="sharingMethod", description="Method that the merchant uses to share the payment link."),
+    ]
+    sharing_event_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="sharingEventId"),
+        pydantic.Field(alias="sharingEventId", description="Unique identifier that we assigned to the sharing event."),
+    ] = None
+    date_time: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="dateTime"),
+        pydantic.Field(
+            alias="dateTime",
+            description="Date and time that the merchant shared the link. Our gateway returns this value in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+        ),
+    ] = None
+    merchant_copy: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="merchantCopy"),
+        pydantic.Field(
+            alias="merchantCopy",
+            description="Indicates if we send a copy of the email to the merchant. By default, we don't send a copy to the merchant.",
+        ),
+    ] = None
     message: typing.Optional[str] = pydantic.Field(default=None)
     """
     Message that the merchant sends with the payment link.

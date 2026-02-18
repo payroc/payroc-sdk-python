@@ -22,42 +22,46 @@ class ProcessingAch(UniversalBaseModel):
     """
 
     previously_terminated_for_ach: typing_extensions.Annotated[
-        typing.Optional[bool], FieldMetadata(alias="previouslyTerminatedForAch")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the business or its principals were previously turned down for ACH processing.
-    """
-
+        typing.Optional[bool],
+        FieldMetadata(alias="previouslyTerminatedForAch"),
+        pydantic.Field(
+            alias="previouslyTerminatedForAch",
+            description="Indicates if the business or its principals were previously turned down for ACH processing.",
+        ),
+    ] = None
     refunds: ProcessingAchRefunds = pydantic.Field()
     """
     Object that contains information about the ACH refund policy for the processing account.
     """
 
     estimated_monthly_transactions: typing_extensions.Annotated[
-        int, FieldMetadata(alias="estimatedMonthlyTransactions")
-    ] = pydantic.Field()
-    """
-    Estimated maximum number of transactions that the merchant will process in a month.
-    """
-
+        int,
+        FieldMetadata(alias="estimatedMonthlyTransactions"),
+        pydantic.Field(
+            alias="estimatedMonthlyTransactions",
+            description="Estimated maximum number of transactions that the merchant will process in a month.",
+        ),
+    ]
     limits: ProcessingAchLimits = pydantic.Field()
     """
     Object that contains information about transaction limits for the processing account.
     """
 
     transaction_types: typing_extensions.Annotated[
-        typing.Optional[typing.List[ProcessingAchTransactionTypesItem]], FieldMetadata(alias="transactionTypes")
-    ] = pydantic.Field(default=None)
-    """
-    List of transaction types that the processing account supports.
-    """
-
+        typing.Optional[typing.List[ProcessingAchTransactionTypesItem]],
+        FieldMetadata(alias="transactionTypes"),
+        pydantic.Field(
+            alias="transactionTypes", description="List of transaction types that the processing account supports."
+        ),
+    ] = None
     transaction_types_other: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="transactionTypesOther")
-    ] = pydantic.Field(default=None)
-    """
-    If you send a value of `other` for transactionTypes, provide a list of the supported transaction types.
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="transactionTypesOther"),
+        pydantic.Field(
+            alias="transactionTypesOther",
+            description="If you send a value of `other` for transactionTypes, provide a list of the supported transaction types.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

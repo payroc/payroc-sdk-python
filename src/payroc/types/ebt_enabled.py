@@ -19,17 +19,19 @@ class EbtEnabled(UniversalBaseModel):
     Indicates if the terminal accepts Electronic Benefit Transfer (EBT) transactions.
     """
 
-    ebt_type: typing_extensions.Annotated[EbtEnabledEbtType, FieldMetadata(alias="ebtType")] = pydantic.Field()
-    """
-    Indicates the type of EBT that the terminal supports.
-    """
-
-    fns_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="fnsNumber")] = pydantic.Field(
-        default=None
-    )
-    """
-    Food and Nutritional Service (FNS) number that the government assigns to the merchant to allow them to accept Supplemental Nutrition Assistance Program (SNAP) transactions.
-    """
+    ebt_type: typing_extensions.Annotated[
+        EbtEnabledEbtType,
+        FieldMetadata(alias="ebtType"),
+        pydantic.Field(alias="ebtType", description="Indicates the type of EBT that the terminal supports."),
+    ]
+    fns_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="fnsNumber"),
+        pydantic.Field(
+            alias="fnsNumber",
+            description="Food and Nutritional Service (FNS) number that the government assigns to the merchant to allow them to accept Supplemental Nutrition Assistance Program (SNAP) transactions.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

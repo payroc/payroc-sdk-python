@@ -7,9 +7,6 @@ from ..core.request_options import RequestOptions
 from .raw_client import AsyncRawAuthClient, RawAuthClient
 from .types.get_token_response import GetTokenResponse
 
-# this is used as the default value for optional parameters
-OMIT = typing.cast(typing.Any, ...)
-
 
 class AuthClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
@@ -27,12 +24,7 @@ class AuthClient:
         return self._raw_client
 
     def retrieve_token(
-        self,
-        *,
-        api_key: str,
-        client_id: str,
-        client_secret: str,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, *, api_key: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GetTokenResponse:
         """
         Obtain an access token using client credentials
@@ -41,12 +33,6 @@ class AuthClient:
         ----------
         api_key : str
             The API key of the application
-
-        client_id : str
-            The client ID of the application
-
-        client_secret : str
-            The client secret of the application
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -61,18 +47,13 @@ class AuthClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.auth.retrieve_token(
             api_key="x-api-key",
-            client_id="client_id",
-            client_secret="client_secret",
         )
         """
-        _response = self._raw_client.retrieve_token(
-            api_key=api_key, client_id=client_id, client_secret=client_secret, request_options=request_options
-        )
+        _response = self._raw_client.retrieve_token(api_key=api_key, request_options=request_options)
         return _response.data
 
 
@@ -92,12 +73,7 @@ class AsyncAuthClient:
         return self._raw_client
 
     async def retrieve_token(
-        self,
-        *,
-        api_key: str,
-        client_id: str,
-        client_secret: str,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, *, api_key: str, request_options: typing.Optional[RequestOptions] = None
     ) -> GetTokenResponse:
         """
         Obtain an access token using client credentials
@@ -106,12 +82,6 @@ class AsyncAuthClient:
         ----------
         api_key : str
             The API key of the application
-
-        client_id : str
-            The client ID of the application
-
-        client_secret : str
-            The client secret of the application
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -128,22 +98,17 @@ class AsyncAuthClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
         async def main() -> None:
             await client.auth.retrieve_token(
                 api_key="x-api-key",
-                client_id="client_id",
-                client_secret="client_secret",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.retrieve_token(
-            api_key=api_key, client_id=client_id, client_secret=client_secret, request_options=request_options
-        )
+        _response = await self._raw_client.retrieve_token(api_key=api_key, request_options=request_options)
         return _response.data

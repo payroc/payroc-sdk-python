@@ -13,10 +13,13 @@ class DeviceConfig(UniversalBaseModel):
     Object that contains information about the configuration of the POS terminal.
     """
 
-    quick_chip: typing_extensions.Annotated[bool, FieldMetadata(alias="quickChip")] = pydantic.Field()
-    """
-    Indicates if Quick Chip mode is active on a merchant’s POS terminal.
-    """
+    quick_chip: typing_extensions.Annotated[
+        bool,
+        FieldMetadata(alias="quickChip"),
+        pydantic.Field(
+            alias="quickChip", description="Indicates if Quick Chip mode is active on a merchant’s POS terminal."
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

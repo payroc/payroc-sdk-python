@@ -91,8 +91,7 @@ class MerchantPlatformsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.boarding.merchant_platforms.list(
             before="2571",
@@ -119,7 +118,7 @@ class MerchantPlatformsClient:
         """
         Use this method to board a merchant with Payroc.
 
-        **Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/integrate/boarding).
+        **Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/board-merchants/boarding).
 
         In the request, include the following information:
         - Legal information, including its legal name and address.
@@ -188,8 +187,7 @@ class MerchantPlatformsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.merchant_platforms.create(
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -415,8 +413,7 @@ class MerchantPlatformsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.merchant_platforms.retrieve(
             merchant_platform_id="12345",
@@ -486,8 +483,7 @@ class MerchantPlatformsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.boarding.merchant_platforms.list_processing_accounts(
             merchant_platform_id="12345",
@@ -583,9 +579,18 @@ class MerchantPlatformsClient:
         timezone : Timezone
 
         address : Address
+            Polymorphic object that contains address information for the processing account.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects. One contact method must be an email address.
+            Array of polymorphic objects, which contain contact information.
+
+            **Note:** You must provide an email address.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number.
 
         processing : Processing
 
@@ -647,8 +652,7 @@ class MerchantPlatformsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.merchant_platforms.create_processing_account(
             merchant_platform_id="12345",
@@ -895,8 +899,7 @@ class AsyncMerchantPlatformsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -930,7 +933,7 @@ class AsyncMerchantPlatformsClient:
         """
         Use this method to board a merchant with Payroc.
 
-        **Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/integrate/boarding).
+        **Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/board-merchants/boarding).
 
         In the request, include the following information:
         - Legal information, including its legal name and address.
@@ -1000,8 +1003,7 @@ class AsyncMerchantPlatformsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1235,8 +1237,7 @@ class AsyncMerchantPlatformsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1314,8 +1315,7 @@ class AsyncMerchantPlatformsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1420,9 +1420,18 @@ class AsyncMerchantPlatformsClient:
         timezone : Timezone
 
         address : Address
+            Polymorphic object that contains address information for the processing account.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects. One contact method must be an email address.
+            Array of polymorphic objects, which contain contact information.
+
+            **Note:** You must provide an email address.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number.
 
         processing : Processing
 
@@ -1485,8 +1494,7 @@ class AsyncMerchantPlatformsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

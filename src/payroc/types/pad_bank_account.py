@@ -14,28 +14,31 @@ class PadBankAccount(UniversalBaseModel):
     Object that contains the customer's account details.
     """
 
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")] = pydantic.Field()
-    """
-    Customer's name.
-    """
-
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")] = pydantic.Field()
-    """
-    Customer's bank account number. We mask all digits except the last four digits.
-    """
-
-    transit_number: typing_extensions.Annotated[str, FieldMetadata(alias="transitNumber")] = pydantic.Field()
-    """
-    Five-digit code that represents the customer's banking branch.
-    """
-
-    institution_number: typing_extensions.Annotated[str, FieldMetadata(alias="institutionNumber")] = pydantic.Field()
-    """
-    Three-digit code that represents the customer's bank.
-    """
-
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount", description="Customer's name.")
+    ]
+    account_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="accountNumber"),
+        pydantic.Field(
+            alias="accountNumber",
+            description="Customer's bank account number. We mask all digits except the last four digits.",
+        ),
+    ]
+    transit_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="transitNumber"),
+        pydantic.Field(
+            alias="transitNumber", description="Five-digit code that represents the customer's banking branch."
+        ),
+    ]
+    institution_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="institutionNumber"),
+        pydantic.Field(alias="institutionNumber", description="Three-digit code that represents the customer's bank."),
+    ]
     secure_token: typing_extensions.Annotated[
-        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken")
+        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken"), pydantic.Field(alias="secureToken")
     ] = None
 
     if IS_PYDANTIC_V2:

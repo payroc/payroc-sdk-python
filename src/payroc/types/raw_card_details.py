@@ -16,25 +16,27 @@ class RawCardDetails(UniversalBaseModel):
     """
 
     downgrade_to: typing_extensions.Annotated[
-        typing.Optional[RawCardDetailsDowngradeTo], FieldMetadata(alias="downgradeTo")
-    ] = pydantic.Field(default=None)
-    """
-    If an offline transaction is not approved using the initial entry method, reprocess the transaction using a downgraded entry method.
-    For example, an Integrated Circuit Card (ICC) transaction can be downgraded to a swiped transaction or to a keyed transaction.
-    """
-
+        typing.Optional[RawCardDetailsDowngradeTo],
+        FieldMetadata(alias="downgradeTo"),
+        pydantic.Field(
+            alias="downgradeTo",
+            description="If an offline transaction is not approved using the initial entry method, reprocess the transaction using a downgraded entry method.\nFor example, an Integrated Circuit Card (ICC) transaction can be downgraded to a swiped transaction or to a keyed transaction.",
+        ),
+    ] = None
     device: Device
-    raw_data: typing_extensions.Annotated[str, FieldMetadata(alias="rawData")] = pydantic.Field()
-    """
-    Unencrypted data from the POS terminal.
-    """
-
+    raw_data: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="rawData"),
+        pydantic.Field(alias="rawData", description="Unencrypted data from the POS terminal."),
+    ]
     cardholder_signature: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardholderSignature")
-    ] = pydantic.Field(default=None)
-    """
-    Cardholder's signature. For more information about how to format the signature, go to [How to send a signature to our gateway](https://docs.payroc.com/knowledge/basic-concepts/signature-capture).
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="cardholderSignature"),
+        pydantic.Field(
+            alias="cardholderSignature",
+            description="Cardholder's signature. For more information about how to format the signature, go to [How to send a signature to our gateway](https://docs.payroc.com/knowledge/basic-concepts/signature-capture).",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

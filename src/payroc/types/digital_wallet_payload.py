@@ -16,34 +16,31 @@ class DigitalWalletPayload(UniversalBaseModel):
     """
 
     account_type: typing_extensions.Annotated[
-        typing.Optional[DigitalWalletPayloadAccountType], FieldMetadata(alias="accountType")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates the customer’s account type.  
-    
-    **Note:** Send a value for accountType only for bank account details.
-    """
-
+        typing.Optional[DigitalWalletPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(
+            alias="accountType",
+            description="Indicates the customer’s account type.  \n\n**Note:** Send a value for accountType only for bank account details.",
+        ),
+    ] = None
     service_provider: typing_extensions.Annotated[
-        DigitalWalletPayloadServiceProvider, FieldMetadata(alias="serviceProvider")
-    ] = pydantic.Field()
-    """
-    Provider of the digital wallet. Send one of the following values:
-    - `apple` - For more information about how to integrate with Apple Pay, go to [Apple Pay®](https://docs.payroc.com/guides/integrate/apple-pay).
-    - `google` - For more information about how to integrate with google Pay, go to [Google Pay®](https://docs.payroc.com/guides/integrate/google-pay).
-    """
-
-    cardholder_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardholderName")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Cardholder’s name.
-    """
-
-    encrypted_data: typing_extensions.Annotated[str, FieldMetadata(alias="encryptedData")] = pydantic.Field()
-    """
-    Encrypted data of the digital wallet.
-    """
+        DigitalWalletPayloadServiceProvider,
+        FieldMetadata(alias="serviceProvider"),
+        pydantic.Field(
+            alias="serviceProvider",
+            description="Provider of the digital wallet. Send one of the following values:\n- `apple` - For more information about how to integrate with Apple Pay, go to [Apple Pay®](https://docs.payroc.com/guides/take-payments/apple-pay).\n- `google` - For more information about how to integrate with google Pay, go to [Google Pay®](https://docs.payroc.com/guides/take-payments/google-pay).",
+        ),
+    ]
+    cardholder_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="cardholderName"),
+        pydantic.Field(alias="cardholderName", description="Cardholder’s name."),
+    ] = None
+    encrypted_data: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="encryptedData"),
+        pydantic.Field(alias="encryptedData", description="Encrypted data of the digital wallet."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

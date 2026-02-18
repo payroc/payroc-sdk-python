@@ -21,13 +21,11 @@ class BreakdownBase(UniversalBaseModel):
     Amount of the transaction before tax and fees. The value is in the currency’s lowest denomination, for example, cents.
     """
 
-    cashback_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="cashbackAmount")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Amount of cashback for the transaction.
-    """
-
+    cashback_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="cashbackAmount"),
+        pydantic.Field(alias="cashbackAmount", description="Amount of cashback for the transaction."),
+    ] = None
     tip: typing.Optional[Tip] = pydantic.Field(default=None)
     """
     Object that contains tip information for the transaction.
@@ -38,12 +36,13 @@ class BreakdownBase(UniversalBaseModel):
     Object that contains surcharge information for the transaction.
     """
 
-    dual_pricing: typing_extensions.Annotated[typing.Optional[DualPricing], FieldMetadata(alias="dualPricing")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Object that contains dual pricing information for the transaction.
-    """
+    dual_pricing: typing_extensions.Annotated[
+        typing.Optional[DualPricing],
+        FieldMetadata(alias="dualPricing"),
+        pydantic.Field(
+            alias="dualPricing", description="Object that contains dual pricing information for the transaction."
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

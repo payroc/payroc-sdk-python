@@ -20,12 +20,11 @@ class EnhancedInterchange(UniversalBaseModel):
     Enrollment fee for the enhanced interchange services. The value is in the currency's lowest denomination, for example, cents.
     """
 
-    credit_to_merchant: typing_extensions.Annotated[Percentage, FieldMetadata(alias="creditToMerchant")] = (
-        pydantic.Field()
-    )
-    """
-    Percentage of additional discount.
-    """
+    credit_to_merchant: typing_extensions.Annotated[
+        Percentage,
+        FieldMetadata(alias="creditToMerchant"),
+        pydantic.Field(alias="creditToMerchant", description="Percentage of additional discount."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

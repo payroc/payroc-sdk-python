@@ -9,10 +9,11 @@ from ..core.serialization import FieldMetadata
 
 
 class PricingTemplate(UniversalBaseModel):
-    pricing_intent_id: typing_extensions.Annotated[str, FieldMetadata(alias="pricingIntentId")] = pydantic.Field()
-    """
-    Unique identifier of the pricing intent.
-    """
+    pricing_intent_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="pricingIntentId"),
+        pydantic.Field(alias="pricingIntentId", description="Unique identifier of the pricing intent."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -14,38 +14,35 @@ class SchemasCredentialOnFile(UniversalBaseModel):
     Object that contains information about saving the customer’s payment details.
     """
 
-    external_vault: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="externalVault")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the merchant uses a third-party vault to store the customer’s payment details.
-    """
-
+    external_vault: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="externalVault"),
+        pydantic.Field(
+            alias="externalVault",
+            description="Indicates if the merchant uses a third-party vault to store the customer’s payment details.",
+        ),
+    ] = None
     tokenize: typing.Optional[bool] = pydantic.Field(default=None)
     """
     Indicates if our gateway should tokenize the customer’s payment details as part of the transaction.
     """
 
-    secure_token_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="secureTokenId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that the merchant creates for the secure token that represents the customer’s payment details.  
-    **Note:** If you do not send a value for the **secureTokenId**, our gateway generates a unique identifier for the token.
-    """
-
+    secure_token_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="secureTokenId"),
+        pydantic.Field(
+            alias="secureTokenId",
+            description="Unique identifier that the merchant creates for the secure token that represents the customer’s payment details.  \n**Note:** If you do not send a value for the **secureTokenId**, our gateway generates a unique identifier for the token.",
+        ),
+    ] = None
     mit_agreement: typing_extensions.Annotated[
-        typing.Optional[SchemasCredentialOnFileMitAgreement], FieldMetadata(alias="mitAgreement")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates how the merchant can use the customer’s card details, as agreed by the customer:  
-    
-    - `unscheduled` - Transactions for a fixed or variable amount that are run at a certain pre-defined event.  
-    - `recurring` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Recurring transactions don’t have a fixed duration and run until the customer cancels the agreement.  
-    - `installment` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Installment transactions have a fixed duration.  
-      
-    **Note:** If you send a value for **mitAgreement**, you must send the **standingInstructions** object in the **paymentOrder** object.
-    """
+        typing.Optional[SchemasCredentialOnFileMitAgreement],
+        FieldMetadata(alias="mitAgreement"),
+        pydantic.Field(
+            alias="mitAgreement",
+            description="Indicates how the merchant can use the customer’s card details, as agreed by the customer:  \n\n- `unscheduled` - Transactions for a fixed or variable amount that are run at a certain pre-defined event.  \n- `recurring` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Recurring transactions don’t have a fixed duration and run until the customer cancels the agreement.  \n- `installment` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Installment transactions have a fixed duration.  \n  \n**Note:** If you send a value for **mitAgreement**, you must send the **standingInstructions** object in the **paymentOrder** object.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

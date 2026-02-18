@@ -13,11 +13,17 @@ from ....types.third_party_three_d_secure_eci import ThirdPartyThreeDSecureEci
 
 class TokenizationRequestThreeDSecure_GatewayThreeDSecure(UniversalBaseModel):
     """
-    Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+    Polymorphic object that contains authentication information from 3-D Secure.
+
+    The value of the type parameter determines which variant you should use:
+    -    `gatewayThreeDSecure` - Use our gateway to run a 3-D Secure check.
+    -    `thirdPartyThreeDSecure` - Use a third party to run a 3-D Secure check.
     """
 
     type: typing.Literal["gatewayThreeDSecure"] = "gatewayThreeDSecure"
-    mpi_reference: typing_extensions.Annotated[str, FieldMetadata(alias="mpiReference")]
+    mpi_reference: typing_extensions.Annotated[
+        str, FieldMetadata(alias="mpiReference"), pydantic.Field(alias="mpiReference")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -31,14 +37,20 @@ class TokenizationRequestThreeDSecure_GatewayThreeDSecure(UniversalBaseModel):
 
 class TokenizationRequestThreeDSecure_ThirdPartyThreeDSecure(UniversalBaseModel):
     """
-    Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+    Polymorphic object that contains authentication information from 3-D Secure.
+
+    The value of the type parameter determines which variant you should use:
+    -    `gatewayThreeDSecure` - Use our gateway to run a 3-D Secure check.
+    -    `thirdPartyThreeDSecure` - Use a third party to run a 3-D Secure check.
     """
 
     type: typing.Literal["thirdPartyThreeDSecure"] = "thirdPartyThreeDSecure"
     eci: ThirdPartyThreeDSecureEci
     xid: typing.Optional[str] = None
     cavv: typing.Optional[str] = None
-    ds_transaction_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="dsTransactionId")] = None
+    ds_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="dsTransactionId"), pydantic.Field(alias="dsTransactionId")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

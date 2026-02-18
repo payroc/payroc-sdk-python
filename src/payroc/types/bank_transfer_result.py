@@ -26,35 +26,33 @@ class BankTransferResult(UniversalBaseModel):
     Status of the transaction.
     """
 
-    authorized_amount: typing_extensions.Annotated[typing.Optional[float], FieldMetadata(alias="authorizedAmount")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Amount of the transaction.  
-    **Note:** The amount is negative for a refund.
-    """
-
-    currency: typing.Optional[Currency] = None
-    response_code: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="responseCode")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Response from the processor.  
-    - `A` - The processor approved the transaction.  
-    - `D` - The processor declined the transaction.  
-    """
-
-    response_message: typing_extensions.Annotated[str, FieldMetadata(alias="responseMessage")] = pydantic.Field()
-    """
-    Description of the response from the processor.
-    """
-
+    authorized_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="authorizedAmount"),
+        pydantic.Field(
+            alias="authorizedAmount",
+            description="Amount of the transaction.  \n**Note:** The amount is negative for a refund.",
+        ),
+    ] = None
+    currency: Currency
+    response_code: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="responseCode"),
+        pydantic.Field(
+            alias="responseCode",
+            description="Response from the processor.  \n- `A` - The processor approved the transaction.  \n- `D` - The processor declined the transaction.  ",
+        ),
+    ]
+    response_message: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="responseMessage"),
+        pydantic.Field(alias="responseMessage", description="Description of the response from the processor."),
+    ] = None
     processor_response_code: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="processorResponseCode")
-    ] = pydantic.Field(default=None)
-    """
-    Original response code that the processor sent.
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="processorResponseCode"),
+        pydantic.Field(alias="processorResponseCode", description="Original response code that the processor sent."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

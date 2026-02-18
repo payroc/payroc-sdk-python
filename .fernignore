@@ -1,18 +1,28 @@
-# Specify files that shouldn't be modified by Fern
+## Specify files that shouldn't be modified by Fern
+
+# Custom features
 src/payroc/core/custom_pagination.py
-tests/custom/test_custom_pagination.py
-tests/security/test_credential_exposure.py
-src/payroc/client.py
 src/payroc/core/oauth_token_provider.py
-src/payroc/core/sentry_integration.py
 src/payroc/core/api_error.py
 src/payroc/types/tax.py
+src/payroc/sentry_integration.py
+
+# Generic usage files
 README.md
 CONTRIBUTING.md
 LICENSE
-tests/wire/conftest.py
-tests/integration/
+
+# CI and pipelines
+pipelines/
 scripts/
-.github/workflows/ci.yml
 .gitignore
+
+.previewignore
+SECURITY.md
+.github/CODEOWNERS
+
+# Test customizations
+tests/custom/test_custom_pagination.py
+tests/security/test_credential_exposure.py
+tests/integration/
 tests/custom/test_readme_examples.py

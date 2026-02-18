@@ -13,12 +13,14 @@ class PatchCopy(UniversalBaseModel):
     A Patch Copy Operation.
     """
 
-    from_: typing_extensions.Annotated[str, FieldMetadata(alias="from")] = pydantic.Field()
-    """
-    Location of the value that you want to copy.
-    The format for this value is JSON Pointer.
-    """
-
+    from_: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="from"),
+        pydantic.Field(
+            alias="from",
+            description="Location of the value that you want to copy.\nThe format for this value is JSON Pointer.",
+        ),
+    ]
     path: str = pydantic.Field()
     """
     Location where you want to copy the value to.

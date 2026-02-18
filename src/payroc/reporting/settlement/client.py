@@ -99,8 +99,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.reporting.settlement.list_batches(
             before="2571",
@@ -150,8 +149,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.reporting.settlement.retrieve_batch(
             batch_id=1,
@@ -234,8 +232,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.reporting.settlement.list_transactions(
             before="2571",
@@ -298,8 +295,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.reporting.settlement.retrieve_transaction(
             transaction_id=1,
@@ -375,8 +371,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.reporting.settlement.list_authorizations(
             before="2571",
@@ -436,8 +431,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.reporting.settlement.retrieve_authorization(
             authorization_id=1,
@@ -503,8 +497,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.reporting.settlement.list_disputes(
             before="2571",
@@ -553,8 +546,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.reporting.settlement.list_disputes_statuses(
             dispute_id=1,
@@ -623,8 +615,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.reporting.settlement.list_ach_deposits(
             before="2571",
@@ -677,8 +668,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.reporting.settlement.retrieve_ach_deposit(
             ach_deposit_id=1,
@@ -742,8 +732,7 @@ class SettlementClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.reporting.settlement.list_ach_deposit_fees(
             before="2571",
@@ -847,8 +836,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -907,8 +895,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -998,8 +985,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1071,8 +1057,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1155,8 +1140,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1225,8 +1209,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1299,8 +1282,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1358,8 +1340,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1435,8 +1416,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1498,8 +1478,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1570,8 +1549,7 @@ class AsyncSettlementClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

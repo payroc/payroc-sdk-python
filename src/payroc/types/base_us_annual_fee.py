@@ -15,12 +15,12 @@ class BaseUsAnnualFee(UniversalBaseModel):
     """
 
     bill_in_month: typing_extensions.Annotated[
-        typing.Optional[BaseUsAnnualFeeBillInMonth], FieldMetadata(alias="billInMonth")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates whether we collect the annual fee in June or December.
-    """
-
+        typing.Optional[BaseUsAnnualFeeBillInMonth],
+        FieldMetadata(alias="billInMonth"),
+        pydantic.Field(
+            alias="billInMonth", description="Indicates whether we collect the annual fee in June or December."
+        ),
+    ] = None
     amount: int = pydantic.Field()
     """
     Annual fee. The value is in the currency's lowest denomination, for example, cents.

@@ -20,17 +20,13 @@ class CredentialOnFile(UniversalBaseModel):
     """
 
     mit_agreement: typing_extensions.Annotated[
-        typing.Optional[CredentialOnFileMitAgreement], FieldMetadata(alias="mitAgreement")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates how the merchant can use the customer’s card details, as agreed by the customer:  
-    
-    - `unscheduled` - Transactions for a fixed or variable amount that are run at a certain pre-defined event.  
-    - `recurring` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Recurring transactions don’t have a fixed duration and run until the customer cancels the agreement.  
-    - `installment` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Installment transactions have a fixed duration.  
-      
-    **Note:** If you send a value for **mitAgreement**, you must send the **standingInstructions** object in the **paymentOrder** object.
-    """
+        typing.Optional[CredentialOnFileMitAgreement],
+        FieldMetadata(alias="mitAgreement"),
+        pydantic.Field(
+            alias="mitAgreement",
+            description="Indicates how the merchant can use the customer’s card details, as agreed by the customer:  \n\n- `unscheduled` - Transactions for a fixed or variable amount that are run at a certain pre-defined event.  \n- `recurring` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Recurring transactions don’t have a fixed duration and run until the customer cancels the agreement.  \n- `installment` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Installment transactions have a fixed duration.  \n  \n**Note:** If you send a value for **mitAgreement**, you must send the **standingInstructions** object in the **paymentOrder** object.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

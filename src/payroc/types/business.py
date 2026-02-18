@@ -22,36 +22,35 @@ class Business(UniversalBaseModel):
     Legal name of the business.
     """
 
-    tax_id: typing_extensions.Annotated[str, FieldMetadata(alias="taxId")] = pydantic.Field()
-    """
-    Tax ID of the business.
-    """
-
+    tax_id: typing_extensions.Annotated[
+        str, FieldMetadata(alias="taxId"), pydantic.Field(alias="taxId", description="Tax ID of the business.")
+    ]
     organization_type: typing_extensions.Annotated[
-        BusinessOrganizationType, FieldMetadata(alias="organizationType")
-    ] = pydantic.Field()
-    """
-    Type of organization.
-    """
-
+        BusinessOrganizationType,
+        FieldMetadata(alias="organizationType"),
+        pydantic.Field(alias="organizationType", description="Type of organization."),
+    ]
     country_of_operation: typing_extensions.Annotated[
-        typing.Optional[BusinessCountryOfOperation], FieldMetadata(alias="countryOfOperation")
-    ] = pydantic.Field(default=None)
-    """
-    Two-digit code for the country that the business operates in. The format follows the [ISO-3166](https://www.iso.org/iso-3166-country-codes.html) standard.
-    """
-
+        typing.Optional[BusinessCountryOfOperation],
+        FieldMetadata(alias="countryOfOperation"),
+        pydantic.Field(
+            alias="countryOfOperation",
+            description="Two-digit code for the country that the business operates in. The format follows the [ISO-3166](https://www.iso.org/iso-3166-country-codes.html) standard.",
+        ),
+    ] = None
     addresses: typing.List[LegalAddress] = pydantic.Field()
     """
-    Object that contains the addresses for the business.
+    Array of polymorphic objects that contain address information for the business.
     """
 
-    contact_methods: typing_extensions.Annotated[typing.List[ContactMethod], FieldMetadata(alias="contactMethods")] = (
-        pydantic.Field()
-    )
-    """
-    Array of contactMethod objects. One contact method must be an email address.
-    """
+    contact_methods: typing_extensions.Annotated[
+        typing.List[ContactMethod],
+        FieldMetadata(alias="contactMethods"),
+        pydantic.Field(
+            alias="contactMethods",
+            description="Array of polymorphic objects, which contain contact information.  \n\n**Note:** You must provide an email address.\n\nThe value of the type parameter determines which variant you should use:  \n-\t`email` - Email address \n-\t`phone` - Phone number\n-\t`mobile` - Mobile number\n-\t`fax` - Fax number",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

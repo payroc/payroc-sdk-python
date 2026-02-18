@@ -18,59 +18,60 @@ class RetrievedCustomer(UniversalBaseModel):
     Object that contains the customer's contact details and address information.
     """
 
-    first_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firstName")] = pydantic.Field(
-        default=None
-    )
-    """
-    Customer's first name.
-    """
-
-    last_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="lastName")] = pydantic.Field(
-        default=None
-    )
-    """
-    Customer's last name.
-    """
-
-    date_of_birth: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="dateOfBirth")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Customer's date of birth. The format for this value is **YYYY-MM-DD**.
-    """
-
-    reference_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="referenceNumber")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Identifier of the transaction, also known as a customer code. 
-    
-    For requests, you must send a value for **referenceNumber** if the customer provides one. 
-    """
-
+    first_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="firstName"),
+        pydantic.Field(alias="firstName", description="Customer's first name."),
+    ] = None
+    last_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="lastName"),
+        pydantic.Field(alias="lastName", description="Customer's last name."),
+    ] = None
+    date_of_birth: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="dateOfBirth"),
+        pydantic.Field(
+            alias="dateOfBirth", description="Customer's date of birth. The format for this value is **YYYY-MM-DD**."
+        ),
+    ] = None
+    reference_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="referenceNumber"),
+        pydantic.Field(
+            alias="referenceNumber",
+            description="Identifier of the transaction, also known as a customer code. \n\nFor requests, you must send a value for **referenceNumber** if the customer provides one. ",
+        ),
+    ] = None
     billing_address: typing_extensions.Annotated[
-        typing.Optional[RetrievedAddress], FieldMetadata(alias="billingAddress")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains information about the address that the card is registered to.
-    """
-
+        typing.Optional[RetrievedAddress],
+        FieldMetadata(alias="billingAddress"),
+        pydantic.Field(
+            alias="billingAddress",
+            description="Object that contains information about the address that the card is registered to.",
+        ),
+    ] = None
     shipping_address: typing_extensions.Annotated[
-        typing.Optional[RetrievedShipping], FieldMetadata(alias="shippingAddress")
+        typing.Optional[RetrievedShipping],
+        FieldMetadata(alias="shippingAddress"),
+        pydantic.Field(alias="shippingAddress"),
     ] = None
     contact_methods: typing_extensions.Annotated[
-        typing.Optional[typing.List[ContactMethod]], FieldMetadata(alias="contactMethods")
-    ] = pydantic.Field(default=None)
-    """
-    Customer's contact information.
-    """
-
+        typing.Optional[typing.List[ContactMethod]],
+        FieldMetadata(alias="contactMethods"),
+        pydantic.Field(
+            alias="contactMethods",
+            description="Array of polymorphic objects, which contain contact information.  \n\nThe value of the type parameter determines which variant you should use:  \n-\t`email` - Email address \n-\t`phone` - Phone number\n-\t`mobile` - Mobile number\n-\t`fax` - Fax number",
+        ),
+    ] = None
     notification_language: typing_extensions.Annotated[
-        typing.Optional[RetrievedCustomerNotificationLanguage], FieldMetadata(alias="notificationLanguage")
-    ] = pydantic.Field(default=None)
-    """
-    Language that the customer uses for notifications. This code follows the [ISO 639-1](https://www.iso.org/iso-639-language-code) alpha-2 standard. 
-    """
+        typing.Optional[RetrievedCustomerNotificationLanguage],
+        FieldMetadata(alias="notificationLanguage"),
+        pydantic.Field(
+            alias="notificationLanguage",
+            description="Language that the customer uses for notifications. This code follows the [ISO 639-1](https://www.iso.org/iso-639-language-code) alpha-2 standard. ",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -11,11 +11,12 @@ from .device_instruction import DeviceInstruction
 
 class RefundInstruction(DeviceInstruction):
     refund_instruction_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="refundInstructionId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier that we assigned to the refund instruction.
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="refundInstructionId"),
+        pydantic.Field(
+            alias="refundInstructionId", description="Unique identifier that we assigned to the refund instruction."
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

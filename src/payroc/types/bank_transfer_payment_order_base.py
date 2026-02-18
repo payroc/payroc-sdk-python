@@ -15,20 +15,19 @@ class BankTransferPaymentOrderBase(UniversalBaseModel):
     Object that contains information about the transaction.
     """
 
-    order_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="orderId")] = pydantic.Field(
-        default=None
-    )
-    """
-    A unique identifier assigned by the merchant.
-    """
-
-    date_time: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="dateTime")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    The processing date and time of the transaction represented as per [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) standard.
-    """
-
+    order_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="orderId"),
+        pydantic.Field(alias="orderId", description="A unique identifier assigned by the merchant."),
+    ] = None
+    date_time: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="dateTime"),
+        pydantic.Field(
+            alias="dateTime",
+            description="The processing date and time of the transaction represented as per [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) standard.",
+        ),
+    ] = None
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     A brief description of the transaction.

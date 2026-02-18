@@ -24,22 +24,38 @@ from .single_use_payment_link_status import SingleUsePaymentLinkStatus
 
 class PaymentLinkPaginatedListDataItem_MultiUse(UniversalBaseModel):
     type: typing.Literal["multiUse"] = "multiUse"
-    payment_link_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="paymentLinkId")] = None
-    merchant_reference: typing_extensions.Annotated[str, FieldMetadata(alias="merchantReference")]
+    payment_link_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="paymentLinkId"), pydantic.Field(alias="paymentLinkId")
+    ] = None
+    merchant_reference: typing_extensions.Annotated[
+        str, FieldMetadata(alias="merchantReference"), pydantic.Field(alias="merchantReference")
+    ]
     order: MultiUsePaymentLinkOrder
-    auth_type: typing_extensions.Annotated[MultiUsePaymentLinkAuthType, FieldMetadata(alias="authType")]
+    auth_type: typing_extensions.Annotated[
+        MultiUsePaymentLinkAuthType, FieldMetadata(alias="authType"), pydantic.Field(alias="authType")
+    ]
     payment_methods: typing_extensions.Annotated[
-        typing.List[MultiUsePaymentLinkPaymentMethodsItem], FieldMetadata(alias="paymentMethods")
+        typing.List[MultiUsePaymentLinkPaymentMethodsItem],
+        FieldMetadata(alias="paymentMethods"),
+        pydantic.Field(alias="paymentMethods"),
     ]
     custom_labels: typing_extensions.Annotated[
-        typing.Optional[typing.List[CustomLabel]], FieldMetadata(alias="customLabels")
+        typing.Optional[typing.List[CustomLabel]],
+        FieldMetadata(alias="customLabels"),
+        pydantic.Field(alias="customLabels"),
     ] = None
     assets: typing.Optional[PaymentLinkAssets] = None
     status: typing.Optional[MultiUsePaymentLinkStatus] = None
-    created_on: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="createdOn")] = None
-    expires_on: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="expiresOn")] = None
+    created_on: typing_extensions.Annotated[
+        typing.Optional[dt.date], FieldMetadata(alias="createdOn"), pydantic.Field(alias="createdOn")
+    ] = None
+    expires_on: typing_extensions.Annotated[
+        typing.Optional[dt.date], FieldMetadata(alias="expiresOn"), pydantic.Field(alias="expiresOn")
+    ] = None
     credential_on_file: typing_extensions.Annotated[
-        typing.Optional[CredentialOnFile], FieldMetadata(alias="credentialOnFile")
+        typing.Optional[CredentialOnFile],
+        FieldMetadata(alias="credentialOnFile"),
+        pydantic.Field(alias="credentialOnFile"),
     ] = None
 
     if IS_PYDANTIC_V2:
@@ -54,22 +70,38 @@ class PaymentLinkPaginatedListDataItem_MultiUse(UniversalBaseModel):
 
 class PaymentLinkPaginatedListDataItem_SingleUse(UniversalBaseModel):
     type: typing.Literal["singleUse"] = "singleUse"
-    payment_link_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="paymentLinkId")] = None
-    merchant_reference: typing_extensions.Annotated[str, FieldMetadata(alias="merchantReference")]
+    payment_link_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="paymentLinkId"), pydantic.Field(alias="paymentLinkId")
+    ] = None
+    merchant_reference: typing_extensions.Annotated[
+        str, FieldMetadata(alias="merchantReference"), pydantic.Field(alias="merchantReference")
+    ]
     order: SingleUsePaymentLinkOrder
-    auth_type: typing_extensions.Annotated[SingleUsePaymentLinkAuthType, FieldMetadata(alias="authType")]
+    auth_type: typing_extensions.Annotated[
+        SingleUsePaymentLinkAuthType, FieldMetadata(alias="authType"), pydantic.Field(alias="authType")
+    ]
     payment_methods: typing_extensions.Annotated[
-        typing.List[SingleUsePaymentLinkPaymentMethodsItem], FieldMetadata(alias="paymentMethods")
+        typing.List[SingleUsePaymentLinkPaymentMethodsItem],
+        FieldMetadata(alias="paymentMethods"),
+        pydantic.Field(alias="paymentMethods"),
     ]
     custom_labels: typing_extensions.Annotated[
-        typing.Optional[typing.List[CustomLabel]], FieldMetadata(alias="customLabels")
+        typing.Optional[typing.List[CustomLabel]],
+        FieldMetadata(alias="customLabels"),
+        pydantic.Field(alias="customLabels"),
     ] = None
     assets: typing.Optional[PaymentLinkAssets] = None
     status: typing.Optional[SingleUsePaymentLinkStatus] = None
-    created_on: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="createdOn")] = None
-    expires_on: typing_extensions.Annotated[dt.date, FieldMetadata(alias="expiresOn")]
+    created_on: typing_extensions.Annotated[
+        typing.Optional[dt.date], FieldMetadata(alias="createdOn"), pydantic.Field(alias="createdOn")
+    ] = None
+    expires_on: typing_extensions.Annotated[
+        dt.date, FieldMetadata(alias="expiresOn"), pydantic.Field(alias="expiresOn")
+    ]
     credential_on_file: typing_extensions.Annotated[
-        typing.Optional[CredentialOnFile], FieldMetadata(alias="credentialOnFile")
+        typing.Optional[CredentialOnFile],
+        FieldMetadata(alias="credentialOnFile"),
+        pydantic.Field(alias="credentialOnFile"),
     ] = None
 
     if IS_PYDANTIC_V2:

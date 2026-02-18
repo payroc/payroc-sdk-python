@@ -20,21 +20,22 @@ class DualPricing(UniversalBaseModel):
     Indicates if the merchant offered dual pricing to the customer.
     """
 
-    choice_rate: typing_extensions.Annotated[typing.Optional[ChoiceRate], FieldMetadata(alias="choiceRate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Object that contains information about the choice rate.  
-    **Note:** For requests, if the value for **offered** is `true`, you must send this object in the request.
-    """
-
+    choice_rate: typing_extensions.Annotated[
+        typing.Optional[ChoiceRate],
+        FieldMetadata(alias="choiceRate"),
+        pydantic.Field(
+            alias="choiceRate",
+            description="Object that contains information about the choice rate.  \n**Note:** For requests, if the value for **offered** is `true`, you must send this object in the request.",
+        ),
+    ] = None
     alternative_tender: typing_extensions.Annotated[
-        typing.Optional[DualPricingAlternativeTender], FieldMetadata(alias="alternativeTender")
-    ] = pydantic.Field(default=None)
-    """
-    Payment method that the merchant presented to the customer as an alternative to their chosen method.  
-    **Note:** For requests, if the value for **offered** is `true`, you must send a value for **alternativeTender** in the request.
-    """
+        typing.Optional[DualPricingAlternativeTender],
+        FieldMetadata(alias="alternativeTender"),
+        pydantic.Field(
+            alias="alternativeTender",
+            description="Payment method that the merchant presented to the customer as an alternative to their chosen method.  \n**Note:** For requests, if the value for **offered** is `true`, you must send a value for **alternativeTender** in the request.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

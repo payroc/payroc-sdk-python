@@ -14,13 +14,24 @@ from .surcharging import Surcharging
 
 class SingleUseTokenSource_Ach(UniversalBaseModel):
     """
-    Object that contains information about the payment method that we tokenized.
+    Polymorphic object that contains the payment method that we tokenized.
+
+    The value of the type parameter determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
+    -    `card` - Payment card details
     """
 
     type: typing.Literal["ach"] = "ach"
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")]
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")]
-    routing_number: typing_extensions.Annotated[str, FieldMetadata(alias="routingNumber")]
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount")
+    ]
+    account_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="accountNumber"), pydantic.Field(alias="accountNumber")
+    ]
+    routing_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="routingNumber"), pydantic.Field(alias="routingNumber")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -34,14 +45,27 @@ class SingleUseTokenSource_Ach(UniversalBaseModel):
 
 class SingleUseTokenSource_Pad(UniversalBaseModel):
     """
-    Object that contains information about the payment method that we tokenized.
+    Polymorphic object that contains the payment method that we tokenized.
+
+    The value of the type parameter determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
+    -    `card` - Payment card details
     """
 
     type: typing.Literal["pad"] = "pad"
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")]
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")]
-    transit_number: typing_extensions.Annotated[str, FieldMetadata(alias="transitNumber")]
-    institution_number: typing_extensions.Annotated[str, FieldMetadata(alias="institutionNumber")]
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount")
+    ]
+    account_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="accountNumber"), pydantic.Field(alias="accountNumber")
+    ]
+    transit_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="transitNumber"), pydantic.Field(alias="transitNumber")
+    ]
+    institution_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="institutionNumber"), pydantic.Field(alias="institutionNumber")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -55,14 +79,25 @@ class SingleUseTokenSource_Pad(UniversalBaseModel):
 
 class SingleUseTokenSource_Card(UniversalBaseModel):
     """
-    Object that contains information about the payment method that we tokenized.
+    Polymorphic object that contains the payment method that we tokenized.
+
+    The value of the type parameter determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
+    -    `card` - Payment card details
     """
 
     type: typing.Literal["card"] = "card"
-    cardholder_name: typing_extensions.Annotated[str, FieldMetadata(alias="cardholderName")]
-    card_number: typing_extensions.Annotated[str, FieldMetadata(alias="cardNumber")]
-    expiry_date: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="expiryDate")] = None
-    card_type: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardType")] = None
+    cardholder_name: typing_extensions.Annotated[
+        str, FieldMetadata(alias="cardholderName"), pydantic.Field(alias="cardholderName")
+    ]
+    card_number: typing_extensions.Annotated[str, FieldMetadata(alias="cardNumber"), pydantic.Field(alias="cardNumber")]
+    expiry_date: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="expiryDate"), pydantic.Field(alias="expiryDate")
+    ] = None
+    card_type: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="cardType"), pydantic.Field(alias="cardType")
+    ] = None
     currency: typing.Optional[Currency] = None
     debit: typing.Optional[bool] = None
     surcharging: typing.Optional[Surcharging] = None

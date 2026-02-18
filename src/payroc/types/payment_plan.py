@@ -13,10 +13,12 @@ from .payment_plan_setup_order import PaymentPlanSetupOrder
 
 class PaymentPlan(PaymentPlanBase):
     setup_order: typing_extensions.Annotated[
-        typing.Optional[PaymentPlanSetupOrder], FieldMetadata(alias="setupOrder")
+        typing.Optional[PaymentPlanSetupOrder], FieldMetadata(alias="setupOrder"), pydantic.Field(alias="setupOrder")
     ] = None
     recurring_order: typing_extensions.Annotated[
-        typing.Optional[PaymentPlanRecurringOrder], FieldMetadata(alias="recurringOrder")
+        typing.Optional[PaymentPlanRecurringOrder],
+        FieldMetadata(alias="recurringOrder"),
+        pydantic.Field(alias="recurringOrder"),
     ] = None
 
     if IS_PYDANTIC_V2:

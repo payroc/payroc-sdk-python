@@ -13,10 +13,14 @@ class SchemasAutomaticBatchClose(UniversalBaseModel):
     Indicates how authorized transactions will be batched for settlement
     """
 
-    batch_close_time: typing_extensions.Annotated[str, FieldMetadata(alias="batchCloseTime")] = pydantic.Field()
-    """
-    The time, within the specified timezone, at which the batch automatically closes
-    """
+    batch_close_time: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="batchCloseTime"),
+        pydantic.Field(
+            alias="batchCloseTime",
+            description="The time, within the specified timezone, at which the batch automatically closes",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

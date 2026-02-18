@@ -18,14 +18,22 @@ from ....types.secure_token_payload_sec_code import SecureTokenPayloadSecCode
 
 class BinLookupCard_Card(UniversalBaseModel):
     """
-    Object that contains information about the card.
+    Polymorphic object that contains payment details.
+
+    The value of the type parameter determines which variant you should use:
+    -    `card` - Payment card details
+    -    `cardBin` - Bank identification number (BIN) of the payment card
+    -    `secureToken` - Secure token details
+    -    `digitalWallet` - Digital wallet details
     """
 
     type: typing.Literal["card"] = "card"
     account_type: typing_extensions.Annotated[
-        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    card_details: typing_extensions.Annotated[CardPayloadCardDetails, FieldMetadata(alias="cardDetails")]
+    card_details: typing_extensions.Annotated[
+        CardPayloadCardDetails, FieldMetadata(alias="cardDetails"), pydantic.Field(alias="cardDetails")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -39,7 +47,13 @@ class BinLookupCard_Card(UniversalBaseModel):
 
 class BinLookupCard_CardBin(UniversalBaseModel):
     """
-    Object that contains information about the card.
+    Polymorphic object that contains payment details.
+
+    The value of the type parameter determines which variant you should use:
+    -    `card` - Payment card details
+    -    `cardBin` - Bank identification number (BIN) of the payment card
+    -    `secureToken` - Secure token details
+    -    `digitalWallet` - Digital wallet details
     """
 
     type: typing.Literal["cardBin"] = "cardBin"
@@ -57,16 +71,24 @@ class BinLookupCard_CardBin(UniversalBaseModel):
 
 class BinLookupCard_SecureToken(UniversalBaseModel):
     """
-    Object that contains information about the card.
+    Polymorphic object that contains payment details.
+
+    The value of the type parameter determines which variant you should use:
+    -    `card` - Payment card details
+    -    `cardBin` - Bank identification number (BIN) of the payment card
+    -    `secureToken` - Secure token details
+    -    `digitalWallet` - Digital wallet details
     """
 
     type: typing.Literal["secureToken"] = "secureToken"
     account_type: typing_extensions.Annotated[
-        typing.Optional[SecureTokenPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[SecureTokenPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType"),
     ] = None
     token: str
     sec_code: typing_extensions.Annotated[
-        typing.Optional[SecureTokenPayloadSecCode], FieldMetadata(alias="secCode")
+        typing.Optional[SecureTokenPayloadSecCode], FieldMetadata(alias="secCode"), pydantic.Field(alias="secCode")
     ] = None
 
     if IS_PYDANTIC_V2:
@@ -81,18 +103,32 @@ class BinLookupCard_SecureToken(UniversalBaseModel):
 
 class BinLookupCard_DigitalWallet(UniversalBaseModel):
     """
-    Object that contains information about the card.
+    Polymorphic object that contains payment details.
+
+    The value of the type parameter determines which variant you should use:
+    -    `card` - Payment card details
+    -    `cardBin` - Bank identification number (BIN) of the payment card
+    -    `secureToken` - Secure token details
+    -    `digitalWallet` - Digital wallet details
     """
 
     type: typing.Literal["digitalWallet"] = "digitalWallet"
     account_type: typing_extensions.Annotated[
-        typing.Optional[DigitalWalletPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[DigitalWalletPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType"),
     ] = None
     service_provider: typing_extensions.Annotated[
-        DigitalWalletPayloadServiceProvider, FieldMetadata(alias="serviceProvider")
+        DigitalWalletPayloadServiceProvider,
+        FieldMetadata(alias="serviceProvider"),
+        pydantic.Field(alias="serviceProvider"),
     ]
-    cardholder_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardholderName")] = None
-    encrypted_data: typing_extensions.Annotated[str, FieldMetadata(alias="encryptedData")]
+    cardholder_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="cardholderName"), pydantic.Field(alias="cardholderName")
+    ] = None
+    encrypted_data: typing_extensions.Annotated[
+        str, FieldMetadata(alias="encryptedData"), pydantic.Field(alias="encryptedData")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

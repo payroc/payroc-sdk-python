@@ -68,8 +68,8 @@ def test_boarding_processingAccounts_list_terminal_orders() -> None:
     client.boarding.processing_accounts.list_terminal_orders(
         processing_account_id="38765",
         status="open",
-        from_date_time=datetime.fromisoformat("2024-09-08T12:00:00Z"),
-        to_date_time=datetime.fromisoformat("2024-12-08T11:00:00Z"),
+        from_date_time=datetime.fromisoformat("2024-09-08T12:00:00+00:00"),
+        to_date_time=datetime.fromisoformat("2024-12-08T11:00:00+00:00"),
     )
     verify_request_count(
         test_id,

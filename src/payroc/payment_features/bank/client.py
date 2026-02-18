@@ -54,7 +54,11 @@ class BankClient:
             Unique identifier that we assigned to the terminal.
 
         bank_account : BankAccountVerificationRequestBankAccount
-            Object that contains information about the bank account.
+            Polymorphic object that contains bank account information.
+
+            The value of the type field determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -72,8 +76,7 @@ class BankClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_features.bank.verify(
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -137,7 +140,11 @@ class AsyncBankClient:
             Unique identifier that we assigned to the terminal.
 
         bank_account : BankAccountVerificationRequestBankAccount
-            Object that contains information about the bank account.
+            Polymorphic object that contains bank account information.
+
+            The value of the type field determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -157,8 +164,7 @@ class AsyncBankClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

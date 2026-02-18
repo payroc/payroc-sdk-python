@@ -13,16 +13,18 @@ class ProcessingVolumeBreakdown(UniversalBaseModel):
     Object that contains information about the types of transactions ran by the processing account. The percentages for transaction types must total 100%.
     """
 
-    card_present: typing_extensions.Annotated[int, FieldMetadata(alias="cardPresent")] = pydantic.Field()
-    """
-    Estimated percentage of card-present transactions.
-    """
-
-    mail_or_telephone: typing_extensions.Annotated[int, FieldMetadata(alias="mailOrTelephone")] = pydantic.Field()
-    """
-    Estimated percentage of mail order or telephone transactions.
-    """
-
+    card_present: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="cardPresent"),
+        pydantic.Field(alias="cardPresent", description="Estimated percentage of card-present transactions."),
+    ]
+    mail_or_telephone: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="mailOrTelephone"),
+        pydantic.Field(
+            alias="mailOrTelephone", description="Estimated percentage of mail order or telephone transactions."
+        ),
+    ]
     ecommerce: int = pydantic.Field()
     """
     Estimated percentage of e-Commerce transactions.

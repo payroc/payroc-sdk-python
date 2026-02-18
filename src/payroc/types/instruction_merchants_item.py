@@ -15,11 +15,13 @@ class InstructionMerchantsItem(UniversalBaseModel):
     Instruction indicating which recipients should receive funding from the specific merchant balance.
     """
 
-    merchant_id: typing_extensions.Annotated[str, FieldMetadata(alias="merchantId")] = pydantic.Field()
-    """
-    Unique identifier that the processor assigned to the merchant.
-    """
-
+    merchant_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="merchantId"),
+        pydantic.Field(
+            alias="merchantId", description="Unique identifier that the processor assigned to the merchant."
+        ),
+    ]
     recipients: typing.List[InstructionMerchantsItemRecipientsItem] = pydantic.Field()
     """
     Array of recipients objects. Each object contains information about the funding account and the amount of funds we send to the funding account.

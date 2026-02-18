@@ -11,10 +11,13 @@ from .qual_rates import QualRates
 
 
 class QualRatesWithPremium(QualRates):
-    premium_rate: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="premiumRate")] = pydantic.Field()
-    """
-    Object that contains the fees for a premium rate transaction.
-    """
+    premium_rate: typing_extensions.Annotated[
+        ProcessorFee,
+        FieldMetadata(alias="premiumRate"),
+        pydantic.Field(
+            alias="premiumRate", description="Object that contains the fees for a premium rate transaction."
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

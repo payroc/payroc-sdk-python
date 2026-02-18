@@ -23,13 +23,11 @@ class Transaction(UniversalBaseModel):
     Object that contains information about the transaction.
     """
 
-    transaction_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="transactionId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the transaction.
-    """
-
+    transaction_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="transactionId"),
+        pydantic.Field(alias="transactionId", description="Unique identifier that we assigned to the transaction."),
+    ] = None
     type: typing.Optional[TransactionType] = pydantic.Field(default=None)
     """
     Indicates the type of transaction. The value is one of the following:  
@@ -49,26 +47,26 @@ class Transaction(UniversalBaseModel):
     """
 
     entry_method: typing_extensions.Annotated[
-        typing.Optional[TransactionEntryMethod], FieldMetadata(alias="entryMethod")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates how the merchant received the payment details.
-    """
-
-    created_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that we received the transaction.  The format of this value is **YYYY-MM-DD**.
-    """
-
+        typing.Optional[TransactionEntryMethod],
+        FieldMetadata(alias="entryMethod"),
+        pydantic.Field(alias="entryMethod", description="Indicates how the merchant received the payment details."),
+    ] = None
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date that we received the transaction.  The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
     last_modified_date: typing_extensions.Annotated[
-        typing.Optional[dt.date], FieldMetadata(alias="lastModifiedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date that the transaction was last changed.  The format of this value is **YYYY-MM-DD**.
-    """
-
+        typing.Optional[dt.date],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(
+            alias="lastModifiedDate",
+            description="Date that the transaction was last changed.  The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
     status: typing.Optional[TransactionStatus] = pydantic.Field(default=None)
     """
     Indicates the status of the transaction. The value is one of the following:  
@@ -89,13 +87,14 @@ class Transaction(UniversalBaseModel):
     -    `unknown` – No transaction status available.  
     """
 
-    cashback_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="cashbackAmount")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Cashback amount. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
+    cashback_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="cashbackAmount"),
+        pydantic.Field(
+            alias="cashbackAmount",
+            description="Cashback amount. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
     interchange: typing.Optional[TransactionInterchange] = pydantic.Field(default=None)
     """
     Object that contains information about the interchange fees for the transaction.

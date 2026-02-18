@@ -13,15 +13,16 @@ class ProcessingTerminalTaxesItem(UniversalBaseModel):
     Object that contains a tax rate with a short description of the tax rate.
     """
 
-    tax_rate: typing_extensions.Annotated[float, FieldMetadata(alias="taxRate")] = pydantic.Field()
-    """
-    Rate of tax that the terminal applies to each transaction.
-    """
-
-    tax_label: typing_extensions.Annotated[str, FieldMetadata(alias="taxLabel")] = pydantic.Field()
-    """
-    Short description of the tax rate, for example, "Sales Tax".
-    """
+    tax_rate: typing_extensions.Annotated[
+        float,
+        FieldMetadata(alias="taxRate"),
+        pydantic.Field(alias="taxRate", description="Rate of tax that the terminal applies to each transaction."),
+    ]
+    tax_label: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="taxLabel"),
+        pydantic.Field(alias="taxLabel", description='Short description of the tax rate, for example, "Sales Tax".'),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -22,17 +22,27 @@ from .swiped_card_details_swiped_data import SwipedCardDetailsSwipedData
 
 class CardPayloadCardDetails_Raw(UniversalBaseModel):
     """
-    Object that contains the details of the payment card.
+    Polymorphic object that contains payment card information.
+
+    The value of the entryMethod parameter determines which variant you should use:
+    - `raw` - Unencrypted payment data directly from the device.
+    - `icc` - Payment data that the device captured from the chip.
+    - `keyed` - Payment data that the merchant entered manually.
+    - `swiped` - Payment data that the device captured from the magnetic strip.
     """
 
-    entry_method: typing_extensions.Annotated[typing.Literal["raw"], FieldMetadata(alias="entryMethod")] = "raw"
+    entry_method: typing_extensions.Annotated[
+        typing.Literal["raw"], FieldMetadata(alias="entryMethod"), pydantic.Field(alias="entryMethod")
+    ] = "raw"
     downgrade_to: typing_extensions.Annotated[
-        typing.Optional[RawCardDetailsDowngradeTo], FieldMetadata(alias="downgradeTo")
+        typing.Optional[RawCardDetailsDowngradeTo],
+        FieldMetadata(alias="downgradeTo"),
+        pydantic.Field(alias="downgradeTo"),
     ] = None
     device: Device
-    raw_data: typing_extensions.Annotated[str, FieldMetadata(alias="rawData")]
+    raw_data: typing_extensions.Annotated[str, FieldMetadata(alias="rawData"), pydantic.Field(alias="rawData")]
     cardholder_signature: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardholderSignature")
+        typing.Optional[str], FieldMetadata(alias="cardholderSignature"), pydantic.Field(alias="cardholderSignature")
     ] = None
 
     if IS_PYDANTIC_V2:
@@ -47,21 +57,33 @@ class CardPayloadCardDetails_Raw(UniversalBaseModel):
 
 class CardPayloadCardDetails_Icc(UniversalBaseModel):
     """
-    Object that contains the details of the payment card.
+    Polymorphic object that contains payment card information.
+
+    The value of the entryMethod parameter determines which variant you should use:
+    - `raw` - Unencrypted payment data directly from the device.
+    - `icc` - Payment data that the device captured from the chip.
+    - `keyed` - Payment data that the merchant entered manually.
+    - `swiped` - Payment data that the device captured from the magnetic strip.
     """
 
-    entry_method: typing_extensions.Annotated[typing.Literal["icc"], FieldMetadata(alias="entryMethod")] = "icc"
+    entry_method: typing_extensions.Annotated[
+        typing.Literal["icc"], FieldMetadata(alias="entryMethod"), pydantic.Field(alias="entryMethod")
+    ] = "icc"
     downgrade_to: typing_extensions.Annotated[
-        typing.Optional[IccCardDetailsDowngradeTo], FieldMetadata(alias="downgradeTo")
+        typing.Optional[IccCardDetailsDowngradeTo],
+        FieldMetadata(alias="downgradeTo"),
+        pydantic.Field(alias="downgradeTo"),
     ] = None
     device: EncryptionCapableDevice
-    icc_data: typing_extensions.Annotated[str, FieldMetadata(alias="iccData")]
-    first_digit_of_pan: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firstDigitOfPan")] = None
+    icc_data: typing_extensions.Annotated[str, FieldMetadata(alias="iccData"), pydantic.Field(alias="iccData")]
+    first_digit_of_pan: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="firstDigitOfPan"), pydantic.Field(alias="firstDigitOfPan")
+    ] = None
     cardholder_signature: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardholderSignature")
+        typing.Optional[str], FieldMetadata(alias="cardholderSignature"), pydantic.Field(alias="cardholderSignature")
     ] = None
     ebt_details: typing_extensions.Annotated[
-        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails")
+        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails"), pydantic.Field(alias="ebtDetails")
     ] = None
 
     if IS_PYDANTIC_V2:
@@ -76,20 +98,34 @@ class CardPayloadCardDetails_Icc(UniversalBaseModel):
 
 class CardPayloadCardDetails_Keyed(UniversalBaseModel):
     """
-    Object that contains the details of the payment card.
+    Polymorphic object that contains payment card information.
+
+    The value of the entryMethod parameter determines which variant you should use:
+    - `raw` - Unencrypted payment data directly from the device.
+    - `icc` - Payment data that the device captured from the chip.
+    - `keyed` - Payment data that the merchant entered manually.
+    - `swiped` - Payment data that the device captured from the magnetic strip.
     """
 
-    entry_method: typing_extensions.Annotated[typing.Literal["keyed"], FieldMetadata(alias="entryMethod")] = "keyed"
-    keyed_data: typing_extensions.Annotated[KeyedCardDetailsKeyedData, FieldMetadata(alias="keyedData")]
-    cardholder_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardholderName")] = None
+    entry_method: typing_extensions.Annotated[
+        typing.Literal["keyed"], FieldMetadata(alias="entryMethod"), pydantic.Field(alias="entryMethod")
+    ] = "keyed"
+    keyed_data: typing_extensions.Annotated[
+        KeyedCardDetailsKeyedData, FieldMetadata(alias="keyedData"), pydantic.Field(alias="keyedData")
+    ]
+    cardholder_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="cardholderName"), pydantic.Field(alias="cardholderName")
+    ] = None
     cardholder_signature: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardholderSignature")
+        typing.Optional[str], FieldMetadata(alias="cardholderSignature"), pydantic.Field(alias="cardholderSignature")
     ] = None
     pin_details: typing_extensions.Annotated[
-        typing.Optional[KeyedCardDetailsPinDetails], FieldMetadata(alias="pinDetails")
+        typing.Optional[KeyedCardDetailsPinDetails],
+        FieldMetadata(alias="pinDetails"),
+        pydantic.Field(alias="pinDetails"),
     ] = None
     ebt_details: typing_extensions.Annotated[
-        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails")
+        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails"), pydantic.Field(alias="ebtDetails")
     ] = None
 
     if IS_PYDANTIC_V2:
@@ -104,23 +140,39 @@ class CardPayloadCardDetails_Keyed(UniversalBaseModel):
 
 class CardPayloadCardDetails_Swiped(UniversalBaseModel):
     """
-    Object that contains the details of the payment card.
+    Polymorphic object that contains payment card information.
+
+    The value of the entryMethod parameter determines which variant you should use:
+    - `raw` - Unencrypted payment data directly from the device.
+    - `icc` - Payment data that the device captured from the chip.
+    - `keyed` - Payment data that the merchant entered manually.
+    - `swiped` - Payment data that the device captured from the magnetic strip.
     """
 
-    entry_method: typing_extensions.Annotated[typing.Literal["swiped"], FieldMetadata(alias="entryMethod")] = "swiped"
+    entry_method: typing_extensions.Annotated[
+        typing.Literal["swiped"], FieldMetadata(alias="entryMethod"), pydantic.Field(alias="entryMethod")
+    ] = "swiped"
     downgrade_to: typing_extensions.Annotated[
-        typing.Optional[SwipedCardDetailsDowngradeTo], FieldMetadata(alias="downgradeTo")
+        typing.Optional[SwipedCardDetailsDowngradeTo],
+        FieldMetadata(alias="downgradeTo"),
+        pydantic.Field(alias="downgradeTo"),
     ] = None
-    swiped_data: typing_extensions.Annotated[SwipedCardDetailsSwipedData, FieldMetadata(alias="swipedData")]
-    cardholder_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardholderName")] = None
+    swiped_data: typing_extensions.Annotated[
+        SwipedCardDetailsSwipedData, FieldMetadata(alias="swipedData"), pydantic.Field(alias="swipedData")
+    ]
+    cardholder_name: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="cardholderName"), pydantic.Field(alias="cardholderName")
+    ] = None
     cardholder_signature: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardholderSignature")
+        typing.Optional[str], FieldMetadata(alias="cardholderSignature"), pydantic.Field(alias="cardholderSignature")
     ] = None
     pin_details: typing_extensions.Annotated[
-        typing.Optional[SwipedCardDetailsPinDetails], FieldMetadata(alias="pinDetails")
+        typing.Optional[SwipedCardDetailsPinDetails],
+        FieldMetadata(alias="pinDetails"),
+        pydantic.Field(alias="pinDetails"),
     ] = None
     ebt_details: typing_extensions.Annotated[
-        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails")
+        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails"), pydantic.Field(alias="ebtDetails")
     ] = None
 
     if IS_PYDANTIC_V2:

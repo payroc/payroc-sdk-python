@@ -18,14 +18,20 @@ from ....types.single_use_token_payload_sec_code import SingleUseTokenPayloadSec
 
 class BalanceInquiryCard_Card(UniversalBaseModel):
     """
-    Object that contains information about the card.
+    Polymorphic object that contains payment details.
+
+    The value of the type parameter determines which variant you should use:
+    -    `card` - Payment card details
+    -    `singleUseToken` - Single-use token details
     """
 
     type: typing.Literal["card"] = "card"
     account_type: typing_extensions.Annotated[
-        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    card_details: typing_extensions.Annotated[CardPayloadCardDetails, FieldMetadata(alias="cardDetails")]
+    card_details: typing_extensions.Annotated[
+        CardPayloadCardDetails, FieldMetadata(alias="cardDetails"), pydantic.Field(alias="cardDetails")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -39,22 +45,30 @@ class BalanceInquiryCard_Card(UniversalBaseModel):
 
 class BalanceInquiryCard_SingleUseToken(UniversalBaseModel):
     """
-    Object that contains information about the card.
+    Polymorphic object that contains payment details.
+
+    The value of the type parameter determines which variant you should use:
+    -    `card` - Payment card details
+    -    `singleUseToken` - Single-use token details
     """
 
     type: typing.Literal["singleUseToken"] = "singleUseToken"
     account_type: typing_extensions.Annotated[
-        typing.Optional[SingleUseTokenPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[SingleUseTokenPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType"),
     ] = None
     token: str
     pin_details: typing_extensions.Annotated[
-        typing.Optional[SingleUseTokenPayloadPinDetails], FieldMetadata(alias="pinDetails")
+        typing.Optional[SingleUseTokenPayloadPinDetails],
+        FieldMetadata(alias="pinDetails"),
+        pydantic.Field(alias="pinDetails"),
     ] = None
     ebt_details: typing_extensions.Annotated[
-        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails")
+        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails"), pydantic.Field(alias="ebtDetails")
     ] = None
     sec_code: typing_extensions.Annotated[
-        typing.Optional[SingleUseTokenPayloadSecCode], FieldMetadata(alias="secCode")
+        typing.Optional[SingleUseTokenPayloadSecCode], FieldMetadata(alias="secCode"), pydantic.Field(alias="secCode")
     ] = None
 
     if IS_PYDANTIC_V2:

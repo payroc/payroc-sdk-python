@@ -10,21 +10,13 @@ from ..core.pydantic_utilities import parse_obj_as
 from ..core.request_options import RequestOptions
 from .types.get_token_response import GetTokenResponse
 
-# this is used as the default value for optional parameters
-OMIT = typing.cast(typing.Any, ...)
-
 
 class RawAuthClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     def retrieve_token(
-        self,
-        *,
-        api_key: str,
-        client_id: str,
-        client_secret: str,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, *, api_key: str, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[GetTokenResponse]:
         """
         Obtain an access token using client credentials
@@ -33,12 +25,6 @@ class RawAuthClient:
         ----------
         api_key : str
             The API key of the application
-
-        client_id : str
-            The client ID of the application
-
-        client_secret : str
-            The client secret of the application
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -52,16 +38,10 @@ class RawAuthClient:
             "authorize",
             base_url=self._client_wrapper.get_environment().identity,
             method="POST",
-            json={
-                "client_id": client_id,
-                "client_secret": client_secret,
-            },
             headers={
-                "content-type": "application/json",
                 "x-api-key": str(api_key) if api_key is not None else None,
             },
             request_options=request_options,
-            omit=OMIT,
         )
         try:
             if 200 <= _response.status_code < 300:
@@ -84,12 +64,7 @@ class AsyncRawAuthClient:
         self._client_wrapper = client_wrapper
 
     async def retrieve_token(
-        self,
-        *,
-        api_key: str,
-        client_id: str,
-        client_secret: str,
-        request_options: typing.Optional[RequestOptions] = None,
+        self, *, api_key: str, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[GetTokenResponse]:
         """
         Obtain an access token using client credentials
@@ -98,12 +73,6 @@ class AsyncRawAuthClient:
         ----------
         api_key : str
             The API key of the application
-
-        client_id : str
-            The client ID of the application
-
-        client_secret : str
-            The client secret of the application
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -117,16 +86,10 @@ class AsyncRawAuthClient:
             "authorize",
             base_url=self._client_wrapper.get_environment().identity,
             method="POST",
-            json={
-                "client_id": client_id,
-                "client_secret": client_secret,
-            },
             headers={
-                "content-type": "application/json",
                 "x-api-key": str(api_key) if api_key is not None else None,
             },
             request_options=request_options,
-            omit=OMIT,
         )
         try:
             if 200 <= _response.status_code < 300:

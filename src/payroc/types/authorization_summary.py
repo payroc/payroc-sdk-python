@@ -14,13 +14,11 @@ class AuthorizationSummary(UniversalBaseModel):
     Object that contains information about the authorization.
     """
 
-    authorization_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="authorizationId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier of the authorization.
-    """
-
+    authorization_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="authorizationId"),
+        pydantic.Field(alias="authorizationId", description="Unique identifier of the authorization."),
+    ] = None
     code: typing.Optional[str] = pydantic.Field(default=None)
     """
     Authorization code.  
@@ -33,13 +31,14 @@ class AuthorizationSummary(UniversalBaseModel):
     Authorization amount. We return the value in the currency's lowest denomination, for example, cents.
     """
 
-    avs_response_code: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="avsResponseCode")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Response code that indicates if the address matches the address registered to the customer.
-    """
-
+    avs_response_code: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="avsResponseCode"),
+        pydantic.Field(
+            alias="avsResponseCode",
+            description="Response code that indicates if the address matches the address registered to the customer.",
+        ),
+    ] = None
     link: typing.Optional[Link] = None
 
     if IS_PYDANTIC_V2:

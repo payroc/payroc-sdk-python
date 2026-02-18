@@ -20,19 +20,19 @@ class OfflineProcessing(UniversalBaseModel):
     Status of the transaction.
     """
 
-    approval_code: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="approvalCode")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Approval code for the transaction from the processor.
-    """
-
-    date_time: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="dateTime")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that the merchant ran the transaction. The date follows the ISO 8601 standard.
-    """
+    approval_code: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="approvalCode"),
+        pydantic.Field(alias="approvalCode", description="Approval code for the transaction from the processor."),
+    ] = None
+    date_time: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="dateTime"),
+        pydantic.Field(
+            alias="dateTime",
+            description="Date and time that the merchant ran the transaction. The date follows the ISO 8601 standard.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

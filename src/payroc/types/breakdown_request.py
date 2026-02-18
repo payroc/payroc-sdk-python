@@ -11,7 +11,11 @@ from .tax import Tax
 class BreakdownRequest(BreakdownBase):
     taxes: typing.Optional[typing.List[Tax]] = pydantic.Field(default=None)
     """
-    List of taxes.
+    Array of polymorphic tax objects, which contain information about a tax.  
+    
+    The value of the type parameter determines which variant you should use:  
+    -    `amount` - Tax is a fixed amount.
+    -    `rate` - Tax is a percentage.
     """
 
     if IS_PYDANTIC_V2:

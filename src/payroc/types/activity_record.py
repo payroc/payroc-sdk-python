@@ -39,7 +39,7 @@ class ActivityRecord(UniversalBaseModel):
     Description of the activity.
     """
 
-    amount: float = pydantic.Field()
+    amount: int = pydantic.Field()
     """
     Total amount that we removed or added to the merchant's funding balance. The value is in the currency’s lowest denomination, for example, cents.
     """

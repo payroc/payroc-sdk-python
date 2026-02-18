@@ -86,8 +86,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.card_payments.refunds.reverse(
             payment_id="M2MJOG6O2Y",
@@ -158,8 +157,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.card_payments.refunds.create_referenced_refund(
             payment_id="M2MJOG6O2Y",
@@ -279,8 +277,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.card_payments.refunds.list(
             processing_terminal_id="1234001",
@@ -370,7 +367,11 @@ class RefundsClient:
         order : RefundOrder
 
         refund_method : UnreferencedRefundRefundMethod
-            Object that contains information about how the merchant refunds the customer.
+            Polymorphic object that contains information about the payment method that the merchant uses to refund the customer.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
 
         operator : typing.Optional[str]
             Operator who initiated the request.
@@ -402,8 +403,7 @@ class RefundsClient:
         from payroc.card_payments.refunds import UnreferencedRefundRefundMethod_Card
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.card_payments.refunds.create_unreferenced_refund(
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -479,8 +479,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.card_payments.refunds.retrieve(
             refund_id="CD3HN88U9F",
@@ -525,7 +524,11 @@ class RefundsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         adjustments : typing.Sequence[RefundAdjustmentAdjustmentsItem]
-            Array of objects that contain information about the adjustments to the refund.
+            Array of polymorphic objects that contain information about adjustments to the refund.
+
+            The value of the type parameter determines which variant you should use:
+            -    `status` - Status of the transaction.
+            -    `customer` - Customer's contact information and shipping address.
 
         operator : typing.Optional[str]
             Operator who requested the adjustment to the refund.
@@ -546,8 +549,7 @@ class RefundsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.card_payments.refunds.adjust(
             refund_id="CD3HN88U9F",
@@ -598,8 +600,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.card_payments.refunds.reverse_refund(
             refund_id="CD3HN88U9F",
@@ -675,8 +676,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -755,8 +755,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -883,8 +882,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -981,7 +979,11 @@ class AsyncRefundsClient:
         order : RefundOrder
 
         refund_method : UnreferencedRefundRefundMethod
-            Object that contains information about how the merchant refunds the customer.
+            Polymorphic object that contains information about the payment method that the merchant uses to refund the customer.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
 
         operator : typing.Optional[str]
             Operator who initiated the request.
@@ -1015,8 +1017,7 @@ class AsyncRefundsClient:
         from payroc.card_payments.refunds import UnreferencedRefundRefundMethod_Card
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1102,8 +1103,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1154,7 +1154,11 @@ class AsyncRefundsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         adjustments : typing.Sequence[RefundAdjustmentAdjustmentsItem]
-            Array of objects that contain information about the adjustments to the refund.
+            Array of polymorphic objects that contain information about adjustments to the refund.
+
+            The value of the type parameter determines which variant you should use:
+            -    `status` - Status of the transaction.
+            -    `customer` - Customer's contact information and shipping address.
 
         operator : typing.Optional[str]
             Operator who requested the adjustment to the refund.
@@ -1177,8 +1181,7 @@ class AsyncRefundsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1237,8 +1240,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

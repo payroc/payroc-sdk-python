@@ -19,13 +19,13 @@ from .processing_terminal_timezone import ProcessingTerminalTimezone
 
 
 class ProcessingTerminal(UniversalBaseModel):
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier that we assigned to the processing terminal.
-    """
-
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(
+            alias="processingTerminalId", description="Unique identifier that we assigned to the processing terminal."
+        ),
+    ]
     status: ProcessingTerminalStatus = pydantic.Field()
     """
     Indicates if the processing terminal is active.
@@ -43,23 +43,24 @@ class ProcessingTerminal(UniversalBaseModel):
 
     gateway: typing.Optional[PayrocGateway] = pydantic.Field(default=None)
     """
-    Object that contains the gateway settings for the solution.
+    Polymorphic object that contains the gateway settings for the solution.
     """
 
-    batch_closure: typing_extensions.Annotated[ProcessingTerminalBatchClosure, FieldMetadata(alias="batchClosure")] = (
-        pydantic.Field()
-    )
-    """
-    Object that contains information about when and how the terminal closes the batch.
-    """
-
+    batch_closure: typing_extensions.Annotated[
+        ProcessingTerminalBatchClosure,
+        FieldMetadata(alias="batchClosure"),
+        pydantic.Field(
+            alias="batchClosure",
+            description="Polymorphic object that contains information about when and how the terminal closes the batch.  \n\nThe value of the batchCloseType field determines which variant you should use:  \n-\t`automatic` - Terminal automatically closes the batch at a specific time each day. \n- `manual` - Merchant uses the terminal to manually close the batch.",
+        ),
+    ]
     application_settings: typing_extensions.Annotated[
-        ProcessingTerminalApplicationSettings, FieldMetadata(alias="applicationSettings")
-    ] = pydantic.Field()
-    """
-    Object that contains the application settings for the solution.
-    """
-
+        ProcessingTerminalApplicationSettings,
+        FieldMetadata(alias="applicationSettings"),
+        pydantic.Field(
+            alias="applicationSettings", description="Object that contains the application settings for the solution."
+        ),
+    ]
     features: ProcessingTerminalFeatures = pydantic.Field()
     """
     Object that contains the feature settings for the terminal.
@@ -76,12 +77,13 @@ class ProcessingTerminal(UniversalBaseModel):
     """
 
     receipt_notifications: typing_extensions.Annotated[
-        typing.Optional[ProcessingTerminalReceiptNotifications], FieldMetadata(alias="receiptNotifications")
-    ] = pydantic.Field(default=None)
-    """
-    Object that indicates if the terminal can send email receipts or text receipts.
-    """
-
+        typing.Optional[ProcessingTerminalReceiptNotifications],
+        FieldMetadata(alias="receiptNotifications"),
+        pydantic.Field(
+            alias="receiptNotifications",
+            description="Object that indicates if the terminal can send email receipts or text receipts.",
+        ),
+    ] = None
     devices: typing.Optional[typing.List[ProcessingTerminalDevicesItem]] = pydantic.Field(default=None)
     """
     Array of device objects. Each object contains information about a device using the processing terminal's configuration.

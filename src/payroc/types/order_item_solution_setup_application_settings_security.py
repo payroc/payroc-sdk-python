@@ -13,26 +13,30 @@ class OrderItemSolutionSetupApplicationSettingsSecurity(UniversalBaseModel):
     Object that contains the password settings when running specific transaction types.
     """
 
-    refund_password: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="refundPassword")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal should prompt the clerk for a password when running a refund.
-    """
-
+    refund_password: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="refundPassword"),
+        pydantic.Field(
+            alias="refundPassword",
+            description="Indicates if the terminal should prompt the clerk for a password when running a refund.",
+        ),
+    ] = None
     keyed_sale_password: typing_extensions.Annotated[
-        typing.Optional[bool], FieldMetadata(alias="keyedSalePassword")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the terminal should prompt the clerk for a password when running a keyed sale.
-    """
-
-    reversal_password: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="reversalPassword")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal should prompt the clerk for a password when cancelling a transaction.
-    """
+        typing.Optional[bool],
+        FieldMetadata(alias="keyedSalePassword"),
+        pydantic.Field(
+            alias="keyedSalePassword",
+            description="Indicates if the terminal should prompt the clerk for a password when running a keyed sale.",
+        ),
+    ] = None
+    reversal_password: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="reversalPassword"),
+        pydantic.Field(
+            alias="reversalPassword",
+            description="Indicates if the terminal should prompt the clerk for a password when cancelling a transaction.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

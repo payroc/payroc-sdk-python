@@ -13,17 +13,17 @@ from .signature import Signature
 
 class MerchantPlatformProcessingAccountsItem(UniversalBaseModel):
     processing_account_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="processingAccountId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier that we assigned to the processing account.
-    """
-
-    doing_business_as: typing_extensions.Annotated[str, FieldMetadata(alias="doingBusinessAs")] = pydantic.Field()
-    """
-    Trading name of the business.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="processingAccountId"),
+        pydantic.Field(
+            alias="processingAccountId", description="Unique identifier that we assigned to the processing account."
+        ),
+    ] = None
+    doing_business_as: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="doingBusinessAs"),
+        pydantic.Field(alias="doingBusinessAs", description="Trading name of the business."),
+    ]
     status: typing.Optional[MerchantPlatformProcessingAccountsItemStatus] = pydantic.Field(default=None)
     """
     Status of the processing account.
@@ -38,7 +38,7 @@ class MerchantPlatformProcessingAccountsItem(UniversalBaseModel):
     - `cancelled` - Merchant withdrew the application for the processing account.
     - `failed` - An error occurred while we were setting up the processing account.  
     
-    **Note**: You can subscribe to our processingAccount.status.changed event to get notifications when we change the status of a processing account. For more information about how to subscribe to events, go to [Event Subscriptions](https://docs.payroc.com/guides/integrate/event-subscriptions).
+    **Note**: You can subscribe to our processingAccount.status.changed event to get notifications when we change the status of a processing account. For more information about how to subscribe to events, go to [Event Subscriptions](https://docs.payroc.com/guides/board-merchants/event-subscriptions).
     """
 
     link: typing.Optional[MerchantPlatformProcessingAccountsItemLink] = pydantic.Field(default=None)

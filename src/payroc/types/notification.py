@@ -14,7 +14,9 @@ class Notification_Webhook(UniversalBaseModel):
     type: typing.Literal["webhook"] = "webhook"
     uri: str
     secret: str
-    support_email_address: typing_extensions.Annotated[str, FieldMetadata(alias="supportEmailAddress")]
+    support_email_address: typing_extensions.Annotated[
+        str, FieldMetadata(alias="supportEmailAddress"), pydantic.Field(alias="supportEmailAddress")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

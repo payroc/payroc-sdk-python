@@ -11,13 +11,11 @@ from .card import Card
 
 
 class Balance(UniversalBaseModel):
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier that we assigned to the terminal.
-    """
-
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(alias="processingTerminalId", description="Unique identifier that we assigned to the terminal."),
+    ]
     operator: typing.Optional[str] = pydantic.Field(default=None)
     """
     Operator who requested the balance inquiry.
@@ -25,24 +23,21 @@ class Balance(UniversalBaseModel):
 
     card: Card
     response_code: typing_extensions.Annotated[
-        typing.Optional[BalanceResponseCode], FieldMetadata(alias="responseCode")
-    ] = pydantic.Field(default=None)
-    """
-    Response from the processor.  
-    - `A` - The processor approved the transaction.  
-    - `D` - The processor declined the transaction.  
-    - `E` - The processor received the transaction but will process the transaction later.  
-    - `P` - The processor authorized a portion of the original amount of the transaction.  
-    - `R` - The issuer declined the transaction and indicated that the customer should contact their bank.  
-    - `C` - The issuer declined the transaction and indicated that the merchant should keep the card as it was reported lost or stolen.
-    """
-
-    response_message: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="responseMessage")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Response description from the payment processor, for example, Refer to Card Issuer.
-    """
+        typing.Optional[BalanceResponseCode],
+        FieldMetadata(alias="responseCode"),
+        pydantic.Field(
+            alias="responseCode",
+            description="Response from the processor.  \n- `A` - The processor approved the transaction.  \n- `D` - The processor declined the transaction.  \n- `E` - The processor received the transaction but will process the transaction later.  \n- `P` - The processor authorized a portion of the original amount of the transaction.  \n- `R` - The issuer declined the transaction and indicated that the customer should contact their bank.  \n- `C` - The issuer declined the transaction and indicated that the merchant should keep the card as it was reported lost or stolen.",
+        ),
+    ] = None
+    response_message: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="responseMessage"),
+        pydantic.Field(
+            alias="responseMessage",
+            description="Response description from the payment processor, for example, Refer to Card Issuer.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

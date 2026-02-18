@@ -23,51 +23,51 @@ class OrderItemSolutionSetup(UniversalBaseModel):
 
     timezone: typing.Optional[SchemasTimezone] = None
     industry_template_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="industryTemplateId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier of the industry template you want to apply to the solution. Send one of the following values:
-    - `Retail`
-    - `Restaurant`
-    - `Moto`
-    - `Ecommerce`
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="industryTemplateId"),
+        pydantic.Field(
+            alias="industryTemplateId",
+            description="Unique identifier of the industry template you want to apply to the solution. Send one of the following values:\n- `Retail`\n- `Restaurant`\n- `Moto`\n- `Ecommerce`",
+        ),
+    ] = None
     gateway_settings: typing_extensions.Annotated[
-        typing.Optional[OrderItemSolutionSetupGatewaySettings], FieldMetadata(alias="gatewaySettings")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains the gateway settings for the solution.
-    """
-
+        typing.Optional[OrderItemSolutionSetupGatewaySettings],
+        FieldMetadata(alias="gatewaySettings"),
+        pydantic.Field(
+            alias="gatewaySettings", description="Object that contains the gateway settings for the solution."
+        ),
+    ] = None
     application_settings: typing_extensions.Annotated[
-        typing.Optional[OrderItemSolutionSetupApplicationSettings], FieldMetadata(alias="applicationSettings")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains the application settings for the solution.
-    """
-
+        typing.Optional[OrderItemSolutionSetupApplicationSettings],
+        FieldMetadata(alias="applicationSettings"),
+        pydantic.Field(
+            alias="applicationSettings", description="Object that contains the application settings for the solution."
+        ),
+    ] = None
     device_settings: typing_extensions.Annotated[
-        typing.Optional[OrderItemSolutionSetupDeviceSettings], FieldMetadata(alias="deviceSettings")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains the device settings if the solution includes a terminal or a peripheral device such as a printer.
-    """
-
+        typing.Optional[OrderItemSolutionSetupDeviceSettings],
+        FieldMetadata(alias="deviceSettings"),
+        pydantic.Field(
+            alias="deviceSettings",
+            description="Object that contains the device settings if the solution includes a terminal or a peripheral device such as a printer.",
+        ),
+    ] = None
     batch_closure: typing_extensions.Annotated[
-        typing.Optional[OrderItemSolutionSetupBatchClosure], FieldMetadata(alias="batchClosure")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains information about when and how the terminal closes the batch.
-    """
-
+        typing.Optional[OrderItemSolutionSetupBatchClosure],
+        FieldMetadata(alias="batchClosure"),
+        pydantic.Field(
+            alias="batchClosure",
+            description="Object that contains information about when and how the terminal closes the batch.",
+        ),
+    ] = None
     receipt_notifications: typing_extensions.Annotated[
-        typing.Optional[OrderItemSolutionSetupReceiptNotifications], FieldMetadata(alias="receiptNotifications")
-    ] = pydantic.Field(default=None)
-    """
-    Object that indicates if the terminal can send email receipts, text receipts, or both.
-    """
-
+        typing.Optional[OrderItemSolutionSetupReceiptNotifications],
+        FieldMetadata(alias="receiptNotifications"),
+        pydantic.Field(
+            alias="receiptNotifications",
+            description="Object that indicates if the terminal can send email receipts, text receipts, or both.",
+        ),
+    ] = None
     taxes: typing.Optional[typing.List[OrderItemSolutionSetupTaxesItem]] = pydantic.Field(default=None)
     """
     Array of tax objects that contains the taxes that apply to the merchant's transactions.

@@ -29,41 +29,50 @@ class AchFees(UniversalBaseModel):
     Fee for each return. The value is in the currency's lowest denomination, for example, cents.
     """
 
-    unauthorized_return: typing_extensions.Annotated[int, FieldMetadata(alias="unauthorizedReturn")] = pydantic.Field()
-    """
-    Fee for each unauthorized return. The value is in the currency's lowest denomination, for example, cents.
-    """
-
+    unauthorized_return: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="unauthorizedReturn"),
+        pydantic.Field(
+            alias="unauthorizedReturn",
+            description="Fee for each unauthorized return. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
     statement: int = pydantic.Field()
     """
     Fee for each statement. The value is in the currency's lowest denomination, for example, cents.
     """
 
-    monthly_minimum: typing_extensions.Annotated[int, FieldMetadata(alias="monthlyMinimum")] = pydantic.Field()
-    """
-    Minimum monthly value of transactions. The value is in the currency's lowest denomination, for example, cents.
-    """
-
-    account_verification: typing_extensions.Annotated[int, FieldMetadata(alias="accountVerification")] = (
-        pydantic.Field()
-    )
-    """
-    Fee for each account verification. The value is in the currency's lowest denomination, for example, cents.
-    """
-
+    monthly_minimum: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="monthlyMinimum"),
+        pydantic.Field(
+            alias="monthlyMinimum",
+            description="Minimum monthly value of transactions. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
+    account_verification: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="accountVerification"),
+        pydantic.Field(
+            alias="accountVerification",
+            description="Fee for each account verification. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
     discount_rate_under_10000: typing_extensions.Annotated[
-        Percentage, FieldMetadata(alias="discountRateUnder10000")
-    ] = pydantic.Field()
-    """
-    Percentage discount for ACH transfers less than $10,000.
-    """
-
+        Percentage,
+        FieldMetadata(alias="discountRateUnder10000"),
+        pydantic.Field(
+            alias="discountRateUnder10000", description="Percentage discount for ACH transfers less than $10,000."
+        ),
+    ]
     discount_rate_above_10000: typing_extensions.Annotated[
-        Percentage, FieldMetadata(alias="discountRateAbove10000")
-    ] = pydantic.Field()
-    """
-    Percentage discount for ACH transfers equal to or more than $10,000.
-    """
+        Percentage,
+        FieldMetadata(alias="discountRateAbove10000"),
+        pydantic.Field(
+            alias="discountRateAbove10000",
+            description="Percentage discount for ACH transfers equal to or more than $10,000.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

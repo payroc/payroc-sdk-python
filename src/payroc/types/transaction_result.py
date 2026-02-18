@@ -23,70 +23,58 @@ class TransactionResult(UniversalBaseModel):
     Transaction type.
     """
 
-    ebt_type: typing_extensions.Annotated[typing.Optional[TransactionResultEbtType], FieldMetadata(alias="ebtType")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates the subtype of EBT in the transaction.
-    """
-
+    ebt_type: typing_extensions.Annotated[
+        typing.Optional[TransactionResultEbtType],
+        FieldMetadata(alias="ebtType"),
+        pydantic.Field(alias="ebtType", description="Indicates the subtype of EBT in the transaction."),
+    ] = None
     status: TransactionResultStatus = pydantic.Field()
     """
     Current status of the transaction.
     """
 
-    approval_code: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="approvalCode")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Authorization code that the processor assigned to the transaction.
-    """
-
-    authorized_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="authorizedAmount")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Amount that the processor authorized for the transaction. This value is in the currency’s lowest denomination, for example, cents.  
-    
-    **Notes:**  
-    - For partial authorizations, this amount is lower than the amount in the request.
-    - If the value for **authorizedAmount** is negative, this indicates that the merchant sent funds to the customer.
-    """
-
+    approval_code: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="approvalCode"),
+        pydantic.Field(
+            alias="approvalCode", description="Authorization code that the processor assigned to the transaction."
+        ),
+    ] = None
+    authorized_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="authorizedAmount"),
+        pydantic.Field(
+            alias="authorizedAmount",
+            description="Amount that the processor authorized for the transaction. This value is in the currency’s lowest denomination, for example, cents.  \n\n**Notes:**  \n- For partial authorizations, this amount is lower than the amount in the request.\n- If the value for **authorizedAmount** is negative, this indicates that the merchant sent funds to the customer.",
+        ),
+    ] = None
     currency: typing.Optional[Currency] = None
-    response_code: typing_extensions.Annotated[TransactionResultResponseCode, FieldMetadata(alias="responseCode")] = (
-        pydantic.Field()
-    )
-    """
-    Response from the processor.  
-    - `A` - The processor approved the transaction.  
-    - `D` - The processor declined the transaction.  
-    - `E` - The processor received the transaction but will process the transaction later.  
-    - `P` - The processor authorized a portion of the original amount of the transaction.  
-    - `R` - The issuer declined the transaction and indicated that the customer should contact their bank.  
-    - `C` - The issuer declined the transaction and indicated that the merchant should keep the card as it was reported lost or stolen.
-    """
-
-    response_message: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="responseMessage")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Response description from the processor.
-    """
-
+    response_code: typing_extensions.Annotated[
+        TransactionResultResponseCode,
+        FieldMetadata(alias="responseCode"),
+        pydantic.Field(
+            alias="responseCode",
+            description="Response from the processor.  \n- `A` - The processor approved the transaction.  \n- `D` - The processor declined the transaction.  \n- `E` - The processor received the transaction but will process the transaction later.  \n- `P` - The processor authorized a portion of the original amount of the transaction.  \n- `R` - The issuer declined the transaction and indicated that the customer should contact their bank.  \n- `C` - The issuer declined the transaction and indicated that the merchant should keep the card as it was reported lost or stolen.",
+        ),
+    ]
+    response_message: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="responseMessage"),
+        pydantic.Field(alias="responseMessage", description="Response description from the processor."),
+    ] = None
     processor_response_code: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="processorResponseCode")
-    ] = pydantic.Field(default=None)
-    """
-    Original response code that the processor sent.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="processorResponseCode"),
+        pydantic.Field(alias="processorResponseCode", description="Original response code that the processor sent."),
+    ] = None
     card_scheme_reference_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardSchemeReferenceId")
-    ] = pydantic.Field(default=None)
-    """
-    Identifier that the card brand assigns to the payment instruction.
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="cardSchemeReferenceId"),
+        pydantic.Field(
+            alias="cardSchemeReferenceId",
+            description="Identifier that the card brand assigns to the payment instruction.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

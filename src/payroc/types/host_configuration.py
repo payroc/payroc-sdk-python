@@ -14,23 +14,23 @@ class HostConfiguration(UniversalBaseModel):
     Object that contains the terminal's host configuration.
     """
 
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier that our gateway assigned to the terminal.
-    """
-
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(
+            alias="processingTerminalId", description="Unique identifier that our gateway assigned to the terminal."
+        ),
+    ]
     processing_account_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="processingAccountId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier that we assigned to the processing account.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="processingAccountId"),
+        pydantic.Field(
+            alias="processingAccountId", description="Unique identifier that we assigned to the processing account."
+        ),
+    ] = None
     configuration: HostConfigurationConfiguration = pydantic.Field()
     """
-    Object that contains the host processor configuration.
+    Polymorphic object that contains the host processor configuration.
     """
 
     if IS_PYDANTIC_V2:

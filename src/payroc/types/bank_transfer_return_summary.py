@@ -15,26 +15,24 @@ class BankTransferReturnSummary(UniversalBaseModel):
     Object that contains information about a return.
     """
 
-    payment_id: typing_extensions.Annotated[str, FieldMetadata(alias="paymentId")] = pydantic.Field()
-    """
-    Unique identifier that our gateway assigned to the payment.
-    """
-
+    payment_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="paymentId"),
+        pydantic.Field(alias="paymentId", description="Unique identifier that our gateway assigned to the payment."),
+    ]
     date: dt.date = pydantic.Field()
     """
     The date that the check was returned.
     """
 
-    return_code: typing_extensions.Annotated[str, FieldMetadata(alias="returnCode")] = pydantic.Field()
-    """
-    The NACHA return code.
-    """
-
-    return_reason: typing_extensions.Annotated[str, FieldMetadata(alias="returnReason")] = pydantic.Field()
-    """
-    The reason why the check was returned.
-    """
-
+    return_code: typing_extensions.Annotated[
+        str, FieldMetadata(alias="returnCode"), pydantic.Field(alias="returnCode", description="The NACHA return code.")
+    ]
+    return_reason: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="returnReason"),
+        pydantic.Field(alias="returnReason", description="The reason why the check was returned."),
+    ]
     represented: bool = pydantic.Field()
     """
     Indicates whether the return has been re-presented.

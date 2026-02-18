@@ -18,12 +18,14 @@ class ProcessingCardAcceptanceSpecialityCardsAmericanExpressDirect(UniversalBase
     Indicates if the merchant accepts American Express Direct.
     """
 
-    merchant_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="merchantNumber")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    If the merchant accepts American Express Direct, provide their American Express merchant number.
-    """
+    merchant_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="merchantNumber"),
+        pydantic.Field(
+            alias="merchantNumber",
+            description="If the merchant accepts American Express Direct, provide their American Express merchant number.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

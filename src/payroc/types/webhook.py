@@ -20,12 +20,14 @@ class Webhook(UniversalBaseModel):
     **Note:** In the response, we truncate the secret to the last 16 characters and mask the first 10 characters.  
     """
 
-    support_email_address: typing_extensions.Annotated[str, FieldMetadata(alias="supportEmailAddress")] = (
-        pydantic.Field()
-    )
-    """
-    Email address of the person or team that we contact if we can't deliver notifications.
-    """
+    support_email_address: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="supportEmailAddress"),
+        pydantic.Field(
+            alias="supportEmailAddress",
+            description="Email address of the person or team that we contact if we can't deliver notifications.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

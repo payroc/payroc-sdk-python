@@ -13,19 +13,18 @@ class ProcessingAchRefunds(UniversalBaseModel):
     Object that contains information about the ACH refund policy for the processing account.
     """
 
-    written_refund_policy: typing_extensions.Annotated[bool, FieldMetadata(alias="writtenRefundPolicy")] = (
-        pydantic.Field()
-    )
-    """
-    Indicates if the business has a written refund policy.
-    """
-
-    refund_policy_url: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="refundPolicyUrl")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    URL of the written refund policy.
-    """
+    written_refund_policy: typing_extensions.Annotated[
+        bool,
+        FieldMetadata(alias="writtenRefundPolicy"),
+        pydantic.Field(
+            alias="writtenRefundPolicy", description="Indicates if the business has a written refund policy."
+        ),
+    ]
+    refund_policy_url: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="refundPolicyUrl"),
+        pydantic.Field(alias="refundPolicyUrl", description="URL of the written refund policy."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

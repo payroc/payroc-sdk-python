@@ -140,8 +140,7 @@ class PaymentsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.bank_transfer_payments.payments.list(
             processing_terminal_id="1234001",
@@ -226,7 +225,13 @@ class PaymentsClient:
         order : BankTransferPaymentRequestOrder
 
         payment_method : BankTransferPaymentRequestPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment detail information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `secureToken` - Secure token details
+            -    `singleUseToken` - Single-use token details
 
         customer : typing.Optional[BankTransferCustomer]
 
@@ -261,8 +266,7 @@ class PaymentsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.bank_transfer_payments.payments.create(
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -360,8 +364,7 @@ class PaymentsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.bank_transfer_payments.payments.retrieve(
             payment_id="M2MJOG6O2Y",
@@ -399,7 +402,11 @@ class PaymentsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         payment_method : typing.Optional[RepresentmentPaymentMethod]
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains the customer's updated payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `secureToken` - Secure token details
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -417,8 +424,7 @@ class PaymentsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.bank_transfer_payments.payments.represent(
             payment_id="M2MJOG6O2Y",
@@ -554,8 +560,7 @@ class AsyncPaymentsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -647,7 +652,13 @@ class AsyncPaymentsClient:
         order : BankTransferPaymentRequestOrder
 
         payment_method : BankTransferPaymentRequestPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment detail information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `secureToken` - Secure token details
+            -    `singleUseToken` - Single-use token details
 
         customer : typing.Optional[BankTransferCustomer]
 
@@ -684,8 +695,7 @@ class AsyncPaymentsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -791,8 +801,7 @@ class AsyncPaymentsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -836,7 +845,11 @@ class AsyncPaymentsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         payment_method : typing.Optional[RepresentmentPaymentMethod]
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains the customer's updated payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `secureToken` - Secure token details
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -856,8 +869,7 @@ class AsyncPaymentsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

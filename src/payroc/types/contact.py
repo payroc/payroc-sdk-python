@@ -12,47 +12,40 @@ from .identifier import Identifier
 
 
 class Contact(UniversalBaseModel):
-    contact_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="contactId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier of the contact.
-    """
-
+    contact_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="contactId"),
+        pydantic.Field(alias="contactId", description="Unique identifier of the contact."),
+    ] = None
     type: ContactType = pydantic.Field()
     """
     Type of contact.
     """
 
-    first_name: typing_extensions.Annotated[str, FieldMetadata(alias="firstName")] = pydantic.Field()
-    """
-    Contact's first name.
-    """
-
-    middle_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="middleName")] = pydantic.Field(
-        default=None
-    )
-    """
-    Contact's middle name.
-    """
-
-    last_name: typing_extensions.Annotated[str, FieldMetadata(alias="lastName")] = pydantic.Field()
-    """
-    Contact's last name.
-    """
-
+    first_name: typing_extensions.Annotated[
+        str, FieldMetadata(alias="firstName"), pydantic.Field(alias="firstName", description="Contact's first name.")
+    ]
+    middle_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="middleName"),
+        pydantic.Field(alias="middleName", description="Contact's middle name."),
+    ] = None
+    last_name: typing_extensions.Annotated[
+        str, FieldMetadata(alias="lastName"), pydantic.Field(alias="lastName", description="Contact's last name.")
+    ]
     identifiers: typing.List[Identifier] = pydantic.Field()
     """
     Array of identifier objects.
     """
 
-    contact_methods: typing_extensions.Annotated[typing.List[ContactMethod], FieldMetadata(alias="contactMethods")] = (
-        pydantic.Field()
-    )
-    """
-    Array of contactMethod objects.  
-    **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.   
-    """
+    contact_methods: typing_extensions.Annotated[
+        typing.List[ContactMethod],
+        FieldMetadata(alias="contactMethods"),
+        pydantic.Field(
+            alias="contactMethods",
+            description="Array of polymorphic objects, which contain contact information.  \n\n**Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.   \n\nThe value of the type parameter determines which variant you should use:  \n-\t`email` - Email address \n-\t`phone` - Phone number\n-\t`mobile` - Mobile number\n-\t`fax` - Fax number",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

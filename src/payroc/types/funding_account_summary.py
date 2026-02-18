@@ -11,13 +11,13 @@ from .link import Link
 
 
 class FundingAccountSummary(UniversalBaseModel):
-    funding_account_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="fundingAccountId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the funding account.
-    """
-
+    funding_account_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="fundingAccountId"),
+        pydantic.Field(
+            alias="fundingAccountId", description="Unique identifier that we assigned to the funding account."
+        ),
+    ] = None
     status: typing.Optional[FundingAccountSummaryStatus] = pydantic.Field(default=None)
     """
     Status of the funding account.

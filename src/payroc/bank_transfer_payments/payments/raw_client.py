@@ -274,7 +274,13 @@ class RawPaymentsClient:
         order : BankTransferPaymentRequestOrder
 
         payment_method : BankTransferPaymentRequestPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment detail information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `secureToken` - Secure token details
+            -    `singleUseToken` - Single-use token details
 
         customer : typing.Optional[BankTransferCustomer]
 
@@ -560,7 +566,11 @@ class RawPaymentsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         payment_method : typing.Optional[RepresentmentPaymentMethod]
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains the customer's updated payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `secureToken` - Secure token details
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -920,7 +930,13 @@ class AsyncRawPaymentsClient:
         order : BankTransferPaymentRequestOrder
 
         payment_method : BankTransferPaymentRequestPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment detail information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `secureToken` - Secure token details
+            -    `singleUseToken` - Single-use token details
 
         customer : typing.Optional[BankTransferCustomer]
 
@@ -1206,7 +1222,11 @@ class AsyncRawPaymentsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         payment_method : typing.Optional[RepresentmentPaymentMethod]
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains the customer's updated payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `secureToken` - Secure token details
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

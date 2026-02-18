@@ -10,13 +10,11 @@ from .funding_recipient_owners_item_link import FundingRecipientOwnersItemLink
 
 
 class FundingRecipientOwnersItem(UniversalBaseModel):
-    owner_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="ownerId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier of the owner.
-    """
-
+    owner_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="ownerId"),
+        pydantic.Field(alias="ownerId", description="Unique identifier of the owner."),
+    ] = None
     link: typing.Optional[FundingRecipientOwnersItemLink] = pydantic.Field(default=None)
     """
     Object that contains HATEOAS links for the resource.

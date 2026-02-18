@@ -269,7 +269,10 @@ class RawPaymentLinksClient:
         Returns
         -------
         HttpResponse[CreatePaymentLinksResponse]
-            Successful request. We created the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
         """
         _response = self._client_wrapper.httpx_client.request(
             f"processing-terminals/{jsonable_encoder(processing_terminal_id)}/payment-links",
@@ -416,7 +419,10 @@ class RawPaymentLinksClient:
         Returns
         -------
         HttpResponse[RetrievePaymentLinksResponse]
-            Successful request. Returns the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
         """
         _response = self._client_wrapper.httpx_client.request(
             f"payment-links/{jsonable_encoder(payment_link_id)}",
@@ -552,7 +558,10 @@ class RawPaymentLinksClient:
         Returns
         -------
         HttpResponse[PartiallyUpdatePaymentLinksResponse]
-            Successful request. We updated the payment link.
+            Successful request. We updated the payment link and return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
         """
         _response = self._client_wrapper.httpx_client.request(
             f"payment-links/{jsonable_encoder(payment_link_id)}",
@@ -692,7 +701,11 @@ class RawPaymentLinksClient:
         Returns
         -------
         HttpResponse[DeactivatePaymentLinksResponse]
-            Successful request. We deactivated the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
         """
         _response = self._client_wrapper.httpx_client.request(
             f"payment-links/{jsonable_encoder(payment_link_id)}/deactivate",
@@ -1019,7 +1032,10 @@ class AsyncRawPaymentLinksClient:
         Returns
         -------
         AsyncHttpResponse[CreatePaymentLinksResponse]
-            Successful request. We created the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"processing-terminals/{jsonable_encoder(processing_terminal_id)}/payment-links",
@@ -1166,7 +1182,10 @@ class AsyncRawPaymentLinksClient:
         Returns
         -------
         AsyncHttpResponse[RetrievePaymentLinksResponse]
-            Successful request. Returns the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"payment-links/{jsonable_encoder(payment_link_id)}",
@@ -1302,7 +1321,10 @@ class AsyncRawPaymentLinksClient:
         Returns
         -------
         AsyncHttpResponse[PartiallyUpdatePaymentLinksResponse]
-            Successful request. We updated the payment link.
+            Successful request. We updated the payment link and return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"payment-links/{jsonable_encoder(payment_link_id)}",
@@ -1442,7 +1464,11 @@ class AsyncRawPaymentLinksClient:
         Returns
         -------
         AsyncHttpResponse[DeactivatePaymentLinksResponse]
-            Successful request. We deactivated the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"payment-links/{jsonable_encoder(payment_link_id)}/deactivate",

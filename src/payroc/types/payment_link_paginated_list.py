@@ -11,7 +11,11 @@ from .payment_link_paginated_list_data_item import PaymentLinkPaginatedListDataI
 class PaymentLinkPaginatedList(PaginatedList):
     data: typing.Optional[typing.List[PaymentLinkPaginatedListDataItem]] = pydantic.Field(default=None)
     """
-    Array of payment links.
+    Array of polymorphic objects that contains payment link information.  
+    
+    The value of the type parameter determines which variant you should use:  
+    -    'multiUse' - Create a link that the merchant can use to take multiple payments.
+    -    'singleUse' - Create a link that the merchant can use for only one payment.
     """
 
     if IS_PYDANTIC_V2:

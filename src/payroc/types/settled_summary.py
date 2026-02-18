@@ -15,27 +15,24 @@ class SettledSummary(UniversalBaseModel):
     Object that contains information about the settlement.
     """
 
-    settled_by: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="settledBy")] = pydantic.Field(
-        default=None
-    )
-    """
-    Processor that settled the transaction.
-    """
-
-    ach_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="achDate")] = pydantic.Field(
-        default=None
-    )
-    """
-    Date that the processor settled the transaction. The format of this value is **YYYY-MM-DD**.
-    """
-
-    ach_deposit_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="achDepositId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier of the ACH deposit.
-    """
-
+    settled_by: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="settledBy"),
+        pydantic.Field(alias="settledBy", description="Processor that settled the transaction."),
+    ] = None
+    ach_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="achDate"),
+        pydantic.Field(
+            alias="achDate",
+            description="Date that the processor settled the transaction. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
+    ach_deposit_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="achDepositId"),
+        pydantic.Field(alias="achDepositId", description="Unique identifier of the ACH deposit."),
+    ] = None
     link: typing.Optional[Link] = None
 
     if IS_PYDANTIC_V2:

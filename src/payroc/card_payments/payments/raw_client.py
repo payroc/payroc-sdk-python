@@ -298,18 +298,18 @@ class RawPaymentsClient:
         **Payment methods**
 
         - **Cards** - Credit, debit, and EBT
-        - **Digital wallets** - [Apple Pay®](https://docs.payroc.com/guides/integrate/apple-pay) and [Google Pay®](https://docs.payroc.com/guides/integrate/google-pay)
+        - **Digital wallets** - [Apple Pay®](https://docs.payroc.com/guides/take-payments/apple-pay) and [Google Pay®](https://docs.payroc.com/guides/take-payments/google-pay)
         - **Tokens** - Secure tokens and single-use tokens
 
         **Features**
 
         Our Create Payment method also supports the following features:
 
-        - [Repeat payments](https://docs.payroc.com/guides/integrate/repeat-payments/use-your-own-software) - Run multiple payments as part of a payment schedule that you manage with your own software.
+        - [Repeat payments](https://docs.payroc.com/guides/take-payments/repeat-payments/use-your-own-software) - Run multiple payments as part of a payment schedule that you manage with your own software.
         - **Offline sales** - Run a sale or a pre-authorization if the terminal loses its connection to our gateway.
-        - [Tokenization](https://docs.payroc.com/guides/integrate/save-payment-details) - Save card details to use in future transactions.
-        - [3-D Secure](https://docs.payroc.com/guides/integrate/3-d-secure) - Verify the identity of the cardholder.
-        - [Custom fields](https://docs.payroc.com/guides/integrate/add-custom-fields) - Add your own data to a payment.
+        - [Tokenization](https://docs.payroc.com/guides/take-payments/save-payment-details) - Save card details to use in future transactions.
+        - [3-D Secure](https://docs.payroc.com/guides/take-payments/3-d-secure) - Verify the identity of the cardholder.
+        - [Custom fields](https://docs.payroc.com/guides/take-payments/add-custom-fields) - Add your own data to a payment.
         - **Tips** - Add tips to the card payment.
         - **Taxes** - Add local taxes to the card payment.
         - **Surcharging** - Add a surcharge to the card payment.
@@ -329,7 +329,13 @@ class RawPaymentsClient:
         order : PaymentOrderRequest
 
         payment_method : PaymentRequestPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
+            -    `singleUseToken` - Single-use token details
 
         operator : typing.Optional[str]
             Operator who ran the transaction.
@@ -339,7 +345,11 @@ class RawPaymentsClient:
         ip_address : typing.Optional[IpAddress]
 
         three_d_secure : typing.Optional[PaymentRequestThreeDSecure]
-            Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+            Polymorphic object that contains authentication information from 3-D Secure.
+
+            The value of the serviceProvider parameter determines which variant you should use:
+            -    `gateway` - Use our gateway to run a 3-D Secure check.
+            -    `thirdParty` - Use a third party to run a 3-D Secure check.
 
         credential_on_file : typing.Optional[SchemasCredentialOnFile]
 
@@ -654,7 +664,13 @@ class RawPaymentsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         adjustments : typing.Sequence[PaymentAdjustmentAdjustmentsItem]
-            Array of objects that contain information about the adjustments to the payment.
+            Array of polymorphic objects which contain information about adjustments to a payment.
+
+            The value of the type parameter determines which variant you should use:
+            -    `order` - Tip information.
+            -    `status` - Status of the transaction.
+            -    `customer` - Customer's contact information and shipping address.
+            -    `signature` - Customer's signature.
 
         operator : typing.Optional[str]
             Operator who adjusted the payment.
@@ -1211,18 +1227,18 @@ class AsyncRawPaymentsClient:
         **Payment methods**
 
         - **Cards** - Credit, debit, and EBT
-        - **Digital wallets** - [Apple Pay®](https://docs.payroc.com/guides/integrate/apple-pay) and [Google Pay®](https://docs.payroc.com/guides/integrate/google-pay)
+        - **Digital wallets** - [Apple Pay®](https://docs.payroc.com/guides/take-payments/apple-pay) and [Google Pay®](https://docs.payroc.com/guides/take-payments/google-pay)
         - **Tokens** - Secure tokens and single-use tokens
 
         **Features**
 
         Our Create Payment method also supports the following features:
 
-        - [Repeat payments](https://docs.payroc.com/guides/integrate/repeat-payments/use-your-own-software) - Run multiple payments as part of a payment schedule that you manage with your own software.
+        - [Repeat payments](https://docs.payroc.com/guides/take-payments/repeat-payments/use-your-own-software) - Run multiple payments as part of a payment schedule that you manage with your own software.
         - **Offline sales** - Run a sale or a pre-authorization if the terminal loses its connection to our gateway.
-        - [Tokenization](https://docs.payroc.com/guides/integrate/save-payment-details) - Save card details to use in future transactions.
-        - [3-D Secure](https://docs.payroc.com/guides/integrate/3-d-secure) - Verify the identity of the cardholder.
-        - [Custom fields](https://docs.payroc.com/guides/integrate/add-custom-fields) - Add your own data to a payment.
+        - [Tokenization](https://docs.payroc.com/guides/take-payments/save-payment-details) - Save card details to use in future transactions.
+        - [3-D Secure](https://docs.payroc.com/guides/take-payments/3-d-secure) - Verify the identity of the cardholder.
+        - [Custom fields](https://docs.payroc.com/guides/take-payments/add-custom-fields) - Add your own data to a payment.
         - **Tips** - Add tips to the card payment.
         - **Taxes** - Add local taxes to the card payment.
         - **Surcharging** - Add a surcharge to the card payment.
@@ -1242,7 +1258,13 @@ class AsyncRawPaymentsClient:
         order : PaymentOrderRequest
 
         payment_method : PaymentRequestPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
+            -    `singleUseToken` - Single-use token details
 
         operator : typing.Optional[str]
             Operator who ran the transaction.
@@ -1252,7 +1274,11 @@ class AsyncRawPaymentsClient:
         ip_address : typing.Optional[IpAddress]
 
         three_d_secure : typing.Optional[PaymentRequestThreeDSecure]
-            Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+            Polymorphic object that contains authentication information from 3-D Secure.
+
+            The value of the serviceProvider parameter determines which variant you should use:
+            -    `gateway` - Use our gateway to run a 3-D Secure check.
+            -    `thirdParty` - Use a third party to run a 3-D Secure check.
 
         credential_on_file : typing.Optional[SchemasCredentialOnFile]
 
@@ -1567,7 +1593,13 @@ class AsyncRawPaymentsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         adjustments : typing.Sequence[PaymentAdjustmentAdjustmentsItem]
-            Array of objects that contain information about the adjustments to the payment.
+            Array of polymorphic objects which contain information about adjustments to a payment.
+
+            The value of the type parameter determines which variant you should use:
+            -    `order` - Tip information.
+            -    `status` - Status of the transaction.
+            -    `customer` - Customer's contact information and shipping address.
+            -    `signature` - Customer's signature.
 
         operator : typing.Optional[str]
             Operator who adjusted the payment.

@@ -24,15 +24,14 @@ class DeviceInstruction(UniversalBaseModel):
     - `inProgress` – The instruction is currently in progress.
     """
 
-    error_message: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="errorMessage")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Description of the error that caused the instruction to fail.
-    
-    **Note:** We return this field only if the status is `failure`.
-    """
-
+    error_message: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="errorMessage"),
+        pydantic.Field(
+            alias="errorMessage",
+            description="Description of the error that caused the instruction to fail.\n\n**Note:** We return this field only if the status is `failure`.",
+        ),
+    ] = None
     link: typing.Optional[Link] = None
 
     if IS_PYDANTIC_V2:

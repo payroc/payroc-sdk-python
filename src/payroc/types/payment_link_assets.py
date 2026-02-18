@@ -13,15 +13,19 @@ class PaymentLinkAssets(UniversalBaseModel):
     Object that contains shareable assets for the payment link.
     """
 
-    payment_url: typing_extensions.Annotated[str, FieldMetadata(alias="paymentUrl")] = pydantic.Field()
-    """
-    URL of the payment link.
-    """
-
-    payment_button: typing_extensions.Annotated[str, FieldMetadata(alias="paymentButton")] = pydantic.Field()
-    """
-    HTML code for the payment link. You can embed the HTML code in the merchant's website.
-    """
+    payment_url: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="paymentUrl"),
+        pydantic.Field(alias="paymentUrl", description="URL of the payment link."),
+    ]
+    payment_button: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="paymentButton"),
+        pydantic.Field(
+            alias="paymentButton",
+            description="HTML code for the payment link. You can embed the HTML code in the merchant's website.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

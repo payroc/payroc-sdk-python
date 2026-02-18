@@ -14,16 +14,27 @@ from .secure_token_summary import SecureTokenSummary
 
 class BankTransferPaymentBankAccount_Ach(UniversalBaseModel):
     """
-    Object that contains information about the bank account.
+    Polymorphic object that contains bank account information.
+    The value of the type field determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
     """
 
     type: typing.Literal["ach"] = "ach"
-    sec_code: typing_extensions.Annotated[typing.Optional[AchBankAccountSecCode], FieldMetadata(alias="secCode")] = None
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")]
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")]
-    routing_number: typing_extensions.Annotated[str, FieldMetadata(alias="routingNumber")]
+    sec_code: typing_extensions.Annotated[
+        typing.Optional[AchBankAccountSecCode], FieldMetadata(alias="secCode"), pydantic.Field(alias="secCode")
+    ] = None
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount")
+    ]
+    account_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="accountNumber"), pydantic.Field(alias="accountNumber")
+    ]
+    routing_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="routingNumber"), pydantic.Field(alias="routingNumber")
+    ]
     secure_token: typing_extensions.Annotated[
-        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken")
+        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken"), pydantic.Field(alias="secureToken")
     ] = None
 
     if IS_PYDANTIC_V2:
@@ -38,16 +49,27 @@ class BankTransferPaymentBankAccount_Ach(UniversalBaseModel):
 
 class BankTransferPaymentBankAccount_Pad(UniversalBaseModel):
     """
-    Object that contains information about the bank account.
+    Polymorphic object that contains bank account information.
+    The value of the type field determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
     """
 
     type: typing.Literal["pad"] = "pad"
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")]
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")]
-    transit_number: typing_extensions.Annotated[str, FieldMetadata(alias="transitNumber")]
-    institution_number: typing_extensions.Annotated[str, FieldMetadata(alias="institutionNumber")]
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount")
+    ]
+    account_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="accountNumber"), pydantic.Field(alias="accountNumber")
+    ]
+    transit_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="transitNumber"), pydantic.Field(alias="transitNumber")
+    ]
+    institution_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="institutionNumber"), pydantic.Field(alias="institutionNumber")
+    ]
     secure_token: typing_extensions.Annotated[
-        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken")
+        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken"), pydantic.Field(alias="secureToken")
     ] = None
 
     if IS_PYDANTIC_V2:

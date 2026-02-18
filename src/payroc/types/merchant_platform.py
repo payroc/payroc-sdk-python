@@ -14,34 +14,34 @@ from .merchant_platform_processing_accounts_item import MerchantPlatformProcessi
 
 class MerchantPlatform(UniversalBaseModel):
     merchant_platform_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="merchantPlatformId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier that we assigned to the merchant platform.
-    """
-
-    created_date: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that the merchant platform was created. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="merchantPlatformId"),
+        pydantic.Field(
+            alias="merchantPlatformId", description="Unique identifier that we assigned to the merchant platform."
+        ),
+    ] = None
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date that the merchant platform was created. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+        ),
+    ] = None
     last_modified_date: typing_extensions.Annotated[
-        typing.Optional[dt.datetime], FieldMetadata(alias="lastModifiedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date that the merchant platform was last modified. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-    """
-
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(
+            alias="lastModifiedDate",
+            description="Date that the merchant platform was last modified. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+        ),
+    ] = None
     business: Business
     processing_accounts: typing_extensions.Annotated[
-        typing.Optional[typing.List[MerchantPlatformProcessingAccountsItem]], FieldMetadata(alias="processingAccounts")
-    ] = pydantic.Field(default=None)
-    """
-    Array of processingAccount objects.
-    """
-
+        typing.Optional[typing.List[MerchantPlatformProcessingAccountsItem]],
+        FieldMetadata(alias="processingAccounts"),
+        pydantic.Field(alias="processingAccounts", description="Array of processingAccount objects."),
+    ] = None
     metadata: typing.Optional[typing.Dict[str, str]] = pydantic.Field(default=None)
     """
     Object that you can send to include custom metadata in the request.

@@ -14,13 +14,11 @@ class AchDepositSummary(UniversalBaseModel):
     Object that contains information about the ACH deposit.
     """
 
-    ach_deposit_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="achDepositId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier of the ACH deposit.
-    """
-
+    ach_deposit_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="achDepositId"),
+        pydantic.Field(alias="achDepositId", description="Unique identifier of the ACH deposit."),
+    ] = None
     link: typing.Optional[Link] = None
 
     if IS_PYDANTIC_V2:

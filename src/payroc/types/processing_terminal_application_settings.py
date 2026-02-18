@@ -14,18 +14,21 @@ class ProcessingTerminalApplicationSettings(UniversalBaseModel):
     """
 
     invoice_number_prompt: typing_extensions.Annotated[
-        typing.Optional[bool], FieldMetadata(alias="invoiceNumberPrompt")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the terminal should prompt the clerk to provide an invoice number with a sale.
-    """
-
-    clerk_prompt: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="clerkPrompt")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal should prompt the clerk, for example, if the terminal should prompt when the clerk needs to enter an amount on the terminal.
-    """
+        typing.Optional[bool],
+        FieldMetadata(alias="invoiceNumberPrompt"),
+        pydantic.Field(
+            alias="invoiceNumberPrompt",
+            description="Indicates if the terminal should prompt the clerk to provide an invoice number with a sale.",
+        ),
+    ] = None
+    clerk_prompt: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="clerkPrompt"),
+        pydantic.Field(
+            alias="clerkPrompt",
+            description="Indicates if the terminal should prompt the clerk, for example, if the terminal should prompt when the clerk needs to enter an amount on the terminal.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

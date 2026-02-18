@@ -11,13 +11,11 @@ from .funding_recipient_funding_accounts_item_status import FundingRecipientFund
 
 
 class FundingRecipientFundingAccountsItem(UniversalBaseModel):
-    funding_account_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="fundingAccountId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier of the funding account.
-    """
-
+    funding_account_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="fundingAccountId"),
+        pydantic.Field(alias="fundingAccountId", description="Unique identifier of the funding account."),
+    ] = None
     status: typing.Optional[FundingRecipientFundingAccountsItemStatus] = pydantic.Field(default=None)
     """
     Status of the funding account.

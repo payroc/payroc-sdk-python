@@ -12,13 +12,19 @@ from ..core.serialization import FieldMetadata
 
 class ProcessingTerminalBatchClosure_Automatic(UniversalBaseModel):
     """
-    Object that contains information about when and how the terminal closes the batch.
+    Polymorphic object that contains information about when and how the terminal closes the batch.
+
+    The value of the batchCloseType field determines which variant you should use:
+    -    `automatic` - Terminal automatically closes the batch at a specific time each day.
+    - `manual` - Merchant uses the terminal to manually close the batch.
     """
 
     batch_close_type: typing_extensions.Annotated[
-        typing.Literal["automatic"], FieldMetadata(alias="batchCloseType")
+        typing.Literal["automatic"], FieldMetadata(alias="batchCloseType"), pydantic.Field(alias="batchCloseType")
     ] = "automatic"
-    batch_close_time: typing_extensions.Annotated[str, FieldMetadata(alias="batchCloseTime")]
+    batch_close_time: typing_extensions.Annotated[
+        str, FieldMetadata(alias="batchCloseTime"), pydantic.Field(alias="batchCloseTime")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -32,12 +38,16 @@ class ProcessingTerminalBatchClosure_Automatic(UniversalBaseModel):
 
 class ProcessingTerminalBatchClosure_Manual(UniversalBaseModel):
     """
-    Object that contains information about when and how the terminal closes the batch.
+    Polymorphic object that contains information about when and how the terminal closes the batch.
+
+    The value of the batchCloseType field determines which variant you should use:
+    -    `automatic` - Terminal automatically closes the batch at a specific time each day.
+    - `manual` - Merchant uses the terminal to manually close the batch.
     """
 
-    batch_close_type: typing_extensions.Annotated[typing.Literal["manual"], FieldMetadata(alias="batchCloseType")] = (
-        "manual"
-    )
+    batch_close_type: typing_extensions.Annotated[
+        typing.Literal["manual"], FieldMetadata(alias="batchCloseType"), pydantic.Field(alias="batchCloseType")
+    ] = "manual"
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

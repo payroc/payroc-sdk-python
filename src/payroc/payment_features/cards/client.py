@@ -62,7 +62,7 @@ class CardsClient:
             Unique identifier that we assigned to the terminal.
 
         card : CardVerificationRequestCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
 
         operator : typing.Optional[str]
             Operator who requested to verify the card.
@@ -83,8 +83,7 @@ class CardsClient:
         from payroc.payment_features.cards import CardVerificationRequestCard_Card
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_features.cards.verify_card(
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -134,7 +133,11 @@ class CardsClient:
         currency : Currency
 
         card : BalanceInquiryCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `singleUseToken` - Single-use token details
 
         operator : typing.Optional[str]
             Operator who requested the balance inquiry.
@@ -155,8 +158,7 @@ class CardsClient:
         from payroc.payment_features.cards import BalanceInquiryCard_Card
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_features.cards.view_ebt_balance(
             processing_terminal_id="1234001",
@@ -204,7 +206,13 @@ class CardsClient:
         Parameters
         ----------
         card : BinLookupCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `cardBin` - Bank identification number (BIN) of the payment card
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
 
         processing_terminal_id : typing.Optional[str]
             Unique identifier that we assigned to the terminal.
@@ -228,8 +236,7 @@ class CardsClient:
         from payroc.payment_features.cards import BinLookupCard_Card
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_features.cards.lookup_bin(
             processing_terminal_id="1234001",
@@ -296,7 +303,12 @@ class CardsClient:
         base_currency : Currency
 
         payment_method : FxRateInquiryPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
 
         operator : typing.Optional[str]
             Operator who ran the transaction.
@@ -315,8 +327,7 @@ class CardsClient:
         from payroc.payment_features.cards import FxRateInquiryPaymentMethod_Card
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_features.cards.retrieve_fx_rates(
             channel="web",
@@ -388,7 +399,7 @@ class AsyncCardsClient:
             Unique identifier that we assigned to the terminal.
 
         card : CardVerificationRequestCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
 
         operator : typing.Optional[str]
             Operator who requested to verify the card.
@@ -411,8 +422,7 @@ class AsyncCardsClient:
         from payroc.payment_features.cards import CardVerificationRequestCard_Card
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -468,7 +478,11 @@ class AsyncCardsClient:
         currency : Currency
 
         card : BalanceInquiryCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `singleUseToken` - Single-use token details
 
         operator : typing.Optional[str]
             Operator who requested the balance inquiry.
@@ -491,8 +505,7 @@ class AsyncCardsClient:
         from payroc.payment_features.cards import BalanceInquiryCard_Card
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -546,7 +559,13 @@ class AsyncCardsClient:
         Parameters
         ----------
         card : BinLookupCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `cardBin` - Bank identification number (BIN) of the payment card
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
 
         processing_terminal_id : typing.Optional[str]
             Unique identifier that we assigned to the terminal.
@@ -572,8 +591,7 @@ class AsyncCardsClient:
         from payroc.payment_features.cards import BinLookupCard_Card
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -646,7 +664,12 @@ class AsyncCardsClient:
         base_currency : Currency
 
         payment_method : FxRateInquiryPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
 
         operator : typing.Optional[str]
             Operator who ran the transaction.
@@ -667,8 +690,7 @@ class AsyncCardsClient:
         from payroc.payment_features.cards import FxRateInquiryPaymentMethod_Card
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

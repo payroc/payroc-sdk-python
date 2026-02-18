@@ -25,26 +25,24 @@ class SubscriptionState(UniversalBaseModel):
     - 'suspended' - Subscription is suspended. For example, if the customer misses payments.
     """
 
-    next_due_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="nextDueDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that the merchant collects the next payment.
-    """
-
-    paid_invoices: typing_extensions.Annotated[int, FieldMetadata(alias="paidInvoices")] = pydantic.Field()
-    """
-    Number of payments that the merchant has collected.
-    """
-
+    next_due_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="nextDueDate"),
+        pydantic.Field(alias="nextDueDate", description="Date that the merchant collects the next payment."),
+    ] = None
+    paid_invoices: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="paidInvoices"),
+        pydantic.Field(alias="paidInvoices", description="Number of payments that the merchant has collected."),
+    ]
     outstanding_invoices: typing_extensions.Annotated[
-        typing.Optional[int], FieldMetadata(alias="outstandingInvoices")
-    ] = pydantic.Field(default=None)
-    """
-    Number of payments until the end of the subscription. 
-    Our gateway returns a value for **outstandingInvoices** only if the subscription 
-    has an end date or a fixed number of billing cycles.
-    """
+        typing.Optional[int],
+        FieldMetadata(alias="outstandingInvoices"),
+        pydantic.Field(
+            alias="outstandingInvoices",
+            description="Number of payments until the end of the subscription. \nOur gateway returns a value for **outstandingInvoices** only if the subscription \nhas an end date or a fixed number of billing cycles.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

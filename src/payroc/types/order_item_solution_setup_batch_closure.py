@@ -16,9 +16,11 @@ class OrderItemSolutionSetupBatchClosure_Automatic(UniversalBaseModel):
     """
 
     batch_close_type: typing_extensions.Annotated[
-        typing.Literal["automatic"], FieldMetadata(alias="batchCloseType")
+        typing.Literal["automatic"], FieldMetadata(alias="batchCloseType"), pydantic.Field(alias="batchCloseType")
     ] = "automatic"
-    batch_close_time: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="batchCloseTime")] = None
+    batch_close_time: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="batchCloseTime"), pydantic.Field(alias="batchCloseTime")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -35,9 +37,9 @@ class OrderItemSolutionSetupBatchClosure_Manual(UniversalBaseModel):
     Object that contains information about when and how the terminal closes the batch.
     """
 
-    batch_close_type: typing_extensions.Annotated[typing.Literal["manual"], FieldMetadata(alias="batchCloseType")] = (
-        "manual"
-    )
+    batch_close_type: typing_extensions.Annotated[
+        typing.Literal["manual"], FieldMetadata(alias="batchCloseType"), pydantic.Field(alias="batchCloseType")
+    ] = "manual"
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

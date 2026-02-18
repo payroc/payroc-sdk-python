@@ -13,27 +13,33 @@ from .subscription_state import SubscriptionState
 
 
 class SubscriptionPayment(UniversalBaseModel):
-    subscription_id: typing_extensions.Annotated[str, FieldMetadata(alias="subscriptionId")] = pydantic.Field()
-    """
-    Unique identifier that the merchant assigned to the subscription.
-    """
-
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier of the terminal that the subscription is linked to.
-    """
-
+    subscription_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="subscriptionId"),
+        pydantic.Field(
+            alias="subscriptionId", description="Unique identifier that the merchant assigned to the subscription."
+        ),
+    ]
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(
+            alias="processingTerminalId",
+            description="Unique identifier of the terminal that the subscription is linked to.",
+        ),
+    ]
     payment: PaymentSummary
-    secure_token: typing_extensions.Annotated[SecureTokenSummary, FieldMetadata(alias="secureToken")]
-    current_state: typing_extensions.Annotated[SubscriptionState, FieldMetadata(alias="currentState")]
+    secure_token: typing_extensions.Annotated[
+        SecureTokenSummary, FieldMetadata(alias="secureToken"), pydantic.Field(alias="secureToken")
+    ]
+    current_state: typing_extensions.Annotated[
+        SubscriptionState, FieldMetadata(alias="currentState"), pydantic.Field(alias="currentState")
+    ]
     custom_fields: typing_extensions.Annotated[
-        typing.Optional[typing.List[CustomField]], FieldMetadata(alias="customFields")
-    ] = pydantic.Field(default=None)
-    """
-    Array of customField objects.
-    """
+        typing.Optional[typing.List[CustomField]],
+        FieldMetadata(alias="customFields"),
+        pydantic.Field(alias="customFields", description="Array of customField objects."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

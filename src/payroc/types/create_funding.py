@@ -16,11 +16,10 @@ class CreateFunding(CommonFunding):
     """
 
     funding_accounts: typing_extensions.Annotated[
-        typing.Optional[typing.List[FundingAccount]], FieldMetadata(alias="fundingAccounts")
-    ] = pydantic.Field(default=None)
-    """
-    Array of fundingAccounts objects.
-    """
+        typing.Optional[typing.List[FundingAccount]],
+        FieldMetadata(alias="fundingAccounts"),
+        pydantic.Field(alias="fundingAccounts", description="Array of fundingAccounts objects."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

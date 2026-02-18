@@ -16,29 +16,26 @@ class EncryptedSwipedDataFormat(UniversalBaseModel):
     """
 
     device: EncryptionCapableDevice
-    encrypted_data: typing_extensions.Annotated[str, FieldMetadata(alias="encryptedData")] = pydantic.Field()
-    """
-    Encrypted data received from the magnetic stripe reader.
-    """
-
-    first_digit_of_pan: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firstDigitOfPan")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    First digit of the of the card number.
-    """
-
+    encrypted_data: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="encryptedData"),
+        pydantic.Field(alias="encryptedData", description="Encrypted data received from the magnetic stripe reader."),
+    ]
+    first_digit_of_pan: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="firstDigitOfPan"),
+        pydantic.Field(alias="firstDigitOfPan", description="First digit of the of the card number."),
+    ] = None
     fallback: typing.Optional[bool] = pydantic.Field(default=None)
     """
     Indicates that this is a fallback transaction. For example, if there was a technical issue with the chip on the customer's card and the merchant then swiped the card.
     """
 
     fallback_reason: typing_extensions.Annotated[
-        typing.Optional[EncryptedSwipedDataFormatFallbackReason], FieldMetadata(alias="fallbackReason")
-    ] = pydantic.Field(default=None)
-    """
-    Reason for the fallback.
-    """
+        typing.Optional[EncryptedSwipedDataFormatFallbackReason],
+        FieldMetadata(alias="fallbackReason"),
+        pydantic.Field(alias="fallbackReason", description="Reason for the fallback."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

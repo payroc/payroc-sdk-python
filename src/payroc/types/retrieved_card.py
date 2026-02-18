@@ -24,49 +24,46 @@ class RetrievedCard(UniversalBaseModel):
     """
 
     entry_method: typing_extensions.Annotated[
-        typing.Optional[RetrievedCardEntryMethod], FieldMetadata(alias="entryMethod")
-    ] = pydantic.Field(default=None)
-    """
-    Method that the device used to capture the card details.
-    """
-
-    cardholder_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardholderName")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Cardholder’s name.
-    """
-
+        typing.Optional[RetrievedCardEntryMethod],
+        FieldMetadata(alias="entryMethod"),
+        pydantic.Field(alias="entryMethod", description="Method that the device used to capture the card details."),
+    ] = None
+    cardholder_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="cardholderName"),
+        pydantic.Field(alias="cardholderName", description="Cardholder’s name."),
+    ] = None
     cardholder_signature: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardholderSignature")
-    ] = pydantic.Field(default=None)
-    """
-    Cardholder’s signature.
-    """
-
-    card_number: typing_extensions.Annotated[str, FieldMetadata(alias="cardNumber")] = pydantic.Field()
-    """
-    Masked card number. Our gateway shows only the first six digits and the last four digits of the card number, for example, 500165******0000.
-    """
-
-    expiry_date: typing_extensions.Annotated[str, FieldMetadata(alias="expiryDate")] = pydantic.Field()
-    """
-    Expiry date of the customer's card. The format is in **MMYY**.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="cardholderSignature"),
+        pydantic.Field(alias="cardholderSignature", description="Cardholder’s signature."),
+    ] = None
+    card_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="cardNumber"),
+        pydantic.Field(
+            alias="cardNumber",
+            description="Masked card number. Our gateway shows only the first six digits and the last four digits of the card number, for example, 500165******0000.",
+        ),
+    ]
+    expiry_date: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="expiryDate"),
+        pydantic.Field(
+            alias="expiryDate", description="Expiry date of the customer's card. The format is in **MMYY**."
+        ),
+    ]
     secure_token: typing_extensions.Annotated[
-        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken")
+        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken"), pydantic.Field(alias="secureToken")
     ] = None
     security_checks: typing_extensions.Annotated[
-        typing.Optional[SecurityCheck], FieldMetadata(alias="securityChecks")
+        typing.Optional[SecurityCheck], FieldMetadata(alias="securityChecks"), pydantic.Field(alias="securityChecks")
     ] = None
-    emv_tags: typing_extensions.Annotated[typing.Optional[typing.List[EmvTag]], FieldMetadata(alias="emvTags")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Array of emvTag objects.
-    """
-
+    emv_tags: typing_extensions.Annotated[
+        typing.Optional[typing.List[EmvTag]],
+        FieldMetadata(alias="emvTags"),
+        pydantic.Field(alias="emvTags", description="Array of emvTag objects."),
+    ] = None
     balances: typing.Optional[typing.List[CardBalance]] = pydantic.Field(default=None)
     """
     Array of cardBalance objects. Our gateway returns this array only when the customer uses an Electronic Benefit Transfer (EBT) card.

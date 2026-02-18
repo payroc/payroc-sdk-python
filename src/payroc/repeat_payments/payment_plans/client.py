@@ -90,8 +90,7 @@ class PaymentPlansClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.repeat_payments.payment_plans.list(
             processing_terminal_id="1234001",
@@ -132,7 +131,7 @@ class PaymentPlansClient:
         """
         Use this method to create a payment schedule that you can assign customers to.
 
-        **Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Subscriptions endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/integrate/repeat-payments).
+        **Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Subscriptions endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/take-payments/repeat-payments).
 
         When you create a payment plan you need to provide a unique paymentPlanId that you use to run follow-on actions:
 
@@ -219,8 +218,7 @@ class PaymentPlansClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.payment_plans.create(
             processing_terminal_id_="1234001",
@@ -325,8 +323,7 @@ class PaymentPlansClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.payment_plans.retrieve(
             processing_terminal_id="1234001",
@@ -377,8 +374,7 @@ class PaymentPlansClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.payment_plans.delete(
             processing_terminal_id="1234001",
@@ -436,8 +432,7 @@ class PaymentPlansClient:
         from payroc import PatchDocument_Remove, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.payment_plans.partially_update(
             processing_terminal_id="1234001",
@@ -537,8 +532,7 @@ class AsyncPaymentPlansClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -586,7 +580,7 @@ class AsyncPaymentPlansClient:
         """
         Use this method to create a payment schedule that you can assign customers to.
 
-        **Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Subscriptions endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/integrate/repeat-payments).
+        **Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Subscriptions endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/take-payments/repeat-payments).
 
         When you create a payment plan you need to provide a unique paymentPlanId that you use to run follow-on actions:
 
@@ -675,8 +669,7 @@ class AsyncPaymentPlansClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -789,8 +782,7 @@ class AsyncPaymentPlansClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -851,8 +843,7 @@ class AsyncPaymentPlansClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -920,8 +911,7 @@ class AsyncPaymentPlansClient:
         from payroc import AsyncPayroc, PatchDocument_Remove
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

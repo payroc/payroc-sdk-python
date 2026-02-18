@@ -15,22 +15,24 @@ class PinDebit(UniversalBaseModel):
     Object that contains the fees for PIN-debit transactions.
     """
 
-    additional_discount: typing_extensions.Annotated[Percentage, FieldMetadata(alias="additionalDiscount")] = (
-        pydantic.Field()
-    )
-    """
-    Percentage of additional discount.
-    """
-
+    additional_discount: typing_extensions.Annotated[
+        Percentage,
+        FieldMetadata(alias="additionalDiscount"),
+        pydantic.Field(alias="additionalDiscount", description="Percentage of additional discount."),
+    ]
     transaction: Amount = pydantic.Field()
     """
     Fee for each transaction. The value is in the currency's lowest denomination, for example, cents.
     """
 
-    monthly_access: typing_extensions.Annotated[Amount, FieldMetadata(alias="monthlyAccess")] = pydantic.Field()
-    """
-    Monthly access fee for using PIN-debit services. The value is in the currency's lowest denomination, for example, cents.
-    """
+    monthly_access: typing_extensions.Annotated[
+        Amount,
+        FieldMetadata(alias="monthlyAccess"),
+        pydantic.Field(
+            alias="monthlyAccess",
+            description="Monthly access fee for using PIN-debit services. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

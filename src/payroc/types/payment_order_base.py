@@ -17,20 +17,19 @@ class PaymentOrderBase(UniversalBaseModel):
     Object that contains information about the payment.
     """
 
-    order_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="orderId")] = pydantic.Field(
-        default=None
-    )
-    """
-    A unique identifier assigned by the merchant.
-    """
-
-    date_time: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="dateTime")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that the processor processed the transaction. Our gateway returns this value in the ISO 8601 format.
-    """
-
+    order_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="orderId"),
+        pydantic.Field(alias="orderId", description="A unique identifier assigned by the merchant."),
+    ] = None
+    date_time: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="dateTime"),
+        pydantic.Field(
+            alias="dateTime",
+            description="Date and time that the processor processed the transaction. Our gateway returns this value in the ISO 8601 format.",
+        ),
+    ] = None
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     Description of the transaction.
@@ -42,9 +41,13 @@ class PaymentOrderBase(UniversalBaseModel):
     """
 
     currency: typing.Optional[Currency] = None
-    dcc_offer: typing_extensions.Annotated[typing.Optional[DccOffer], FieldMetadata(alias="dccOffer")] = None
+    dcc_offer: typing_extensions.Annotated[
+        typing.Optional[DccOffer], FieldMetadata(alias="dccOffer"), pydantic.Field(alias="dccOffer")
+    ] = None
     standing_instructions: typing_extensions.Annotated[
-        typing.Optional[StandingInstructions], FieldMetadata(alias="standingInstructions")
+        typing.Optional[StandingInstructions],
+        FieldMetadata(alias="standingInstructions"),
+        pydantic.Field(alias="standingInstructions"),
     ] = None
 
     if IS_PYDANTIC_V2:

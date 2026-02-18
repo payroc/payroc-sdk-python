@@ -21,42 +21,40 @@ class SingleUsePaymentLink(UniversalBaseModel):
     Object that contains information about a single-use payment link.
     """
 
-    payment_link_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="paymentLinkId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the payment link.
-    """
-
-    merchant_reference: typing_extensions.Annotated[str, FieldMetadata(alias="merchantReference")] = pydantic.Field()
-    """
-    Unique identifier that the merchant assigned to the payment.
-    """
-
+    payment_link_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="paymentLinkId"),
+        pydantic.Field(alias="paymentLinkId", description="Unique identifier that we assigned to the payment link."),
+    ] = None
+    merchant_reference: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="merchantReference"),
+        pydantic.Field(
+            alias="merchantReference", description="Unique identifier that the merchant assigned to the payment."
+        ),
+    ]
     order: SingleUsePaymentLinkOrder
-    auth_type: typing_extensions.Annotated[SingleUsePaymentLinkAuthType, FieldMetadata(alias="authType")] = (
-        pydantic.Field()
-    )
-    """
-    Type of transaction.
-    """
-
+    auth_type: typing_extensions.Annotated[
+        SingleUsePaymentLinkAuthType,
+        FieldMetadata(alias="authType"),
+        pydantic.Field(alias="authType", description="Type of transaction."),
+    ]
     payment_methods: typing_extensions.Annotated[
-        typing.List[SingleUsePaymentLinkPaymentMethodsItem], FieldMetadata(alias="paymentMethods")
-    ] = pydantic.Field()
-    """
-    Payment methods that the merchant accepts.  
-    **Note:** If the payment is a pre-authorization, the customer must pay by card.
-    """
-
+        typing.List[SingleUsePaymentLinkPaymentMethodsItem],
+        FieldMetadata(alias="paymentMethods"),
+        pydantic.Field(
+            alias="paymentMethods",
+            description="Payment methods that the merchant accepts.  \n**Note:** If the payment is a pre-authorization, the customer must pay by card.",
+        ),
+    ]
     custom_labels: typing_extensions.Annotated[
-        typing.Optional[typing.List[CustomLabel]], FieldMetadata(alias="customLabels")
-    ] = pydantic.Field(default=None)
-    """
-    Array of customLabel objects.  
-    **Note:** You can change the label of the payment button only.
-    """
-
+        typing.Optional[typing.List[CustomLabel]],
+        FieldMetadata(alias="customLabels"),
+        pydantic.Field(
+            alias="customLabels",
+            description="Array of customLabel objects.  \n**Note:** You can change the label of the payment button only.",
+        ),
+    ] = None
     assets: typing.Optional[PaymentLinkAssets] = None
     status: typing.Optional[SingleUsePaymentLinkStatus] = pydantic.Field(default=None)
     """
@@ -67,20 +65,26 @@ class SingleUsePaymentLink(UniversalBaseModel):
     - `expired` - Payment link has expired.
     """
 
-    created_on: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="createdOn")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that the merchant created the link. The format of this value is **YYYY-MM-DD**.
-    """
-
-    expires_on: typing_extensions.Annotated[dt.date, FieldMetadata(alias="expiresOn")] = pydantic.Field()
-    """
-    Last date that the customer can use the payment link. The format of this value is **YYYY-MM-DD**.
-    """
-
+    created_on: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="createdOn"),
+        pydantic.Field(
+            alias="createdOn",
+            description="Date that the merchant created the link. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
+    expires_on: typing_extensions.Annotated[
+        dt.date,
+        FieldMetadata(alias="expiresOn"),
+        pydantic.Field(
+            alias="expiresOn",
+            description="Last date that the customer can use the payment link. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ]
     credential_on_file: typing_extensions.Annotated[
-        typing.Optional[CredentialOnFile], FieldMetadata(alias="credentialOnFile")
+        typing.Optional[CredentialOnFile],
+        FieldMetadata(alias="credentialOnFile"),
+        pydantic.Field(alias="credentialOnFile"),
     ] = None
 
     if IS_PYDANTIC_V2:

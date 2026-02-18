@@ -16,22 +16,24 @@ class ItemizedBreakdownRequest(BreakdownRequest):
     Object that contains information about the breakdown of the transaction.
     """
 
-    duty_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="dutyAmount")] = pydantic.Field(
-        default=None
-    )
-    """
-    Amount of duties or fees that apply to the order. The value is in the currency's lowest denomination, for example, cents. 
-    """
-
-    freight_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="freightAmount")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Amount for shipping in the currency's lowest denomination, for example, cents.
-    """
-
+    duty_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="dutyAmount"),
+        pydantic.Field(
+            alias="dutyAmount",
+            description="Amount of duties or fees that apply to the order. The value is in the currency's lowest denomination, for example, cents. ",
+        ),
+    ] = None
+    freight_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="freightAmount"),
+        pydantic.Field(
+            alias="freightAmount",
+            description="Amount for shipping in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
     convenience_fee: typing_extensions.Annotated[
-        typing.Optional[ConvenienceFee], FieldMetadata(alias="convenienceFee")
+        typing.Optional[ConvenienceFee], FieldMetadata(alias="convenienceFee"), pydantic.Field(alias="convenienceFee")
     ] = None
     items: typing.Optional[typing.List[LineItemRequest]] = pydantic.Field(default=None)
     """

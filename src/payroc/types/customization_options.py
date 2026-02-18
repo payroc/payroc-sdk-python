@@ -15,16 +15,17 @@ class CustomizationOptions(UniversalBaseModel):
     Object that contains available options to customize certain aspects of an instruction.
     """
 
-    ebt_details: typing_extensions.Annotated[typing.Optional[EbtDetails], FieldMetadata(alias="ebtDetails")] = None
+    ebt_details: typing_extensions.Annotated[
+        typing.Optional[EbtDetails], FieldMetadata(alias="ebtDetails"), pydantic.Field(alias="ebtDetails")
+    ] = None
     entry_method: typing_extensions.Annotated[
-        typing.Optional[CustomizationOptionsEntryMethod], FieldMetadata(alias="entryMethod")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates how you want the device to capture the card details.  
-    - `deviceRead` - Device prompts the cardholder to tap, swipe, or insert their card.  
-    - `manualEntry` - Device prompts the merchant or cardholder to manually enter card details.  
-    - `deviceReadOrManualEntry` - Device prompts the cardholder to tap, swipe, or insert their card. The device also displays an option for the merchant or cardholder to manually enter card details.  
-    """
+        typing.Optional[CustomizationOptionsEntryMethod],
+        FieldMetadata(alias="entryMethod"),
+        pydantic.Field(
+            alias="entryMethod",
+            description="Indicates how you want the device to capture the card details.  \n- `deviceRead` - Device prompts the cardholder to tap, swipe, or insert their card.  \n- `manualEntry` - Device prompts the merchant or cardholder to manually enter card details.  \n- `deviceReadOrManualEntry` - Device prompts the cardholder to tap, swipe, or insert their card. The device also displays an option for the merchant or cardholder to manually enter card details.  ",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

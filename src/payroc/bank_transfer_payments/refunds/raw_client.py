@@ -563,7 +563,11 @@ class RawRefundsClient:
         order : BankTransferRefundOrder
 
         refund_method : BankTransferUnreferencedRefundRefundMethod
-            Object that contains information about how the merchant refunds the customer.
+            Polymorphic object that contains payment details for the refund.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `secureToken` - Secure token details
 
         customer : typing.Optional[BankTransferCustomer]
 
@@ -1474,7 +1478,11 @@ class AsyncRawRefundsClient:
         order : BankTransferRefundOrder
 
         refund_method : BankTransferUnreferencedRefundRefundMethod
-            Object that contains information about how the merchant refunds the customer.
+            Polymorphic object that contains payment details for the refund.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `secureToken` - Secure token details
 
         customer : typing.Optional[BankTransferCustomer]
 

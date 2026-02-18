@@ -21,17 +21,15 @@ from .timezone import Timezone
 
 class CreateProcessingAccount(UniversalBaseModel):
     processing_account_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="processingAccountId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier of the processing account.
-    """
-
-    doing_business_as: typing_extensions.Annotated[str, FieldMetadata(alias="doingBusinessAs")] = pydantic.Field()
-    """
-    Trading name of the business.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="processingAccountId"),
+        pydantic.Field(alias="processingAccountId", description="Unique identifier of the processing account."),
+    ] = None
+    doing_business_as: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="doingBusinessAs"),
+        pydantic.Field(alias="doingBusinessAs", description="Trading name of the business."),
+    ]
     owners: typing.List[Owner] = pydantic.Field()
     """
     Collection of individuals that are responsible for a processing account. When you create a processing account, you must indicate at least one owner as either of the following:  
@@ -46,40 +44,45 @@ class CreateProcessingAccount(UniversalBaseModel):
     """
 
     business_type: typing_extensions.Annotated[
-        CreateProcessingAccountBusinessType, FieldMetadata(alias="businessType")
-    ] = pydantic.Field()
-    """
-    Type of business.
-    """
-
-    category_code: typing_extensions.Annotated[int, FieldMetadata(alias="categoryCode")] = pydantic.Field()
-    """
-    Merchant Category Code (MCC) for the type of business.
-    """
-
-    merchandise_or_service_sold: typing_extensions.Annotated[str, FieldMetadata(alias="merchandiseOrServiceSold")] = (
-        pydantic.Field()
-    )
-    """
-    Description of the services or merchandise sold by the business.
-    """
-
-    business_start_date: typing_extensions.Annotated[dt.date, FieldMetadata(alias="businessStartDate")] = (
-        pydantic.Field()
-    )
-    """
-    Date that the business was established. The format of the value is **YYYY-MM-DD**.
-    """
-
+        CreateProcessingAccountBusinessType,
+        FieldMetadata(alias="businessType"),
+        pydantic.Field(alias="businessType", description="Type of business."),
+    ]
+    category_code: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="categoryCode"),
+        pydantic.Field(alias="categoryCode", description="Merchant Category Code (MCC) for the type of business."),
+    ]
+    merchandise_or_service_sold: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="merchandiseOrServiceSold"),
+        pydantic.Field(
+            alias="merchandiseOrServiceSold",
+            description="Description of the services or merchandise sold by the business.",
+        ),
+    ]
+    business_start_date: typing_extensions.Annotated[
+        dt.date,
+        FieldMetadata(alias="businessStartDate"),
+        pydantic.Field(
+            alias="businessStartDate",
+            description="Date that the business was established. The format of the value is **YYYY-MM-DD**.",
+        ),
+    ]
     timezone: Timezone
-    address: Address
-    contact_methods: typing_extensions.Annotated[typing.List[ContactMethod], FieldMetadata(alias="contactMethods")] = (
-        pydantic.Field()
-    )
+    address: Address = pydantic.Field()
     """
-    Array of contactMethod objects. One contact method must be an email address.
+    Polymorphic object that contains address information for the processing account.
     """
 
+    contact_methods: typing_extensions.Annotated[
+        typing.List[ContactMethod],
+        FieldMetadata(alias="contactMethods"),
+        pydantic.Field(
+            alias="contactMethods",
+            description="Array of polymorphic objects, which contain contact information.  \n\n**Note:** You must provide an email address.\n\nThe value of the type parameter determines which variant you should use:  \n-\t`email` - Email address \n-\t`phone` - Phone number\n-\t`mobile` - Mobile number\n-\t`fax` - Fax number.",
+        ),
+    ]
     processing: Processing
     funding: CreateFunding
     pricing: Pricing

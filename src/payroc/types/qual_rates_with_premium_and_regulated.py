@@ -11,19 +11,22 @@ from .qual_rates_with_premium import QualRatesWithPremium
 
 
 class QualRatesWithPremiumAndRegulated(QualRatesWithPremium):
-    regulated_check_card: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="regulatedCheckCard")] = (
-        pydantic.Field()
-    )
-    """
-    Object that contains the fees for a regulated debit-card transaction.
-    """
-
-    unregulated_check_card: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="unregulatedCheckCard")] = (
-        pydantic.Field()
-    )
-    """
-    Object that contains the fees for an unregulated debit-card transaction.
-    """
+    regulated_check_card: typing_extensions.Annotated[
+        ProcessorFee,
+        FieldMetadata(alias="regulatedCheckCard"),
+        pydantic.Field(
+            alias="regulatedCheckCard",
+            description="Object that contains the fees for a regulated debit-card transaction.",
+        ),
+    ]
+    unregulated_check_card: typing_extensions.Annotated[
+        ProcessorFee,
+        FieldMetadata(alias="unregulatedCheckCard"),
+        pydantic.Field(
+            alias="unregulatedCheckCard",
+            description="Object that contains the fees for an unregulated debit-card transaction.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

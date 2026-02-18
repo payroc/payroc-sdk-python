@@ -17,13 +17,14 @@ class RewardPayChoiceFees(UniversalBaseModel):
     Object that contains information about the fees.
     """
 
-    monthly_subscription: typing_extensions.Annotated[Amount, FieldMetadata(alias="monthlySubscription")] = (
-        pydantic.Field()
-    )
-    """
-    Fee for the monthly subscription for the processing plan. The value is in the currency's lowest denomination, for example, cents.
-    """
-
+    monthly_subscription: typing_extensions.Annotated[
+        Amount,
+        FieldMetadata(alias="monthlySubscription"),
+        pydantic.Field(
+            alias="monthlySubscription",
+            description="Fee for the monthly subscription for the processing plan. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
     debit: RewardPayChoiceFeesDebit = pydantic.Field()
     """
     Object that contains information about fees for debit transactions.
@@ -35,7 +36,9 @@ class RewardPayChoiceFees(UniversalBaseModel):
     """
 
     speciality_cards: typing_extensions.Annotated[
-        typing.Optional[SpecialityCards], FieldMetadata(alias="specialityCards")
+        typing.Optional[SpecialityCards],
+        FieldMetadata(alias="specialityCards"),
+        pydantic.Field(alias="specialityCards"),
     ] = None
 
     if IS_PYDANTIC_V2:

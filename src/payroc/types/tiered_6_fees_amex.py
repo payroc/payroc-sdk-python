@@ -14,13 +14,23 @@ from .processor_fee import ProcessorFee
 
 class Tiered6FeesAmex_OptBlue(UniversalBaseModel):
     """
-    Object that contains the fees for American Express transactions.
+    Polymorphic object that contains fees for American Express transactions.
+
+    The value of the type field determines which variant you should use:
+    -    `optBlue` - Amex OptBlue pricing program.
+    -    `direct` - Amex Direct pricing program.
     """
 
     type: typing.Literal["optBlue"] = "optBlue"
-    qualified_rate: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="qualifiedRate")]
-    mid_qual_rate: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="midQualRate")]
-    non_qual_rate: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="nonQualRate")]
+    qualified_rate: typing_extensions.Annotated[
+        ProcessorFee, FieldMetadata(alias="qualifiedRate"), pydantic.Field(alias="qualifiedRate")
+    ]
+    mid_qual_rate: typing_extensions.Annotated[
+        ProcessorFee, FieldMetadata(alias="midQualRate"), pydantic.Field(alias="midQualRate")
+    ]
+    non_qual_rate: typing_extensions.Annotated[
+        ProcessorFee, FieldMetadata(alias="nonQualRate"), pydantic.Field(alias="nonQualRate")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -34,7 +44,11 @@ class Tiered6FeesAmex_OptBlue(UniversalBaseModel):
 
 class Tiered6FeesAmex_Direct(UniversalBaseModel):
     """
-    Object that contains the fees for American Express transactions.
+    Polymorphic object that contains fees for American Express transactions.
+
+    The value of the type field determines which variant you should use:
+    -    `optBlue` - Amex OptBlue pricing program.
+    -    `direct` - Amex Direct pricing program.
     """
 
     type: typing.Literal["direct"] = "direct"

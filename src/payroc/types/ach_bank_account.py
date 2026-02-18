@@ -15,39 +15,35 @@ class AchBankAccount(UniversalBaseModel):
     Object that contains the customer's account details.
     """
 
-    sec_code: typing_extensions.Annotated[typing.Optional[AchBankAccountSecCode], FieldMetadata(alias="secCode")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates the type of authorization for the transaction.  
-    
-    **Note:** The field is mandatory for ACH secure token.  
-    
-    - `web` – Online transaction.  
-    - `tel` – Telephone transaction.  
-    - `ccd` – Corporate credit card or debit card transaction.  
-    - `ppd` – Pre-arranged transaction.
-    """
-
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")] = pydantic.Field()
-    """
-    Customer's name.
-    """
-
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")] = pydantic.Field()
-    """
-    Customer's bank account number. We mask all digits except the last four digits.
-    """
-
-    routing_number: typing_extensions.Annotated[str, FieldMetadata(alias="routingNumber")] = pydantic.Field()
-    """
-    Routing number of the customer’s account.
-    
-    **Note:** In responses, our gateway shows only the last four digits of the account's routing number, for example, *****4162. 
-    """
-
+    sec_code: typing_extensions.Annotated[
+        typing.Optional[AchBankAccountSecCode],
+        FieldMetadata(alias="secCode"),
+        pydantic.Field(
+            alias="secCode",
+            description="Indicates the type of authorization for the transaction.  \n\n**Note:** The field is mandatory for ACH secure token.  \n\n- `web` – Online transaction.  \n- `tel` – Telephone transaction.  \n- `ccd` – Corporate credit card or debit card transaction.  \n- `ppd` – Pre-arranged transaction.",
+        ),
+    ] = None
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount", description="Customer's name.")
+    ]
+    account_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="accountNumber"),
+        pydantic.Field(
+            alias="accountNumber",
+            description="Customer's bank account number. We mask all digits except the last four digits.",
+        ),
+    ]
+    routing_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="routingNumber"),
+        pydantic.Field(
+            alias="routingNumber",
+            description="Routing number of the customer’s account.\n\n**Note:** In responses, our gateway shows only the last four digits of the account's routing number, for example, *****4162. ",
+        ),
+    ]
     secure_token: typing_extensions.Annotated[
-        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken")
+        typing.Optional[SecureTokenSummary], FieldMetadata(alias="secureToken"), pydantic.Field(alias="secureToken")
     ] = None
 
     if IS_PYDANTIC_V2:

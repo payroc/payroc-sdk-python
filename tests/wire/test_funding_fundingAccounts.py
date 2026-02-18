@@ -23,10 +23,11 @@ def test_funding_fundingAccounts_update() -> None:
     client = get_client(test_id)
     client.funding.funding_accounts.update(
         funding_account_id_=1,
-        type="checking",
+        type="savings",
         use="credit",
-        name_on_account="Jane Doe",
+        name_on_account="Fred Nerk",
         payment_methods=[{"type": "ach"}],
+        metadata={"responsiblePerson": "Jane Doe"},
     )
     verify_request_count(test_id, "PUT", "/funding-accounts/1", None, 1)
 

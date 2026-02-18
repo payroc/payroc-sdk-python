@@ -62,8 +62,7 @@ class ProcessingTerminalsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.processing_terminals.retrieve(
             processing_terminal_id="1234001",
@@ -98,8 +97,7 @@ class ProcessingTerminalsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.processing_terminals.retrieve_host_configuration(
             processing_terminal_id="1234001",
@@ -166,8 +164,7 @@ class AsyncProcessingTerminalsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -210,8 +207,7 @@ class AsyncProcessingTerminalsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

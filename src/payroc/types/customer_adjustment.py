@@ -15,15 +15,17 @@ class CustomerAdjustment(UniversalBaseModel):
     Object that contains information about the adjustment to the transaction. Send this object if the merchant is adjusting the customer’s contact details.
     """
 
-    shipping_address: typing_extensions.Annotated[typing.Optional[Shipping], FieldMetadata(alias="shippingAddress")] = (
-        None
-    )
+    shipping_address: typing_extensions.Annotated[
+        typing.Optional[Shipping], FieldMetadata(alias="shippingAddress"), pydantic.Field(alias="shippingAddress")
+    ] = None
     contact_methods: typing_extensions.Annotated[
-        typing.Optional[typing.List[ContactMethod]], FieldMetadata(alias="contactMethods")
-    ] = pydantic.Field(default=None)
-    """
-    Customer's contact information.
-    """
+        typing.Optional[typing.List[ContactMethod]],
+        FieldMetadata(alias="contactMethods"),
+        pydantic.Field(
+            alias="contactMethods",
+            description="Array of polymorphic objects, which contain contact information.  \n\nThe value of the type parameter determines which variant you should use:  \n-\t`email` - Email address \n-\t`phone` - Phone number\n-\t`mobile` - Mobile number\n-\t`fax` - Fax number",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -105,8 +105,7 @@ class PaymentInstructionsClient:
         from payroc import CustomizationOptions, PaymentInstructionOrder, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payroc_cloud.payment_instructions.submit(
             serial_number="1850010868",
@@ -168,8 +167,7 @@ class PaymentInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payroc_cloud.payment_instructions.retrieve(
             payment_instruction_id="e743a9165d134678a9100ebba3b29597",
@@ -203,8 +201,7 @@ class PaymentInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payroc_cloud.payment_instructions.delete(
             payment_instruction_id="e743a9165d134678a9100ebba3b29597",
@@ -305,8 +302,7 @@ class AsyncPaymentInstructionsClient:
         from payroc import AsyncPayroc, CustomizationOptions, PaymentInstructionOrder
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -376,8 +372,7 @@ class AsyncPaymentInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -421,8 +416,7 @@ class AsyncPaymentInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

@@ -18,19 +18,22 @@ class ProcessingTerminalFeaturesPaymentLinks(UniversalBaseModel):
     Indicates if the terminal supports payment links.
     """
 
-    logo_url: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="logoUrl")] = pydantic.Field(
-        default=None
-    )
-    """
-    URL of the logo image that the merchant wants to display in their payment link email.
-    """
-
-    footer_notes: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="footerNotes")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    String that the merchant wants to display on the footer of their payment link email.
-    """
+    logo_url: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="logoUrl"),
+        pydantic.Field(
+            alias="logoUrl",
+            description="URL of the logo image that the merchant wants to display in their payment link email.",
+        ),
+    ] = None
+    footer_notes: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="footerNotes"),
+        pydantic.Field(
+            alias="footerNotes",
+            description="String that the merchant wants to display on the footer of their payment link email.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

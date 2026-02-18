@@ -20,18 +20,16 @@ class RetrievedRefund(UniversalBaseModel):
     Object that contains information about the retrieved refund.
     """
 
-    refund_id: typing_extensions.Annotated[str, FieldMetadata(alias="refundId")] = pydantic.Field()
-    """
-    Unique identifier that our gateway assigned to the refund.
-    """
-
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier that we assigned to the terminal.
-    """
-
+    refund_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="refundId"),
+        pydantic.Field(alias="refundId", description="Unique identifier that our gateway assigned to the refund."),
+    ]
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(alias="processingTerminalId", description="Unique identifier that we assigned to the terminal."),
+    ]
     operator: typing.Optional[str] = pydantic.Field(default=None)
     """
     Operator who requested the refund.
@@ -42,15 +40,18 @@ class RetrievedRefund(UniversalBaseModel):
     card: RetrievedCard
     payment: typing.Optional[PaymentSummary] = None
     supported_operations: typing_extensions.Annotated[
-        typing.Optional[SupportedOperations], FieldMetadata(alias="supportedOperations")
+        typing.Optional[SupportedOperations],
+        FieldMetadata(alias="supportedOperations"),
+        pydantic.Field(alias="supportedOperations"),
     ] = None
-    transaction_result: typing_extensions.Annotated[TransactionResult, FieldMetadata(alias="transactionResult")]
+    transaction_result: typing_extensions.Annotated[
+        TransactionResult, FieldMetadata(alias="transactionResult"), pydantic.Field(alias="transactionResult")
+    ]
     custom_fields: typing_extensions.Annotated[
-        typing.Optional[typing.List[CustomField]], FieldMetadata(alias="customFields")
-    ] = pydantic.Field(default=None)
-    """
-    Array of customField objects.
-    """
+        typing.Optional[typing.List[CustomField]],
+        FieldMetadata(alias="customFields"),
+        pydantic.Field(alias="customFields", description="Array of customField objects."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

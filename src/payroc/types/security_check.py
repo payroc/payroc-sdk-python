@@ -16,39 +16,21 @@ class SecurityCheck(UniversalBaseModel):
     """
 
     cvv_result: typing_extensions.Annotated[
-        typing.Optional[SecurityCheckCvvResult], FieldMetadata(alias="cvvResult")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the card verification value (CVV) that the customer provided in the request matches the CVV on the card.  
-    - `M` – The CVV matches the card’s CVV.  
-    - `N` – The CVV doesn’t match the card’s CVV.  
-    - `P` – The CVV wasn’t processed.  
-    - `U` – The CVV isn’t registered.  
-    
-    **Note:** Our gateway doesn’t automatically decline transactions when the CVV doesn’t match the card’s CVV, unless the merchant selects this setting in their account.
-    """
-
+        typing.Optional[SecurityCheckCvvResult],
+        FieldMetadata(alias="cvvResult"),
+        pydantic.Field(
+            alias="cvvResult",
+            description="Indicates if the card verification value (CVV) that the customer provided in the request matches the CVV on the card.  \n- `M` – The CVV matches the card’s CVV.  \n- `N` – The CVV doesn’t match the card’s CVV.  \n- `P` – The CVV wasn’t processed.  \n- `U` – The CVV isn’t registered.  \n\n**Note:** Our gateway doesn’t automatically decline transactions when the CVV doesn’t match the card’s CVV, unless the merchant selects this setting in their account.",
+        ),
+    ] = None
     avs_result: typing_extensions.Annotated[
-        typing.Optional[SecurityCheckAvsResult], FieldMetadata(alias="avsResult")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the address that the customer provided in the request matches the address linked to the card.
-    
-    - `Y` – The address in the request matches the address linked to the card.  
-    - `N` – The address in the request doesn’t match the address linked to the card.  
-    - `A` – The street address matches, but ZIP code or postal code doesn’t match.  
-    - `Z` - The ZIP code or postal code matches, but street address doesn’t match.  
-    - `U` – The address information is unavailable.  
-    - `G` – The issuer or card brand doesn’t support the Address Verification Service (AVS).  
-    - `R` – The AVS is currently unavailable. Try again later.  
-    - `S` – There was no AVS data in the request, or it was sent in the wrong format.  
-    - `F` - For UK addresses, the address in the request matches the address linked to the card.  
-    - `W` – For US addresses, the nine-digit ZIP code or postal code in the request matches the address linked to the card but the street address doesn’t.  
-    - `X` – For US addresses, the nine-digit ZIP code or postal code and the street address matches the address linked to the card.  
-      
-    **Note:** Our gateway doesn’t automatically decline transactions when the address doesn’t match the address linked to the card, 
-    unless the merchant selects this setting in their account.
-    """
+        typing.Optional[SecurityCheckAvsResult],
+        FieldMetadata(alias="avsResult"),
+        pydantic.Field(
+            alias="avsResult",
+            description="Indicates if the address that the customer provided in the request matches the address linked to the card.\n\n- `Y` – The address in the request matches the address linked to the card.  \n- `N` – The address in the request doesn’t match the address linked to the card.  \n- `A` – The street address matches, but ZIP code or postal code doesn’t match.  \n- `Z` - The ZIP code or postal code matches, but street address doesn’t match.  \n- `U` – The address information is unavailable.  \n- `G` – The issuer or card brand doesn’t support the Address Verification Service (AVS).  \n- `R` – The AVS is currently unavailable. Try again later.  \n- `S` – There was no AVS data in the request, or it was sent in the wrong format.  \n- `F` - For UK addresses, the address in the request matches the address linked to the card.  \n- `W` – For US addresses, the nine-digit ZIP code or postal code in the request matches the address linked to the card but the street address doesn’t.  \n- `X` – For US addresses, the nine-digit ZIP code or postal code and the street address matches the address linked to the card.  \n  \n**Note:** Our gateway doesn’t automatically decline transactions when the address doesn’t match the address linked to the card, \nunless the merchant selects this setting in their account.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

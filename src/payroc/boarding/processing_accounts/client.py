@@ -81,8 +81,7 @@ class ProcessingAccountsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.processing_accounts.retrieve(
             processing_account_id="38765",
@@ -95,7 +94,15 @@ class ProcessingAccountsClient:
         self, processing_account_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> typing.List[FundingAccount]:
         """
-        Retrieve a list of funding accounts associated with a processing account.
+        Use this method to return a list of funding accounts linked to a processing acccount.
+
+        To retrieve a list of funding accounts for a processing account, you need the processingAccountId. Our gateway returned the processingAccountId in the response of the [Create Merchant Platform](https://docs.payroc.com/api/schema/boarding/merchant-platforms/create) method or the [Create Proccessing Account](https://docs.payroc.com/api/schema/boarding/merchant-platforms/create-processing-account) method.
+
+        Our gateway returns information about the following for each funding account in the list:
+        - Account information, including the name on the account and payment methods.
+        - Status, including whether we have approved or rejected the account.
+
+        For each funding account, we also return its fundingAccountId, which you can use to perform follow-on actions.
 
         Parameters
         ----------
@@ -115,8 +122,7 @@ class ProcessingAccountsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.processing_accounts.list_processing_account_funding_accounts(
             processing_account_id="38765",
@@ -181,8 +187,7 @@ class ProcessingAccountsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.processing_accounts.list_contacts(
             processing_account_id="38765",
@@ -224,15 +229,18 @@ class ProcessingAccountsClient:
         Returns
         -------
         GetProcessingAccountPricingAgreementProcessingAccountsResponse
-            Successful request. Returns the pricing agreement for the processing account.
+            Successful request. We return a polymorphic object that contains the pricing agreement for the processing account.
+
+            The value of the version field determines which variant you should use:
+            -    `4.0` - Pricing agreement version 4.
+            -    `5.0` - Pricing agreement version 5.
 
         Examples
         --------
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.processing_accounts.get_processing_account_pricing_agreement(
             processing_account_id="38765",
@@ -296,8 +304,7 @@ class ProcessingAccountsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.boarding.processing_accounts.list_owners(
             processing_account_id="38765",
@@ -350,7 +357,7 @@ class ProcessingAccountsClient:
         Returns
         -------
         CreateReminderProcessingAccountsResponse
-            Successful request. We sent the email to the merchant.
+            Successful request. We sent an email to the merchant and we return a polymorphic object that contains reminder details.
 
         Examples
         --------
@@ -360,8 +367,7 @@ class ProcessingAccountsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.processing_accounts.create_reminder(
             processing_account_id="38765",
@@ -427,8 +433,7 @@ class ProcessingAccountsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.processing_accounts.list_terminal_orders(
             processing_account_id="38765",
@@ -469,7 +474,7 @@ class ProcessingAccountsClient:
 
         In the response, our gateway returns information about the terminal order including its status and terminalOrderId that you can use to [retrieve the terminal order](https://docs.payroc.com/api/schema/boarding/terminal-orders/retrieve).
 
-        **Note**: You can subscribe to the terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Events Subscriptions](https://docs.payroc.com/guides/integrate/event-subscriptions).
+        **Note**: You can subscribe to the terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Events Subscriptions](https://docs.payroc.com/guides/board-merchants/event-subscriptions).
 
         Parameters
         ----------
@@ -517,8 +522,7 @@ class ProcessingAccountsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.processing_accounts.create_terminal_order(
             processing_account_id="38765",
@@ -545,7 +549,7 @@ class ProcessingAccountsClient:
                 OrderItem(
                     type="solution",
                     solution_template_id="Roc Services_DX8000",
-                    solution_quantity=1.0,
+                    solution_quantity=1,
                     device_condition="new",
                     solution_setup=OrderItemSolutionSetup(
                         timezone="America/Chicago",
@@ -565,7 +569,7 @@ class ProcessingAccountsClient:
                             ),
                         ),
                         device_settings=OrderItemSolutionSetupDeviceSettings(
-                            number_of_mobile_users=2.0,
+                            number_of_mobile_users=2,
                             communication_type="wifi",
                         ),
                         batch_closure=OrderItemSolutionSetupBatchClosure_Automatic(),
@@ -654,8 +658,7 @@ class ProcessingAccountsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.boarding.processing_accounts.list_processing_terminals(
             processing_account_id="38765",
@@ -726,8 +729,7 @@ class AsyncProcessingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -746,7 +748,15 @@ class AsyncProcessingAccountsClient:
         self, processing_account_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> typing.List[FundingAccount]:
         """
-        Retrieve a list of funding accounts associated with a processing account.
+        Use this method to return a list of funding accounts linked to a processing acccount.
+
+        To retrieve a list of funding accounts for a processing account, you need the processingAccountId. Our gateway returned the processingAccountId in the response of the [Create Merchant Platform](https://docs.payroc.com/api/schema/boarding/merchant-platforms/create) method or the [Create Proccessing Account](https://docs.payroc.com/api/schema/boarding/merchant-platforms/create-processing-account) method.
+
+        Our gateway returns information about the following for each funding account in the list:
+        - Account information, including the name on the account and payment methods.
+        - Status, including whether we have approved or rejected the account.
+
+        For each funding account, we also return its fundingAccountId, which you can use to perform follow-on actions.
 
         Parameters
         ----------
@@ -768,8 +778,7 @@ class AsyncProcessingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -842,8 +851,7 @@ class AsyncProcessingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -891,7 +899,11 @@ class AsyncProcessingAccountsClient:
         Returns
         -------
         GetProcessingAccountPricingAgreementProcessingAccountsResponse
-            Successful request. Returns the pricing agreement for the processing account.
+            Successful request. We return a polymorphic object that contains the pricing agreement for the processing account.
+
+            The value of the version field determines which variant you should use:
+            -    `4.0` - Pricing agreement version 4.
+            -    `5.0` - Pricing agreement version 5.
 
         Examples
         --------
@@ -900,8 +912,7 @@ class AsyncProcessingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -973,8 +984,7 @@ class AsyncProcessingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1034,7 +1044,7 @@ class AsyncProcessingAccountsClient:
         Returns
         -------
         CreateReminderProcessingAccountsResponse
-            Successful request. We sent the email to the merchant.
+            Successful request. We sent an email to the merchant and we return a polymorphic object that contains reminder details.
 
         Examples
         --------
@@ -1046,8 +1056,7 @@ class AsyncProcessingAccountsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1120,8 +1129,7 @@ class AsyncProcessingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1168,7 +1176,7 @@ class AsyncProcessingAccountsClient:
 
         In the response, our gateway returns information about the terminal order including its status and terminalOrderId that you can use to [retrieve the terminal order](https://docs.payroc.com/api/schema/boarding/terminal-orders/retrieve).
 
-        **Note**: You can subscribe to the terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Events Subscriptions](https://docs.payroc.com/guides/integrate/event-subscriptions).
+        **Note**: You can subscribe to the terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Events Subscriptions](https://docs.payroc.com/guides/board-merchants/event-subscriptions).
 
         Parameters
         ----------
@@ -1218,8 +1226,7 @@ class AsyncProcessingAccountsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1249,7 +1256,7 @@ class AsyncProcessingAccountsClient:
                     OrderItem(
                         type="solution",
                         solution_template_id="Roc Services_DX8000",
-                        solution_quantity=1.0,
+                        solution_quantity=1,
                         device_condition="new",
                         solution_setup=OrderItemSolutionSetup(
                             timezone="America/Chicago",
@@ -1269,7 +1276,7 @@ class AsyncProcessingAccountsClient:
                                 ),
                             ),
                             device_settings=OrderItemSolutionSetupDeviceSettings(
-                                number_of_mobile_users=2.0,
+                                number_of_mobile_users=2,
                                 communication_type="wifi",
                             ),
                             batch_closure=OrderItemSolutionSetupBatchClosure_Automatic(),
@@ -1363,8 +1370,7 @@ class AsyncProcessingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

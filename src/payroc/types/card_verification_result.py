@@ -16,13 +16,11 @@ class CardVerificationResult(UniversalBaseModel):
     Operator who requested to verify the card.
     """
 
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier that we assigned to the terminal.
-    """
-
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(alias="processingTerminalId", description="Unique identifier that we assigned to the terminal."),
+    ]
     card: typing.Optional[Card] = None
     verified: bool = pydantic.Field()
     """
@@ -33,7 +31,9 @@ class CardVerificationResult(UniversalBaseModel):
     """
 
     transaction_result: typing_extensions.Annotated[
-        typing.Optional[TransactionResult], FieldMetadata(alias="transactionResult")
+        typing.Optional[TransactionResult],
+        FieldMetadata(alias="transactionResult"),
+        pydantic.Field(alias="transactionResult"),
     ] = None
 
     if IS_PYDANTIC_V2:

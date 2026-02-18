@@ -15,15 +15,18 @@ class Voucher(UniversalBaseModel):
     **Note:** Vouchers are available only for EBT SNAP payments.
     """
 
-    approval_code: typing_extensions.Annotated[str, FieldMetadata(alias="approvalCode")] = pydantic.Field()
-    """
-    Authorization code that the processor issued for the transaction.
-    """
-
-    serial_number: typing_extensions.Annotated[str, FieldMetadata(alias="serialNumber")] = pydantic.Field()
-    """
-    Serial number of the voucher.
-    """
+    approval_code: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="approvalCode"),
+        pydantic.Field(
+            alias="approvalCode", description="Authorization code that the processor issued for the transaction."
+        ),
+    ]
+    serial_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="serialNumber"),
+        pydantic.Field(alias="serialNumber", description="Serial number of the voucher."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

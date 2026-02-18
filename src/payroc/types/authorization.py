@@ -19,41 +19,42 @@ class Authorization(UniversalBaseModel):
     Object that contains information about the authorization.
     """
 
-    authorization_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="authorizationId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the authorization.
-    """
-
-    created_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that we received the authorization. The format of this value is **YYYY-MM-DD**.
-    """
-
+    authorization_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="authorizationId"),
+        pydantic.Field(alias="authorizationId", description="Unique identifier that we assigned to the authorization."),
+    ] = None
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date that we received the authorization. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
     last_modified_date: typing_extensions.Annotated[
-        typing.Optional[dt.date], FieldMetadata(alias="lastModifiedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date that the authorization was last changed. The format of this value is **YYYY-MM-DD**.
-    """
-
+        typing.Optional[dt.date],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(
+            alias="lastModifiedDate",
+            description="Date that the authorization was last changed. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
     authorization_response: typing_extensions.Annotated[
-        typing.Optional[AuthorizationAuthorizationResponse], FieldMetadata(alias="authorizationResponse")
-    ] = pydantic.Field(default=None)
-    """
-    Response from the issuing bank for the authorization.
-    """
-
+        typing.Optional[AuthorizationAuthorizationResponse],
+        FieldMetadata(alias="authorizationResponse"),
+        pydantic.Field(
+            alias="authorizationResponse", description="Response from the issuing bank for the authorization."
+        ),
+    ] = None
     preauthorization_request_amount: typing_extensions.Annotated[
-        typing.Optional[int], FieldMetadata(alias="preauthorizationRequestAmount")
-    ] = pydantic.Field(default=None)
-    """
-    Amount that the merchant requested for the authorization. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
+        typing.Optional[int],
+        FieldMetadata(alias="preauthorizationRequestAmount"),
+        pydantic.Field(
+            alias="preauthorizationRequestAmount",
+            description="Amount that the merchant requested for the authorization. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
     currency: typing.Optional[str] = pydantic.Field(default=None)
     """
     Currency of the authorization. The value for the currency follows the [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) standard.

@@ -13,24 +13,24 @@ class MerchantBalance(UniversalBaseModel):
     Object that contains information about the total funds available to the merchant.
     """
 
-    merchant_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="merchantId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier that the processor assigned to the merchant.
-    """
-
+    merchant_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="merchantId"),
+        pydantic.Field(
+            alias="merchantId", description="Unique identifier that the processor assigned to the merchant."
+        ),
+    ] = None
     funds: typing.Optional[int] = pydantic.Field(default=None)
     """
     Total funding balance for the merchant, including pending amounts. The value is in the currency's lowest denomination, for example, cents.
     """
 
-    pending: typing.Optional[float] = pydantic.Field(default=None)
+    pending: typing.Optional[int] = pydantic.Field(default=None)
     """
     Amount of the funding balance that we have not yet sent to funding accounts. The value is in the currency's lowest denomination, for example, cents.
     """
 
-    available: typing.Optional[float] = pydantic.Field(default=None)
+    available: typing.Optional[int] = pydantic.Field(default=None)
     """
     Amount of the funding balance that you can use in funding instructions. The value is in the currency's lowest denomination, for example, cents.
     """

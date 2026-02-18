@@ -15,30 +15,26 @@ class CardSource(UniversalBaseModel):
     Object that contains the customer's card details.
     """
 
-    cardholder_name: typing_extensions.Annotated[str, FieldMetadata(alias="cardholderName")] = pydantic.Field()
-    """
-    Cardholder's name.
-    """
-
-    card_number: typing_extensions.Annotated[str, FieldMetadata(alias="cardNumber")] = pydantic.Field()
-    """
-    Primary account number of the customer's card.
-    """
-
-    expiry_date: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="expiryDate")] = pydantic.Field(
-        default=None
-    )
-    """
-    Expiry date of the customer's card.
-    """
-
-    card_type: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardType")] = pydantic.Field(
-        default=None
-    )
-    """
-    Card brand of the card, for example, Visa.
-    """
-
+    cardholder_name: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="cardholderName"),
+        pydantic.Field(alias="cardholderName", description="Cardholder's name."),
+    ]
+    card_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="cardNumber"),
+        pydantic.Field(alias="cardNumber", description="Primary account number of the customer's card."),
+    ]
+    expiry_date: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="expiryDate"),
+        pydantic.Field(alias="expiryDate", description="Expiry date of the customer's card."),
+    ] = None
+    card_type: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="cardType"),
+        pydantic.Field(alias="cardType", description="Card brand of the card, for example, Visa."),
+    ] = None
     currency: typing.Optional[Currency] = None
     debit: typing.Optional[bool] = pydantic.Field(default=None)
     """

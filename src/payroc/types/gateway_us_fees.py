@@ -24,22 +24,30 @@ class GatewayUsFees(UniversalBaseModel):
     Fee for setting up your account with the gateway. The value is in the currency's lowest denomination, for example, cents.
     """
 
-    per_transaction: typing_extensions.Annotated[Amount, FieldMetadata(alias="perTransaction")] = pydantic.Field()
-    """
-    Fee for each transaction. The value is in the currency's lowest denomination, for example, cents.
-    """
-
-    per_device_monthly: typing_extensions.Annotated[Amount, FieldMetadata(alias="perDeviceMonthly")] = pydantic.Field()
-    """
-    Monthly fee for each device. The value is in the currency's lowest denomination, for example, cents.
-    """
-
-    additional_service_monthly: typing_extensions.Annotated[Amount, FieldMetadata(alias="additionalServiceMonthly")] = (
-        pydantic.Field()
-    )
-    """
-    Monthly fee for additional service. The value is in the currency's lowest denomination, for example, cents.
-    """
+    per_transaction: typing_extensions.Annotated[
+        Amount,
+        FieldMetadata(alias="perTransaction"),
+        pydantic.Field(
+            alias="perTransaction",
+            description="Fee for each transaction. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
+    per_device_monthly: typing_extensions.Annotated[
+        Amount,
+        FieldMetadata(alias="perDeviceMonthly"),
+        pydantic.Field(
+            alias="perDeviceMonthly",
+            description="Monthly fee for each device. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
+    additional_service_monthly: typing_extensions.Annotated[
+        Amount,
+        FieldMetadata(alias="additionalServiceMonthly"),
+        pydantic.Field(
+            alias="additionalServiceMonthly",
+            description="Monthly fee for additional service. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

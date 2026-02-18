@@ -12,60 +12,61 @@ from .merchant_summary import MerchantSummary
 
 
 class Batch(UniversalBaseModel):
-    batch_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="batchId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier that we assigned to the batch.
-    """
-
+    batch_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="batchId"),
+        pydantic.Field(alias="batchId", description="Unique identifier that we assigned to the batch."),
+    ] = None
     date: typing.Optional[dt.date] = pydantic.Field(default=None)
     """
     Date that the merchant submitted the batch. The format of this value is **YYYY-MM-DD**.
     """
 
-    created_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that we created a record for the batch. The format of this value is **YYYY-MM-DD**.
-    """
-
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date that we created a record for the batch. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
     last_modified_date: typing_extensions.Annotated[
-        typing.Optional[dt.date], FieldMetadata(alias="lastModifiedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date that the batch was last changed. The format of this value is **YYYY-MM-DD**.
-    """
-
-    sale_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="saleAmount")] = pydantic.Field(
-        default=None
-    )
-    """
-    Total value of sales in the batch. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
-    held_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="heldAmount")] = pydantic.Field(
-        default=None
-    )
-    """
-    Total value of authorizations in the batch. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
-    return_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="returnAmount")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Total value of returns in the batch. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
-    transaction_count: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="transactionCount")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Total number of transactions in the batch.
-    """
-
+        typing.Optional[dt.date],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(
+            alias="lastModifiedDate",
+            description="Date that the batch was last changed. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
+    sale_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="saleAmount"),
+        pydantic.Field(
+            alias="saleAmount",
+            description="Total value of sales in the batch. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    held_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="heldAmount"),
+        pydantic.Field(
+            alias="heldAmount",
+            description="Total value of authorizations in the batch. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    return_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="returnAmount"),
+        pydantic.Field(
+            alias="returnAmount",
+            description="Total value of returns in the batch. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    transaction_count: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="transactionCount"),
+        pydantic.Field(alias="transactionCount", description="Total number of transactions in the batch."),
+    ] = None
     currency: typing.Optional[str] = pydantic.Field(default=None)
     """
     Currency of the transactions in the batch. The value for the currency follows the [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) standard.

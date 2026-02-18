@@ -10,7 +10,7 @@ from ..core.pydantic_utilities import IS_PYDANTIC_V2, UniversalBaseModel
 
 class AccountUpdate_SingleUseToken(UniversalBaseModel):
     """
-    Object that contains the single-use token.
+    Polymorphic object that contains information about the single-use token.
     """
 
     type: typing.Literal["singleUseToken"] = "singleUseToken"

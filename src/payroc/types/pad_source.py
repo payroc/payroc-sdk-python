@@ -13,25 +13,26 @@ class PadSource(UniversalBaseModel):
     Object that contains the customer's account details.
     """
 
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")] = pydantic.Field()
-    """
-    Customer's name.
-    """
-
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")] = pydantic.Field()
-    """
-    Customer's account number.
-    """
-
-    transit_number: typing_extensions.Annotated[str, FieldMetadata(alias="transitNumber")] = pydantic.Field()
-    """
-    Five-digit code that represents the customer's banking branch.
-    """
-
-    institution_number: typing_extensions.Annotated[str, FieldMetadata(alias="institutionNumber")] = pydantic.Field()
-    """
-    Three-digit code that represents the customer's bank.
-    """
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount", description="Customer's name.")
+    ]
+    account_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="accountNumber"),
+        pydantic.Field(alias="accountNumber", description="Customer's account number."),
+    ]
+    transit_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="transitNumber"),
+        pydantic.Field(
+            alias="transitNumber", description="Five-digit code that represents the customer's banking branch."
+        ),
+    ]
+    institution_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="institutionNumber"),
+        pydantic.Field(alias="institutionNumber", description="Three-digit code that represents the customer's bank."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

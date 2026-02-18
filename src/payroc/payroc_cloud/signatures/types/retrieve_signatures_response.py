@@ -10,34 +10,32 @@ from ....core.serialization import FieldMetadata
 
 
 class RetrieveSignaturesResponse(UniversalBaseModel):
-    signature_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="signatureId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the signature.
-    """
-
+    signature_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="signatureId"),
+        pydantic.Field(alias="signatureId", description="Unique identifier that we assigned to the signature."),
+    ] = None
     processing_terminal_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="processingTerminalId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier of the terminal that the signature is linked to.
-    """
-
-    created_on: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="createdOn")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that the device captured the signature. The format of this value is **YYYY-MM-DD**.
-    """
-
-    content_type: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="contentType")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    MIME type that indicates the format of the image file.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(
+            alias="processingTerminalId",
+            description="Unique identifier of the terminal that the signature is linked to.",
+        ),
+    ] = None
+    created_on: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="createdOn"),
+        pydantic.Field(
+            alias="createdOn",
+            description="Date that the device captured the signature. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
+    content_type: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="contentType"),
+        pydantic.Field(alias="contentType", description="MIME type that indicates the format of the image file."),
+    ] = None
     signature: typing.Optional[str] = pydantic.Field(default=None)
     """
     Image data for the signature. Our gateway returns the signature as a Base64-encoded value.

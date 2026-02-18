@@ -19,26 +19,27 @@ class TipProcessingEnabled(UniversalBaseModel):
     Indicates if the terminal can accept tips.
     """
 
-    tip_prompt: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="tipPrompt")] = pydantic.Field(
-        default=None
-    )
-    """
-    Indicates if the terminal prompts for tips.
-    """
-
-    tip_adjust: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="tipAdjust")] = pydantic.Field(
-        default=None
-    )
-    """
-    Indicates if a clerk can adjust a tip after the customer completes the sale.
-    """
-
+    tip_prompt: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="tipPrompt"),
+        pydantic.Field(alias="tipPrompt", description="Indicates if the terminal prompts for tips."),
+    ] = None
+    tip_adjust: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="tipAdjust"),
+        pydantic.Field(
+            alias="tipAdjust",
+            description="Indicates if a clerk can adjust a tip after the customer completes the sale.",
+        ),
+    ] = None
     suggested_tips: typing_extensions.Annotated[
-        typing.Optional[TipProcessingEnabledSuggestedTips], FieldMetadata(alias="suggestedTips")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains up to three tip amounts that the terminal displays during a sale.
-    """
+        typing.Optional[TipProcessingEnabledSuggestedTips],
+        FieldMetadata(alias="suggestedTips"),
+        pydantic.Field(
+            alias="suggestedTips",
+            description="Object that contains up to three tip amounts that the terminal displays during a sale.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

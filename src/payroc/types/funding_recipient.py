@@ -16,68 +16,61 @@ from .funding_recipient_status import FundingRecipientStatus
 
 
 class FundingRecipient(UniversalBaseModel):
-    recipient_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="recipientId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the funding recipient.
-    """
-
+    recipient_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="recipientId"),
+        pydantic.Field(alias="recipientId", description="Unique identifier that we assigned to the funding recipient."),
+    ] = None
     status: typing.Optional[FundingRecipientStatus] = pydantic.Field(default=None)
     """
     Indicates if we have approved the funding recipient.
     """
 
-    created_date: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date the funding recipient was created.
-    """
-
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(alias="createdDate", description="Date the funding recipient was created."),
+    ] = None
     last_modified_date: typing_extensions.Annotated[
-        typing.Optional[dt.datetime], FieldMetadata(alias="lastModifiedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date the funding recipient was last modified.
-    """
-
-    recipient_type: typing_extensions.Annotated[FundingRecipientRecipientType, FieldMetadata(alias="recipientType")] = (
-        pydantic.Field()
-    )
-    """
-    Type or legal structure of the funding recipient.
-    """
-
-    tax_id: typing_extensions.Annotated[str, FieldMetadata(alias="taxId")] = pydantic.Field()
-    """
-    Employer identification number (EIN) or Social Security number (SSN).
-    """
-
-    charity_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="charityId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Government identifier of the charity.
-    """
-
-    doing_business_as: typing_extensions.Annotated[str, FieldMetadata(alias="doingBusinessAs")] = pydantic.Field()
-    """
-    Legal name of the business or organization.
-    """
-
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(alias="lastModifiedDate", description="Date the funding recipient was last modified."),
+    ] = None
+    recipient_type: typing_extensions.Annotated[
+        FundingRecipientRecipientType,
+        FieldMetadata(alias="recipientType"),
+        pydantic.Field(alias="recipientType", description="Type or legal structure of the funding recipient."),
+    ]
+    tax_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="taxId"),
+        pydantic.Field(
+            alias="taxId", description="Employer identification number (EIN) or Social Security number (SSN)."
+        ),
+    ]
+    charity_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="charityId"),
+        pydantic.Field(alias="charityId", description="Government identifier of the charity."),
+    ] = None
+    doing_business_as: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="doingBusinessAs"),
+        pydantic.Field(alias="doingBusinessAs", description="Legal name of the business or organization."),
+    ]
     address: Address = pydantic.Field()
     """
-    Address of the funding recipient.
+    Polymorphic object that contains address information for a funding recipient.
     """
 
-    contact_methods: typing_extensions.Annotated[typing.List[ContactMethod], FieldMetadata(alias="contactMethods")] = (
-        pydantic.Field()
-    )
-    """
-    Array of contactMethod objects for the funding recipient.
-    """
-
+    contact_methods: typing_extensions.Annotated[
+        typing.List[ContactMethod],
+        FieldMetadata(alias="contactMethods"),
+        pydantic.Field(
+            alias="contactMethods",
+            description="Array of polymorphic objects, which contain contact information.  \n\nThe value of the type parameter determines which variant you should use:  \n-\t`email` - Email address \n-\t`phone` - Phone number\n-\t`mobile` - Mobile number\n-\t`fax` - Fax number",
+        ),
+    ]
     metadata: typing.Optional[typing.Dict[str, str]] = pydantic.Field(default=None)
     """
     [Metadata](https://docs.payroc.com/api/metadata) object you can use to include custom data with your request.
@@ -89,11 +82,13 @@ class FundingRecipient(UniversalBaseModel):
     """
 
     funding_accounts: typing_extensions.Annotated[
-        typing.Optional[typing.List[FundingRecipientFundingAccountsItem]], FieldMetadata(alias="fundingAccounts")
-    ] = pydantic.Field(default=None)
-    """
-    Array of fundingAccount objects associated with the funding recipient.
-    """
+        typing.Optional[typing.List[FundingRecipientFundingAccountsItem]],
+        FieldMetadata(alias="fundingAccounts"),
+        pydantic.Field(
+            alias="fundingAccounts",
+            description="Array of fundingAccount objects associated with the funding recipient.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

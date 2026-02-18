@@ -19,22 +19,29 @@ class ProcessingTerminalSecurity(UniversalBaseModel):
     Indicates if the terminal can tokenize customer's payment details. For more information about tokenization, go to [Tokenization](https://docs.payroc.com/knowledge/basic-concepts/tokenization).
     """
 
-    avs_prompt: typing_extensions.Annotated[bool, FieldMetadata(alias="avsPrompt")] = pydantic.Field()
-    """
-    Indicates if the terminal should prompt for Address Verification Service (AVS) details when running a transaction.
-    """
-
+    avs_prompt: typing_extensions.Annotated[
+        bool,
+        FieldMetadata(alias="avsPrompt"),
+        pydantic.Field(
+            alias="avsPrompt",
+            description="Indicates if the terminal should prompt for Address Verification Service (AVS) details when running a transaction.",
+        ),
+    ]
     avs_level: typing_extensions.Annotated[
-        typing.Optional[ProcessingTerminalSecurityAvsLevel], FieldMetadata(alias="avsLevel")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates the level of AVS details that the terminal should prompt for.
-    """
-
-    cvv_prompt: typing_extensions.Annotated[bool, FieldMetadata(alias="cvvPrompt")] = pydantic.Field()
-    """
-    Indicates if the terminal should prompt for a Card Verfication Value (CVV) when running a transaction.
-    """
+        typing.Optional[ProcessingTerminalSecurityAvsLevel],
+        FieldMetadata(alias="avsLevel"),
+        pydantic.Field(
+            alias="avsLevel", description="Indicates the level of AVS details that the terminal should prompt for."
+        ),
+    ] = None
+    cvv_prompt: typing_extensions.Annotated[
+        bool,
+        FieldMetadata(alias="cvvPrompt"),
+        pydantic.Field(
+            alias="cvvPrompt",
+            description="Indicates if the terminal should prompt for a Card Verfication Value (CVV) when running a transaction.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

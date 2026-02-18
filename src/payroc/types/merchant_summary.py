@@ -14,27 +14,25 @@ class MerchantSummary(UniversalBaseModel):
     Object that contains information about the merchant.
     """
 
-    merchant_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="merchantId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier that the processor assigned to the merchant.
-    """
-
-    doing_business_as: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="doingBusinessAs")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Trading name of the business.
-    """
-
+    merchant_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="merchantId"),
+        pydantic.Field(
+            alias="merchantId", description="Unique identifier that the processor assigned to the merchant."
+        ),
+    ] = None
+    doing_business_as: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="doingBusinessAs"),
+        pydantic.Field(alias="doingBusinessAs", description="Trading name of the business."),
+    ] = None
     processing_account_id: typing_extensions.Annotated[
-        typing.Optional[int], FieldMetadata(alias="processingAccountId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier that we assigned to the processing account.
-    """
-
+        typing.Optional[int],
+        FieldMetadata(alias="processingAccountId"),
+        pydantic.Field(
+            alias="processingAccountId", description="Unique identifier that we assigned to the processing account."
+        ),
+    ] = None
     link: typing.Optional[Link] = None
 
     if IS_PYDANTIC_V2:

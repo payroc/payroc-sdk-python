@@ -10,27 +10,21 @@ from .processing_account_contacts_item_link import ProcessingAccountContactsItem
 
 
 class ProcessingAccountContactsItem(UniversalBaseModel):
-    contact_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="contactId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier of the contact.
-    """
-
-    first_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firstName")] = pydantic.Field(
-        default=None
-    )
-    """
-    Contact's first name.
-    """
-
-    last_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="lastName")] = pydantic.Field(
-        default=None
-    )
-    """
-    Contact's last name.
-    """
-
+    contact_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="contactId"),
+        pydantic.Field(alias="contactId", description="Unique identifier of the contact."),
+    ] = None
+    first_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="firstName"),
+        pydantic.Field(alias="firstName", description="Contact's first name."),
+    ] = None
+    last_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="lastName"),
+        pydantic.Field(alias="lastName", description="Contact's last name."),
+    ] = None
     link: typing.Optional[ProcessingAccountContactsItemLink] = pydantic.Field(default=None)
     """
     Object that contains HATEOAS links for the contact.

@@ -82,8 +82,7 @@ class FundingAccountsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.funding.funding_accounts.list(
             before="2571",
@@ -131,8 +130,7 @@ class FundingAccountsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_accounts.retrieve(
             funding_account_id=1,
@@ -227,15 +225,15 @@ class FundingAccountsClient:
         from payroc import PaymentMethodsItem_Ach, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_accounts.update(
             funding_account_id_=1,
-            type="checking",
+            type="savings",
             use="credit",
-            name_on_account="Jane Doe",
+            name_on_account="Fred Nerk",
             payment_methods=[PaymentMethodsItem_Ach()],
+            metadata={"responsiblePerson": "Jane Doe"},
         )
         """
         _response = self._raw_client.update(
@@ -281,8 +279,7 @@ class FundingAccountsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_accounts.delete(
             funding_account_id=1,
@@ -357,8 +354,7 @@ class AsyncFundingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -415,8 +411,7 @@ class AsyncFundingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -519,18 +514,18 @@ class AsyncFundingAccountsClient:
         from payroc import AsyncPayroc, PaymentMethodsItem_Ach
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
         async def main() -> None:
             await client.funding.funding_accounts.update(
                 funding_account_id_=1,
-                type="checking",
+                type="savings",
                 use="credit",
-                name_on_account="Jane Doe",
+                name_on_account="Fred Nerk",
                 payment_methods=[PaymentMethodsItem_Ach()],
+                metadata={"responsiblePerson": "Jane Doe"},
             )
 
 
@@ -581,8 +576,7 @@ class AsyncFundingAccountsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

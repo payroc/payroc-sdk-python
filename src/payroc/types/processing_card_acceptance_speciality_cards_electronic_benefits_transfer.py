@@ -18,12 +18,11 @@ class ProcessingCardAcceptanceSpecialityCardsElectronicBenefitsTransfer(Universa
     Indicates if the merchant accepts EBT.
     """
 
-    fns_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="fnsNumber")] = pydantic.Field(
-        default=None
-    )
-    """
-    If the merchant accepts EBT, provide their FNS number.
-    """
+    fns_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="fnsNumber"),
+        pydantic.Field(alias="fnsNumber", description="If the merchant accepts EBT, provide their FNS number."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

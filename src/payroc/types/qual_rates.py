@@ -10,20 +10,25 @@ from .processor_fee import ProcessorFee
 
 
 class QualRates(UniversalBaseModel):
-    qualified_rate: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="qualifiedRate")] = pydantic.Field()
-    """
-    Object that contains the fees for a qualified transaction.
-    """
-
-    mid_qual_rate: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="midQualRate")] = pydantic.Field()
-    """
-    Object that contains the fees for a mid-qualified transaction.
-    """
-
-    non_qual_rate: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="nonQualRate")] = pydantic.Field()
-    """
-    Object that contains the fees for a non-qualified transaction.
-    """
+    qualified_rate: typing_extensions.Annotated[
+        ProcessorFee,
+        FieldMetadata(alias="qualifiedRate"),
+        pydantic.Field(alias="qualifiedRate", description="Object that contains the fees for a qualified transaction."),
+    ]
+    mid_qual_rate: typing_extensions.Annotated[
+        ProcessorFee,
+        FieldMetadata(alias="midQualRate"),
+        pydantic.Field(
+            alias="midQualRate", description="Object that contains the fees for a mid-qualified transaction."
+        ),
+    ]
+    non_qual_rate: typing_extensions.Annotated[
+        ProcessorFee,
+        FieldMetadata(alias="nonQualRate"),
+        pydantic.Field(
+            alias="nonQualRate", description="Object that contains the fees for a non-qualified transaction."
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

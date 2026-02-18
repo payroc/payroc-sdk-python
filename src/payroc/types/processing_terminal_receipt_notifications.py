@@ -13,19 +13,16 @@ class ProcessingTerminalReceiptNotifications(UniversalBaseModel):
     Object that indicates if the terminal can send email receipts or text receipts.
     """
 
-    email_receipt: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="emailReceipt")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal can send receipts by email.
-    """
-
-    sms_receipt: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="smsReceipt")] = pydantic.Field(
-        default=None
-    )
-    """
-    Indicates if the terminal can send receipts by text message.
-    """
+    email_receipt: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="emailReceipt"),
+        pydantic.Field(alias="emailReceipt", description="Indicates if the terminal can send receipts by email."),
+    ] = None
+    sms_receipt: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="smsReceipt"),
+        pydantic.Field(alias="smsReceipt", description="Indicates if the terminal can send receipts by text message."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -13,13 +13,11 @@ class SubscriptionPaymentOrderBase(UniversalBaseModel):
     Object that contains information about the initial cost that a customer pays to set up the subscription.
     """
 
-    order_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="orderId")] = pydantic.Field(
-        default=None
-    )
-    """
-    A unique identifier assigned by the merchant.
-    """
-
+    order_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="orderId"),
+        pydantic.Field(alias="orderId", description="A unique identifier assigned by the merchant."),
+    ] = None
     amount: typing.Optional[int] = pydantic.Field(default=None)
     """
     Total amount for the transaction. The value is in the currency's lowest denomination, for example, cents.<br/>

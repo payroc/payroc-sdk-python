@@ -20,11 +20,14 @@ class CardInfo(UniversalBaseModel):
     Card brand of the card, for example, Visa.
     """
 
-    card_number: typing_extensions.Annotated[str, FieldMetadata(alias="cardNumber")] = pydantic.Field()
-    """
-    Masked card number. Our gateway shows only the first six digits and the last four digits of the card number, for example, 548010******5929.
-    """
-
+    card_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="cardNumber"),
+        pydantic.Field(
+            alias="cardNumber",
+            description="Masked card number. Our gateway shows only the first six digits and the last four digits of the card number, for example, 548010******5929.",
+        ),
+    ]
     country: typing.Optional[str] = pydantic.Field(default=None)
     """
     Country of the issuing bank. The value for the country follows the [ISO-3166-1](https://www.iso.org/iso-3166-country-codes.html) standard.

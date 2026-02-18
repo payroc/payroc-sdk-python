@@ -15,30 +15,29 @@ class PlainTextKeyedDataFormat(UniversalBaseModel):
     """
 
     device: typing.Optional[Device] = None
-    card_number: typing_extensions.Annotated[str, FieldMetadata(alias="cardNumber")] = pydantic.Field()
-    """
-    Customer’s card number.
-    """
-
-    expiry_date: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="expiryDate")] = pydantic.Field(
-        default=None
-    )
-    """
-    Expiry date of the customer’s card.  
-    **Note:** We require you to send an expiry date for most BIN lookups and electronic voucher transactions.
-    """
-
+    card_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="cardNumber"),
+        pydantic.Field(alias="cardNumber", description="Customer’s card number."),
+    ]
+    expiry_date: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="expiryDate"),
+        pydantic.Field(
+            alias="expiryDate",
+            description="Expiry date of the customer’s card.  \n**Note:** We require you to send an expiry date for most BIN lookups and electronic voucher transactions.",
+        ),
+    ] = None
     cvv: typing.Optional[str] = pydantic.Field(default=None)
     """
     Security code of the customer’s card.
     """
 
-    issue_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="issueNumber")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Issue number of the customer’s card.
-    """
+    issue_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="issueNumber"),
+        pydantic.Field(alias="issueNumber", description="Issue number of the customer’s card."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -14,15 +14,14 @@ class EbtDetails(UniversalBaseModel):
     Object that contains information about the Electronic Benefit Transfer (EBT) transaction.
     """
 
-    benefit_category: typing_extensions.Annotated[EbtDetailsBenefitCategory, FieldMetadata(alias="benefitCategory")] = (
-        pydantic.Field()
-    )
-    """
-    Indicates if the balance relates to an EBT Cash account or an EBT SNAP account.  
-     - `cash` – EBT Cash  
-     - `foodStamp` – EBT SNAP
-    """
-
+    benefit_category: typing_extensions.Annotated[
+        EbtDetailsBenefitCategory,
+        FieldMetadata(alias="benefitCategory"),
+        pydantic.Field(
+            alias="benefitCategory",
+            description="Indicates if the balance relates to an EBT Cash account or an EBT SNAP account.  \n - `cash` – EBT Cash  \n - `foodStamp` – EBT SNAP",
+        ),
+    ]
     withdrawal: typing.Optional[bool] = pydantic.Field(default=None)
     """
     Indicates whether the customer wants to withdraw cash.  

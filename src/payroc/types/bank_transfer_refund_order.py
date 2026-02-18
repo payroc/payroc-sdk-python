@@ -15,20 +15,19 @@ class BankTransferRefundOrder(UniversalBaseModel):
     Object that contains information about the order.
     """
 
-    order_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="orderId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier that the merchant assigned to the transaction.
-    """
-
-    date_time: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="dateTime")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that we processed the transaction. We return this value in the ISO 8601 format.
-    """
-
+    order_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="orderId"),
+        pydantic.Field(alias="orderId", description="Unique identifier that the merchant assigned to the transaction."),
+    ] = None
+    date_time: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="dateTime"),
+        pydantic.Field(
+            alias="dateTime",
+            description="Date and time that we processed the transaction. We return this value in the ISO 8601 format.",
+        ),
+    ] = None
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     Description of the refund.

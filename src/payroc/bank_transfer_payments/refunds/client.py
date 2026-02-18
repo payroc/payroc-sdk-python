@@ -70,8 +70,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.bank_transfer_payments.refunds.reverse_payment(
             payment_id="M2MJOG6O2Y",
@@ -132,8 +131,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.bank_transfer_payments.refunds.refund(
             payment_id="M2MJOG6O2Y",
@@ -247,8 +245,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.bank_transfer_payments.refunds.list(
             processing_terminal_id="1234001",
@@ -326,7 +323,11 @@ class RefundsClient:
         order : BankTransferRefundOrder
 
         refund_method : BankTransferUnreferencedRefundRefundMethod
-            Object that contains information about how the merchant refunds the customer.
+            Polymorphic object that contains payment details for the refund.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `secureToken` - Secure token details
 
         customer : typing.Optional[BankTransferCustomer]
 
@@ -355,8 +356,7 @@ class RefundsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.bank_transfer_payments.refunds.create(
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -434,8 +434,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.bank_transfer_payments.refunds.retrieve(
             refund_id="CD3HN88U9F",
@@ -477,8 +476,7 @@ class RefundsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.bank_transfer_payments.refunds.reverse_refund(
             refund_id="CD3HN88U9F",
@@ -541,8 +539,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -611,8 +608,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -733,8 +729,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -819,7 +814,11 @@ class AsyncRefundsClient:
         order : BankTransferRefundOrder
 
         refund_method : BankTransferUnreferencedRefundRefundMethod
-            Object that contains information about how the merchant refunds the customer.
+            Polymorphic object that contains payment details for the refund.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `secureToken` - Secure token details
 
         customer : typing.Optional[BankTransferCustomer]
 
@@ -850,8 +849,7 @@ class AsyncRefundsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -937,8 +935,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -988,8 +985,7 @@ class AsyncRefundsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

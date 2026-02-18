@@ -13,50 +13,55 @@ class TsysTerminal(UniversalBaseModel):
     Object that contains the configuration settings for the terminal.
     """
 
-    terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="terminalId")] = pydantic.Field()
-    """
-    Unique identifier that the host processor assigned to the terminal.
-    """
-
-    terminal_number: typing_extensions.Annotated[str, FieldMetadata(alias="terminalNumber")] = pydantic.Field()
-    """
-    Unique identifier of the terminal at the merchant's site.
-    """
-
+    terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="terminalId"),
+        pydantic.Field(
+            alias="terminalId", description="Unique identifier that the host processor assigned to the terminal."
+        ),
+    ]
+    terminal_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="terminalNumber"),
+        pydantic.Field(alias="terminalNumber", description="Unique identifier of the terminal at the merchant's site."),
+    ]
     authentication_code: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="authenticationCode")
-    ] = pydantic.Field(default=None)
-    """
-    Authenticates the terminal's identity with the host processor.
-    """
-
-    sharing_groups: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="sharingGroups")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates the direct debit networks and EBT networks that the terminal can use.
-    """
-
-    moto_allowed: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="motoAllowed")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal can run Mail Order/Telephone Order (MOTO) transactions.
-    """
-
-    internet_allowed: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="internetAllowed")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal can run e-Commerce transactions.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="authenticationCode"),
+        pydantic.Field(
+            alias="authenticationCode", description="Authenticates the terminal's identity with the host processor."
+        ),
+    ] = None
+    sharing_groups: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="sharingGroups"),
+        pydantic.Field(
+            alias="sharingGroups",
+            description="Indicates the direct debit networks and EBT networks that the terminal can use.",
+        ),
+    ] = None
+    moto_allowed: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="motoAllowed"),
+        pydantic.Field(
+            alias="motoAllowed",
+            description="Indicates if the terminal can run Mail Order/Telephone Order (MOTO) transactions.",
+        ),
+    ] = None
+    internet_allowed: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="internetAllowed"),
+        pydantic.Field(
+            alias="internetAllowed", description="Indicates if the terminal can run e-Commerce transactions."
+        ),
+    ] = None
     card_present_allowed: typing_extensions.Annotated[
-        typing.Optional[bool], FieldMetadata(alias="cardPresentAllowed")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the terminal can run card present transactions.
-    """
+        typing.Optional[bool],
+        FieldMetadata(alias="cardPresentAllowed"),
+        pydantic.Field(
+            alias="cardPresentAllowed", description="Indicates if the terminal can run card present transactions."
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -13,30 +13,26 @@ class CreateTerminalOrderShippingAddress(UniversalBaseModel):
     Object that contains the shipping address for the terminal order.
     """
 
-    recipient_name: typing_extensions.Annotated[str, FieldMetadata(alias="recipientName")] = pydantic.Field()
-    """
-    Name of the person receiving the shipment.
-    """
-
-    business_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="businessName")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Name of the business receiving the shipment.
-    """
-
-    address_line_1: typing_extensions.Annotated[str, FieldMetadata(alias="addressLine1")] = pydantic.Field()
-    """
-    First line of the shipment address.
-    """
-
-    address_line_2: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="addressLine2")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Second line of the shipment address.
-    """
-
+    recipient_name: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="recipientName"),
+        pydantic.Field(alias="recipientName", description="Name of the person receiving the shipment."),
+    ]
+    business_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="businessName"),
+        pydantic.Field(alias="businessName", description="Name of the business receiving the shipment."),
+    ] = None
+    address_line_1: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="addressLine1"),
+        pydantic.Field(alias="addressLine1", description="First line of the shipment address."),
+    ]
+    address_line_2: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="addressLine2"),
+        pydantic.Field(alias="addressLine2", description="Second line of the shipment address."),
+    ] = None
     city: str = pydantic.Field()
     """
     City of the shipment address.
@@ -47,11 +43,11 @@ class CreateTerminalOrderShippingAddress(UniversalBaseModel):
     State of the shipment address.
     """
 
-    postal_code: typing_extensions.Annotated[str, FieldMetadata(alias="postalCode")] = pydantic.Field()
-    """
-    Postal code of the shipment address.
-    """
-
+    postal_code: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="postalCode"),
+        pydantic.Field(alias="postalCode", description="Postal code of the shipment address."),
+    ]
     email: str = pydantic.Field()
     """
     Contact email address for the shipment.

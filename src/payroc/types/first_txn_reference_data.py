@@ -13,20 +13,22 @@ class FirstTxnReferenceData(UniversalBaseModel):
     Object that contains information about the initial payment for the payment instruction.
     """
 
-    payment_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="paymentId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier of the first payment.  
-    **Note:** We recommend that you always send a value for **paymentId**.
-    """
-
+    payment_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="paymentId"),
+        pydantic.Field(
+            alias="paymentId",
+            description="Unique identifier of the first payment.  \n**Note:** We recommend that you always send a value for **paymentId**.",
+        ),
+    ] = None
     card_scheme_reference_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardSchemeReferenceId")
-    ] = pydantic.Field(default=None)
-    """
-    Identifier that the card brand assigns to the payment instruction.
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="cardSchemeReferenceId"),
+        pydantic.Field(
+            alias="cardSchemeReferenceId",
+            description="Identifier that the card brand assigns to the payment instruction.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

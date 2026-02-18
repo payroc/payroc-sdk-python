@@ -39,7 +39,7 @@ class ApplePaySessionsClient:
 
         In the response, we return the startSessionObject that you send to Apple when you retrieve the cardholder's encrypted payment details.
 
-        **Note:** For more information about how to integrate with Apple Pay, go to [Apple Pay](https://docs.payroc.com/guides/integrate/apple-pay).
+        **Note:** For more information about how to integrate with Apple Pay, go to [Apple Pay](https://docs.payroc.com/guides/take-payments/apple-pay).
 
         Parameters
         ----------
@@ -65,8 +65,7 @@ class ApplePaySessionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.apple_pay_sessions.create(
             processing_terminal_id="1234001",
@@ -111,7 +110,7 @@ class AsyncApplePaySessionsClient:
 
         In the response, we return the startSessionObject that you send to Apple when you retrieve the cardholder's encrypted payment details.
 
-        **Note:** For more information about how to integrate with Apple Pay, go to [Apple Pay](https://docs.payroc.com/guides/integrate/apple-pay).
+        **Note:** For more information about how to integrate with Apple Pay, go to [Apple Pay](https://docs.payroc.com/guides/take-payments/apple-pay).
 
         Parameters
         ----------
@@ -139,8 +138,7 @@ class AsyncApplePaySessionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

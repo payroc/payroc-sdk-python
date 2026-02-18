@@ -19,10 +19,11 @@ class PayrocGateway(UniversalBaseModel):
     Name of the gateway that processes the transactions.
     """
 
-    terminal_template_id: typing_extensions.Annotated[str, FieldMetadata(alias="terminalTemplateId")] = pydantic.Field()
-    """
-    Unique identifier of the gateway terminal template.
-    """
+    terminal_template_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="terminalTemplateId"),
+        pydantic.Field(alias="terminalTemplateId", description="Unique identifier of the gateway terminal template."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

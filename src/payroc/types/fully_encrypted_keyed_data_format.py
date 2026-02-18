@@ -15,17 +15,16 @@ class FullyEncryptedKeyedDataFormat(UniversalBaseModel):
     """
 
     device: EncryptionCapableDevice
-    encrypted_data: typing_extensions.Annotated[str, FieldMetadata(alias="encryptedData")] = pydantic.Field()
-    """
-    Encrypted card data.
-    """
-
-    first_digit_of_pan: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firstDigitOfPan")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    First digit of the customer’s card number.
-    """
+    encrypted_data: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="encryptedData"),
+        pydantic.Field(alias="encryptedData", description="Encrypted card data."),
+    ]
+    first_digit_of_pan: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="firstDigitOfPan"),
+        pydantic.Field(alias="firstDigitOfPan", description="First digit of the customer’s card number."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

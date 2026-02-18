@@ -15,33 +15,31 @@ class ProcessingCardAcceptance(UniversalBaseModel):
     Object that contains information about the types of cards that the processing account accepts.
     """
 
-    debit_only: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="debitOnly")] = pydantic.Field(
-        default=None
-    )
-    """
-    Indicates if the merchant accepts only debit cards.
-    """
-
-    hsa_fsa: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="hsaFsa")] = pydantic.Field(
-        default=None
-    )
-    """
-    Indicates if the merchant accepts health savings account (HSA) and flexible spending account (FSA) cards.
-    """
-
+    debit_only: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="debitOnly"),
+        pydantic.Field(alias="debitOnly", description="Indicates if the merchant accepts only debit cards."),
+    ] = None
+    hsa_fsa: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="hsaFsa"),
+        pydantic.Field(
+            alias="hsaFsa",
+            description="Indicates if the merchant accepts health savings account (HSA) and flexible spending account (FSA) cards.",
+        ),
+    ] = None
     cards_accepted: typing_extensions.Annotated[
-        typing.Optional[typing.List[ProcessingCardAcceptanceCardsAcceptedItem]], FieldMetadata(alias="cardsAccepted")
-    ] = pydantic.Field(default=None)
-    """
-    List of card types the merchant accepts.
-    """
-
+        typing.Optional[typing.List[ProcessingCardAcceptanceCardsAcceptedItem]],
+        FieldMetadata(alias="cardsAccepted"),
+        pydantic.Field(alias="cardsAccepted", description="List of card types the merchant accepts."),
+    ] = None
     speciality_cards: typing_extensions.Annotated[
-        typing.Optional[ProcessingCardAcceptanceSpecialityCards], FieldMetadata(alias="specialityCards")
-    ] = pydantic.Field(default=None)
-    """
-    Information about the speciality cards that the merchant accepts.
-    """
+        typing.Optional[ProcessingCardAcceptanceSpecialityCards],
+        FieldMetadata(alias="specialityCards"),
+        pydantic.Field(
+            alias="specialityCards", description="Information about the speciality cards that the merchant accepts."
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

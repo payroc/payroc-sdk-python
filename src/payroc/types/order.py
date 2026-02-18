@@ -15,18 +15,19 @@ class Order(UniversalBaseModel):
     Object that contains details about the transaction.
     """
 
-    order_id: typing_extensions.Annotated[str, FieldMetadata(alias="orderId")] = pydantic.Field()
-    """
-    Unique identifier that the merchant assigns to the transaction.
-    """
-
-    date_time: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="dateTime")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that the processor processed the transaction. Our gateway returns this value in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-    """
-
+    order_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="orderId"),
+        pydantic.Field(alias="orderId", description="Unique identifier that the merchant assigns to the transaction."),
+    ]
+    date_time: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="dateTime"),
+        pydantic.Field(
+            alias="dateTime",
+            description="Date and time that the processor processed the transaction. Our gateway returns this value in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+        ),
+    ] = None
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     Description of the transaction.

@@ -91,8 +91,7 @@ class FundingInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.funding.funding_instructions.list(
             before="2571",
@@ -180,14 +179,35 @@ class FundingInstructionsClient:
 
         Examples
         --------
-        from payroc import Payroc
+        from payroc import (
+            InstructionMerchantsItem,
+            InstructionMerchantsItemRecipientsItem,
+            InstructionMerchantsItemRecipientsItemAmount,
+            Payroc,
+        )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_instructions.create(
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
+            merchants=[
+                InstructionMerchantsItem(
+                    merchant_id="4525644354",
+                    recipients=[
+                        InstructionMerchantsItemRecipientsItem(
+                            funding_account_id=123,
+                            payment_method="ACH",
+                            amount=InstructionMerchantsItemRecipientsItemAmount(
+                                value=120000,
+                                currency="USD",
+                            ),
+                            metadata={"yourCustomField": "abc123"},
+                        )
+                    ],
+                )
+            ],
+            metadata={"yourCustomField": "abc123"},
         )
         """
         _response = self._raw_client.create(
@@ -232,8 +252,7 @@ class FundingInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_instructions.retrieve(
             instruction_id=1,
@@ -303,14 +322,35 @@ class FundingInstructionsClient:
 
         Examples
         --------
-        from payroc import Payroc
+        from payroc import (
+            InstructionMerchantsItem,
+            InstructionMerchantsItemRecipientsItem,
+            InstructionMerchantsItemRecipientsItemAmount,
+            Payroc,
+        )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_instructions.update(
             instruction_id_=1,
+            merchants=[
+                InstructionMerchantsItem(
+                    merchant_id="9876543219",
+                    recipients=[
+                        InstructionMerchantsItemRecipientsItem(
+                            funding_account_id=124,
+                            payment_method="ACH",
+                            amount=InstructionMerchantsItemRecipientsItemAmount(
+                                value=69950,
+                                currency="USD",
+                            ),
+                            metadata={"supplier": "IT Support Services"},
+                        )
+                    ],
+                )
+            ],
+            metadata={"instructionCreatedBy": "Jane Doe"},
         )
         """
         _response = self._raw_client.update(
@@ -352,8 +392,7 @@ class FundingInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_instructions.delete(
             instruction_id=1,
@@ -438,8 +477,7 @@ class AsyncFundingInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -536,17 +574,38 @@ class AsyncFundingInstructionsClient:
         --------
         import asyncio
 
-        from payroc import AsyncPayroc
+        from payroc import (
+            AsyncPayroc,
+            InstructionMerchantsItem,
+            InstructionMerchantsItemRecipientsItem,
+            InstructionMerchantsItemRecipientsItemAmount,
+        )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
         async def main() -> None:
             await client.funding.funding_instructions.create(
                 idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
+                merchants=[
+                    InstructionMerchantsItem(
+                        merchant_id="4525644354",
+                        recipients=[
+                            InstructionMerchantsItemRecipientsItem(
+                                funding_account_id=123,
+                                payment_method="ACH",
+                                amount=InstructionMerchantsItemRecipientsItemAmount(
+                                    value=120000,
+                                    currency="USD",
+                                ),
+                                metadata={"yourCustomField": "abc123"},
+                            )
+                        ],
+                    )
+                ],
+                metadata={"yourCustomField": "abc123"},
             )
 
 
@@ -598,8 +657,7 @@ class AsyncFundingInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -677,17 +735,38 @@ class AsyncFundingInstructionsClient:
         --------
         import asyncio
 
-        from payroc import AsyncPayroc
+        from payroc import (
+            AsyncPayroc,
+            InstructionMerchantsItem,
+            InstructionMerchantsItemRecipientsItem,
+            InstructionMerchantsItemRecipientsItemAmount,
+        )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
         async def main() -> None:
             await client.funding.funding_instructions.update(
                 instruction_id_=1,
+                merchants=[
+                    InstructionMerchantsItem(
+                        merchant_id="9876543219",
+                        recipients=[
+                            InstructionMerchantsItemRecipientsItem(
+                                funding_account_id=124,
+                                payment_method="ACH",
+                                amount=InstructionMerchantsItemRecipientsItemAmount(
+                                    value=69950,
+                                    currency="USD",
+                                ),
+                                metadata={"supplier": "IT Support Services"},
+                            )
+                        ],
+                    )
+                ],
+                metadata={"instructionCreatedBy": "Jane Doe"},
             )
 
 
@@ -734,8 +813,7 @@ class AsyncFundingInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

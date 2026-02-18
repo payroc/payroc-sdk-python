@@ -17,57 +17,34 @@ class OrderItem(UniversalBaseModel):
     Type of item.
     """
 
-    solution_template_id: typing_extensions.Annotated[str, FieldMetadata(alias="solutionTemplateId")] = pydantic.Field()
-    """
-    Unique identifier of the solution. Send one of the following values:
-    - `Roc Services_DX8000`
-    - `Roc Services_DX4000`
-    - `Roc Services_Web`
-    - `Roc Services_Mobile`
-    - `Payroc DX8000`
-    - `Payroc DX4000`
-    - `Payroc RX7000_Cloud`
-    - `Payroc DX8000_Cloud`
-    - `Payroc DX4000_Cloud`
-    - `Payroc A920Pro`
-    - `Payroc A80`
-    - `Payroc A920Pro_Cloud`
-    - `Payroc A80_Cloud`
-    - `Roc Terminal Plus_N950`
-    - `Roc Terminal Plus_N950-S`
-    - `Roc Terminal Plus_X800`
-    - `Gateway_Payroc`
-    - `VAR_Only_TSYS`
-    - `ROC Services Chipper3X`
-    - `BBPOS Chipper 3X`
-    - `Augusta EMV`
-    - `Ingenico - AXIUM Full Functional Base`
-    - `Pax A920 Charging Base`
-    - `Pax A920 Comms Base`
-    - `A920 Pro Ethernet`
-    - `Axium Bundle`
-    """
-
-    solution_quantity: typing_extensions.Annotated[typing.Optional[float], FieldMetadata(alias="solutionQuantity")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Quantity of the solution.
-    """
-
+    solution_template_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="solutionTemplateId"),
+        pydantic.Field(
+            alias="solutionTemplateId",
+            description="Unique identifier of the solution. Send one of the following values:\n- `Roc Services_DX8000`\n- `Roc Services_DX4000`\n- `Roc Services_Web`\n- `Roc Services_Mobile`\n- `Payroc DX8000`\n- `Payroc DX4000`\n- `Payroc RX7000_Cloud`\n- `Payroc DX8000_Cloud`\n- `Payroc DX4000_Cloud`\n- `Payroc A920Pro`\n- `Payroc A80`\n- `Payroc A920Pro_Cloud`\n- `Payroc A80_Cloud`\n- `Roc Terminal Plus_N950`\n- `Roc Terminal Plus_N950-S`\n- `Roc Terminal Plus_X800`\n- `Gateway_Payroc`\n- `VAR_Only_TSYS`\n- `ROC Services Chipper3X`\n- `BBPOS Chipper 3X`\n- `Augusta EMV`\n- `Ingenico - AXIUM Full Functional Base`\n- `Pax A920 Charging Base`\n- `Pax A920 Comms Base`\n- `A920 Pro Ethernet`\n- `Axium Bundle`",
+        ),
+    ]
+    solution_quantity: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="solutionQuantity"),
+        pydantic.Field(alias="solutionQuantity", description="Quantity of the solution."),
+    ] = None
     device_condition: typing_extensions.Annotated[
-        typing.Optional[OrderItemDeviceCondition], FieldMetadata(alias="deviceCondition")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the order contains a new item or a refurbished item.
-    """
-
+        typing.Optional[OrderItemDeviceCondition],
+        FieldMetadata(alias="deviceCondition"),
+        pydantic.Field(
+            alias="deviceCondition", description="Indicates if the order contains a new item or a refurbished item."
+        ),
+    ] = None
     solution_setup: typing_extensions.Annotated[
-        typing.Optional[OrderItemSolutionSetup], FieldMetadata(alias="solutionSetup")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains the settings for the solution, including gateway settings, device settings, and application settings.
-    """
+        typing.Optional[OrderItemSolutionSetup],
+        FieldMetadata(alias="solutionSetup"),
+        pydantic.Field(
+            alias="solutionSetup",
+            description="Object that contains the settings for the solution, including gateway settings, device settings, and application settings.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

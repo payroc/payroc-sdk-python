@@ -17,31 +17,28 @@ class CommonFunding(UniversalBaseModel):
     """
 
     funding_schedule: typing_extensions.Annotated[
-        typing.Optional[CommonFundingFundingSchedule], FieldMetadata(alias="fundingSchedule")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates when funds are sent to the funding account.  
-    
-    If you send a value of `sameDay` or `nextDay`, provide a value for acceleratedFundingFee.  
-    
-    **Note:** If you send a value of `sameday`, funding includes all transactions the merchant ran before the ACH cut-off time. 
-    """
-
+        typing.Optional[CommonFundingFundingSchedule],
+        FieldMetadata(alias="fundingSchedule"),
+        pydantic.Field(
+            alias="fundingSchedule",
+            description="Indicates when funds are sent to the funding account.  \n\nIf you send a value of `sameDay` or `nextDay`, provide a value for acceleratedFundingFee.  \n\n**Note:** If you send a value of `sameday`, funding includes all transactions the merchant ran before the ACH cut-off time. ",
+        ),
+    ] = None
     accelerated_funding_fee: typing_extensions.Annotated[
-        typing.Optional[int], FieldMetadata(alias="acceleratedFundingFee")
-    ] = pydantic.Field(default=None)
-    """
-    Monthly fee in cents for accelerated funding. The value is in the currency's lowest denomination, for example, cents.  
-                
-    We apply this fee if the value for fundingSchedule is `sameday` or `nextday`.  
-    """
-
-    daily_discount: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="dailyDiscount")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if we collect fees from the merchant's account each day.
-    """
+        typing.Optional[int],
+        FieldMetadata(alias="acceleratedFundingFee"),
+        pydantic.Field(
+            alias="acceleratedFundingFee",
+            description="Monthly fee in cents for accelerated funding. The value is in the currency's lowest denomination, for example, cents.  \n            \nWe apply this fee if the value for fundingSchedule is `sameday` or `nextday`.  ",
+        ),
+    ] = None
+    daily_discount: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="dailyDiscount"),
+        pydantic.Field(
+            alias="dailyDiscount", description="Indicates if we collect fees from the merchant's account each day."
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

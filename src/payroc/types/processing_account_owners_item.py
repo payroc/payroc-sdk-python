@@ -10,27 +10,21 @@ from .processing_account_owners_item_link import ProcessingAccountOwnersItemLink
 
 
 class ProcessingAccountOwnersItem(UniversalBaseModel):
-    owner_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="ownerId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier of the owner.
-    """
-
-    first_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firstName")] = pydantic.Field(
-        default=None
-    )
-    """
-    Owner's first name.
-    """
-
-    last_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="lastName")] = pydantic.Field(
-        default=None
-    )
-    """
-    Owner's last name.
-    """
-
+    owner_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="ownerId"),
+        pydantic.Field(alias="ownerId", description="Unique identifier of the owner."),
+    ] = None
+    first_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="firstName"),
+        pydantic.Field(alias="firstName", description="Owner's first name."),
+    ] = None
+    last_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="lastName"),
+        pydantic.Field(alias="lastName", description="Owner's last name."),
+    ] = None
     link: typing.Optional[ProcessingAccountOwnersItemLink] = pydantic.Field(default=None)
     """
     HATEOAS links to the owners of the processing account.

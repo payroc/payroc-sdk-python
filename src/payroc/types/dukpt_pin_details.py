@@ -19,10 +19,9 @@ class DukptPinDetails(UniversalBaseModel):
     **Note:** PIN is encrypted using the DUKPT scheme.
     """
 
-    pin_ksn: typing_extensions.Annotated[str, FieldMetadata(alias="pinKsn")] = pydantic.Field()
-    """
-    Key serial number.
-    """
+    pin_ksn: typing_extensions.Annotated[
+        str, FieldMetadata(alias="pinKsn"), pydantic.Field(alias="pinKsn", description="Key serial number.")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

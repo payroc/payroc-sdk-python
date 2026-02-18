@@ -18,16 +18,16 @@ class RefundSummary(UniversalBaseModel):
     Object that contains information about a refund.
     """
 
-    refund_id: typing_extensions.Annotated[str, FieldMetadata(alias="refundId")] = pydantic.Field()
-    """
-    Unique identifier of the refund.
-    """
-
-    date_time: typing_extensions.Annotated[dt.datetime, FieldMetadata(alias="dateTime")] = pydantic.Field()
-    """
-    Date and time that the refund was processed.
-    """
-
+    refund_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="refundId"),
+        pydantic.Field(alias="refundId", description="Unique identifier of the refund."),
+    ]
+    date_time: typing_extensions.Annotated[
+        dt.datetime,
+        FieldMetadata(alias="dateTime"),
+        pydantic.Field(alias="dateTime", description="Date and time that the refund was processed."),
+    ]
     currency: Currency
     amount: int = pydantic.Field()
     """
@@ -39,24 +39,19 @@ class RefundSummary(UniversalBaseModel):
     Current status of the refund.
     """
 
-    response_code: typing_extensions.Annotated[RefundSummaryResponseCode, FieldMetadata(alias="responseCode")] = (
-        pydantic.Field()
-    )
-    """
-    Response from the processor.  
-    - `A` - The processor approved the transaction.  
-    - `D` - The processor declined the transaction.  
-    - `E` - The processor received the transaction but will process the transaction later.  
-    - `P` - The processor authorized a portion of the original amount of the transaction.  
-    - `R` - The issuer declined the transaction and indicated that the customer should contact their bank.  
-    - `C` - The issuer declined the transaction and indicated that the merchant should keep the card as it was reported lost or stolen.
-    """
-
-    response_message: typing_extensions.Annotated[str, FieldMetadata(alias="responseMessage")] = pydantic.Field()
-    """
-    Description of the response from the processor.
-    """
-
+    response_code: typing_extensions.Annotated[
+        RefundSummaryResponseCode,
+        FieldMetadata(alias="responseCode"),
+        pydantic.Field(
+            alias="responseCode",
+            description="Response from the processor.  \n- `A` - The processor approved the transaction.  \n- `D` - The processor declined the transaction.  \n- `E` - The processor received the transaction but will process the transaction later.  \n- `P` - The processor authorized a portion of the original amount of the transaction.  \n- `R` - The issuer declined the transaction and indicated that the customer should contact their bank.  \n- `C` - The issuer declined the transaction and indicated that the merchant should keep the card as it was reported lost or stolen.",
+        ),
+    ]
+    response_message: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="responseMessage"),
+        pydantic.Field(alias="responseMessage", description="Description of the response from the processor."),
+    ]
     link: typing.Optional[Link] = None
 
     if IS_PYDANTIC_V2:

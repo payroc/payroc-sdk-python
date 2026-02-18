@@ -12,11 +12,17 @@ from ..core.serialization import FieldMetadata
 
 class Pricing_Intent(UniversalBaseModel):
     """
-    Object that contains HATEOAS links to the pricing information that we apply to the processing account.
+    Polymorphic object that contains pricing information for the processing account.
+
+    The value of the type parameter determines which variant you should use:
+    -    `intent` - Use a pricing agreement template.
+    -    `agreement` - Create a new pricing agreement.
     """
 
     type: typing.Literal["intent"] = "intent"
-    pricing_intent_id: typing_extensions.Annotated[str, FieldMetadata(alias="pricingIntentId")]
+    pricing_intent_id: typing_extensions.Annotated[
+        str, FieldMetadata(alias="pricingIntentId"), pydantic.Field(alias="pricingIntentId")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -30,7 +36,11 @@ class Pricing_Intent(UniversalBaseModel):
 
 class Pricing_Agreement(UniversalBaseModel):
     """
-    Object that contains HATEOAS links to the pricing information that we apply to the processing account.
+    Polymorphic object that contains pricing information for the processing account.
+
+    The value of the type parameter determines which variant you should use:
+    -    `intent` - Use a pricing agreement template.
+    -    `agreement` - Create a new pricing agreement.
     """
 
     type: typing.Literal["agreement"] = "agreement"

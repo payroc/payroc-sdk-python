@@ -246,7 +246,7 @@ class RawSharingEventsClient:
         Returns
         -------
         HttpResponse[PaymentLinkEmailShareEvent]
-            Successful request. We shared the payment link.
+            Successful request. We return a polymorphic object that contains information about how the merchant shared a payment link.
         """
         _response = self._client_wrapper.httpx_client.request(
             f"payment-links/{jsonable_encoder(payment_link_id)}/sharing-events",
@@ -583,7 +583,7 @@ class AsyncRawSharingEventsClient:
         Returns
         -------
         AsyncHttpResponse[PaymentLinkEmailShareEvent]
-            Successful request. We shared the payment link.
+            Successful request. We return a polymorphic object that contains information about how the merchant shared a payment link.
         """
         _response = await self._client_wrapper.httpx_client.request(
             f"payment-links/{jsonable_encoder(payment_link_id)}/sharing-events",
