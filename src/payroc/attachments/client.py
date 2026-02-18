@@ -51,7 +51,7 @@ class AttachmentsClient:
         - **type** - Type of attachment that you want to upload.
         - **description** - Short description of the attachment.
 
-        In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/get-attachment).
+        In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/retrieve).
 
         Parameters
         ----------
@@ -102,9 +102,7 @@ class AttachmentsClient:
         )
         return _response.data
 
-    def get_attachment(
-        self, attachment_id: str, *, request_options: typing.Optional[RequestOptions] = None
-    ) -> Attachment:
+    def retrieve(self, attachment_id: str, *, request_options: typing.Optional[RequestOptions] = None) -> Attachment:
         """
         Use this method to retrieve the details of an attachment.
 
@@ -132,11 +130,11 @@ class AttachmentsClient:
         client = Payroc(
             api_key="YOUR_API_KEY",
         )
-        client.attachments.get_attachment(
+        client.attachments.retrieve(
             attachment_id="12876",
         )
         """
-        _response = self._raw_client.get_attachment(attachment_id, request_options=request_options)
+        _response = self._raw_client.retrieve(attachment_id, request_options=request_options)
         return _response.data
 
 
@@ -176,7 +174,7 @@ class AsyncAttachmentsClient:
         - **type** - Type of attachment that you want to upload.
         - **description** - Short description of the attachment.
 
-        In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/get-attachment).
+        In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/retrieve).
 
         Parameters
         ----------
@@ -235,7 +233,7 @@ class AsyncAttachmentsClient:
         )
         return _response.data
 
-    async def get_attachment(
+    async def retrieve(
         self, attachment_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> Attachment:
         """
@@ -270,12 +268,12 @@ class AsyncAttachmentsClient:
 
 
         async def main() -> None:
-            await client.attachments.get_attachment(
+            await client.attachments.retrieve(
                 attachment_id="12876",
             )
 
 
         asyncio.run(main())
         """
-        _response = await self._raw_client.get_attachment(attachment_id, request_options=request_options)
+        _response = await self._raw_client.retrieve(attachment_id, request_options=request_options)
         return _response.data

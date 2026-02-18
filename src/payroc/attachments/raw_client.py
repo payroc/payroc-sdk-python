@@ -62,7 +62,7 @@ class RawAttachmentsClient:
         - **type** - Type of attachment that you want to upload.
         - **description** - Short description of the attachment.
 
-        In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/get-attachment).
+        In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/retrieve).
 
         Parameters
         ----------
@@ -217,7 +217,7 @@ class RawAttachmentsClient:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    def get_attachment(
+    def retrieve(
         self, attachment_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> HttpResponse[Attachment]:
         """
@@ -353,7 +353,7 @@ class AsyncRawAttachmentsClient:
         - **type** - Type of attachment that you want to upload.
         - **description** - Short description of the attachment.
 
-        In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/get-attachment).
+        In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/retrieve).
 
         Parameters
         ----------
@@ -508,7 +508,7 @@ class AsyncRawAttachmentsClient:
             raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response.text)
         raise ApiError(status_code=_response.status_code, headers=dict(_response.headers), body=_response_json)
 
-    async def get_attachment(
+    async def retrieve(
         self, attachment_id: str, *, request_options: typing.Optional[RequestOptions] = None
     ) -> AsyncHttpResponse[Attachment]:
         """

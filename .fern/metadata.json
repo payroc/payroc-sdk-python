@@ -1,7 +1,7 @@
 {
-  "cliVersion": "3.78.0",
+  "cliVersion": "3.79.2",
   "generatorName": "fernapi/fern-python-sdk",
-  "generatorVersion": "4.57.1",
+  "generatorVersion": "4.58.1",
   "generatorConfig": {
     "client": {
       "class_name": "Payroc"
@@ -15,5 +15,5 @@
       "sentry_integration"
     ]
   },
-  "sdkVersion": "0.0.3698"
+  "sdkVersion": "0.0.3768"
 }

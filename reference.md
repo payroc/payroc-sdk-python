@@ -856,7 +856,7 @@ In the request, include the attachment that you want to upload and the following
 - **type** - Type of attachment that you want to upload.
 - **description** - Short description of the attachment.  
 
-In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/get-attachment).
+In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/retrieve).
 </dd>
 </dl>
 </dd>
@@ -947,7 +947,7 @@ core.File` — See core.File for more documentation
 </dl>
 </details>
 
-<details><summary><code>client.attachments.<a href="src/payroc/attachments/client.py">get_attachment</a>(...) -&gt; AsyncHttpResponse[Attachment]</code></summary>
+<details><summary><code>client.attachments.<a href="src/payroc/attachments/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[Attachment]</code></summary>
 <dl>
 <dd>
 
@@ -983,7 +983,7 @@ from payroc import Payroc
 client = Payroc(
     api_key="YOUR_API_KEY",
 )
-client.attachments.get_attachment(
+client.attachments.retrieve(
     attachment_id="12876",
 )
 
