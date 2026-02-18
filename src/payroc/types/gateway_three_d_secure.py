@@ -13,10 +13,14 @@ class GatewayThreeDSecure(UniversalBaseModel):
     Object that contains the 3-D Secure information from our gateway.
     """
 
-    mpi_reference: typing_extensions.Annotated[str, FieldMetadata(alias="mpiReference")] = pydantic.Field()
-    """
-    Reference that our gateway assigned to the 3-D Secure authentication response.
-    """
+    mpi_reference: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="mpiReference"),
+        pydantic.Field(
+            alias="mpiReference",
+            description="Reference that our gateway assigned to the 3-D Secure authentication response.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

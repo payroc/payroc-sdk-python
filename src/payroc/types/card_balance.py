@@ -16,14 +16,13 @@ class CardBalance(UniversalBaseModel):
     """
 
     benefit_category: typing_extensions.Annotated[
-        CardBalanceBenefitCategory, FieldMetadata(alias="benefitCategory")
-    ] = pydantic.Field()
-    """
-    Indicates if the balance relates to an EBT Cash account or EBT SNAP account.  
-    - `cash` – EBT Cash  
-    - `foodStamp` – EBT SNAP
-    """
-
+        CardBalanceBenefitCategory,
+        FieldMetadata(alias="benefitCategory"),
+        pydantic.Field(
+            alias="benefitCategory",
+            description="Indicates if the balance relates to an EBT Cash account or EBT SNAP account.  \n- `cash` – EBT Cash  \n- `foodStamp` – EBT SNAP",
+        ),
+    ]
     amount: int = pydantic.Field()
     """
     Current balance of the account. This value is in the currency's lowest denomination, for example, cents.

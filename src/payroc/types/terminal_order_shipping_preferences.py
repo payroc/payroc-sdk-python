@@ -21,12 +21,14 @@ class TerminalOrderShippingPreferences(UniversalBaseModel):
       - `ground` - We ship the order with ground shipping.
     """
 
-    saturday_delivery: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="saturdayDelivery")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if we can schedule the terminal order to be delivered on a Saturday.
-    """
+    saturday_delivery: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="saturdayDelivery"),
+        pydantic.Field(
+            alias="saturdayDelivery",
+            description="Indicates if we can schedule the terminal order to be delivered on a Saturday.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

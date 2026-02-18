@@ -14,32 +14,25 @@ class OrderItemSolutionSetupGatewaySettings(UniversalBaseModel):
     """
 
     merchant_portfolio_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="merchantPortfolioId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier of the merchant portfolio.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="merchantPortfolioId"),
+        pydantic.Field(alias="merchantPortfolioId", description="Unique identifier of the merchant portfolio."),
+    ] = None
     merchant_template_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="merchantTemplateId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier of the gateway merchant template.
-    """
-
-    user_template_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="userTemplateId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier of the gateway user template.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="merchantTemplateId"),
+        pydantic.Field(alias="merchantTemplateId", description="Unique identifier of the gateway merchant template."),
+    ] = None
+    user_template_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="userTemplateId"),
+        pydantic.Field(alias="userTemplateId", description="Unique identifier of the gateway user template."),
+    ] = None
     terminal_template_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="terminalTemplateId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier of the gateway terminal template.
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="terminalTemplateId"),
+        pydantic.Field(alias="terminalTemplateId", description="Unique identifier of the gateway terminal template."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

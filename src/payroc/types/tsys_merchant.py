@@ -13,55 +13,55 @@ class TsysMerchant(UniversalBaseModel):
     Object that contains the configuration settings for the merchant.
     """
 
-    pos_mid: typing_extensions.Annotated[str, FieldMetadata(alias="posMid")] = pydantic.Field()
-    """
-    Unique identifier that the host processor assigned to the merchant.
-    """
-
-    chain_number: typing_extensions.Annotated[str, FieldMetadata(alias="chainNumber")] = pydantic.Field()
-    """
-    Number that represents the merchant's chain of locations or stores.
-    """
-
-    settlement_agent: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="settlementAgent")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier of the merchant's settlement agent.
-    """
-
-    aba_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="abaNumber")] = pydantic.Field(
-        default=None
-    )
-    """
-    Number that identifies the merchant in direct debit requests.
-    """
-
-    bin_number: typing_extensions.Annotated[str, FieldMetadata(alias="binNumber")] = pydantic.Field()
-    """
-    Unique identifier of the merchant's bank.
-    """
-
-    agent_bank_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="agentBankNumber")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Number of the merchant's bank if it processes transactions on behalf of another entity.
-    """
-
+    pos_mid: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="posMid"),
+        pydantic.Field(
+            alias="posMid", description="Unique identifier that the host processor assigned to the merchant."
+        ),
+    ]
+    chain_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="chainNumber"),
+        pydantic.Field(
+            alias="chainNumber", description="Number that represents the merchant's chain of locations or stores."
+        ),
+    ]
+    settlement_agent: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="settlementAgent"),
+        pydantic.Field(alias="settlementAgent", description="Unique identifier of the merchant's settlement agent."),
+    ] = None
+    aba_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="abaNumber"),
+        pydantic.Field(alias="abaNumber", description="Number that identifies the merchant in direct debit requests."),
+    ] = None
+    bin_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="binNumber"),
+        pydantic.Field(alias="binNumber", description="Unique identifier of the merchant's bank."),
+    ]
+    agent_bank_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="agentBankNumber"),
+        pydantic.Field(
+            alias="agentBankNumber",
+            description="Number of the merchant's bank if it processes transactions on behalf of another entity.",
+        ),
+    ] = None
     reimbursement_attribute: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="reimbursementAttribute")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the merchant can accept interlink debit cards.
-    """
-
-    location_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="locationNumber")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Location of the merchant's information.
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="reimbursementAttribute"),
+        pydantic.Field(
+            alias="reimbursementAttribute", description="Indicates if the merchant can accept interlink debit cards."
+        ),
+    ] = None
+    location_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="locationNumber"),
+        pydantic.Field(alias="locationNumber", description="Location of the merchant's information."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -18,36 +18,37 @@ class SingleUseTokenPayload(UniversalBaseModel):
     """
 
     account_type: typing_extensions.Annotated[
-        typing.Optional[SingleUseTokenPayloadAccountType], FieldMetadata(alias="accountType")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates the customer’s account type.  
-    
-    **Note:** Send a value for accountType only if the single-use token represents bank account details.
-    """
-
+        typing.Optional[SingleUseTokenPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(
+            alias="accountType",
+            description="Indicates the customer’s account type.  \n\n**Note:** Send a value for accountType only if the single-use token represents bank account details.",
+        ),
+    ] = None
     token: str = pydantic.Field()
     """
     Unique token that the gateway assigned to the payment details.
     """
 
     pin_details: typing_extensions.Annotated[
-        typing.Optional[SingleUseTokenPayloadPinDetails], FieldMetadata(alias="pinDetails")
+        typing.Optional[SingleUseTokenPayloadPinDetails],
+        FieldMetadata(alias="pinDetails"),
+        pydantic.Field(
+            alias="pinDetails",
+            description="Polymorphic object that contains information about a customer's PIN.  \n\nThe value of the dataFormat parameter determines which variant you should use:  \n- `dukpt` - PIN information is encrypted.\n- `raw` - PIN information is unencrypted.",
+        ),
     ] = None
     ebt_details: typing_extensions.Annotated[
-        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails")
+        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails"), pydantic.Field(alias="ebtDetails")
     ] = None
     sec_code: typing_extensions.Annotated[
-        typing.Optional[SingleUseTokenPayloadSecCode], FieldMetadata(alias="secCode")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates how the customer authorized the ACH transaction. Send one of the following values:  
-    
-    - `web` – Online transaction.  
-    - `tel` – Telephone transaction.  
-    - `ccd` – Corporate credit card or debit card transaction.  
-    - `ppd` – Pre-arranged transaction. 
-    """
+        typing.Optional[SingleUseTokenPayloadSecCode],
+        FieldMetadata(alias="secCode"),
+        pydantic.Field(
+            alias="secCode",
+            description="Indicates how the customer authorized the ACH transaction. Send one of the following values:  \n\n- `web` – Online transaction.  \n- `tel` – Telephone transaction.  \n- `ccd` – Corporate credit card or debit card transaction.  \n- `ppd` – Pre-arranged transaction. ",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -12,7 +12,9 @@ from ....core.serialization import FieldMetadata
 
 class CreateReminderProcessingAccountsRequestBody_PricingAgreement(UniversalBaseModel):
     type: typing.Literal["pricingAgreement"] = "pricingAgreement"
-    reminder_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="reminderId")] = None
+    reminder_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="reminderId"), pydantic.Field(alias="reminderId")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

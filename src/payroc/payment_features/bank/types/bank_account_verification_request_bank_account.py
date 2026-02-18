@@ -15,17 +15,29 @@ from ....types.pad_payload_account_type import PadPayloadAccountType
 
 class BankAccountVerificationRequestBankAccount_Ach(UniversalBaseModel):
     """
-    Object that contains information about the bank account.
+    Polymorphic object that contains bank account information.
+
+    The value of the type field determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
     """
 
     type: typing.Literal["ach"] = "ach"
     account_type: typing_extensions.Annotated[
-        typing.Optional[AchPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[AchPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    sec_code: typing_extensions.Annotated[typing.Optional[AchPayloadSecCode], FieldMetadata(alias="secCode")] = None
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")]
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")]
-    routing_number: typing_extensions.Annotated[str, FieldMetadata(alias="routingNumber")]
+    sec_code: typing_extensions.Annotated[
+        typing.Optional[AchPayloadSecCode], FieldMetadata(alias="secCode"), pydantic.Field(alias="secCode")
+    ] = None
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount")
+    ]
+    account_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="accountNumber"), pydantic.Field(alias="accountNumber")
+    ]
+    routing_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="routingNumber"), pydantic.Field(alias="routingNumber")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -39,17 +51,29 @@ class BankAccountVerificationRequestBankAccount_Ach(UniversalBaseModel):
 
 class BankAccountVerificationRequestBankAccount_Pad(UniversalBaseModel):
     """
-    Object that contains information about the bank account.
+    Polymorphic object that contains bank account information.
+
+    The value of the type field determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
     """
 
     type: typing.Literal["pad"] = "pad"
     account_type: typing_extensions.Annotated[
-        typing.Optional[PadPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[PadPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")]
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")]
-    transit_number: typing_extensions.Annotated[str, FieldMetadata(alias="transitNumber")]
-    institution_number: typing_extensions.Annotated[str, FieldMetadata(alias="institutionNumber")]
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount")
+    ]
+    account_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="accountNumber"), pydantic.Field(alias="accountNumber")
+    ]
+    transit_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="transitNumber"), pydantic.Field(alias="transitNumber")
+    ]
+    institution_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="institutionNumber"), pydantic.Field(alias="institutionNumber")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

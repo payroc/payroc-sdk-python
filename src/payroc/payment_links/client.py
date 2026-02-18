@@ -136,8 +136,7 @@ class PaymentLinksClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.payment_links.list(
             processing_terminal_id="1234001",
@@ -216,7 +215,10 @@ class PaymentLinksClient:
         Returns
         -------
         CreatePaymentLinksResponse
-            Successful request. We created the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
 
         Examples
         --------
@@ -228,8 +230,7 @@ class PaymentLinksClient:
         from payroc.payment_links import CreatePaymentLinksRequestBody_MultiUse
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_links.create(
             processing_terminal_id="1234001",
@@ -279,15 +280,17 @@ class PaymentLinksClient:
         Returns
         -------
         RetrievePaymentLinksResponse
-            Successful request. Returns the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
 
         Examples
         --------
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_links.retrieve(
             payment_link_id="JZURRJBUPS",
@@ -343,15 +346,17 @@ class PaymentLinksClient:
         Returns
         -------
         PartiallyUpdatePaymentLinksResponse
-            Successful request. We updated the payment link.
+            Successful request. We updated the payment link and return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
 
         Examples
         --------
         from payroc import PatchDocument_Remove, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_links.partially_update(
             payment_link_id="JZURRJBUPS",
@@ -391,15 +396,18 @@ class PaymentLinksClient:
         Returns
         -------
         DeactivatePaymentLinksResponse
-            Successful request. We deactivated the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
 
         Examples
         --------
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_links.deactivate(
             payment_link_id="JZURRJBUPS",
@@ -527,8 +535,7 @@ class AsyncPaymentLinksClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -614,7 +621,10 @@ class AsyncPaymentLinksClient:
         Returns
         -------
         CreatePaymentLinksResponse
-            Successful request. We created the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
 
         Examples
         --------
@@ -628,8 +638,7 @@ class AsyncPaymentLinksClient:
         from payroc.payment_links import CreatePaymentLinksRequestBody_MultiUse
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -685,7 +694,10 @@ class AsyncPaymentLinksClient:
         Returns
         -------
         RetrievePaymentLinksResponse
-            Successful request. Returns the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
 
         Examples
         --------
@@ -694,8 +706,7 @@ class AsyncPaymentLinksClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -757,7 +768,10 @@ class AsyncPaymentLinksClient:
         Returns
         -------
         PartiallyUpdatePaymentLinksResponse
-            Successful request. We updated the payment link.
+            Successful request. We updated the payment link and return a polymorphic object that contains payment link information.
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
 
         Examples
         --------
@@ -766,8 +780,7 @@ class AsyncPaymentLinksClient:
         from payroc import AsyncPayroc, PatchDocument_Remove
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -813,7 +826,11 @@ class AsyncPaymentLinksClient:
         Returns
         -------
         DeactivatePaymentLinksResponse
-            Successful request. We deactivated the payment link.
+            Successful request. We return a polymorphic object that contains payment link information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `multiUse` - Create a link that the merchant can use to take multiple payments.
+            -    `singleUse` - Create a link that the merchant can use for only one payment.
 
         Examples
         --------
@@ -822,8 +839,7 @@ class AsyncPaymentLinksClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

@@ -14,12 +14,11 @@ class EncryptionCapableDevice(Device):
     Object that contains information about the encryption details of the POS terminal.
     """
 
-    data_ksn: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="dataKsn")] = pydantic.Field(
-        default=None
-    )
-    """
-    Key serial number.
-    """
+    data_ksn: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="dataKsn"),
+        pydantic.Field(alias="dataKsn", description="Key serial number."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

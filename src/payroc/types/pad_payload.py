@@ -15,33 +15,38 @@ class PadPayload(UniversalBaseModel):
     """
 
     account_type: typing_extensions.Annotated[
-        typing.Optional[PadPayloadAccountType], FieldMetadata(alias="accountType")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates the customer’s account type.  
-    **Note:** For bank account details, send a value for accountType.
-    """
-
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")] = pydantic.Field()
-    """
-    Customer's name.
-    """
-
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")] = pydantic.Field()
-    """
-    Customer's account number.  
-    **Note:** In responses, our gateway shows only the last four digits of the account number, for example, `*****5929`.
-    """
-
-    transit_number: typing_extensions.Annotated[str, FieldMetadata(alias="transitNumber")] = pydantic.Field()
-    """
-    Five-digit number that identifies the customer's bank branch.
-    """
-
-    institution_number: typing_extensions.Annotated[str, FieldMetadata(alias="institutionNumber")] = pydantic.Field()
-    """
-    Three-digit number that identifies the customer's bank.
-    """
+        typing.Optional[PadPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(
+            alias="accountType",
+            description="Indicates the customer’s account type.  \n**Note:** For bank account details, send a value for accountType.",
+        ),
+    ] = None
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount", description="Customer's name.")
+    ]
+    account_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="accountNumber"),
+        pydantic.Field(
+            alias="accountNumber",
+            description="Customer's account number.  \n**Note:** In responses, our gateway shows only the last four digits of the account number, for example, `*****5929`.",
+        ),
+    ]
+    transit_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="transitNumber"),
+        pydantic.Field(
+            alias="transitNumber", description="Five-digit number that identifies the customer's bank branch."
+        ),
+    ]
+    institution_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="institutionNumber"),
+        pydantic.Field(
+            alias="institutionNumber", description="Three-digit number that identifies the customer's bank."
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

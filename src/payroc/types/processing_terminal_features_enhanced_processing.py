@@ -27,20 +27,19 @@ class ProcessingTerminalFeaturesEnhancedProcessing(UniversalBaseModel):
     transaction_data_level: typing_extensions.Annotated[
         typing.Optional[ProcessingTerminalFeaturesEnhancedProcessingTransactionDataLevel],
         FieldMetadata(alias="transactionDataLevel"),
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the terminal supports level two or level three transactions.
-    """
-
+        pydantic.Field(
+            alias="transactionDataLevel",
+            description="Indicates if the terminal supports level two or level three transactions.",
+        ),
+    ] = None
     shipping_address_mode: typing_extensions.Annotated[
         typing.Optional[ProcessingTerminalFeaturesEnhancedProcessingShippingAddressMode],
         FieldMetadata(alias="shippingAddressMode"),
-    ] = pydantic.Field(default=None)
-    """
-    Indicates the address information that the clerk must provide to qualify for level two or level three data. The value is one of the following:
-    - `fullAddress` - The clerk must provide the full address for the transaction to qualify.
-    - `postalCode` - The clerk must provide a postal code for the transaction to qualify.
-    """
+        pydantic.Field(
+            alias="shippingAddressMode",
+            description="Indicates the address information that the clerk must provide to qualify for level two or level three data. The value is one of the following:\n- `fullAddress` - The clerk must provide the full address for the transaction to qualify.\n- `postalCode` - The clerk must provide a postal code for the transaction to qualify.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

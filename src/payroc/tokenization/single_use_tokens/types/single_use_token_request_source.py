@@ -17,17 +17,30 @@ from ....types.pad_payload_account_type import PadPayloadAccountType
 
 class SingleUseTokenRequestSource_Ach(UniversalBaseModel):
     """
-    Object that contains information about the payment method to tokenize.
+    Polymorphic object that contains the payment method to tokenize.
+
+    The value of the type parameter determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
+    -    `card` - Payment card details
     """
 
     type: typing.Literal["ach"] = "ach"
     account_type: typing_extensions.Annotated[
-        typing.Optional[AchPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[AchPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    sec_code: typing_extensions.Annotated[typing.Optional[AchPayloadSecCode], FieldMetadata(alias="secCode")] = None
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")]
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")]
-    routing_number: typing_extensions.Annotated[str, FieldMetadata(alias="routingNumber")]
+    sec_code: typing_extensions.Annotated[
+        typing.Optional[AchPayloadSecCode], FieldMetadata(alias="secCode"), pydantic.Field(alias="secCode")
+    ] = None
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount")
+    ]
+    account_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="accountNumber"), pydantic.Field(alias="accountNumber")
+    ]
+    routing_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="routingNumber"), pydantic.Field(alias="routingNumber")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -41,17 +54,30 @@ class SingleUseTokenRequestSource_Ach(UniversalBaseModel):
 
 class SingleUseTokenRequestSource_Pad(UniversalBaseModel):
     """
-    Object that contains information about the payment method to tokenize.
+    Polymorphic object that contains the payment method to tokenize.
+
+    The value of the type parameter determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
+    -    `card` - Payment card details
     """
 
     type: typing.Literal["pad"] = "pad"
     account_type: typing_extensions.Annotated[
-        typing.Optional[PadPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[PadPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")]
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")]
-    transit_number: typing_extensions.Annotated[str, FieldMetadata(alias="transitNumber")]
-    institution_number: typing_extensions.Annotated[str, FieldMetadata(alias="institutionNumber")]
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount")
+    ]
+    account_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="accountNumber"), pydantic.Field(alias="accountNumber")
+    ]
+    transit_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="transitNumber"), pydantic.Field(alias="transitNumber")
+    ]
+    institution_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="institutionNumber"), pydantic.Field(alias="institutionNumber")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -65,14 +91,21 @@ class SingleUseTokenRequestSource_Pad(UniversalBaseModel):
 
 class SingleUseTokenRequestSource_Card(UniversalBaseModel):
     """
-    Object that contains information about the payment method to tokenize.
+    Polymorphic object that contains the payment method to tokenize.
+
+    The value of the type parameter determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
+    -    `card` - Payment card details
     """
 
     type: typing.Literal["card"] = "card"
     account_type: typing_extensions.Annotated[
-        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    card_details: typing_extensions.Annotated[CardPayloadCardDetails, FieldMetadata(alias="cardDetails")]
+    card_details: typing_extensions.Annotated[
+        CardPayloadCardDetails, FieldMetadata(alias="cardDetails"), pydantic.Field(alias="cardDetails")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

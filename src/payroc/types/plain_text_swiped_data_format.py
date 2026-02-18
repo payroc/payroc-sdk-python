@@ -16,22 +16,21 @@ class PlainTextSwipedDataFormat(UniversalBaseModel):
     """
 
     device: Device
-    track_data: typing_extensions.Annotated[str, FieldMetadata(alias="trackData")] = pydantic.Field()
-    """
-    Customer’s card data from the swiped transaction.
-    """
-
+    track_data: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="trackData"),
+        pydantic.Field(alias="trackData", description="Customer’s card data from the swiped transaction."),
+    ]
     fallback: typing.Optional[bool] = pydantic.Field(default=None)
     """
     Indicates that this is a fallback transaction. For example, if there was a technical issue with the chip on the customer's card and the merchant then swiped the card.
     """
 
     fallback_reason: typing_extensions.Annotated[
-        typing.Optional[PlainTextSwipedDataFormatFallbackReason], FieldMetadata(alias="fallbackReason")
-    ] = pydantic.Field(default=None)
-    """
-    Reason for the fallback.
-    """
+        typing.Optional[PlainTextSwipedDataFormatFallbackReason],
+        FieldMetadata(alias="fallbackReason"),
+        pydantic.Field(alias="fallbackReason", description="Reason for the fallback."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

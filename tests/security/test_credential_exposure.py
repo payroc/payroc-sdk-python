@@ -185,7 +185,7 @@ class TestSentryIntegration:
     def test_sentry_module_exists(self):
         """Verify that the Sentry integration module exists and is importable."""
         try:
-            from payroc.core import sentry_integration
+            from payroc import sentry_integration
             assert hasattr(sentry_integration, 'initialize_sentry')
             assert hasattr(sentry_integration, '_before_send')
         except ImportError:
@@ -193,7 +193,7 @@ class TestSentryIntegration:
 
     def test_before_send_redacts_authorization_header(self):
         """Verify that _before_send redacts Authorization headers."""
-        from payroc.core.sentry_integration import _before_send
+        from payroc.sentry_integration import _before_send
         
         event = {
             'request': {
@@ -214,7 +214,7 @@ class TestSentryIntegration:
 
     def test_before_send_redacts_api_key_header(self):
         """Verify that _before_send redacts API key headers."""
-        from payroc.core.sentry_integration import _before_send
+        from payroc.sentry_integration import _before_send
         
         event = {
             'request': {
@@ -235,7 +235,7 @@ class TestSentryIntegration:
 
     def test_before_send_redacts_exception_values(self):
         """Verify that _before_send redacts credentials in exception messages."""
-        from payroc.core.sentry_integration import _before_send
+        from payroc.sentry_integration import _before_send
         
         event = {
             'exception': {
@@ -256,7 +256,7 @@ class TestSentryIntegration:
 
     def test_before_send_handles_missing_request(self):
         """Verify that _before_send doesn't crash when request is missing."""
-        from payroc.core.sentry_integration import _before_send
+        from payroc.sentry_integration import _before_send
         
         event = {
             'message': 'Some error occurred'
@@ -268,7 +268,7 @@ class TestSentryIntegration:
 
     def test_before_send_handles_missing_exception(self):
         """Verify that _before_send doesn't crash when exception is missing."""
-        from payroc.core.sentry_integration import _before_send
+        from payroc.sentry_integration import _before_send
         
         event = {
             'request': {

@@ -14,12 +14,14 @@ class SignatureAdjustment(UniversalBaseModel):
     **Note:** If the merchant previously added a signature to the transaction, they can’t adjust or delete the signature.
     """
 
-    cardholder_signature: typing_extensions.Annotated[str, FieldMetadata(alias="cardholderSignature")] = (
-        pydantic.Field()
-    )
-    """
-    Cardholder’s signature. For more information about the format of the signature, see Special Fields and Parameters.
-    """
+    cardholder_signature: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="cardholderSignature"),
+        pydantic.Field(
+            alias="cardholderSignature",
+            description="Cardholder’s signature. For more information about the format of the signature, see Special Fields and Parameters.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -15,15 +15,29 @@ from .plain_text_swiped_data_format_fallback_reason import PlainTextSwipedDataFo
 
 
 class SwipedCardDetailsSwipedData_Encrypted(UniversalBaseModel):
-    data_format: typing_extensions.Annotated[typing.Literal["encrypted"], FieldMetadata(alias="dataFormat")] = (
-        "encrypted"
-    )
+    """
+    Polymorphic object that contains payment card details that a device captured from the magnetic strip.
+
+    The value of the dataFormat parameter determines which variant you should use:
+    -    `encrypted` - Payment card details are encrypted.
+    -    `plainText` - Payment card details are in plain text.
+    """
+
+    data_format: typing_extensions.Annotated[
+        typing.Literal["encrypted"], FieldMetadata(alias="dataFormat"), pydantic.Field(alias="dataFormat")
+    ] = "encrypted"
     device: EncryptionCapableDevice
-    encrypted_data: typing_extensions.Annotated[str, FieldMetadata(alias="encryptedData")]
-    first_digit_of_pan: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firstDigitOfPan")] = None
+    encrypted_data: typing_extensions.Annotated[
+        str, FieldMetadata(alias="encryptedData"), pydantic.Field(alias="encryptedData")
+    ]
+    first_digit_of_pan: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="firstDigitOfPan"), pydantic.Field(alias="firstDigitOfPan")
+    ] = None
     fallback: typing.Optional[bool] = None
     fallback_reason: typing_extensions.Annotated[
-        typing.Optional[EncryptedSwipedDataFormatFallbackReason], FieldMetadata(alias="fallbackReason")
+        typing.Optional[EncryptedSwipedDataFormatFallbackReason],
+        FieldMetadata(alias="fallbackReason"),
+        pydantic.Field(alias="fallbackReason"),
     ] = None
 
     if IS_PYDANTIC_V2:
@@ -37,14 +51,24 @@ class SwipedCardDetailsSwipedData_Encrypted(UniversalBaseModel):
 
 
 class SwipedCardDetailsSwipedData_PlainText(UniversalBaseModel):
-    data_format: typing_extensions.Annotated[typing.Literal["plainText"], FieldMetadata(alias="dataFormat")] = (
-        "plainText"
-    )
+    """
+    Polymorphic object that contains payment card details that a device captured from the magnetic strip.
+
+    The value of the dataFormat parameter determines which variant you should use:
+    -    `encrypted` - Payment card details are encrypted.
+    -    `plainText` - Payment card details are in plain text.
+    """
+
+    data_format: typing_extensions.Annotated[
+        typing.Literal["plainText"], FieldMetadata(alias="dataFormat"), pydantic.Field(alias="dataFormat")
+    ] = "plainText"
     device: Device
-    track_data: typing_extensions.Annotated[str, FieldMetadata(alias="trackData")]
+    track_data: typing_extensions.Annotated[str, FieldMetadata(alias="trackData"), pydantic.Field(alias="trackData")]
     fallback: typing.Optional[bool] = None
     fallback_reason: typing_extensions.Annotated[
-        typing.Optional[PlainTextSwipedDataFormatFallbackReason], FieldMetadata(alias="fallbackReason")
+        typing.Optional[PlainTextSwipedDataFormatFallbackReason],
+        FieldMetadata(alias="fallbackReason"),
+        pydantic.Field(alias="fallbackReason"),
     ] = None
 
     if IS_PYDANTIC_V2:

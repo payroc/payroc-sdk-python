@@ -14,14 +14,16 @@ from .card_payload_card_details import CardPayloadCardDetails
 
 class SingleUseTokenPaymentMethod_Card(UniversalBaseModel):
     """
-    Object that contains information about the customer's payment details.
+    Polymorphic object that contains payment card details.
     """
 
     type: typing.Literal["card"] = "card"
     account_type: typing_extensions.Annotated[
-        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    card_details: typing_extensions.Annotated[CardPayloadCardDetails, FieldMetadata(alias="cardDetails")]
+    card_details: typing_extensions.Annotated[
+        CardPayloadCardDetails, FieldMetadata(alias="cardDetails"), pydantic.Field(alias="cardDetails")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -13,13 +13,19 @@ from ....types.third_party_three_d_secure_eci import ThirdPartyThreeDSecureEci
 
 class PaymentRequestThreeDSecure_Gateway(UniversalBaseModel):
     """
-    Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+    Polymorphic object that contains authentication information from 3-D Secure.
+
+    The value of the serviceProvider parameter determines which variant you should use:
+    -    `gateway` - Use our gateway to run a 3-D Secure check.
+    -    `thirdParty` - Use a third party to run a 3-D Secure check.
     """
 
-    service_provider: typing_extensions.Annotated[typing.Literal["gateway"], FieldMetadata(alias="serviceProvider")] = (
-        "gateway"
-    )
-    mpi_reference: typing_extensions.Annotated[str, FieldMetadata(alias="mpiReference")]
+    service_provider: typing_extensions.Annotated[
+        typing.Literal["gateway"], FieldMetadata(alias="serviceProvider"), pydantic.Field(alias="serviceProvider")
+    ] = "gateway"
+    mpi_reference: typing_extensions.Annotated[
+        str, FieldMetadata(alias="mpiReference"), pydantic.Field(alias="mpiReference")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -33,16 +39,22 @@ class PaymentRequestThreeDSecure_Gateway(UniversalBaseModel):
 
 class PaymentRequestThreeDSecure_ThirdParty(UniversalBaseModel):
     """
-    Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+    Polymorphic object that contains authentication information from 3-D Secure.
+
+    The value of the serviceProvider parameter determines which variant you should use:
+    -    `gateway` - Use our gateway to run a 3-D Secure check.
+    -    `thirdParty` - Use a third party to run a 3-D Secure check.
     """
 
     service_provider: typing_extensions.Annotated[
-        typing.Literal["thirdParty"], FieldMetadata(alias="serviceProvider")
+        typing.Literal["thirdParty"], FieldMetadata(alias="serviceProvider"), pydantic.Field(alias="serviceProvider")
     ] = "thirdParty"
     eci: ThirdPartyThreeDSecureEci
     xid: typing.Optional[str] = None
     cavv: typing.Optional[str] = None
-    ds_transaction_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="dsTransactionId")] = None
+    ds_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="dsTransactionId"), pydantic.Field(alias="dsTransactionId")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

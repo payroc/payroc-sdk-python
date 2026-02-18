@@ -11,7 +11,7 @@ from .amount import Amount
 
 class FlatRateFeesAmex_Direct(UniversalBaseModel):
     """
-    Object that contains the fees for American Express transactions.
+    Polymorphic object that contains fees for American Express transactions.
     """
 
     type: typing.Literal["direct"] = "direct"

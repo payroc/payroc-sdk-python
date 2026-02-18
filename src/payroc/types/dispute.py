@@ -19,88 +19,87 @@ class Dispute(UniversalBaseModel):
     Object that contains information about the dispute.
     """
 
-    dispute_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="disputeId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier that we assigned to the dispute.
-    """
-
+    dispute_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="disputeId"),
+        pydantic.Field(alias="disputeId", description="Unique identifier that we assigned to the dispute."),
+    ] = None
     dispute_type: typing_extensions.Annotated[
-        typing.Optional[DisputeDisputeType], FieldMetadata(alias="disputeType")
-    ] = pydantic.Field(default=None)
-    """
-    Type of dispute.
-    """
-
+        typing.Optional[DisputeDisputeType],
+        FieldMetadata(alias="disputeType"),
+        pydantic.Field(alias="disputeType", description="Type of dispute."),
+    ] = None
     current_status: typing_extensions.Annotated[
-        typing.Optional[DisputeCurrentStatus], FieldMetadata(alias="currentStatus")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains information about the current status of the dispute.
-    """
-
-    created_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that we received the dispute. The format of this value is **YYYY-MM-DD**.
-    """
-
+        typing.Optional[DisputeCurrentStatus],
+        FieldMetadata(alias="currentStatus"),
+        pydantic.Field(
+            alias="currentStatus",
+            description="Object that contains information about the current status of the dispute.",
+        ),
+    ] = None
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date that we received the dispute. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
     last_modified_date: typing_extensions.Annotated[
-        typing.Optional[dt.date], FieldMetadata(alias="lastModifiedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date that the dispute was last changed. The format of this value is **YYYY-MM-DD**.
-    """
-
-    received_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="receivedDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that the acquiring bank received the dispute. The format of this value is **YYYY-MM-DD**.
-    """
-
+        typing.Optional[dt.date],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(
+            alias="lastModifiedDate",
+            description="Date that the dispute was last changed. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
+    received_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="receivedDate"),
+        pydantic.Field(
+            alias="receivedDate",
+            description="Date that the acquiring bank received the dispute. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     Description of the dispute.
     """
 
-    reference_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="referenceNumber")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Reference number from the acquiring bank.
-    """
-
-    dispute_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="disputeAmount")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Dispute amount. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
-    fee_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="feeAmount")] = pydantic.Field(
-        default=None
-    )
-    """
-    Value of the fees for the dispute. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
-    first_dispute: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="firstDispute")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if this is the first dispute for the transaction.
-    """
-
-    authorization_code: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="authorizationCode")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Authorization code of the transaction that the dispute is linked to.
-    """
-
+    reference_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="referenceNumber"),
+        pydantic.Field(alias="referenceNumber", description="Reference number from the acquiring bank."),
+    ] = None
+    dispute_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="disputeAmount"),
+        pydantic.Field(
+            alias="disputeAmount",
+            description="Dispute amount. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    fee_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="feeAmount"),
+        pydantic.Field(
+            alias="feeAmount",
+            description="Value of the fees for the dispute. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    first_dispute: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="firstDispute"),
+        pydantic.Field(alias="firstDispute", description="Indicates if this is the first dispute for the transaction."),
+    ] = None
+    authorization_code: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="authorizationCode"),
+        pydantic.Field(
+            alias="authorizationCode",
+            description="Authorization code of the transaction that the dispute is linked to.",
+        ),
+    ] = None
     currency: typing.Optional[str] = pydantic.Field(default=None)
     """
     Currency of the transaction that the dispute is linked to. The value for the currency follows the [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) standard.

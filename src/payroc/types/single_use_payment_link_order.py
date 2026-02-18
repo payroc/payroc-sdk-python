@@ -14,11 +14,11 @@ class SingleUsePaymentLinkOrder(UniversalBaseModel):
     Object that contains information about the order.
     """
 
-    order_id: typing_extensions.Annotated[str, FieldMetadata(alias="orderId")] = pydantic.Field()
-    """
-    Unique identifier that the merchant assigned to the order.
-    """
-
+    order_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="orderId"),
+        pydantic.Field(alias="orderId", description="Unique identifier that the merchant assigned to the order."),
+    ]
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     A brief description of the transaction.
@@ -26,7 +26,11 @@ class SingleUsePaymentLinkOrder(UniversalBaseModel):
 
     charge: SingleUsePaymentLinkOrderCharge = pydantic.Field()
     """
-    Indicates whether the merchant or the customer enters the amount for the transaction.
+    Polymorphic object that indicates who enters the amount for the payment link.  
+    
+    The value of the type parameter determines which variant you should use:  
+    -    `prompt` - Customer enters the amount.
+    -    `preset` - Merchant sets the amount. 
     """
 
     if IS_PYDANTIC_V2:

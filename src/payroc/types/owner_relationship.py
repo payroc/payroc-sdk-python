@@ -13,29 +13,31 @@ class OwnerRelationship(UniversalBaseModel):
     Object that contains information about the owner's relationship to the business.
     """
 
-    equity_percentage: typing_extensions.Annotated[typing.Optional[float], FieldMetadata(alias="equityPercentage")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Percentage equity stake that the owner holds in the business.
-    """
-
+    equity_percentage: typing_extensions.Annotated[
+        typing.Optional[float],
+        FieldMetadata(alias="equityPercentage"),
+        pydantic.Field(
+            alias="equityPercentage", description="Percentage equity stake that the owner holds in the business."
+        ),
+    ] = None
     title: typing.Optional[str] = pydantic.Field(default=None)
     """
     Owner's job title.
     """
 
-    is_control_prong: typing_extensions.Annotated[bool, FieldMetadata(alias="isControlProng")] = pydantic.Field()
-    """
-    Indicates if the owner is a control prong. You can identify only one control prong for a business.
-    """
-
+    is_control_prong: typing_extensions.Annotated[
+        bool,
+        FieldMetadata(alias="isControlProng"),
+        pydantic.Field(
+            alias="isControlProng",
+            description="Indicates if the owner is a control prong. You can identify only one control prong for a business.",
+        ),
+    ]
     is_authorized_signatory: typing_extensions.Annotated[
-        typing.Optional[bool], FieldMetadata(alias="isAuthorizedSignatory")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates if the owner is an authorized signatory.
-    """
+        typing.Optional[bool],
+        FieldMetadata(alias="isAuthorizedSignatory"),
+        pydantic.Field(alias="isAuthorizedSignatory", description="Indicates if the owner is an authorized signatory."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

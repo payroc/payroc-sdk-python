@@ -12,7 +12,11 @@ from .link import Link
 
 class Signature_RequestedViaDirectLink(UniversalBaseModel):
     """
-    Object that includes information about how we captured the owner's signature.
+    Polymorphic object that contains information about how we captured the owner's signature.
+
+    The value of the type parameter determines which variant you should use:
+    -    `requestedViaDirectLink` - Request signature using a link.
+    -    `requestedViaEmail` - Request signature by email.
     """
 
     type: typing.Literal["requestedViaDirectLink"] = "requestedViaDirectLink"
@@ -30,7 +34,11 @@ class Signature_RequestedViaDirectLink(UniversalBaseModel):
 
 class Signature_RequestedViaEmail(UniversalBaseModel):
     """
-    Object that includes information about how we captured the owner's signature.
+    Polymorphic object that contains information about how we captured the owner's signature.
+
+    The value of the type parameter determines which variant you should use:
+    -    `requestedViaDirectLink` - Request signature using a link.
+    -    `requestedViaEmail` - Request signature by email.
     """
 
     type: typing.Literal["requestedViaEmail"] = "requestedViaEmail"

@@ -14,49 +14,43 @@ from .owner_relationship import OwnerRelationship
 
 
 class Owner(UniversalBaseModel):
-    owner_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="ownerId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier that we assigned to the owner.
-    """
-
-    first_name: typing_extensions.Annotated[str, FieldMetadata(alias="firstName")] = pydantic.Field()
-    """
-    Owner's first name.
-    """
-
-    middle_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="middleName")] = pydantic.Field(
-        default=None
-    )
-    """
-    Owner's middle name.
-    """
-
-    last_name: typing_extensions.Annotated[str, FieldMetadata(alias="lastName")] = pydantic.Field()
-    """
-    Owner's last name.
-    """
-
-    date_of_birth: typing_extensions.Annotated[dt.date, FieldMetadata(alias="dateOfBirth")] = pydantic.Field()
-    """
-    Owner's date of birth. The format of this value is **YYYY-MM-DD**.
-    """
-
+    owner_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="ownerId"),
+        pydantic.Field(alias="ownerId", description="Unique identifier that we assigned to the owner."),
+    ] = None
+    first_name: typing_extensions.Annotated[
+        str, FieldMetadata(alias="firstName"), pydantic.Field(alias="firstName", description="Owner's first name.")
+    ]
+    middle_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="middleName"),
+        pydantic.Field(alias="middleName", description="Owner's middle name."),
+    ] = None
+    last_name: typing_extensions.Annotated[
+        str, FieldMetadata(alias="lastName"), pydantic.Field(alias="lastName", description="Owner's last name.")
+    ]
+    date_of_birth: typing_extensions.Annotated[
+        dt.date,
+        FieldMetadata(alias="dateOfBirth"),
+        pydantic.Field(
+            alias="dateOfBirth", description="Owner's date of birth. The format of this value is **YYYY-MM-DD**."
+        ),
+    ]
     address: Address
     identifiers: typing.List[Identifier] = pydantic.Field()
     """
     Array of IDs.
     """
 
-    contact_methods: typing_extensions.Annotated[typing.List[ContactMethod], FieldMetadata(alias="contactMethods")] = (
-        pydantic.Field()
-    )
-    """
-    Array of contactMethod objects.  
-    **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.   
-    """
-
+    contact_methods: typing_extensions.Annotated[
+        typing.List[ContactMethod],
+        FieldMetadata(alias="contactMethods"),
+        pydantic.Field(
+            alias="contactMethods",
+            description="Array of polymorphic objects, which contain contact information.  \n\n**Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.   \n\nThe value of the type parameter determines which variant you should use:  \n-\t`email` - Email address \n-\t`phone` - Phone number\n-\t`mobile` - Mobile number\n-\t`fax` - Fax number",
+        ),
+    ]
     relationship: OwnerRelationship = pydantic.Field()
     """
     Object that contains information about the owner's relationship to the business.

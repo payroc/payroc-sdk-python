@@ -1,6 +1,6 @@
 # Reference
 ## Payment links
-<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">list</a>(...) -> AsyncPayrocPager[PaymentLinkPaginatedListDataItem, PaymentLinkPaginatedList]</code></summary>
+<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">list</a>(...) -&gt; AsyncPayrocPager[PaymentLinkPaginatedListDataItem, PaymentLinkPaginatedList]</code></summary>
 <dl>
 <dd>
 
@@ -45,8 +45,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.payment_links.list(
     processing_terminal_id="1234001",
@@ -206,7 +205,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">create</a>(...) -> AsyncHttpResponse[CreatePaymentLinksResponse]</code></summary>
+<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">create</a>(...) -&gt; AsyncHttpResponse[CreatePaymentLinksResponse]</code></summary>
 <dl>
 <dd>
 
@@ -253,8 +252,7 @@ from payroc import (
 from payroc.payment_links import CreatePaymentLinksRequestBody_SingleUse
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_links.create(
     processing_terminal_id="1234001",
@@ -325,7 +323,7 @@ client.payment_links.create(
 </dl>
 </details>
 
-<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">retrieve</a>(...) -> AsyncHttpResponse[RetrievePaymentLinksResponse]</code></summary>
+<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[RetrievePaymentLinksResponse]</code></summary>
 <dl>
 <dd>
 
@@ -366,8 +364,7 @@ Our gateway returns the following information about the payment link:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_links.retrieve(
     payment_link_id="JZURRJBUPS",
@@ -407,7 +404,7 @@ client.payment_links.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">partially_update</a>(...) -> AsyncHttpResponse[PartiallyUpdatePaymentLinksResponse]</code></summary>
+<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">partially_update</a>(...) -&gt; AsyncHttpResponse[PartiallyUpdatePaymentLinksResponse]</code></summary>
 <dl>
 <dd>
 
@@ -462,8 +459,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_links.partially_update(
     payment_link_id="JZURRJBUPS",
@@ -542,7 +538,7 @@ client.payment_links.partially_update(
 </dl>
 </details>
 
-<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">deactivate</a>(...) -> AsyncHttpResponse[DeactivatePaymentLinksResponse]</code></summary>
+<details><summary><code>client.payment_links.<a href="src/payroc/payment_links/client.py">deactivate</a>(...) -&gt; AsyncHttpResponse[DeactivatePaymentLinksResponse]</code></summary>
 <dl>
 <dd>
 
@@ -578,8 +574,7 @@ If your request is successful, our gateway deactivates the payment link. The cus
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_links.deactivate(
     payment_link_id="JZURRJBUPS",
@@ -620,7 +615,7 @@ client.payment_links.deactivate(
 </details>
 
 ## Hosted Fields
-<details><summary><code>client.hosted_fields.<a href="src/payroc/hosted_fields/client.py">create</a>(...) -> AsyncHttpResponse[HostedFieldsCreateSessionResponse]</code></summary>
+<details><summary><code>client.hosted_fields.<a href="src/payroc/hosted_fields/client.py">create</a>(...) -&gt; AsyncHttpResponse[HostedFieldsCreateSessionResponse]</code></summary>
 <dl>
 <dd>
 
@@ -638,7 +633,7 @@ In your request, you need to indicate whether the merchant is using Hosted Field
 
 In the response, our gateway returns the session token and the time that it expires. You need the session token when you configure the JavaScript for Hosted Fields.  
 
-For more information about adding Hosted Fields to a webpage, go to [Hosted Fields](https://docs.payroc.com/guides/integrate/hosted-fields). 
+For more information about adding Hosted Fields to a webpage, go to [Hosted Fields](https://docs.payroc.com/guides/take-payments/hosted-fields). 
 </dd>
 </dl>
 </dd>
@@ -656,8 +651,7 @@ For more information about adding Hosted Fields to a webpage, go to [Hosted Fiel
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.hosted_fields.create(
     processing_terminal_id="1234001",
@@ -746,7 +740,7 @@ If a merchant wants to update a customer's payment details that are linked to a 
 </details>
 
 ## ApplePaySessions
-<details><summary><code>client.apple_pay_sessions.<a href="src/payroc/apple_pay_sessions/client.py">create</a>(...) -> AsyncHttpResponse[ApplePayResponseSession]</code></summary>
+<details><summary><code>client.apple_pay_sessions.<a href="src/payroc/apple_pay_sessions/client.py">create</a>(...) -&gt; AsyncHttpResponse[ApplePayResponseSession]</code></summary>
 <dl>
 <dd>
 
@@ -762,7 +756,7 @@ Use this method to start an Apple Pay session for your merchant.
 
 In the response, we return the startSessionObject that you send to Apple when you retrieve the cardholder's encrypted payment details.  
 
-**Note:** For more information about how to integrate with Apple Pay, go to [Apple Pay](https://docs.payroc.com/guides/integrate/apple-pay).
+**Note:** For more information about how to integrate with Apple Pay, go to [Apple Pay](https://docs.payroc.com/guides/take-payments/apple-pay).
 </dd>
 </dl>
 </dd>
@@ -780,8 +774,7 @@ In the response, we return the startSessionObject that you send to Apple when yo
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.apple_pay_sessions.create(
     processing_terminal_id="1234001",
@@ -839,8 +832,197 @@ client.apple_pay_sessions.create(
 </dl>
 </details>
 
+## Attachments
+<details><summary><code>client.attachments.<a href="src/payroc/attachments/client.py">upload_to_processing_account</a>(...) -&gt; AsyncHttpResponse[Attachment]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+> Before you upload an attachment, make sure that you follow local privacy regulations and get the merchant's consent to process their information.  
+
+**Note:** You need the ID of the processing account before you can upload an attachment. If you don't know the processingAccountId, go to the [Retrieve a Merchant Platform](https://docs.payroc.com/api/schema/boarding/merchant-platforms/retrieve) method.  
+
+The attachment must be an uncompressed file under 30MB in one of the following formats:
+- .bmp, csv, .doc, .docx, .gif, .htm, .html, .jpg, .jpeg, .msg, .pdf, .png, .ppt, .pptx, .tif, .tiff, .txt, .xls, .xlsx  
+
+In the request, include the attachment that you want to upload and the following information about the attachment:
+- **type** - Type of attachment that you want to upload.
+- **description** - Short description of the attachment.  
+
+In the response, our gateway returns information about the attachment including its upload status and an attachmentId that you can use to [Retrieve the details of the Attachment](https://docs.payroc.com/api/schema/attachments/get-attachment).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from payroc import Payroc
+from payroc.attachments import (
+    UploadToProcessingAccountAttachmentsRequestAttachment,
+)
+
+client = Payroc(
+    api_key="YOUR_API_KEY",
+)
+client.attachments.upload_to_processing_account(
+    processing_account_id="38765",
+    idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
+    attachment=UploadToProcessingAccountAttachmentsRequestAttachment(
+        type="bankingEvidence",
+    ),
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**processing_account_id:** `str` — Unique identifier that we assigned to the processing account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idempotency_key:** `str` — Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attachment:** `UploadToProcessingAccountAttachmentsRequestAttachment` — Object that contains details about the attachment.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**file:** `from __future__ import annotations
+
+core.File` — See core.File for more documentation
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.attachments.<a href="src/payroc/attachments/client.py">get_attachment</a>(...) -&gt; AsyncHttpResponse[Attachment]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this method to retrieve the details of an attachment.  
+
+To retrieve the details of an attachment you need its attachmentId. Our gateway returned the attachmentId in the response of the method that you used to upload the attachment.  
+
+Our gateway returns information about the attachment, including its upload status and the entity that the attachment is linked to. Our gateway doesn't return the file that you uploaded.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```python
+from payroc import Payroc
+
+client = Payroc(
+    api_key="YOUR_API_KEY",
+)
+client.attachments.get_attachment(
+    attachment_id="12876",
+)
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**attachment_id:** `str` — Unique identifier of the attachment
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Auth
-<details><summary><code>client.auth.<a href="src/payroc/auth/client.py">retrieve_token</a>(...) -> AsyncHttpResponse[GetTokenResponse]</code></summary>
+<details><summary><code>client.auth.<a href="src/payroc/auth/client.py">retrieve_token</a>(...) -&gt; AsyncHttpResponse[GetTokenResponse]</code></summary>
 <dl>
 <dd>
 
@@ -870,13 +1052,10 @@ Obtain an access token using client credentials
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.auth.retrieve_token(
     api_key="x-api-key",
-    client_id="client_id",
-    client_secret="client_secret",
 )
 
 ```
@@ -901,22 +1080,6 @@ client.auth.retrieve_token(
 <dl>
 <dd>
 
-**client_id:** `str` — The client ID of the application
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**client_secret:** `str` — The client secret of the application
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **request_options:** `typing.Optional[RequestOptions]` — Request-specific configuration.
     
 </dd>
@@ -930,7 +1093,7 @@ client.auth.retrieve_token(
 </details>
 
 ## BankTransferPayments Payments
-<details><summary><code>client.bank_transfer_payments.payments.<a href="src/payroc/bank_transfer_payments/payments/client.py">list</a>(...) -> AsyncPayrocPager[BankTransferPayment, BankTransferPaymentPaginatedList]</code></summary>
+<details><summary><code>client.bank_transfer_payments.payments.<a href="src/payroc/bank_transfer_payments/payments/client.py">list</a>(...) -&gt; AsyncPayrocPager[BankTransferPayment, BankTransferPaymentPaginatedList]</code></summary>
 <dl>
 <dd>
 
@@ -975,8 +1138,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.bank_transfer_payments.payments.list(
     processing_terminal_id="1234001",
@@ -1160,7 +1322,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.bank_transfer_payments.payments.<a href="src/payroc/bank_transfer_payments/payments/client.py">create</a>(...) -> AsyncHttpResponse[BankTransferPayment]</code></summary>
+<details><summary><code>client.bank_transfer_payments.payments.<a href="src/payroc/bank_transfer_payments/payments/client.py">create</a>(...) -&gt; AsyncHttpResponse[BankTransferPayment]</code></summary>
 <dl>
 <dd>
 
@@ -1216,8 +1378,7 @@ from payroc.bank_transfer_payments.payments import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.bank_transfer_payments.payments.create(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -1304,7 +1465,15 @@ client.bank_transfer_payments.payments.create(
 <dl>
 <dd>
 
-**payment_method:** `BankTransferPaymentRequestPaymentMethod` — Object that contains information about the customer's payment details.
+**payment_method:** `BankTransferPaymentRequestPaymentMethod` 
+
+Polymorphic object that contains payment detail information.  
+
+The value of the type parameter determines which variant you should use:  
+-	`ach` - Automated Clearing House (ACH) details
+-	`pad` - Pre-authorized debit (PAD) details
+-	`secureToken` - Secure token details
+-	`singleUseToken` - Single-use token details
     
 </dd>
 </dl>
@@ -1348,7 +1517,7 @@ client.bank_transfer_payments.payments.create(
 </dl>
 </details>
 
-<details><summary><code>client.bank_transfer_payments.payments.<a href="src/payroc/bank_transfer_payments/payments/client.py">retrieve</a>(...) -> AsyncHttpResponse[BankTransferPayment]</code></summary>
+<details><summary><code>client.bank_transfer_payments.payments.<a href="src/payroc/bank_transfer_payments/payments/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[BankTransferPayment]</code></summary>
 <dl>
 <dd>
 
@@ -1391,8 +1560,7 @@ If the merchant saved the customer’s bank account details, our gateway returns
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.bank_transfer_payments.payments.retrieve(
     payment_id="M2MJOG6O2Y",
@@ -1432,7 +1600,7 @@ client.bank_transfer_payments.payments.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.bank_transfer_payments.payments.<a href="src/payroc/bank_transfer_payments/payments/client.py">represent</a>(...) -> AsyncHttpResponse[BankTransferPayment]</code></summary>
+<details><summary><code>client.bank_transfer_payments.payments.<a href="src/payroc/bank_transfer_payments/payments/client.py">represent</a>(...) -&gt; AsyncHttpResponse[BankTransferPayment]</code></summary>
 <dl>
 <dd>
 
@@ -1474,8 +1642,7 @@ from payroc.bank_transfer_payments.payments import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.bank_transfer_payments.payments.represent(
     payment_id="M2MJOG6O2Y",
@@ -1517,7 +1684,13 @@ client.bank_transfer_payments.payments.represent(
 <dl>
 <dd>
 
-**payment_method:** `typing.Optional[RepresentmentPaymentMethod]` — Object that contains information about the customer's payment details.
+**payment_method:** `typing.Optional[RepresentmentPaymentMethod]` 
+
+Polymorphic object that contains the customer's updated payment details.  
+
+The value of the type parameter determines which variant you should use:  
+-	`ach` - Automated Clearing House (ACH) details
+-	`secureToken` - Secure token details
     
 </dd>
 </dl>
@@ -1538,7 +1711,7 @@ client.bank_transfer_payments.payments.represent(
 </details>
 
 ## BankTransferPayments Refunds
-<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">reverse_payment</a>(...) -> AsyncHttpResponse[BankTransferPayment]</code></summary>
+<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">reverse_payment</a>(...) -&gt; AsyncHttpResponse[BankTransferPayment]</code></summary>
 <dl>
 <dd>
 
@@ -1574,8 +1747,7 @@ If your request is successful, our gateway removes the bank transfer payment fro
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.bank_transfer_payments.refunds.reverse_payment(
     payment_id="M2MJOG6O2Y",
@@ -1624,7 +1796,7 @@ client.bank_transfer_payments.refunds.reverse_payment(
 </dl>
 </details>
 
-<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">refund</a>(...) -> AsyncHttpResponse[BankTransferPayment]</code></summary>
+<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">refund</a>(...) -&gt; AsyncHttpResponse[BankTransferPayment]</code></summary>
 <dl>
 <dd>
 
@@ -1664,8 +1836,7 @@ If your refund is successful, our gateway returns the payment amount to the cust
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.bank_transfer_payments.refunds.refund(
     payment_id="M2MJOG6O2Y",
@@ -1732,7 +1903,7 @@ client.bank_transfer_payments.refunds.refund(
 </dl>
 </details>
 
-<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">list</a>(...) -> AsyncPayrocPager[BankTransferRefund, BankTransferRefundPaginatedList]</code></summary>
+<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">list</a>(...) -&gt; AsyncPayrocPager[BankTransferRefund, BankTransferRefundPaginatedList]</code></summary>
 <dl>
 <dd>
 
@@ -1775,8 +1946,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.bank_transfer_payments.refunds.list(
     processing_terminal_id="1234001",
@@ -1950,7 +2120,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">create</a>(...) -> AsyncHttpResponse[BankTransferRefund]</code></summary>
+<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">create</a>(...) -&gt; AsyncHttpResponse[BankTransferRefund]</code></summary>
 <dl>
 <dd>
 
@@ -1998,8 +2168,7 @@ from payroc.bank_transfer_payments.refunds import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.bank_transfer_payments.refunds.create(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -2069,7 +2238,13 @@ client.bank_transfer_payments.refunds.create(
 <dl>
 <dd>
 
-**refund_method:** `BankTransferUnreferencedRefundRefundMethod` — Object that contains information about how the merchant refunds the customer.
+**refund_method:** `BankTransferUnreferencedRefundRefundMethod` 
+
+Polymorphic object that contains payment details for the refund.  
+
+The value of the type parameter determines which variant you should use:  
+-	`ach` - Automated Clearing House (ACH) details
+-	`secureToken` - Secure token details
     
 </dd>
 </dl>
@@ -2105,7 +2280,7 @@ client.bank_transfer_payments.refunds.create(
 </dl>
 </details>
 
-<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">retrieve</a>(...) -> AsyncHttpResponse[BankTransferRefund]</code></summary>
+<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[BankTransferRefund]</code></summary>
 <dl>
 <dd>
 
@@ -2146,8 +2321,7 @@ If the refund is a referenced refund, our gateway also returns details about the
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.bank_transfer_payments.refunds.retrieve(
     refund_id="CD3HN88U9F",
@@ -2187,7 +2361,7 @@ client.bank_transfer_payments.refunds.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">reverse_refund</a>(...) -> AsyncHttpResponse[BankTransferRefund]</code></summary>
+<details><summary><code>client.bank_transfer_payments.refunds.<a href="src/payroc/bank_transfer_payments/refunds/client.py">reverse_refund</a>(...) -&gt; AsyncHttpResponse[BankTransferRefund]</code></summary>
 <dl>
 <dd>
 
@@ -2223,8 +2397,7 @@ If your request is successful, the gateway removes the refund from the merchant�
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.bank_transfer_payments.refunds.reverse_refund(
     refund_id="CD3HN88U9F",
@@ -2274,7 +2447,7 @@ client.bank_transfer_payments.refunds.reverse_refund(
 </details>
 
 ## Boarding Owners
-<details><summary><code>client.boarding.owners.<a href="src/payroc/boarding/owners/client.py">retrieve</a>(...) -> AsyncHttpResponse[Owner]</code></summary>
+<details><summary><code>client.boarding.owners.<a href="src/payroc/boarding/owners/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[Owner]</code></summary>
 <dl>
 <dd>
 
@@ -2313,8 +2486,7 @@ Our gateway returns the following information about an owner:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.owners.retrieve(
     owner_id=1,
@@ -2354,7 +2526,7 @@ client.boarding.owners.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.owners.<a href="src/payroc/boarding/owners/client.py">update</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.boarding.owners.<a href="src/payroc/boarding/owners/client.py">update</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -2405,8 +2577,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.owners.update(
     owner_id_=1,
@@ -2508,8 +2679,15 @@ client.boarding.owners.update(
 
 **contact_methods:** `typing.Sequence[ContactMethod]` 
 
-Array of contactMethod objects.  
+Array of polymorphic objects, which contain contact information.  
+
 **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.   
+
+The value of the type parameter determines which variant you should use:  
+-	`email` - Email address 
+-	`phone` - Phone number
+-	`mobile` - Mobile number
+-	`fax` - Fax number
     
 </dd>
 </dl>
@@ -2553,7 +2731,7 @@ Array of contactMethod objects.
 </dl>
 </details>
 
-<details><summary><code>client.boarding.owners.<a href="src/payroc/boarding/owners/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.boarding.owners.<a href="src/payroc/boarding/owners/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -2589,8 +2767,7 @@ To delete an owner, you need their ownerId. Our gateway returned the ownerId in 
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.owners.delete(
     owner_id=1,
@@ -2631,7 +2808,7 @@ client.boarding.owners.delete(
 </details>
 
 ## Boarding PricingIntents
-<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">list</a>(...) -> AsyncPayrocPager[PricingIntent, PaginatedPricingIntent]</code></summary>
+<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">list</a>(...) -&gt; AsyncPayrocPager[PricingIntent, PaginatedPricingIntent]</code></summary>
 <dl>
 <dd>
 
@@ -2670,8 +2847,7 @@ For each pricing intent, we also return its pricingIntentId which you can use to
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.boarding.pricing_intents.list(
     before="2571",
@@ -2742,7 +2918,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">create</a>(...) -> AsyncHttpResponse[PricingIntent]</code></summary>
+<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">create</a>(...) -&gt; AsyncHttpResponse[PricingIntent]</code></summary>
 <dl>
 <dd>
 
@@ -2796,8 +2972,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.pricing_intents.create(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -2977,7 +3152,7 @@ Status of the pricing intent. The value can be one of the following:
 </dl>
 </details>
 
-<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">retrieve</a>(...) -> AsyncHttpResponse[PricingIntent]</code></summary>
+<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[PricingIntent]</code></summary>
 <dl>
 <dd>
 
@@ -3016,8 +3191,7 @@ Our gateway returns the following information about the pricing intent:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.pricing_intents.retrieve(
     pricing_intent_id="5",
@@ -3057,7 +3231,7 @@ client.boarding.pricing_intents.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">update</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">update</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -3111,8 +3285,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.pricing_intents.update(
     pricing_intent_id="5",
@@ -3308,7 +3481,7 @@ Status of the pricing intent. The value can be one of the following:
 </dl>
 </details>
 
-<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -3344,8 +3517,7 @@ To delete a pricing intent, you need its pricingIntentId. Our gateway returned t
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.pricing_intents.delete(
     pricing_intent_id="5",
@@ -3385,7 +3557,7 @@ client.boarding.pricing_intents.delete(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">partially_update</a>(...) -> AsyncHttpResponse[PricingIntent]</code></summary>
+<details><summary><code>client.boarding.pricing_intents.<a href="src/payroc/boarding/pricing_intents/client.py">partially_update</a>(...) -&gt; AsyncHttpResponse[PricingIntent]</code></summary>
 <dl>
 <dd>
 
@@ -3432,8 +3604,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.pricing_intents.partially_update(
     pricing_intent_id="5",
@@ -3513,7 +3684,7 @@ client.boarding.pricing_intents.partially_update(
 </details>
 
 ## Boarding MerchantPlatforms
-<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">list</a>(...) -> AsyncPayrocPager[MerchantPlatform, PaginatedMerchants]</code></summary>
+<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">list</a>(...) -&gt; AsyncPayrocPager[MerchantPlatform, PaginatedMerchants]</code></summary>
 <dl>
 <dd>
 
@@ -3552,8 +3723,7 @@ For each merchant platform, we also return its merchantPlatformId and its linked
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.boarding.merchant_platforms.list(
     before="2571",
@@ -3624,7 +3794,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">create</a>(...) -> AsyncHttpResponse[MerchantPlatform]</code></summary>
+<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">create</a>(...) -&gt; AsyncHttpResponse[MerchantPlatform]</code></summary>
 <dl>
 <dd>
 
@@ -3638,7 +3808,7 @@ You can’t send the after parameter in the same request as the before parameter
 
 Use this method to board a merchant with Payroc.  
 
-**Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/integrate/boarding).  
+**Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/board-merchants/boarding).  
 
 In the request, include the following information:  
 - Legal information, including its legal name and address.  
@@ -3697,8 +3867,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.merchant_platforms.create(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -3940,7 +4109,7 @@ client.boarding.merchant_platforms.create(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">retrieve</a>(...) -> AsyncHttpResponse[MerchantPlatform]</code></summary>
+<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[MerchantPlatform]</code></summary>
 <dl>
 <dd>
 
@@ -3979,8 +4148,7 @@ Our gateway returns the following information about the merchant platform:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.merchant_platforms.retrieve(
     merchant_platform_id="12345",
@@ -4020,7 +4188,7 @@ client.boarding.merchant_platforms.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">list_processing_accounts</a>(...) -> AsyncPayrocPager[ProcessingAccount, PaginatedProcessingAccounts]</code></summary>
+<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">list_processing_accounts</a>(...) -&gt; AsyncPayrocPager[ProcessingAccount, PaginatedProcessingAccounts]</code></summary>
 <dl>
 <dd>
 
@@ -4063,8 +4231,7 @@ For each processing account, we also return its processingAccountId, which you c
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.boarding.merchant_platforms.list_processing_accounts(
     merchant_platform_id="12345",
@@ -4156,7 +4323,7 @@ Indicates if you want to return closed processing accounts. This includes proces
 </dl>
 </details>
 
-<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">create_processing_account</a>(...) -> AsyncHttpResponse[ProcessingAccount]</code></summary>
+<details><summary><code>client.boarding.merchant_platforms.<a href="src/payroc/boarding/merchant_platforms/client.py">create_processing_account</a>(...) -&gt; AsyncHttpResponse[ProcessingAccount]</code></summary>
 <dl>
 <dd>
 
@@ -4226,8 +4393,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.merchant_platforms.create_processing_account(
     merchant_platform_id="12345",
@@ -4475,7 +4641,7 @@ Collection of individuals that are responsible for a processing account. When yo
 <dl>
 <dd>
 
-**address:** `Address` 
+**address:** `Address` — Polymorphic object that contains address information for the processing account.
     
 </dd>
 </dl>
@@ -4483,7 +4649,17 @@ Collection of individuals that are responsible for a processing account. When yo
 <dl>
 <dd>
 
-**contact_methods:** `typing.Sequence[ContactMethod]` — Array of contactMethod objects. One contact method must be an email address.
+**contact_methods:** `typing.Sequence[ContactMethod]` 
+
+Array of polymorphic objects, which contain contact information.  
+
+**Note:** You must provide an email address.
+
+The value of the type parameter determines which variant you should use:  
+-	`email` - Email address 
+-	`phone` - Phone number
+-	`mobile` - Mobile number
+-	`fax` - Fax number.
     
 </dd>
 </dl>
@@ -4568,7 +4744,7 @@ Collection of individuals that are responsible for a processing account. When yo
 </details>
 
 ## Boarding ProcessingAccounts
-<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">retrieve</a>(...) -> AsyncHttpResponse[ProcessingAccount]</code></summary>
+<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[ProcessingAccount]</code></summary>
 <dl>
 <dd>
 
@@ -4609,8 +4785,7 @@ Our gateway returns the following information about the processing account:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.processing_accounts.retrieve(
     processing_account_id="38765",
@@ -4650,7 +4825,7 @@ client.boarding.processing_accounts.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_processing_account_funding_accounts</a>(...) -> AsyncHttpResponse[typing.List[FundingAccount]]</code></summary>
+<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_processing_account_funding_accounts</a>(...) -&gt; AsyncHttpResponse[typing.List[FundingAccount]]</code></summary>
 <dl>
 <dd>
 
@@ -4662,7 +4837,15 @@ client.boarding.processing_accounts.retrieve(
 <dl>
 <dd>
 
-Retrieve a list of funding accounts associated with a processing account.
+Use this method to return a list of funding accounts linked to a processing acccount.  
+
+To retrieve a list of funding accounts for a processing account, you need the processingAccountId. Our gateway returned the processingAccountId in the response of the [Create Merchant Platform](https://docs.payroc.com/api/schema/boarding/merchant-platforms/create) method or the [Create Proccessing Account](https://docs.payroc.com/api/schema/boarding/merchant-platforms/create-processing-account) method.  
+
+Our gateway returns information about the following for each funding account in the list:  
+- Account information, including the name on the account and payment methods.  
+- Status, including whether we have approved or rejected the account.  
+
+For each funding account, we also return its fundingAccountId, which you can use to perform follow-on actions.  
 </dd>
 </dl>
 </dd>
@@ -4680,8 +4863,7 @@ Retrieve a list of funding accounts associated with a processing account.
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.processing_accounts.list_processing_account_funding_accounts(
     processing_account_id="38765",
@@ -4721,7 +4903,7 @@ client.boarding.processing_accounts.list_processing_account_funding_accounts(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_contacts</a>(...) -> AsyncHttpResponse[PaginatedContacts]</code></summary>
+<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_contacts</a>(...) -&gt; AsyncHttpResponse[PaginatedContacts]</code></summary>
 <dl>
 <dd>
 
@@ -4762,8 +4944,7 @@ For each contact, we also return a contactId, which you can use to perform follo
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.processing_accounts.list_contacts(
     processing_account_id="38765",
@@ -4838,7 +5019,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">get_processing_account_pricing_agreement</a>(...) -> AsyncHttpResponse[
+<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">get_processing_account_pricing_agreement</a>(...) -&gt; AsyncHttpResponse[
     GetProcessingAccountPricingAgreementProcessingAccountsResponse
 ]</code></summary>
 <dl>
@@ -4881,8 +5062,7 @@ Our gateway returns the following information about the pricing agreement that w
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.processing_accounts.get_processing_account_pricing_agreement(
     processing_account_id="38765",
@@ -4922,7 +5102,7 @@ client.boarding.processing_accounts.get_processing_account_pricing_agreement(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_owners</a>(...) -> AsyncPayrocPager[Owner, PaginatedOwners]</code></summary>
+<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_owners</a>(...) -&gt; AsyncPayrocPager[Owner, PaginatedOwners]</code></summary>
 <dl>
 <dd>
 
@@ -4962,8 +5142,7 @@ Our gateway returns the following information about each owner in the list:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.boarding.processing_accounts.list_owners(
     processing_account_id="38765",
@@ -5043,7 +5222,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">create_reminder</a>(...) -> AsyncHttpResponse[CreateReminderProcessingAccountsResponse]</code></summary>
+<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">create_reminder</a>(...) -&gt; AsyncHttpResponse[CreateReminderProcessingAccountsResponse]</code></summary>
 <dl>
 <dd>
 
@@ -5084,8 +5263,7 @@ from payroc.boarding.processing_accounts import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.processing_accounts.create_reminder(
     processing_account_id="38765",
@@ -5143,7 +5321,7 @@ client.boarding.processing_accounts.create_reminder(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_terminal_orders</a>(...) -> AsyncHttpResponse[typing.List[TerminalOrder]]</code></summary>
+<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_terminal_orders</a>(...) -&gt; AsyncHttpResponse[typing.List[TerminalOrder]]</code></summary>
 <dl>
 <dd>
 
@@ -5190,8 +5368,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.processing_accounts.list_terminal_orders(
     processing_account_id="38765",
@@ -5262,7 +5439,7 @@ client.boarding.processing_accounts.list_terminal_orders(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">create_terminal_order</a>(...) -> AsyncHttpResponse[TerminalOrder]</code></summary>
+<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">create_terminal_order</a>(...) -&gt; AsyncHttpResponse[TerminalOrder]</code></summary>
 <dl>
 <dd>
 
@@ -5282,7 +5459,7 @@ In the request, specify the gateway settings, device settings, and application s
 
 In the response, our gateway returns information about the terminal order including its status and terminalOrderId that you can use to [retrieve the terminal order](https://docs.payroc.com/api/schema/boarding/terminal-orders/retrieve).  
 
-**Note**: You can subscribe to the terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Events Subscriptions](https://docs.payroc.com/guides/integrate/event-subscriptions).  
+**Note**: You can subscribe to the terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Events Subscriptions](https://docs.payroc.com/guides/board-merchants/event-subscriptions).  
 </dd>
 </dl>
 </dd>
@@ -5317,8 +5494,7 @@ from payroc.boarding.processing_accounts import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.processing_accounts.create_terminal_order(
     processing_account_id="38765",
@@ -5345,7 +5521,7 @@ client.boarding.processing_accounts.create_terminal_order(
         OrderItem(
             type="solution",
             solution_template_id="Roc Services_DX8000",
-            solution_quantity=1.0,
+            solution_quantity=1,
             device_condition="new",
             solution_setup=OrderItemSolutionSetup(
                 timezone="America/Chicago",
@@ -5365,7 +5541,7 @@ client.boarding.processing_accounts.create_terminal_order(
                     ),
                 ),
                 device_settings=OrderItemSolutionSetupDeviceSettings(
-                    number_of_mobile_users=2.0,
+                    number_of_mobile_users=2,
                     communication_type="wifi",
                 ),
                 batch_closure=OrderItemSolutionSetupBatchClosure_Automatic(),
@@ -5454,7 +5630,7 @@ client.boarding.processing_accounts.create_terminal_order(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_processing_terminals</a>(...) -> AsyncPayrocPager[ProcessingTerminal, PaginatedProcessingTerminals]</code></summary>
+<details><summary><code>client.boarding.processing_accounts.<a href="src/payroc/boarding/processing_accounts/client.py">list_processing_terminals</a>(...) -&gt; AsyncPayrocPager[ProcessingTerminal, PaginatedProcessingTerminals]</code></summary>
 <dl>
 <dd>
 
@@ -5497,8 +5673,7 @@ For each processing terminal, we also return its processingTerminalId, which you
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.boarding.processing_accounts.list_processing_terminals(
     processing_account_id="38765",
@@ -5579,7 +5754,7 @@ You can’t send the after parameter in the same request as the before parameter
 </details>
 
 ## Boarding ProcessingTerminals
-<details><summary><code>client.boarding.processing_terminals.<a href="src/payroc/boarding/processing_terminals/client.py">retrieve</a>(...) -> AsyncHttpResponse[ProcessingTerminal]</code></summary>
+<details><summary><code>client.boarding.processing_terminals.<a href="src/payroc/boarding/processing_terminals/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[ProcessingTerminal]</code></summary>
 <dl>
 <dd>
 
@@ -5623,8 +5798,7 @@ Our gateway returns the following information about the processing terminal:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.processing_terminals.retrieve(
     processing_terminal_id="1234001",
@@ -5664,7 +5838,7 @@ client.boarding.processing_terminals.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.processing_terminals.<a href="src/payroc/boarding/processing_terminals/client.py">retrieve_host_configuration</a>(...) -> AsyncHttpResponse[HostConfiguration]</code></summary>
+<details><summary><code>client.boarding.processing_terminals.<a href="src/payroc/boarding/processing_terminals/client.py">retrieve_host_configuration</a>(...) -&gt; AsyncHttpResponse[HostConfiguration]</code></summary>
 <dl>
 <dd>
 
@@ -5696,8 +5870,7 @@ Our gateway returns the configuration settings for the merchant and the payment 
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.processing_terminals.retrieve_host_configuration(
     processing_terminal_id="1234001",
@@ -5738,7 +5911,7 @@ client.boarding.processing_terminals.retrieve_host_configuration(
 </details>
 
 ## Boarding Contacts
-<details><summary><code>client.boarding.contacts.<a href="src/payroc/boarding/contacts/client.py">retrieve</a>(...) -> AsyncHttpResponse[Contact]</code></summary>
+<details><summary><code>client.boarding.contacts.<a href="src/payroc/boarding/contacts/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[Contact]</code></summary>
 <dl>
 <dd>
 
@@ -5777,8 +5950,7 @@ Our gateway returns the following information about a contact:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.contacts.retrieve(
     contact_id=1,
@@ -5818,7 +5990,7 @@ client.boarding.contacts.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.boarding.contacts.<a href="src/payroc/boarding/contacts/client.py">update</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.boarding.contacts.<a href="src/payroc/boarding/contacts/client.py">update</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -5859,8 +6031,7 @@ You can update the following details about a contact:
 from payroc import ContactMethod_Email, Identifier, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.contacts.update(
     contact_id_=1,
@@ -5937,8 +6108,15 @@ client.boarding.contacts.update(
 
 **contact_methods:** `typing.Sequence[ContactMethod]` 
 
-Array of contactMethod objects.  
+Array of polymorphic objects, which contain contact information.  
+
 **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.   
+
+The value of the type parameter determines which variant you should use:  
+-	`email` - Email address 
+-	`phone` - Phone number
+-	`mobile` - Mobile number
+-	`fax` - Fax number
     
 </dd>
 </dl>
@@ -5974,7 +6152,7 @@ Array of contactMethod objects.
 </dl>
 </details>
 
-<details><summary><code>client.boarding.contacts.<a href="src/payroc/boarding/contacts/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.boarding.contacts.<a href="src/payroc/boarding/contacts/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -6008,8 +6186,7 @@ To delete a contact, you need their contactId. Our gateway returned the contactI
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.contacts.delete(
     contact_id=1,
@@ -6050,7 +6227,7 @@ client.boarding.contacts.delete(
 </details>
 
 ## Boarding TerminalOrders
-<details><summary><code>client.boarding.terminal_orders.<a href="src/payroc/boarding/terminal_orders/client.py">retrieve</a>(...) -> AsyncHttpResponse[TerminalOrder]</code></summary>
+<details><summary><code>client.boarding.terminal_orders.<a href="src/payroc/boarding/terminal_orders/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[TerminalOrder]</code></summary>
 <dl>
 <dd>
 
@@ -6074,7 +6251,7 @@ Our gateway returns the following information about the terminal order:
 - Training provider  
 - Shipping information  
 
-**Note**: You can subscribe to our terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Events Subscriptions](https://docs.payroc.com/guides/integrate/event-subscriptions).  
+**Note**: You can subscribe to our terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Events Subscriptions](https://docs.payroc.com/guides/board-merchants/event-subscriptions).  
 </dd>
 </dl>
 </dd>
@@ -6092,8 +6269,7 @@ Our gateway returns the following information about the terminal order:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.boarding.terminal_orders.retrieve(
     terminal_order_id="12345",
@@ -6134,7 +6310,7 @@ client.boarding.terminal_orders.retrieve(
 </details>
 
 ## CardPayments Payments
-<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">list</a>(...) -> AsyncPayrocPager[RetrievedPayment, PaymentPaginatedListForRead]</code></summary>
+<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">list</a>(...) -&gt; AsyncPayrocPager[RetrievedPayment, PaymentPaginatedListForRead]</code></summary>
 <dl>
 <dd>
 
@@ -6179,8 +6355,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.card_payments.payments.list(
     processing_terminal_id="1234001",
@@ -6404,7 +6579,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">create</a>(...) -> AsyncHttpResponse[Payment]</code></summary>
+<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">create</a>(...) -&gt; AsyncHttpResponse[Payment]</code></summary>
 <dl>
 <dd>
 
@@ -6429,18 +6604,18 @@ In the response, our gateway returns information about the card payment and a pa
 **Payment methods** 
 
 - **Cards** - Credit, debit, and EBT
-- **Digital wallets** - [Apple Pay®](https://docs.payroc.com/guides/integrate/apple-pay) and [Google Pay®](https://docs.payroc.com/guides/integrate/google-pay) 
+- **Digital wallets** - [Apple Pay®](https://docs.payroc.com/guides/take-payments/apple-pay) and [Google Pay®](https://docs.payroc.com/guides/take-payments/google-pay) 
 - **Tokens** - Secure tokens and single-use tokens
 
 **Features** 
 
 Our Create Payment method also supports the following features: 
 
-- [Repeat payments](https://docs.payroc.com/guides/integrate/repeat-payments/use-your-own-software) - Run multiple payments as part of a payment schedule that you manage with your own software. 
+- [Repeat payments](https://docs.payroc.com/guides/take-payments/repeat-payments/use-your-own-software) - Run multiple payments as part of a payment schedule that you manage with your own software. 
 - **Offline sales** - Run a sale or a pre-authorization if the terminal loses its connection to our gateway. 
-- [Tokenization](https://docs.payroc.com/guides/integrate/save-payment-details) - Save card details to use in future transactions. 
-- [3-D Secure](https://docs.payroc.com/guides/integrate/3-d-secure) - Verify the identity of the cardholder. 
-- [Custom fields](https://docs.payroc.com/guides/integrate/add-custom-fields) - Add your own data to a payment. 
+- [Tokenization](https://docs.payroc.com/guides/take-payments/save-payment-details) - Save card details to use in future transactions. 
+- [3-D Secure](https://docs.payroc.com/guides/take-payments/3-d-secure) - Verify the identity of the cardholder. 
+- [Custom fields](https://docs.payroc.com/guides/take-payments/add-custom-fields) - Add your own data to a payment. 
 - **Tips** - Add tips to the card payment.  
 - **Taxes** - Add local taxes to the card payment. 
 - **Surcharging** - Add a surcharge to the card payment. 
@@ -6472,8 +6647,7 @@ from payroc import (
 from payroc.card_payments.payments import PaymentRequestPaymentMethod_Card
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.payments.create(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -6574,7 +6748,15 @@ client.card_payments.payments.create(
 <dl>
 <dd>
 
-**payment_method:** `PaymentRequestPaymentMethod` — Object that contains information about the customer's payment details.
+**payment_method:** `PaymentRequestPaymentMethod` 
+
+Polymorphic object that contains payment details.  
+
+The value of the type parameter determines which variant you should use:  
+-	`card` - Payment card details
+-	`secureToken` - Secure token details
+-	`digitalWallet` - Digital wallet details
+-	`singleUseToken` - Single-use token details
     
 </dd>
 </dl>
@@ -6606,7 +6788,13 @@ client.card_payments.payments.create(
 <dl>
 <dd>
 
-**three_d_secure:** `typing.Optional[PaymentRequestThreeDSecure]` — Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+**three_d_secure:** `typing.Optional[PaymentRequestThreeDSecure]` 
+
+Polymorphic object that contains authentication information from 3-D Secure.  
+
+The value of the serviceProvider parameter determines which variant you should use:  
+-	`gateway` - Use our gateway to run a 3-D Secure check.
+-	`thirdParty` - Use a third party to run a 3-D Secure check.
     
 </dd>
 </dl>
@@ -6676,7 +6864,7 @@ Indicates if we should immediately settle the sale transaction. The merchant can
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">retrieve</a>(...) -> AsyncHttpResponse[RetrievedPayment]</code></summary>
+<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[RetrievedPayment]</code></summary>
 <dl>
 <dd>
 
@@ -6719,8 +6907,7 @@ If the merchant saved the customer's card details, our gateway returns a secureT
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.payments.retrieve(
     payment_id="M2MJOG6O2Y",
@@ -6760,7 +6947,7 @@ client.card_payments.payments.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">adjust</a>(...) -> AsyncHttpResponse[Payment]</code></summary>
+<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">adjust</a>(...) -&gt; AsyncHttpResponse[Payment]</code></summary>
 <dl>
 <dd>
 
@@ -6806,8 +6993,7 @@ from payroc.card_payments.payments import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.payments.adjust(
     payment_id="M2MJOG6O2Y",
@@ -6850,7 +7036,15 @@ client.card_payments.payments.adjust(
 <dl>
 <dd>
 
-**adjustments:** `typing.Sequence[PaymentAdjustmentAdjustmentsItem]` — Array of objects that contain information about the adjustments to the payment.
+**adjustments:** `typing.Sequence[PaymentAdjustmentAdjustmentsItem]` 
+
+Array of polymorphic objects which contain information about adjustments to a payment.  
+
+The value of the type parameter determines which variant you should use:
+-	`order` - Tip information.
+-	`status` - Status of the transaction.
+-	`customer` - Customer's contact information and shipping address.
+-	`signature` - Customer's signature.
     
 </dd>
 </dl>
@@ -6878,7 +7072,7 @@ client.card_payments.payments.adjust(
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">capture</a>(...) -> AsyncHttpResponse[Payment]</code></summary>
+<details><summary><code>client.card_payments.payments.<a href="src/payroc/card_payments/payments/client.py">capture</a>(...) -&gt; AsyncHttpResponse[Payment]</code></summary>
 <dl>
 <dd>
 
@@ -6921,8 +7115,7 @@ If your request is successful, our gateway takes the amount from the payment car
 from payroc import ItemizedBreakdownRequest, LineItemRequest, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.payments.capture(
     payment_id="M2MJOG6O2Y",
@@ -6936,7 +7129,7 @@ client.card_payments.payments.capture(
         freight_amount=500,
         items=[
             LineItemRequest(
-                unit_price=4000.0,
+                unit_price=4000,
                 quantity=1.0,
             )
         ],
@@ -7021,7 +7214,7 @@ Amount that the merchant wants to capture. The value is in the currency's lowest
 </details>
 
 ## CardPayments Refunds
-<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">reverse</a>(...) -> AsyncHttpResponse[Payment]</code></summary>
+<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">reverse</a>(...) -&gt; AsyncHttpResponse[Payment]</code></summary>
 <dl>
 <dd>
 
@@ -7057,8 +7250,7 @@ If your request is successful, our gateway removes the payment from the merchant
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.refunds.reverse(
     payment_id="M2MJOG6O2Y",
@@ -7127,7 +7319,7 @@ Amount of the payment that the merchant wants to reverse. The value is in the cu
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">create_referenced_refund</a>(...) -> AsyncHttpResponse[Payment]</code></summary>
+<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">create_referenced_refund</a>(...) -&gt; AsyncHttpResponse[Payment]</code></summary>
 <dl>
 <dd>
 
@@ -7168,8 +7360,7 @@ If your refund is successful, our gateway returns the payment amount to the card
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.refunds.create_referenced_refund(
     payment_id="M2MJOG6O2Y",
@@ -7244,7 +7435,7 @@ client.card_payments.refunds.create_referenced_refund(
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">list</a>(...) -> AsyncPayrocPager[RetrievedRefund, RefundPaginatedList]</code></summary>
+<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">list</a>(...) -&gt; AsyncPayrocPager[RetrievedRefund, RefundPaginatedList]</code></summary>
 <dl>
 <dd>
 
@@ -7286,8 +7477,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.card_payments.refunds.list(
     processing_terminal_id="1234001",
@@ -7476,7 +7666,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">create_unreferenced_refund</a>(...) -> AsyncHttpResponse[RetrievedRefund]</code></summary>
+<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">create_unreferenced_refund</a>(...) -&gt; AsyncHttpResponse[RetrievedRefund]</code></summary>
 <dl>
 <dd>
 
@@ -7523,8 +7713,7 @@ from payroc import (
 from payroc.card_payments.refunds import UnreferencedRefundRefundMethod_Card
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.refunds.create_unreferenced_refund(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -7599,7 +7788,13 @@ client.card_payments.refunds.create_unreferenced_refund(
 <dl>
 <dd>
 
-**refund_method:** `UnreferencedRefundRefundMethod` — Object that contains information about how the merchant refunds the customer.
+**refund_method:** `UnreferencedRefundRefundMethod` 
+
+Polymorphic object that contains information about the payment method that the merchant uses to refund the customer.  
+
+The value of the type parameter determines which variant you should use:
+-	`card` - Payment card details
+-	`secureToken` - Secure token details
     
 </dd>
 </dl>
@@ -7651,7 +7846,7 @@ client.card_payments.refunds.create_unreferenced_refund(
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">retrieve</a>(...) -> AsyncHttpResponse[RetrievedRefund]</code></summary>
+<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[RetrievedRefund]</code></summary>
 <dl>
 <dd>
 
@@ -7692,8 +7887,7 @@ If the refund is a referenced refund, our gateway also returns details about the
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.refunds.retrieve(
     refund_id="CD3HN88U9F",
@@ -7733,7 +7927,7 @@ client.card_payments.refunds.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">adjust</a>(...) -> AsyncHttpResponse[RetrievedRefund]</code></summary>
+<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">adjust</a>(...) -&gt; AsyncHttpResponse[RetrievedRefund]</code></summary>
 <dl>
 <dd>
 
@@ -7781,8 +7975,7 @@ from payroc.card_payments.refunds import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.refunds.adjust(
     refund_id="CD3HN88U9F",
@@ -7821,7 +8014,13 @@ client.card_payments.refunds.adjust(
 <dl>
 <dd>
 
-**adjustments:** `typing.Sequence[RefundAdjustmentAdjustmentsItem]` — Array of objects that contain information about the adjustments to the refund.
+**adjustments:** `typing.Sequence[RefundAdjustmentAdjustmentsItem]` 
+
+Array of polymorphic objects that contain information about adjustments to the refund.  
+
+The value of the type parameter determines which variant you should use:  
+-	`status` - Status of the transaction.
+-	`customer` - Customer's contact information and shipping address.
     
 </dd>
 </dl>
@@ -7849,7 +8048,7 @@ client.card_payments.refunds.adjust(
 </dl>
 </details>
 
-<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">reverse_refund</a>(...) -> AsyncHttpResponse[RetrievedRefund]</code></summary>
+<details><summary><code>client.card_payments.refunds.<a href="src/payroc/card_payments/refunds/client.py">reverse_refund</a>(...) -&gt; AsyncHttpResponse[RetrievedRefund]</code></summary>
 <dl>
 <dd>
 
@@ -7885,8 +8084,7 @@ If your request is successful, the gateway removes the refund from the merchant�
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.card_payments.refunds.reverse_refund(
     refund_id="CD3HN88U9F",
@@ -7936,7 +8134,7 @@ client.card_payments.refunds.reverse_refund(
 </details>
 
 ## Funding FundingRecipients
-<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">list</a>(...) -> AsyncPayrocPager[FundingRecipient, PaginatedFundRecipients]</code></summary>
+<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">list</a>(...) -&gt; AsyncPayrocPager[FundingRecipient, PaginatedFundRecipients]</code></summary>
 <dl>
 <dd>
 
@@ -7975,8 +8173,7 @@ For each funding recipient, we also return the recipientId, which you can use to
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.funding.funding_recipients.list(
     before="2571",
@@ -8047,7 +8244,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">create</a>(...) -> AsyncHttpResponse[FundingRecipient]</code></summary>
+<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">create</a>(...) -&gt; AsyncHttpResponse[FundingRecipient]</code></summary>
 <dl>
 <dd>
 
@@ -8089,6 +8286,7 @@ import datetime
 from payroc import (
     Address,
     ContactMethod_Email,
+    ContactMethod_Phone,
     FundingAccount,
     Identifier,
     Owner,
@@ -8098,16 +8296,17 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_recipients.create(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
     recipient_type="privateCorporation",
-    tax_id="123456789",
-    doing_business_as="doingBusinessAs",
+    tax_id="12-3456789",
+    doing_business_as="Pizza Doe",
     address=Address(
         address_1="1 Example Ave.",
+        address_2="Example Address Line 2",
+        address_3="Example Address Line 3",
         city="Chicago",
         state="Illinois",
         country="US",
@@ -8116,11 +8315,16 @@ client.funding.funding_recipients.create(
     contact_methods=[
         ContactMethod_Email(
             value="jane.doe@example.com",
-        )
+        ),
+        ContactMethod_Phone(
+            value="2025550164",
+        ),
     ],
+    metadata={"yourCustomField": "abc123"},
     owners=[
         Owner(
             first_name="Jane",
+            middle_name="Helen",
             last_name="Doe",
             date_of_birth=datetime.date.fromisoformat(
                 "1964-03-22",
@@ -8135,16 +8339,22 @@ client.funding.funding_recipients.create(
             identifiers=[
                 Identifier(
                     type="nationalId",
-                    value="xxxxx4320",
+                    value="000-00-4320",
                 )
             ],
             contact_methods=[
                 ContactMethod_Email(
                     value="jane.doe@example.com",
-                )
+                ),
+                ContactMethod_Phone(
+                    value="2025550164",
+                ),
             ],
             relationship=OwnerRelationship(
+                equity_percentage=48.5,
+                title="CFO",
                 is_control_prong=True,
+                is_authorized_signatory=False,
             ),
         )
     ],
@@ -8204,7 +8414,7 @@ client.funding.funding_recipients.create(
 <dl>
 <dd>
 
-**address:** `Address` — Address of the funding recipient.
+**address:** `Address` — Polymorphic object that contains address information for a funding recipient.
     
 </dd>
 </dl>
@@ -8212,7 +8422,17 @@ client.funding.funding_recipients.create(
 <dl>
 <dd>
 
-**contact_methods:** `typing.Sequence[ContactMethod]` — Array of contactMethod objects that you can use to add contact methods for the funding recipient. You must provide at least an email address.
+**contact_methods:** `typing.Sequence[ContactMethod]` 
+
+Array of polymorphic objects, which contain contact information.  
+
+**Note:** You must provide an email address.
+
+The value of the type parameter determines which variant you should use:  
+-	`email` - Email address 
+-	`phone` - Phone number
+-	`mobile` - Mobile number
+-	`fax` - Fax number
     
 </dd>
 </dl>
@@ -8264,7 +8484,7 @@ client.funding.funding_recipients.create(
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">retrieve</a>(...) -> AsyncHttpResponse[FundingRecipient]</code></summary>
+<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[FundingRecipient]</code></summary>
 <dl>
 <dd>
 
@@ -8304,8 +8524,7 @@ Our gateway returns the following information about the funding recipient:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_recipients.retrieve(
     recipient_id=1,
@@ -8345,7 +8564,7 @@ client.funding.funding_recipients.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">update</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">update</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -8381,19 +8600,29 @@ You can update the following details of a funding recipient:
 <dd>
 
 ```python
-from payroc import Address, ContactMethod_Email, Payroc
+from payroc import (
+    Address,
+    ContactMethod_Email,
+    ContactMethod_Phone,
+    FundingRecipientFundingAccountsItem,
+    FundingRecipientFundingAccountsItemLink,
+    FundingRecipientOwnersItem,
+    FundingRecipientOwnersItemLink,
+    Payroc,
+)
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_recipients.update(
     recipient_id_=1,
     recipient_type="privateCorporation",
-    tax_id="123456789",
-    doing_business_as="doingBusinessAs",
+    tax_id="12-3456789",
+    doing_business_as="Doe Hot Dogs",
     address=Address(
-        address_1="1 Example Ave.",
+        address_1="2 Example Ave.",
+        address_2="Example Address Line 2",
+        address_3="Example Address Line 3",
         city="Chicago",
         state="Illinois",
         country="US",
@@ -8402,6 +8631,31 @@ client.funding.funding_recipients.update(
     contact_methods=[
         ContactMethod_Email(
             value="jane.doe@example.com",
+        ),
+        ContactMethod_Phone(
+            value="2025550164",
+        ),
+    ],
+    metadata={"responsiblePerson": "Jane Doe"},
+    owners=[
+        FundingRecipientOwnersItem(
+            owner_id=12346,
+            link=FundingRecipientOwnersItemLink(
+                rel="owner",
+                href="https://api.payroc.com/v1/owners/12346",
+                method="get",
+            ),
+        )
+    ],
+    funding_accounts=[
+        FundingRecipientFundingAccountsItem(
+            funding_account_id=124,
+            status="approved",
+            link=FundingRecipientFundingAccountsItemLink(
+                rel="fundingAccount",
+                href="https://api.payroc.com/v1/funding-accounts/124",
+                method="get",
+            ),
         )
     ],
 )
@@ -8452,7 +8706,7 @@ client.funding.funding_recipients.update(
 <dl>
 <dd>
 
-**address:** `Address` — Address of the funding recipient.
+**address:** `Address` — Polymorphic object that contains address information for a funding recipient.
     
 </dd>
 </dl>
@@ -8460,7 +8714,15 @@ client.funding.funding_recipients.update(
 <dl>
 <dd>
 
-**contact_methods:** `typing.Sequence[ContactMethod]` — Array of contactMethod objects for the funding recipient.
+**contact_methods:** `typing.Sequence[ContactMethod]` 
+
+Array of polymorphic objects, which contain contact information.  
+
+The value of the type parameter determines which variant you should use:  
+-	`email` - Email address 
+-	`phone` - Phone number
+-	`mobile` - Mobile number
+-	`fax` - Fax number
     
 </dd>
 </dl>
@@ -8544,7 +8806,7 @@ client.funding.funding_recipients.update(
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -8578,8 +8840,7 @@ To delete a funding recipient, you need its recipientId. Our gateway returned th
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_recipients.delete(
     recipient_id=1,
@@ -8619,7 +8880,7 @@ client.funding.funding_recipients.delete(
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">list_accounts</a>(...) -> AsyncHttpResponse[typing.List[FundingAccount]]</code></summary>
+<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">list_accounts</a>(...) -&gt; AsyncHttpResponse[typing.List[FundingAccount]]</code></summary>
 <dl>
 <dd>
 
@@ -8660,8 +8921,7 @@ Our gateway also returns the fundingAccountId, which you can use to run follow-o
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_recipients.list_accounts(
     recipient_id=1,
@@ -8701,7 +8961,7 @@ client.funding.funding_recipients.list_accounts(
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">create_account</a>(...) -> AsyncHttpResponse[FundingAccount]</code></summary>
+<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">create_account</a>(...) -&gt; AsyncHttpResponse[FundingAccount]</code></summary>
 <dl>
 <dd>
 
@@ -8742,16 +9002,16 @@ Our gateway returns the fundingAccountId, which you can use to run follow-on act
 from payroc import PaymentMethodsItem_Ach, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_recipients.create_account(
     recipient_id=1,
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
-    type="checking",
+    type="savings",
     use="credit",
-    name_on_account="Jane Doe",
+    name_on_account="Fred Nerk",
     payment_methods=[PaymentMethodsItem_Ach()],
+    metadata={"responsiblePerson": "Jane Doe"},
 )
 
 ```
@@ -8889,7 +9149,7 @@ Status of the funding account. The value is one of the following:
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">list_owners</a>(...) -> AsyncHttpResponse[typing.List[Owner]]</code></summary>
+<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">list_owners</a>(...) -&gt; AsyncHttpResponse[typing.List[Owner]]</code></summary>
 <dl>
 <dd>
 
@@ -8930,8 +9190,7 @@ Our gateway also returns the ownerId, which you can use to perform follow-on act
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_recipients.list_owners(
     recipient_id=1,
@@ -8971,7 +9230,7 @@ client.funding.funding_recipients.list_owners(
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">create_owner</a>(...) -> AsyncHttpResponse[Owner]</code></summary>
+<details><summary><code>client.funding.funding_recipients.<a href="src/payroc/funding/funding_recipients/client.py">create_owner</a>(...) -&gt; AsyncHttpResponse[Owner]</code></summary>
 <dl>
 <dd>
 
@@ -9015,25 +9274,26 @@ import datetime
 from payroc import (
     Address,
     ContactMethod_Email,
+    ContactMethod_Phone,
     Identifier,
     OwnerRelationship,
     Payroc,
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_recipients.create_owner(
     recipient_id=1,
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
-    first_name="Jane",
-    last_name="Doe",
+    first_name="Fred",
+    middle_name="Jim",
+    last_name="Nerk",
     date_of_birth=datetime.date.fromisoformat(
-        "1964-03-22",
+        "1980-01-19",
     ),
     address=Address(
-        address_1="1 Example Ave.",
+        address_1="2 Example Ave.",
         city="Chicago",
         state="Illinois",
         country="US",
@@ -9042,16 +9302,22 @@ client.funding.funding_recipients.create_owner(
     identifiers=[
         Identifier(
             type="nationalId",
-            value="xxxxx4320",
+            value="000-00-9876",
         )
     ],
     contact_methods=[
         ContactMethod_Email(
             value="jane.doe@example.com",
-        )
+        ),
+        ContactMethod_Phone(
+            value="2025550164",
+        ),
     ],
     relationship=OwnerRelationship(
-        is_control_prong=True,
+        equity_percentage=51.5,
+        title="CEO",
+        is_control_prong=False,
+        is_authorized_signatory=True,
     ),
 )
 
@@ -9127,8 +9393,15 @@ client.funding.funding_recipients.create_owner(
 
 **contact_methods:** `typing.Sequence[ContactMethod]` 
 
-Array of contactMethod objects.  
+Array of polymorphic objects, which contain contact information.  
+
 **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.   
+
+The value of the type parameter determines which variant you should use:  
+-	`email` - Email address 
+-	`phone` - Phone number
+-	`mobile` - Mobile number
+-	`fax` - Fax number
     
 </dd>
 </dl>
@@ -9173,7 +9446,7 @@ Array of contactMethod objects.
 </details>
 
 ## Funding FundingAccounts
-<details><summary><code>client.funding.funding_accounts.<a href="src/payroc/funding/funding_accounts/client.py">list</a>(...) -> AsyncPayrocPager[FundingAccount, ListFundingAccounts]</code></summary>
+<details><summary><code>client.funding.funding_accounts.<a href="src/payroc/funding/funding_accounts/client.py">list</a>(...) -&gt; AsyncPayrocPager[FundingAccount, ListFundingAccounts]</code></summary>
 <dl>
 <dd>
 
@@ -9212,8 +9485,7 @@ For each funding account, we also return the fundingAccountId, which you can use
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.funding.funding_accounts.list(
     before="2571",
@@ -9284,7 +9556,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_accounts.<a href="src/payroc/funding/funding_accounts/client.py">retrieve</a>(...) -> AsyncHttpResponse[FundingAccount]</code></summary>
+<details><summary><code>client.funding.funding_accounts.<a href="src/payroc/funding/funding_accounts/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[FundingAccount]</code></summary>
 <dl>
 <dd>
 
@@ -9323,8 +9595,7 @@ Our gateway returns the following information about the funding account:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_accounts.retrieve(
     funding_account_id=1,
@@ -9364,7 +9635,7 @@ client.funding.funding_accounts.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_accounts.<a href="src/payroc/funding/funding_accounts/client.py">update</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.funding.funding_accounts.<a href="src/payroc/funding/funding_accounts/client.py">update</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -9405,15 +9676,15 @@ You can update the following details about the funding account:
 from payroc import PaymentMethodsItem_Ach, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_accounts.update(
     funding_account_id_=1,
-    type="checking",
+    type="savings",
     use="credit",
-    name_on_account="Jane Doe",
+    name_on_account="Fred Nerk",
     payment_methods=[PaymentMethodsItem_Ach()],
+    metadata={"responsiblePerson": "Jane Doe"},
 )
 
 ```
@@ -9543,7 +9814,7 @@ Status of the funding account. The value is one of the following:
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_accounts.<a href="src/payroc/funding/funding_accounts/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.funding.funding_accounts.<a href="src/payroc/funding/funding_accounts/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -9579,8 +9850,7 @@ To delete a funding account, you need its fundingAccountId. Our gateway returned
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_accounts.delete(
     funding_account_id=1,
@@ -9621,7 +9891,7 @@ client.funding.funding_accounts.delete(
 </details>
 
 ## Funding FundingInstructions
-<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">list</a>(...) -> AsyncPayrocPager[
+<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">list</a>(...) -&gt; AsyncPayrocPager[
     ListFundingInstructionsResponseDataItem, ListFundingInstructionsResponse
 ]</code></summary>
 <dl>
@@ -9665,8 +9935,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.funding.funding_instructions.list(
     before="2571",
@@ -9759,7 +10028,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">create</a>(...) -> AsyncHttpResponse[Instruction]</code></summary>
+<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">create</a>(...) -&gt; AsyncHttpResponse[Instruction]</code></summary>
 <dl>
 <dd>
 
@@ -9795,14 +10064,35 @@ Our gateway returns the instructionId, which you can use to run follow-on action
 <dd>
 
 ```python
-from payroc import Payroc
+from payroc import (
+    InstructionMerchantsItem,
+    InstructionMerchantsItemRecipientsItem,
+    InstructionMerchantsItemRecipientsItemAmount,
+    Payroc,
+)
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_instructions.create(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
+    merchants=[
+        InstructionMerchantsItem(
+            merchant_id="4525644354",
+            recipients=[
+                InstructionMerchantsItemRecipientsItem(
+                    funding_account_id=123,
+                    payment_method="ACH",
+                    amount=InstructionMerchantsItemRecipientsItemAmount(
+                        value=120000,
+                        currency="USD",
+                    ),
+                    metadata={"yourCustomField": "abc123"},
+                )
+            ],
+        )
+    ],
+    metadata={"yourCustomField": "abc123"},
 )
 
 ```
@@ -9892,7 +10182,7 @@ Status of the funding instruction. Our gateway returns one of the following valu
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">retrieve</a>(...) -> AsyncHttpResponse[Instruction]</code></summary>
+<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[Instruction]</code></summary>
 <dl>
 <dd>
 
@@ -9930,8 +10220,7 @@ Our gateway returns the following information about the funding instruction:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_instructions.retrieve(
     instruction_id=1,
@@ -9971,7 +10260,7 @@ client.funding.funding_instructions.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">update</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">update</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -10009,14 +10298,35 @@ You can modify the following information for the funding instruction:
 <dd>
 
 ```python
-from payroc import Payroc
+from payroc import (
+    InstructionMerchantsItem,
+    InstructionMerchantsItemRecipientsItem,
+    InstructionMerchantsItemRecipientsItemAmount,
+    Payroc,
+)
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_instructions.update(
     instruction_id_=1,
+    merchants=[
+        InstructionMerchantsItem(
+            merchant_id="9876543219",
+            recipients=[
+                InstructionMerchantsItemRecipientsItem(
+                    funding_account_id=124,
+                    payment_method="ACH",
+                    amount=InstructionMerchantsItemRecipientsItemAmount(
+                        value=69950,
+                        currency="USD",
+                    ),
+                    metadata={"supplier": "IT Support Services"},
+                )
+            ],
+        )
+    ],
+    metadata={"instructionCreatedBy": "Jane Doe"},
 )
 
 ```
@@ -10106,7 +10416,7 @@ Status of the funding instruction. Our gateway returns one of the following valu
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.funding.funding_instructions.<a href="src/payroc/funding/funding_instructions/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -10142,8 +10452,7 @@ To delete a funding instruction, you need its instructionId. Our gateway returne
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_instructions.delete(
     instruction_id=1,
@@ -10184,7 +10493,7 @@ client.funding.funding_instructions.delete(
 </details>
 
 ## Funding FundingActivity
-<details><summary><code>client.funding.funding_activity.<a href="src/payroc/funding/funding_activity/client.py">retrieve_balance</a>(...) -> AsyncHttpResponse[RetrieveBalanceFundingActivityResponse]</code></summary>
+<details><summary><code>client.funding.funding_activity.<a href="src/payroc/funding/funding_activity/client.py">retrieve_balance</a>(...) -&gt; AsyncHttpResponse[RetrieveBalanceFundingActivityResponse]</code></summary>
 <dl>
 <dd>
 
@@ -10221,8 +10530,7 @@ Our gateway returns the following information about each merchant in the list:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.funding.funding_activity.retrieve_balance(
     before="2571",
@@ -10297,7 +10605,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.funding.funding_activity.<a href="src/payroc/funding/funding_activity/client.py">list</a>(...) -> AsyncPayrocPager[ActivityRecord, ListFundingActivityResponse]</code></summary>
+<details><summary><code>client.funding.funding_activity.<a href="src/payroc/funding/funding_activity/client.py">list</a>(...) -&gt; AsyncPayrocPager[ActivityRecord, ListFundingActivityResponse]</code></summary>
 <dl>
 <dd>
 
@@ -10336,8 +10644,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.funding.funding_activity.list(
     before="2571",
@@ -10440,7 +10747,7 @@ You can’t send the after parameter in the same request as the before parameter
 </details>
 
 ## Notifications EventSubscriptions
-<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">list</a>(...) -> AsyncPayrocPager[EventSubscription, PaginatedEventSubscriptions]</code></summary>
+<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">list</a>(...) -&gt; AsyncPayrocPager[EventSubscription, PaginatedEventSubscriptions]</code></summary>
 <dl>
 <dd>
 
@@ -10482,8 +10789,7 @@ For each event subscription, we also return its id, which you can use to perform
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.notifications.event_subscriptions.list(
     status="registered",
@@ -10537,7 +10843,7 @@ for page in response.iter_pages():
 </dl>
 </details>
 
-<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">create</a>(...) -> AsyncHttpResponse[EventSubscription]</code></summary>
+<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">create</a>(...) -&gt; AsyncHttpResponse[EventSubscription]</code></summary>
 <dl>
 <dd>
 
@@ -10571,8 +10877,7 @@ In the response, our gateway returns the id of the event subscription, which you
 from payroc import Notification_Webhook, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.notifications.event_subscriptions.create(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -10630,7 +10935,7 @@ Indicates if we should notify you when the event occurs. The value is one of the
 <dl>
 <dd>
 
-**notifications:** `typing.Sequence[Notification]` — Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+**notifications:** `typing.Sequence[Notification]` — Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
     
 </dd>
 </dl>
@@ -10679,7 +10984,7 @@ Status of the subscription. We return one of the following values:
 </dl>
 </details>
 
-<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">retrieve</a>(...) -> AsyncHttpResponse[EventSubscription]</code></summary>
+<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[EventSubscription]</code></summary>
 <dl>
 <dd>
 
@@ -10695,7 +11000,7 @@ Use this method to retrieve the details of an event subscription.
 
 In your request, include the subscriptionId that we sent to you when we created the event subscription.  
   
-**Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](#listEventSubscriptions).
+**Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](https://docs.payroc.com/api/schema/notifications/event-subscriptions/list).
 </dd>
 </dl>
 </dd>
@@ -10713,8 +11018,7 @@ In your request, include the subscriptionId that we sent to you when we created 
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.notifications.event_subscriptions.retrieve(
     subscription_id=1,
@@ -10757,7 +11061,7 @@ Unique identifier that we assigned to the event subscription.
 </dl>
 </details>
 
-<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">update</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">update</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -10797,8 +11101,7 @@ You can update the following details about an event subscription:
 from payroc import Notification_Webhook, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.notifications.event_subscriptions.update(
     subscription_id=1,
@@ -10859,7 +11162,7 @@ Indicates if we should notify you when the event occurs. The value is one of the
 <dl>
 <dd>
 
-**notifications:** `typing.Sequence[Notification]` — Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+**notifications:** `typing.Sequence[Notification]` — Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
     
 </dd>
 </dl>
@@ -10908,7 +11211,7 @@ Status of the subscription. We return one of the following values:
 </dl>
 </details>
 
-<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -10944,8 +11247,7 @@ If you want to stop receiving event notifications but don't want to delete the e
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.notifications.event_subscriptions.delete(
     subscription_id=1,
@@ -10988,7 +11290,7 @@ Unique identifier that we assigned to the event subscription.
 </dl>
 </details>
 
-<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">partially_update</a>(...) -> AsyncHttpResponse[EventSubscription]</code></summary>
+<details><summary><code>client.notifications.event_subscriptions.<a href="src/payroc/notifications/event_subscriptions/client.py">partially_update</a>(...) -&gt; AsyncHttpResponse[EventSubscription]</code></summary>
 <dl>
 <dd>
 
@@ -11024,11 +11326,15 @@ You can update the following properties of an event subscription:
 <dd>
 
 ```python
-from payroc import PatchDocument_Remove, Payroc
+from payroc import (
+    PatchDocument_Copy,
+    PatchDocument_Move,
+    PatchDocument_Remove,
+    Payroc,
+)
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.notifications.event_subscriptions.partially_update(
     subscription_id=1,
@@ -11036,7 +11342,24 @@ client.notifications.event_subscriptions.partially_update(
     request=[
         PatchDocument_Remove(
             path="path",
-        )
+        ),
+        PatchDocument_Remove(
+            path="path",
+        ),
+        PatchDocument_Remove(
+            path="path",
+        ),
+        PatchDocument_Move(
+            from_="from",
+            path="path",
+        ),
+        PatchDocument_Copy(
+            from_="from",
+            path="path",
+        ),
+        PatchDocument_Remove(
+            path="path",
+        ),
     ],
 )
 
@@ -11094,7 +11417,7 @@ Unique identifier that we assigned to the event subscription.
 </details>
 
 ## PaymentFeatures Cards
-<details><summary><code>client.payment_features.cards.<a href="src/payroc/payment_features/cards/client.py">verify_card</a>(...) -> AsyncHttpResponse[CardVerificationResult]</code></summary>
+<details><summary><code>client.payment_features.cards.<a href="src/payroc/payment_features/cards/client.py">verify_card</a>(...) -&gt; AsyncHttpResponse[CardVerificationResult]</code></summary>
 <dl>
 <dd>
 
@@ -11129,8 +11452,7 @@ from payroc import CardPayloadCardDetails_Raw, Device, Payroc
 from payroc.payment_features.cards import CardVerificationRequestCard_Card
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_features.cards.verify_card(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -11177,7 +11499,7 @@ client.payment_features.cards.verify_card(
 <dl>
 <dd>
 
-**card:** `CardVerificationRequestCard` — Object that contains information about the card.
+**card:** `CardVerificationRequestCard` — Polymorphic object that contains payment details.
     
 </dd>
 </dl>
@@ -11213,7 +11535,7 @@ client.payment_features.cards.verify_card(
 </dl>
 </details>
 
-<details><summary><code>client.payment_features.cards.<a href="src/payroc/payment_features/cards/client.py">view_ebt_balance</a>(...) -> AsyncHttpResponse[Balance]</code></summary>
+<details><summary><code>client.payment_features.cards.<a href="src/payroc/payment_features/cards/client.py">view_ebt_balance</a>(...) -&gt; AsyncHttpResponse[Balance]</code></summary>
 <dl>
 <dd>
 
@@ -11246,8 +11568,7 @@ from payroc import CardPayloadCardDetails_Raw, Device, Payroc
 from payroc.payment_features.cards import BalanceInquiryCard_Card
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_features.cards.view_ebt_balance(
     processing_terminal_id="1234001",
@@ -11294,7 +11615,13 @@ client.payment_features.cards.view_ebt_balance(
 <dl>
 <dd>
 
-**card:** `BalanceInquiryCard` — Object that contains information about the card.
+**card:** `BalanceInquiryCard` 
+
+Polymorphic object that contains payment details.  
+
+The value of the type parameter determines which variant you should use:  
+-	`card` - Payment card details
+-	`singleUseToken` - Single-use token details
     
 </dd>
 </dl>
@@ -11330,7 +11657,7 @@ client.payment_features.cards.view_ebt_balance(
 </dl>
 </details>
 
-<details><summary><code>client.payment_features.cards.<a href="src/payroc/payment_features/cards/client.py">lookup_bin</a>(...) -> AsyncHttpResponse[CardInfo]</code></summary>
+<details><summary><code>client.payment_features.cards.<a href="src/payroc/payment_features/cards/client.py">lookup_bin</a>(...) -&gt; AsyncHttpResponse[CardInfo]</code></summary>
 <dl>
 <dd>
 
@@ -11367,8 +11694,7 @@ from payroc import CardPayloadCardDetails_Raw, Device, Payroc
 from payroc.payment_features.cards import BinLookupCard_Card
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_features.cards.lookup_bin(
     processing_terminal_id="1234001",
@@ -11397,7 +11723,15 @@ client.payment_features.cards.lookup_bin(
 <dl>
 <dd>
 
-**card:** `BinLookupCard` — Object that contains information about the card.
+**card:** `BinLookupCard` 
+
+Polymorphic object that contains payment details.  
+
+The value of the type parameter determines which variant you should use:  
+-	`card` - Payment card details
+-	`cardBin` - Bank identification number (BIN) of the payment card
+-	`secureToken` - Secure token details
+-	`digitalWallet` - Digital wallet details
     
 </dd>
 </dl>
@@ -11441,7 +11775,7 @@ client.payment_features.cards.lookup_bin(
 </dl>
 </details>
 
-<details><summary><code>client.payment_features.cards.<a href="src/payroc/payment_features/cards/client.py">retrieve_fx_rates</a>(...) -> AsyncHttpResponse[FxRate]</code></summary>
+<details><summary><code>client.payment_features.cards.<a href="src/payroc/payment_features/cards/client.py">retrieve_fx_rates</a>(...) -&gt; AsyncHttpResponse[FxRate]</code></summary>
 <dl>
 <dd>
 
@@ -11487,8 +11821,7 @@ from payroc import CardPayloadCardDetails_Raw, Device, Payroc
 from payroc.payment_features.cards import FxRateInquiryPaymentMethod_Card
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_features.cards.retrieve_fx_rates(
     channel="web",
@@ -11553,7 +11886,14 @@ client.payment_features.cards.retrieve_fx_rates(
 <dl>
 <dd>
 
-**payment_method:** `FxRateInquiryPaymentMethod` — Object that contains information about the customer's payment details.
+**payment_method:** `FxRateInquiryPaymentMethod` 
+
+Polymorphic object that contains payment details.  
+
+The value of the type parameter determines which variant you should use:  
+-	`card` - Payment card details
+-	`secureToken` - Secure token details
+-	`digitalWallet` - Digital wallet details
     
 </dd>
 </dl>
@@ -11582,7 +11922,7 @@ client.payment_features.cards.retrieve_fx_rates(
 </details>
 
 ## PaymentFeatures Bank
-<details><summary><code>client.payment_features.bank.<a href="src/payroc/payment_features/bank/client.py">verify</a>(...) -> AsyncHttpResponse[BankAccountVerificationResult]</code></summary>
+<details><summary><code>client.payment_features.bank.<a href="src/payroc/payment_features/bank/client.py">verify</a>(...) -&gt; AsyncHttpResponse[BankAccountVerificationResult]</code></summary>
 <dl>
 <dd>
 
@@ -11622,8 +11962,7 @@ from payroc.payment_features.bank import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_features.bank.verify(
     idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -11665,7 +12004,13 @@ client.payment_features.bank.verify(
 <dl>
 <dd>
 
-**bank_account:** `BankAccountVerificationRequestBankAccount` — Object that contains information about the bank account.
+**bank_account:** `BankAccountVerificationRequestBankAccount` 
+
+Polymorphic object that contains bank account information.  
+
+The value of the type field determines which variant you should use:  
+-	`ach` - Automated Clearing House (ACH) details
+-	`pad` - Pre-authorized debit (PAD) details
     
 </dd>
 </dl>
@@ -11686,7 +12031,7 @@ client.payment_features.bank.verify(
 </details>
 
 ## PaymentLinks SharingEvents
-<details><summary><code>client.payment_links.sharing_events.<a href="src/payroc/payment_links/sharing_events/client.py">list</a>(...) -> AsyncPayrocPager[PaymentLinkEmailShareEvent, SharingEventPaginatedList]</code></summary>
+<details><summary><code>client.payment_links.sharing_events.<a href="src/payroc/payment_links/sharing_events/client.py">list</a>(...) -&gt; AsyncPayrocPager[PaymentLinkEmailShareEvent, SharingEventPaginatedList]</code></summary>
 <dl>
 <dd>
 
@@ -11726,8 +12071,7 @@ Our gateway returns the following information for each sharing event in the list
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.payment_links.sharing_events.list(
     payment_link_id="JZURRJBUPS",
@@ -11825,7 +12169,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.payment_links.sharing_events.<a href="src/payroc/payment_links/sharing_events/client.py">share</a>(...) -> AsyncHttpResponse[PaymentLinkEmailShareEvent]</code></summary>
+<details><summary><code>client.payment_links.sharing_events.<a href="src/payroc/payment_links/sharing_events/client.py">share</a>(...) -&gt; AsyncHttpResponse[PaymentLinkEmailShareEvent]</code></summary>
 <dl>
 <dd>
 
@@ -11863,8 +12207,7 @@ In the response, our gateway returns a sharingEventId, which you can use to [Lis
 from payroc import PaymentLinkEmailRecipient, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payment_links.sharing_events.share(
     payment_link_id="JZURRJBUPS",
@@ -11971,7 +12314,7 @@ client.payment_links.sharing_events.share(
 </details>
 
 ## PayrocCloud PaymentInstructions
-<details><summary><code>client.payroc_cloud.payment_instructions.<a href="src/payroc/payroc_cloud/payment_instructions/client.py">submit</a>(...) -> AsyncHttpResponse[PaymentInstruction]</code></summary>
+<details><summary><code>client.payroc_cloud.payment_instructions.<a href="src/payroc/payroc_cloud/payment_instructions/client.py">submit</a>(...) -&gt; AsyncHttpResponse[PaymentInstruction]</code></summary>
 <dl>
 <dd>
 
@@ -12007,8 +12350,7 @@ When you send a successful request, our gateway returns information about the pa
 from payroc import CustomizationOptions, PaymentInstructionOrder, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.payment_instructions.submit(
     serial_number="1850010868",
@@ -12150,7 +12492,7 @@ Indicates if we should immediately settle the sale transaction. The merchant can
 </dl>
 </details>
 
-<details><summary><code>client.payroc_cloud.payment_instructions.<a href="src/payroc/payroc_cloud/payment_instructions/client.py">retrieve</a>(...) -> AsyncHttpResponse[PaymentInstruction]</code></summary>
+<details><summary><code>client.payroc_cloud.payment_instructions.<a href="src/payroc/payroc_cloud/payment_instructions/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[PaymentInstruction]</code></summary>
 <dl>
 <dd>
 
@@ -12184,8 +12526,7 @@ Our gateway returns the status of the payment instruction. If the payment device
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.payment_instructions.retrieve(
     payment_instruction_id="e743a9165d134678a9100ebba3b29597",
@@ -12225,7 +12566,7 @@ client.payroc_cloud.payment_instructions.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.payroc_cloud.payment_instructions.<a href="src/payroc/payroc_cloud/payment_instructions/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.payroc_cloud.payment_instructions.<a href="src/payroc/payroc_cloud/payment_instructions/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -12259,8 +12600,7 @@ To cancel a payment instruction, you need its paymentInstructionId. Our gateway 
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.payment_instructions.delete(
     payment_instruction_id="e743a9165d134678a9100ebba3b29597",
@@ -12301,7 +12641,7 @@ client.payroc_cloud.payment_instructions.delete(
 </details>
 
 ## PayrocCloud RefundInstructions
-<details><summary><code>client.payroc_cloud.refund_instructions.<a href="src/payroc/payroc_cloud/refund_instructions/client.py">submit</a>(...) -> AsyncHttpResponse[RefundInstruction]</code></summary>
+<details><summary><code>client.payroc_cloud.refund_instructions.<a href="src/payroc/payroc_cloud/refund_instructions/client.py">submit</a>(...) -&gt; AsyncHttpResponse[RefundInstruction]</code></summary>
 <dl>
 <dd>
 
@@ -12337,8 +12677,7 @@ If the request is successful, our gateway returns information about the refund i
 from payroc import CustomizationOptions, Payroc, RefundInstructionOrder
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.refund_instructions.submit(
     serial_number="1850010868",
@@ -12446,7 +12785,7 @@ client.payroc_cloud.refund_instructions.submit(
 </dl>
 </details>
 
-<details><summary><code>client.payroc_cloud.refund_instructions.<a href="src/payroc/payroc_cloud/refund_instructions/client.py">retrieve</a>(...) -> AsyncHttpResponse[RefundInstruction]</code></summary>
+<details><summary><code>client.payroc_cloud.refund_instructions.<a href="src/payroc/payroc_cloud/refund_instructions/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[RefundInstruction]</code></summary>
 <dl>
 <dd>
 
@@ -12480,8 +12819,7 @@ Our gateway returns the status of the refund instruction. If the payment device 
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.refund_instructions.retrieve(
     refund_instruction_id="a37439165d134678a9100ebba3b29597",
@@ -12521,7 +12859,7 @@ client.payroc_cloud.refund_instructions.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.payroc_cloud.refund_instructions.<a href="src/payroc/payroc_cloud/refund_instructions/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.payroc_cloud.refund_instructions.<a href="src/payroc/payroc_cloud/refund_instructions/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -12555,8 +12893,7 @@ To cancel a refund instruction, you need its refundInstructionId. Our gateway re
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.refund_instructions.delete(
     refund_instruction_id="a37439165d134678a9100ebba3b29597",
@@ -12597,7 +12934,7 @@ client.payroc_cloud.refund_instructions.delete(
 </details>
 
 ## PayrocCloud SignatureInstructions
-<details><summary><code>client.payroc_cloud.signature_instructions.<a href="src/payroc/payroc_cloud/signature_instructions/client.py">submit</a>(...) -> AsyncHttpResponse[SignatureInstruction]</code></summary>
+<details><summary><code>client.payroc_cloud.signature_instructions.<a href="src/payroc/payroc_cloud/signature_instructions/client.py">submit</a>(...) -&gt; AsyncHttpResponse[SignatureInstruction]</code></summary>
 <dl>
 <dd>
 
@@ -12631,8 +12968,7 @@ Our gateway returns information about the signature instruction and a signatureI
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.signature_instructions.submit(
     serial_number="1850010868",
@@ -12690,7 +13026,7 @@ client.payroc_cloud.signature_instructions.submit(
 </dl>
 </details>
 
-<details><summary><code>client.payroc_cloud.signature_instructions.<a href="src/payroc/payroc_cloud/signature_instructions/client.py">retrieve</a>(...) -> AsyncHttpResponse[SignatureInstruction]</code></summary>
+<details><summary><code>client.payroc_cloud.signature_instructions.<a href="src/payroc/payroc_cloud/signature_instructions/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[SignatureInstruction]</code></summary>
 <dl>
 <dd>
 
@@ -12724,8 +13060,7 @@ Our gateway returns the status of the instruction. If the payment device complet
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.signature_instructions.retrieve(
     signature_instruction_id="a37439165d134678a9100ebba3b29597",
@@ -12765,7 +13100,7 @@ client.payroc_cloud.signature_instructions.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.payroc_cloud.signature_instructions.<a href="src/payroc/payroc_cloud/signature_instructions/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.payroc_cloud.signature_instructions.<a href="src/payroc/payroc_cloud/signature_instructions/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -12797,8 +13132,7 @@ To cancel a signature instruction, you need its signatureInstructionId. Our gate
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.signature_instructions.delete(
     signature_instruction_id="a37439165d134678a9100ebba3b29597",
@@ -12839,7 +13173,7 @@ client.payroc_cloud.signature_instructions.delete(
 </details>
 
 ## PayrocCloud Signatures
-<details><summary><code>client.payroc_cloud.signatures.<a href="src/payroc/payroc_cloud/signatures/client.py">retrieve</a>(...) -> AsyncHttpResponse[RetrieveSignaturesResponse]</code></summary>
+<details><summary><code>client.payroc_cloud.signatures.<a href="src/payroc/payroc_cloud/signatures/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[RetrieveSignaturesResponse]</code></summary>
 <dl>
 <dd>
 
@@ -12874,8 +13208,7 @@ Our gateway returns the following information about the signature:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.payroc_cloud.signatures.retrieve(
     signature_id="JDN4ILZB0T",
@@ -12916,7 +13249,7 @@ client.payroc_cloud.signatures.retrieve(
 </details>
 
 ## RepeatPayments PaymentPlans
-<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">list</a>(...) -> AsyncPayrocPager[PaymentPlan, PaymentPlanPaginatedList]</code></summary>
+<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">list</a>(...) -&gt; AsyncPayrocPager[PaymentPlan, PaymentPlanPaginatedList]</code></summary>
 <dl>
 <dd>
 
@@ -12957,8 +13290,7 @@ For each payment plan, we return the paymentPlanId, which you can use to perform
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.repeat_payments.payment_plans.list(
     processing_terminal_id="1234001",
@@ -13038,7 +13370,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">create</a>(...) -> AsyncHttpResponse[PaymentPlan]</code></summary>
+<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">create</a>(...) -&gt; AsyncHttpResponse[PaymentPlan]</code></summary>
 <dl>
 <dd>
 
@@ -13052,7 +13384,7 @@ You can’t send the after parameter in the same request as the before parameter
 
 Use this method to create a payment schedule that you can assign customers to.  
 
-**Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Subscriptions endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/integrate/repeat-payments).  
+**Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Subscriptions endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/take-payments/repeat-payments).  
 
 When you create a payment plan you need to provide a unique paymentPlanId that you use to run follow-on actions:  
 
@@ -13090,8 +13422,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.payment_plans.create(
     processing_terminal_id_="1234001",
@@ -13296,7 +13627,7 @@ To indicate that the payment plan should run indefinitely, send a value of `0`.
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">retrieve</a>(...) -> AsyncHttpResponse[PaymentPlan]</code></summary>
+<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[PaymentPlan]</code></summary>
 <dl>
 <dd>
 
@@ -13337,8 +13668,7 @@ Our gateway returns the following information about the payment plan:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.payment_plans.retrieve(
     processing_terminal_id="1234001",
@@ -13387,7 +13717,7 @@ client.repeat_payments.payment_plans.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -13428,8 +13758,7 @@ The value you sent for the onDelete parameter when you created the payment plan 
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.payment_plans.delete(
     processing_terminal_id="1234001",
@@ -13478,7 +13807,7 @@ client.repeat_payments.payment_plans.delete(
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">partially_update</a>(...) -> AsyncHttpResponse[PaymentPlan]</code></summary>
+<details><summary><code>client.repeat_payments.payment_plans.<a href="src/payroc/repeat_payments/payment_plans/client.py">partially_update</a>(...) -&gt; AsyncHttpResponse[PaymentPlan]</code></summary>
 <dl>
 <dd>
 
@@ -13523,8 +13852,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.payment_plans.partially_update(
     processing_terminal_id="1234001",
@@ -13613,7 +13941,7 @@ client.repeat_payments.payment_plans.partially_update(
 </details>
 
 ## RepeatPayments Subscriptions
-<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">list</a>(...) -> AsyncPayrocPager[Subscription, SubscriptionPaginatedList]</code></summary>
+<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">list</a>(...) -&gt; AsyncPayrocPager[Subscription, SubscriptionPaginatedList]</code></summary>
 <dl>
 <dd>
 
@@ -13659,8 +13987,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.repeat_payments.subscriptions.list(
     processing_terminal_id="1234001",
@@ -13813,7 +14140,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">create</a>(...) -> AsyncHttpResponse[Subscription]</code></summary>
+<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">create</a>(...) -&gt; AsyncHttpResponse[Subscription]</code></summary>
 <dl>
 <dd>
 
@@ -13827,7 +14154,7 @@ You can’t send the after parameter in the same request as the before parameter
 
 Use this method to assign a customer to a payment plan.  
 
-**Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Payment plans endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/integrate/repeat-payments).  
+**Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Payment plans endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/take-payments/repeat-payments).  
 
 When you create a subscription you need to provide a unique subscriptionId that you use to run follow-on actions:  
 
@@ -13871,8 +14198,7 @@ from payroc.repeat_payments.subscriptions import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.subscriptions.create(
     processing_terminal_id="1234001",
@@ -13959,7 +14285,7 @@ client.repeat_payments.subscriptions.create(
 <dl>
 <dd>
 
-**payment_method:** `SubscriptionRequestPaymentMethod` — Object that contains information about the customer's payment details.
+**payment_method:** `SubscriptionRequestPaymentMethod` — Polymorphic object that contains information about the secure token.
     
 </dd>
 </dl>
@@ -14073,7 +14399,7 @@ For example, if the merchant wants to offer a free trial period.
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">retrieve</a>(...) -> AsyncHttpResponse[Subscription]</code></summary>
+<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[Subscription]</code></summary>
 <dl>
 <dd>
 
@@ -14117,8 +14443,7 @@ We also return the paymentPlanId and the secureTokenId, which you can use to per
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.subscriptions.retrieve(
     processing_terminal_id="1234001",
@@ -14167,7 +14492,7 @@ client.repeat_payments.subscriptions.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">partially_update</a>(...) -> AsyncHttpResponse[Subscription]</code></summary>
+<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">partially_update</a>(...) -&gt; AsyncHttpResponse[Subscription]</code></summary>
 <dl>
 <dd>
 
@@ -14214,8 +14539,7 @@ You can update all of the properties of the subscription except for the followin
 from payroc import PatchDocument_Remove, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.subscriptions.partially_update(
     processing_terminal_id="1234001",
@@ -14292,7 +14616,7 @@ client.repeat_payments.subscriptions.partially_update(
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">deactivate</a>(...) -> AsyncHttpResponse[Subscription]</code></summary>
+<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">deactivate</a>(...) -&gt; AsyncHttpResponse[Subscription]</code></summary>
 <dl>
 <dd>
 
@@ -14330,8 +14654,7 @@ To reactivate the subscription, use our [Reactivate Subscription](https://docs.p
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.subscriptions.deactivate(
     processing_terminal_id="1234001",
@@ -14380,7 +14703,7 @@ client.repeat_payments.subscriptions.deactivate(
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">reactivate</a>(...) -> AsyncHttpResponse[Subscription]</code></summary>
+<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">reactivate</a>(...) -&gt; AsyncHttpResponse[Subscription]</code></summary>
 <dl>
 <dd>
 
@@ -14418,8 +14741,7 @@ To deactivate the subscription, use our [Deactivate Subscription](https://docs.p
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.subscriptions.reactivate(
     processing_terminal_id="1234001",
@@ -14468,7 +14790,7 @@ client.repeat_payments.subscriptions.reactivate(
 </dl>
 </details>
 
-<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">pay</a>(...) -> AsyncHttpResponse[SubscriptionPayment]</code></summary>
+<details><summary><code>client.repeat_payments.subscriptions.<a href="src/payroc/repeat_payments/subscriptions/client.py">pay</a>(...) -&gt; AsyncHttpResponse[SubscriptionPayment]</code></summary>
 <dl>
 <dd>
 
@@ -14506,8 +14828,7 @@ In the response, our gateway returns information about the payment and a payment
 from payroc import Payroc, SubscriptionPaymentOrder
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.repeat_payments.subscriptions.pay(
     processing_terminal_id="1234001",
@@ -14596,7 +14917,7 @@ client.repeat_payments.subscriptions.pay(
 </details>
 
 ## Reporting Settlement
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_batches</a>(...) -> AsyncPayrocPager[Batch, ListBatchesSettlementResponse]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_batches</a>(...) -&gt; AsyncPayrocPager[Batch, ListBatchesSettlementResponse]</code></summary>
 <dl>
 <dd>
 
@@ -14638,8 +14959,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.reporting.settlement.list_batches(
     before="2571",
@@ -14730,7 +15050,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">retrieve_batch</a>(...) -> AsyncHttpResponse[Batch]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">retrieve_batch</a>(...) -&gt; AsyncHttpResponse[Batch]</code></summary>
 <dl>
 <dd>
 
@@ -14767,8 +15087,7 @@ Our gateway returns the following information about the batch:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.reporting.settlement.retrieve_batch(
     batch_id=1,
@@ -14808,7 +15127,7 @@ client.reporting.settlement.retrieve_batch(
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_transactions</a>(...) -> AsyncPayrocPager[Transaction, ListTransactionsSettlementResponse]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_transactions</a>(...) -&gt; AsyncPayrocPager[Transaction, ListTransactionsSettlementResponse]</code></summary>
 <dl>
 <dd>
 
@@ -14853,8 +15172,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.reporting.settlement.list_transactions(
     before="2571",
@@ -14971,7 +15289,7 @@ You must provide either the batchId or the date.
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">retrieve_transaction</a>(...) -> AsyncHttpResponse[Transaction]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">retrieve_transaction</a>(...) -&gt; AsyncHttpResponse[Transaction]</code></summary>
 <dl>
 <dd>
 
@@ -15010,8 +15328,7 @@ Our gateway returns the following information about the transaction:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.reporting.settlement.retrieve_transaction(
     transaction_id=1,
@@ -15051,7 +15368,7 @@ client.reporting.settlement.retrieve_transaction(
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_authorizations</a>(...) -> AsyncPayrocPager[Authorization, ListAuthorizationsSettlementResponse]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_authorizations</a>(...) -&gt; AsyncPayrocPager[Authorization, ListAuthorizationsSettlementResponse]</code></summary>
 <dl>
 <dd>
 
@@ -15093,8 +15410,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.reporting.settlement.list_authorizations(
     before="2571",
@@ -15202,7 +15518,7 @@ You must provide either the batchId or the date.
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">retrieve_authorization</a>(...) -> AsyncHttpResponse[Authorization]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">retrieve_authorization</a>(...) -&gt; AsyncHttpResponse[Authorization]</code></summary>
 <dl>
 <dd>
 
@@ -15240,8 +15556,7 @@ Our gateway returns the following information about the authorization:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.reporting.settlement.retrieve_authorization(
     authorization_id=1,
@@ -15281,7 +15596,7 @@ client.reporting.settlement.retrieve_authorization(
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_disputes</a>(...) -> AsyncPayrocPager[Dispute, ListDisputesSettlementResponse]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_disputes</a>(...) -&gt; AsyncPayrocPager[Dispute, ListDisputesSettlementResponse]</code></summary>
 <dl>
 <dd>
 
@@ -15321,8 +15636,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.reporting.settlement.list_disputes(
     before="2571",
@@ -15413,7 +15727,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_disputes_statuses</a>(...) -> AsyncHttpResponse[typing.List[DisputeStatus]]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_disputes_statuses</a>(...) -&gt; AsyncHttpResponse[typing.List[DisputeStatus]]</code></summary>
 <dl>
 <dd>
 
@@ -15447,8 +15761,7 @@ Our gateway returns a list that contains each status change, the date it was cha
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.reporting.settlement.list_disputes_statuses(
     dispute_id=1,
@@ -15488,7 +15801,7 @@ client.reporting.settlement.list_disputes_statuses(
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_ach_deposits</a>(...) -> AsyncPayrocPager[AchDeposit, ListAchDepositsSettlementResponse]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_ach_deposits</a>(...) -&gt; AsyncPayrocPager[AchDeposit, ListAchDepositsSettlementResponse]</code></summary>
 <dl>
 <dd>
 
@@ -15531,8 +15844,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.reporting.settlement.list_ach_deposits(
     before="2571",
@@ -15623,7 +15935,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">retrieve_ach_deposit</a>(...) -> AsyncHttpResponse[AchDeposit]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">retrieve_ach_deposit</a>(...) -&gt; AsyncHttpResponse[AchDeposit]</code></summary>
 <dl>
 <dd>
 
@@ -15661,8 +15973,7 @@ Our gateway returns the following information about the ACH deposit:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.reporting.settlement.retrieve_ach_deposit(
     ach_deposit_id=1,
@@ -15702,7 +16013,7 @@ client.reporting.settlement.retrieve_ach_deposit(
 </dl>
 </details>
 
-<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_ach_deposit_fees</a>(...) -> AsyncPayrocPager[AchDepositFee, ListAchDepositFeesSettlementResponse]</code></summary>
+<details><summary><code>client.reporting.settlement.<a href="src/payroc/reporting/settlement/client.py">list_ach_deposit_fees</a>(...) -&gt; AsyncPayrocPager[AchDepositFee, ListAchDepositFeesSettlementResponse]</code></summary>
 <dl>
 <dd>
 
@@ -15736,8 +16047,7 @@ import datetime
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.reporting.settlement.list_ach_deposit_fees(
     before="2571",
@@ -15838,7 +16148,7 @@ You can’t send the after parameter in the same request as the before parameter
 </details>
 
 ## Tokenization SecureTokens
-<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">list</a>(...) -> AsyncPayrocPager[
+<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">list</a>(...) -&gt; AsyncPayrocPager[
     SecureTokenWithAccountType, SecureTokenPaginatedListWithAccountType
 ]</code></summary>
 <dl>
@@ -15882,8 +16192,7 @@ Our gateway returns information about the following for each secure token in the
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 response = client.tokenization.secure_tokens.list(
     processing_terminal_id="1234001",
@@ -16026,7 +16335,7 @@ You can’t send the after parameter in the same request as the before parameter
 </dl>
 </details>
 
-<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">create</a>(...) -> AsyncHttpResponse[SecureToken]</code></summary>
+<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">create</a>(...) -&gt; AsyncHttpResponse[SecureToken]</code></summary>
 <dl>
 <dd>
 
@@ -16079,8 +16388,7 @@ from payroc import (
 from payroc.tokenization.secure_tokens import TokenizationRequestSource_Card
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.tokenization.secure_tokens.create(
     processing_terminal_id="1234001",
@@ -16173,7 +16481,15 @@ client.tokenization.secure_tokens.create(
 <dl>
 <dd>
 
-**source:** `TokenizationRequestSource` — Object that contains information about the payment method to tokenize.
+**source:** `TokenizationRequestSource` 
+
+Polymorphic object that contains the payment method to tokenize.  
+
+The value of the type parameter determines which variant you should use:  
+-	`ach` - Automated Clearing House (ACH) details
+-	`pad` - Pre-authorized debit (PAD) details
+-	`card` - Payment card details
+-	`singleUseToken` - Single-use token details
     
 </dd>
 </dl>
@@ -16230,7 +16546,13 @@ Indicates how the merchant can use the customer's card details, as agreed by the
 <dl>
 <dd>
 
-**three_d_secure:** `typing.Optional[TokenizationRequestThreeDSecure]` — Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+**three_d_secure:** `typing.Optional[TokenizationRequestThreeDSecure]` 
+
+Polymorphic object that contains authentication information from 3-D Secure.  
+
+The value of the type parameter determines which variant you should use:  
+-	`gatewayThreeDSecure` - Use our gateway to run a 3-D Secure check.
+-	`thirdPartyThreeDSecure` - Use a third party to run a 3-D Secure check.
     
 </dd>
 </dl>
@@ -16258,7 +16580,7 @@ Indicates how the merchant can use the customer's card details, as agreed by the
 </dl>
 </details>
 
-<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">retrieve</a>(...) -> AsyncHttpResponse[SecureTokenWithAccountType]</code></summary>
+<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">retrieve</a>(...) -&gt; AsyncHttpResponse[SecureTokenWithAccountType]</code></summary>
 <dl>
 <dd>
 
@@ -16298,8 +16620,7 @@ Our gateway returns the following information about the secure token:
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.tokenization.secure_tokens.retrieve(
     processing_terminal_id="1234001",
@@ -16348,7 +16669,7 @@ client.tokenization.secure_tokens.retrieve(
 </dl>
 </details>
 
-<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">delete</a>(...) -> AsyncHttpResponse[None]</code></summary>
+<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">delete</a>(...) -&gt; AsyncHttpResponse[None]</code></summary>
 <dl>
 <dd>
 
@@ -16384,8 +16705,7 @@ When you delete a secure token, you can’t recover it, and you can’t reuse it
 from payroc import Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.tokenization.secure_tokens.delete(
     processing_terminal_id="1234001",
@@ -16434,7 +16754,7 @@ client.tokenization.secure_tokens.delete(
 </dl>
 </details>
 
-<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">partially_update</a>(...) -> AsyncHttpResponse[SecureToken]</code></summary>
+<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">partially_update</a>(...) -&gt; AsyncHttpResponse[SecureToken]</code></summary>
 <dl>
 <dd>
 
@@ -16493,8 +16813,7 @@ from payroc import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.tokenization.secure_tokens.partially_update(
     processing_terminal_id="1234001",
@@ -16582,7 +16901,7 @@ client.tokenization.secure_tokens.partially_update(
 </dl>
 </details>
 
-<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">update_account</a>(...) -> AsyncHttpResponse[SecureToken]</code></summary>
+<details><summary><code>client.tokenization.secure_tokens.<a href="src/payroc/tokenization/secure_tokens/client.py">update_account</a>(...) -&gt; AsyncHttpResponse[SecureToken]</code></summary>
 <dl>
 <dd>
 
@@ -16596,7 +16915,7 @@ client.tokenization.secure_tokens.partially_update(
 
 Use this method to update a secure token if you have a single-use token from Hosted Fields.  
 
-**Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/integrate/update-saved-payment-details).  
+**Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/take-payments/update-saved-payment-details).  
 </dd>
 </dl>
 </dd>
@@ -16614,8 +16933,7 @@ Use this method to update a secure token if you have a single-use token from Hos
 from payroc import AccountUpdate_SingleUseToken, Payroc
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.tokenization.secure_tokens.update_account(
     processing_terminal_id="1234001",
@@ -16685,7 +17003,7 @@ client.tokenization.secure_tokens.update_account(
 </details>
 
 ## Tokenization SingleUseTokens
-<details><summary><code>client.tokenization.single_use_tokens.<a href="src/payroc/tokenization/single_use_tokens/client.py">create</a>(...) -> AsyncHttpResponse[SingleUseToken]</code></summary>
+<details><summary><code>client.tokenization.single_use_tokens.<a href="src/payroc/tokenization/single_use_tokens/client.py">create</a>(...) -&gt; AsyncHttpResponse[SingleUseToken]</code></summary>
 <dl>
 <dd>
 
@@ -16724,8 +17042,7 @@ from payroc.tokenization.single_use_tokens import (
 )
 
 client = Payroc(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
+    api_key="YOUR_API_KEY",
 )
 client.tokenization.single_use_tokens.create(
     processing_terminal_id="1234001",
@@ -16781,7 +17098,14 @@ client.tokenization.single_use_tokens.create(
 <dl>
 <dd>
 
-**source:** `SingleUseTokenRequestSource` — Object that contains information about the payment method to tokenize.
+**source:** `SingleUseTokenRequestSource` 
+
+Polymorphic object that contains the payment method to tokenize.  
+
+The value of the type parameter determines which variant you should use:  
+-	`ach` - Automated Clearing House (ACH) details
+-	`pad` - Pre-authorized debit (PAD) details
+-	`card` - Payment card details
     
 </dd>
 </dl>

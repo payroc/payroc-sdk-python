@@ -13,19 +13,19 @@ class TransactionInterchange(UniversalBaseModel):
     Object that contains information about the interchange fees for the transaction.
     """
 
-    basis_point: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="basisPoint")] = pydantic.Field(
-        default=None
-    )
-    """
-    Interchange basis points that we apply to the transaction.
-    """
-
-    transaction_fee: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="transactionFee")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Interchange fee for the transaction. We return the value in the currency's lowest denomination, for example, cents.
-    """
+    basis_point: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="basisPoint"),
+        pydantic.Field(alias="basisPoint", description="Interchange basis points that we apply to the transaction."),
+    ] = None
+    transaction_fee: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="transactionFee"),
+        pydantic.Field(
+            alias="transactionFee",
+            description="Interchange fee for the transaction. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

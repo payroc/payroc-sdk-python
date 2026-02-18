@@ -93,8 +93,7 @@ class FundingRecipientsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.funding.funding_recipients.list(
             before="2571",
@@ -152,10 +151,18 @@ class FundingRecipientsClient:
             Trading name of the business or organization.
 
         address : Address
-            Address of the funding recipient.
+            Polymorphic object that contains address information for a funding recipient.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects that you can use to add contact methods for the funding recipient. You must provide at least an email address.
+            Array of polymorphic objects, which contain contact information.
+
+            **Note:** You must provide an email address.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         owners : typing.Sequence[Owner]
             Array of owner objects. Each object contains information about an individual who owns or manages the funding recipient.
@@ -184,6 +191,7 @@ class FundingRecipientsClient:
         from payroc import (
             Address,
             ContactMethod_Email,
+            ContactMethod_Phone,
             FundingAccount,
             Identifier,
             Owner,
@@ -193,16 +201,17 @@ class FundingRecipientsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_recipients.create(
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
             recipient_type="privateCorporation",
-            tax_id="123456789",
-            doing_business_as="doingBusinessAs",
+            tax_id="12-3456789",
+            doing_business_as="Pizza Doe",
             address=Address(
                 address_1="1 Example Ave.",
+                address_2="Example Address Line 2",
+                address_3="Example Address Line 3",
                 city="Chicago",
                 state="Illinois",
                 country="US",
@@ -211,11 +220,16 @@ class FundingRecipientsClient:
             contact_methods=[
                 ContactMethod_Email(
                     value="jane.doe@example.com",
-                )
+                ),
+                ContactMethod_Phone(
+                    value="2025550164",
+                ),
             ],
+            metadata={"yourCustomField": "abc123"},
             owners=[
                 Owner(
                     first_name="Jane",
+                    middle_name="Helen",
                     last_name="Doe",
                     date_of_birth=datetime.date.fromisoformat(
                         "1964-03-22",
@@ -230,16 +244,22 @@ class FundingRecipientsClient:
                     identifiers=[
                         Identifier(
                             type="nationalId",
-                            value="xxxxx4320",
+                            value="000-00-4320",
                         )
                     ],
                     contact_methods=[
                         ContactMethod_Email(
                             value="jane.doe@example.com",
-                        )
+                        ),
+                        ContactMethod_Phone(
+                            value="2025550164",
+                        ),
                     ],
                     relationship=OwnerRelationship(
+                        equity_percentage=48.5,
+                        title="CFO",
                         is_control_prong=True,
+                        is_authorized_signatory=False,
                     ),
                 )
             ],
@@ -302,8 +322,7 @@ class FundingRecipientsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_recipients.retrieve(
             recipient_id=1,
@@ -358,10 +377,16 @@ class FundingRecipientsClient:
             Legal name of the business or organization.
 
         address : Address
-            Address of the funding recipient.
+            Polymorphic object that contains address information for a funding recipient.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects for the funding recipient.
+            Array of polymorphic objects, which contain contact information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         recipient_id : typing.Optional[int]
             Unique identifier that we assigned to the funding recipient.
@@ -396,19 +421,29 @@ class FundingRecipientsClient:
 
         Examples
         --------
-        from payroc import Address, ContactMethod_Email, Payroc
+        from payroc import (
+            Address,
+            ContactMethod_Email,
+            ContactMethod_Phone,
+            FundingRecipientFundingAccountsItem,
+            FundingRecipientFundingAccountsItemLink,
+            FundingRecipientOwnersItem,
+            FundingRecipientOwnersItemLink,
+            Payroc,
+        )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_recipients.update(
             recipient_id_=1,
             recipient_type="privateCorporation",
-            tax_id="123456789",
-            doing_business_as="doingBusinessAs",
+            tax_id="12-3456789",
+            doing_business_as="Doe Hot Dogs",
             address=Address(
-                address_1="1 Example Ave.",
+                address_1="2 Example Ave.",
+                address_2="Example Address Line 2",
+                address_3="Example Address Line 3",
                 city="Chicago",
                 state="Illinois",
                 country="US",
@@ -417,6 +452,31 @@ class FundingRecipientsClient:
             contact_methods=[
                 ContactMethod_Email(
                     value="jane.doe@example.com",
+                ),
+                ContactMethod_Phone(
+                    value="2025550164",
+                ),
+            ],
+            metadata={"responsiblePerson": "Jane Doe"},
+            owners=[
+                FundingRecipientOwnersItem(
+                    owner_id=12346,
+                    link=FundingRecipientOwnersItemLink(
+                        rel="owner",
+                        href="https://api.payroc.com/v1/owners/12346",
+                        method="get",
+                    ),
+                )
+            ],
+            funding_accounts=[
+                FundingRecipientFundingAccountsItem(
+                    funding_account_id=124,
+                    status="approved",
+                    link=FundingRecipientFundingAccountsItemLink(
+                        rel="fundingAccount",
+                        href="https://api.payroc.com/v1/funding-accounts/124",
+                        method="get",
+                    ),
                 )
             ],
         )
@@ -465,8 +525,7 @@ class FundingRecipientsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_recipients.delete(
             recipient_id=1,
@@ -510,8 +569,7 @@ class FundingRecipientsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_recipients.list_accounts(
             recipient_id=1,
@@ -611,16 +669,16 @@ class FundingRecipientsClient:
         from payroc import PaymentMethodsItem_Ach, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_recipients.create_account(
             recipient_id=1,
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
-            type="checking",
+            type="savings",
             use="credit",
-            name_on_account="Jane Doe",
+            name_on_account="Fred Nerk",
             payment_methods=[PaymentMethodsItem_Ach()],
+            metadata={"responsiblePerson": "Jane Doe"},
         )
         """
         _response = self._raw_client.create_account(
@@ -675,8 +733,7 @@ class FundingRecipientsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_recipients.list_owners(
             recipient_id=1,
@@ -739,8 +796,15 @@ class FundingRecipientsClient:
             Array of IDs.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects.
+            Array of polymorphic objects, which contain contact information.
+
             **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         relationship : OwnerRelationship
             Object that contains information about the owner's relationship to the business.
@@ -766,25 +830,26 @@ class FundingRecipientsClient:
         from payroc import (
             Address,
             ContactMethod_Email,
+            ContactMethod_Phone,
             Identifier,
             OwnerRelationship,
             Payroc,
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.funding.funding_recipients.create_owner(
             recipient_id=1,
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
-            first_name="Jane",
-            last_name="Doe",
+            first_name="Fred",
+            middle_name="Jim",
+            last_name="Nerk",
             date_of_birth=datetime.date.fromisoformat(
-                "1964-03-22",
+                "1980-01-19",
             ),
             address=Address(
-                address_1="1 Example Ave.",
+                address_1="2 Example Ave.",
                 city="Chicago",
                 state="Illinois",
                 country="US",
@@ -793,16 +858,22 @@ class FundingRecipientsClient:
             identifiers=[
                 Identifier(
                     type="nationalId",
-                    value="xxxxx4320",
+                    value="000-00-9876",
                 )
             ],
             contact_methods=[
                 ContactMethod_Email(
                     value="jane.doe@example.com",
-                )
+                ),
+                ContactMethod_Phone(
+                    value="2025550164",
+                ),
             ],
             relationship=OwnerRelationship(
-                is_control_prong=True,
+                equity_percentage=51.5,
+                title="CEO",
+                is_control_prong=False,
+                is_authorized_signatory=True,
             ),
         )
         """
@@ -888,8 +959,7 @@ class AsyncFundingRecipientsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -954,10 +1024,18 @@ class AsyncFundingRecipientsClient:
             Trading name of the business or organization.
 
         address : Address
-            Address of the funding recipient.
+            Polymorphic object that contains address information for a funding recipient.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects that you can use to add contact methods for the funding recipient. You must provide at least an email address.
+            Array of polymorphic objects, which contain contact information.
+
+            **Note:** You must provide an email address.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         owners : typing.Sequence[Owner]
             Array of owner objects. Each object contains information about an individual who owns or manages the funding recipient.
@@ -988,6 +1066,7 @@ class AsyncFundingRecipientsClient:
             Address,
             AsyncPayroc,
             ContactMethod_Email,
+            ContactMethod_Phone,
             FundingAccount,
             Identifier,
             Owner,
@@ -996,8 +1075,7 @@ class AsyncFundingRecipientsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1005,10 +1083,12 @@ class AsyncFundingRecipientsClient:
             await client.funding.funding_recipients.create(
                 idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
                 recipient_type="privateCorporation",
-                tax_id="123456789",
-                doing_business_as="doingBusinessAs",
+                tax_id="12-3456789",
+                doing_business_as="Pizza Doe",
                 address=Address(
                     address_1="1 Example Ave.",
+                    address_2="Example Address Line 2",
+                    address_3="Example Address Line 3",
                     city="Chicago",
                     state="Illinois",
                     country="US",
@@ -1017,11 +1097,16 @@ class AsyncFundingRecipientsClient:
                 contact_methods=[
                     ContactMethod_Email(
                         value="jane.doe@example.com",
-                    )
+                    ),
+                    ContactMethod_Phone(
+                        value="2025550164",
+                    ),
                 ],
+                metadata={"yourCustomField": "abc123"},
                 owners=[
                     Owner(
                         first_name="Jane",
+                        middle_name="Helen",
                         last_name="Doe",
                         date_of_birth=datetime.date.fromisoformat(
                             "1964-03-22",
@@ -1036,16 +1121,22 @@ class AsyncFundingRecipientsClient:
                         identifiers=[
                             Identifier(
                                 type="nationalId",
-                                value="xxxxx4320",
+                                value="000-00-4320",
                             )
                         ],
                         contact_methods=[
                             ContactMethod_Email(
                                 value="jane.doe@example.com",
-                            )
+                            ),
+                            ContactMethod_Phone(
+                                value="2025550164",
+                            ),
                         ],
                         relationship=OwnerRelationship(
+                            equity_percentage=48.5,
+                            title="CFO",
                             is_control_prong=True,
+                            is_authorized_signatory=False,
                         ),
                     )
                 ],
@@ -1113,8 +1204,7 @@ class AsyncFundingRecipientsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1175,10 +1265,16 @@ class AsyncFundingRecipientsClient:
             Legal name of the business or organization.
 
         address : Address
-            Address of the funding recipient.
+            Polymorphic object that contains address information for a funding recipient.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects for the funding recipient.
+            Array of polymorphic objects, which contain contact information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         recipient_id : typing.Optional[int]
             Unique identifier that we assigned to the funding recipient.
@@ -1215,11 +1311,19 @@ class AsyncFundingRecipientsClient:
         --------
         import asyncio
 
-        from payroc import Address, AsyncPayroc, ContactMethod_Email
+        from payroc import (
+            Address,
+            AsyncPayroc,
+            ContactMethod_Email,
+            ContactMethod_Phone,
+            FundingRecipientFundingAccountsItem,
+            FundingRecipientFundingAccountsItemLink,
+            FundingRecipientOwnersItem,
+            FundingRecipientOwnersItemLink,
+        )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1227,10 +1331,12 @@ class AsyncFundingRecipientsClient:
             await client.funding.funding_recipients.update(
                 recipient_id_=1,
                 recipient_type="privateCorporation",
-                tax_id="123456789",
-                doing_business_as="doingBusinessAs",
+                tax_id="12-3456789",
+                doing_business_as="Doe Hot Dogs",
                 address=Address(
-                    address_1="1 Example Ave.",
+                    address_1="2 Example Ave.",
+                    address_2="Example Address Line 2",
+                    address_3="Example Address Line 3",
                     city="Chicago",
                     state="Illinois",
                     country="US",
@@ -1239,6 +1345,31 @@ class AsyncFundingRecipientsClient:
                 contact_methods=[
                     ContactMethod_Email(
                         value="jane.doe@example.com",
+                    ),
+                    ContactMethod_Phone(
+                        value="2025550164",
+                    ),
+                ],
+                metadata={"responsiblePerson": "Jane Doe"},
+                owners=[
+                    FundingRecipientOwnersItem(
+                        owner_id=12346,
+                        link=FundingRecipientOwnersItemLink(
+                            rel="owner",
+                            href="https://api.payroc.com/v1/owners/12346",
+                            method="get",
+                        ),
+                    )
+                ],
+                funding_accounts=[
+                    FundingRecipientFundingAccountsItem(
+                        funding_account_id=124,
+                        status="approved",
+                        link=FundingRecipientFundingAccountsItemLink(
+                            rel="fundingAccount",
+                            href="https://api.payroc.com/v1/funding-accounts/124",
+                            method="get",
+                        ),
                     )
                 ],
             )
@@ -1292,8 +1423,7 @@ class AsyncFundingRecipientsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1345,8 +1475,7 @@ class AsyncFundingRecipientsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1454,8 +1583,7 @@ class AsyncFundingRecipientsClient:
         from payroc import AsyncPayroc, PaymentMethodsItem_Ach
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1463,10 +1591,11 @@ class AsyncFundingRecipientsClient:
             await client.funding.funding_recipients.create_account(
                 recipient_id=1,
                 idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
-                type="checking",
+                type="savings",
                 use="credit",
-                name_on_account="Jane Doe",
+                name_on_account="Fred Nerk",
                 payment_methods=[PaymentMethodsItem_Ach()],
+                metadata={"responsiblePerson": "Jane Doe"},
             )
 
 
@@ -1526,8 +1655,7 @@ class AsyncFundingRecipientsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1596,8 +1724,15 @@ class AsyncFundingRecipientsClient:
             Array of IDs.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects.
+            Array of polymorphic objects, which contain contact information.
+
             **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         relationship : OwnerRelationship
             Object that contains information about the owner's relationship to the business.
@@ -1625,13 +1760,13 @@ class AsyncFundingRecipientsClient:
             Address,
             AsyncPayroc,
             ContactMethod_Email,
+            ContactMethod_Phone,
             Identifier,
             OwnerRelationship,
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1639,13 +1774,14 @@ class AsyncFundingRecipientsClient:
             await client.funding.funding_recipients.create_owner(
                 recipient_id=1,
                 idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
-                first_name="Jane",
-                last_name="Doe",
+                first_name="Fred",
+                middle_name="Jim",
+                last_name="Nerk",
                 date_of_birth=datetime.date.fromisoformat(
-                    "1964-03-22",
+                    "1980-01-19",
                 ),
                 address=Address(
-                    address_1="1 Example Ave.",
+                    address_1="2 Example Ave.",
                     city="Chicago",
                     state="Illinois",
                     country="US",
@@ -1654,16 +1790,22 @@ class AsyncFundingRecipientsClient:
                 identifiers=[
                     Identifier(
                         type="nationalId",
-                        value="xxxxx4320",
+                        value="000-00-9876",
                     )
                 ],
                 contact_methods=[
                     ContactMethod_Email(
                         value="jane.doe@example.com",
-                    )
+                    ),
+                    ContactMethod_Phone(
+                        value="2025550164",
+                    ),
                 ],
                 relationship=OwnerRelationship(
-                    is_control_prong=True,
+                    equity_percentage=51.5,
+                    title="CEO",
+                    is_control_prong=False,
+                    is_authorized_signatory=True,
                 ),
             )
 

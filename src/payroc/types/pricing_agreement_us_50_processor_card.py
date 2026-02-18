@@ -20,12 +20,22 @@ from .tiered_6_fees import Tiered6Fees
 
 class PricingAgreementUs50ProcessorCard_InterchangePlus(UniversalBaseModel):
     """
-    Object that contains information about card fees.
+    Polymorphic object that contains fees for card transactions.
+
+    The value of the planType field determines which variant you should use:
+    -    `interchangePlus` - Interchange + pricing
+    -    `interchangePlusPlus` - Interchange pricing with three tiers
+    -    `tiered3` - Three-tiered pricing
+    -    `tiered4` - Four-tiered pricing
+    -    `tiered6` - Six-tiered pricing
+    -    `flatRate` - Flat rate pricing
+    -    `consumerChoice` - ConsumerChoice
+    -    `rewardPayChoice` - RewardPayChoice
     """
 
-    plan_type: typing_extensions.Annotated[typing.Literal["interchangePlus"], FieldMetadata(alias="planType")] = (
-        "interchangePlus"
-    )
+    plan_type: typing_extensions.Annotated[
+        typing.Literal["interchangePlus"], FieldMetadata(alias="planType"), pydantic.Field(alias="planType")
+    ] = "interchangePlus"
     fees: InterchangePlusFees
 
     if IS_PYDANTIC_V2:
@@ -40,12 +50,22 @@ class PricingAgreementUs50ProcessorCard_InterchangePlus(UniversalBaseModel):
 
 class PricingAgreementUs50ProcessorCard_InterchangePlusPlus(UniversalBaseModel):
     """
-    Object that contains information about card fees.
+    Polymorphic object that contains fees for card transactions.
+
+    The value of the planType field determines which variant you should use:
+    -    `interchangePlus` - Interchange + pricing
+    -    `interchangePlusPlus` - Interchange pricing with three tiers
+    -    `tiered3` - Three-tiered pricing
+    -    `tiered4` - Four-tiered pricing
+    -    `tiered6` - Six-tiered pricing
+    -    `flatRate` - Flat rate pricing
+    -    `consumerChoice` - ConsumerChoice
+    -    `rewardPayChoice` - RewardPayChoice
     """
 
-    plan_type: typing_extensions.Annotated[typing.Literal["interchangePlusPlus"], FieldMetadata(alias="planType")] = (
-        "interchangePlusPlus"
-    )
+    plan_type: typing_extensions.Annotated[
+        typing.Literal["interchangePlusPlus"], FieldMetadata(alias="planType"), pydantic.Field(alias="planType")
+    ] = "interchangePlusPlus"
     fees: InterchangePlusPlusFees
 
     if IS_PYDANTIC_V2:
@@ -60,10 +80,22 @@ class PricingAgreementUs50ProcessorCard_InterchangePlusPlus(UniversalBaseModel):
 
 class PricingAgreementUs50ProcessorCard_Tiered3(UniversalBaseModel):
     """
-    Object that contains information about card fees.
+    Polymorphic object that contains fees for card transactions.
+
+    The value of the planType field determines which variant you should use:
+    -    `interchangePlus` - Interchange + pricing
+    -    `interchangePlusPlus` - Interchange pricing with three tiers
+    -    `tiered3` - Three-tiered pricing
+    -    `tiered4` - Four-tiered pricing
+    -    `tiered6` - Six-tiered pricing
+    -    `flatRate` - Flat rate pricing
+    -    `consumerChoice` - ConsumerChoice
+    -    `rewardPayChoice` - RewardPayChoice
     """
 
-    plan_type: typing_extensions.Annotated[typing.Literal["tiered3"], FieldMetadata(alias="planType")] = "tiered3"
+    plan_type: typing_extensions.Annotated[
+        typing.Literal["tiered3"], FieldMetadata(alias="planType"), pydantic.Field(alias="planType")
+    ] = "tiered3"
     fees: Tiered3Fees
 
     if IS_PYDANTIC_V2:
@@ -78,10 +110,22 @@ class PricingAgreementUs50ProcessorCard_Tiered3(UniversalBaseModel):
 
 class PricingAgreementUs50ProcessorCard_Tiered4(UniversalBaseModel):
     """
-    Object that contains information about card fees.
+    Polymorphic object that contains fees for card transactions.
+
+    The value of the planType field determines which variant you should use:
+    -    `interchangePlus` - Interchange + pricing
+    -    `interchangePlusPlus` - Interchange pricing with three tiers
+    -    `tiered3` - Three-tiered pricing
+    -    `tiered4` - Four-tiered pricing
+    -    `tiered6` - Six-tiered pricing
+    -    `flatRate` - Flat rate pricing
+    -    `consumerChoice` - ConsumerChoice
+    -    `rewardPayChoice` - RewardPayChoice
     """
 
-    plan_type: typing_extensions.Annotated[typing.Literal["tiered4"], FieldMetadata(alias="planType")] = "tiered4"
+    plan_type: typing_extensions.Annotated[
+        typing.Literal["tiered4"], FieldMetadata(alias="planType"), pydantic.Field(alias="planType")
+    ] = "tiered4"
     fees: Tiered4Fees
 
     if IS_PYDANTIC_V2:
@@ -96,10 +140,22 @@ class PricingAgreementUs50ProcessorCard_Tiered4(UniversalBaseModel):
 
 class PricingAgreementUs50ProcessorCard_Tiered6(UniversalBaseModel):
     """
-    Object that contains information about card fees.
+    Polymorphic object that contains fees for card transactions.
+
+    The value of the planType field determines which variant you should use:
+    -    `interchangePlus` - Interchange + pricing
+    -    `interchangePlusPlus` - Interchange pricing with three tiers
+    -    `tiered3` - Three-tiered pricing
+    -    `tiered4` - Four-tiered pricing
+    -    `tiered6` - Six-tiered pricing
+    -    `flatRate` - Flat rate pricing
+    -    `consumerChoice` - ConsumerChoice
+    -    `rewardPayChoice` - RewardPayChoice
     """
 
-    plan_type: typing_extensions.Annotated[typing.Literal["tiered6"], FieldMetadata(alias="planType")] = "tiered6"
+    plan_type: typing_extensions.Annotated[
+        typing.Literal["tiered6"], FieldMetadata(alias="planType"), pydantic.Field(alias="planType")
+    ] = "tiered6"
     fees: Tiered6Fees
 
     if IS_PYDANTIC_V2:
@@ -114,10 +170,22 @@ class PricingAgreementUs50ProcessorCard_Tiered6(UniversalBaseModel):
 
 class PricingAgreementUs50ProcessorCard_FlatRate(UniversalBaseModel):
     """
-    Object that contains information about card fees.
+    Polymorphic object that contains fees for card transactions.
+
+    The value of the planType field determines which variant you should use:
+    -    `interchangePlus` - Interchange + pricing
+    -    `interchangePlusPlus` - Interchange pricing with three tiers
+    -    `tiered3` - Three-tiered pricing
+    -    `tiered4` - Four-tiered pricing
+    -    `tiered6` - Six-tiered pricing
+    -    `flatRate` - Flat rate pricing
+    -    `consumerChoice` - ConsumerChoice
+    -    `rewardPayChoice` - RewardPayChoice
     """
 
-    plan_type: typing_extensions.Annotated[typing.Literal["flatRate"], FieldMetadata(alias="planType")] = "flatRate"
+    plan_type: typing_extensions.Annotated[
+        typing.Literal["flatRate"], FieldMetadata(alias="planType"), pydantic.Field(alias="planType")
+    ] = "flatRate"
     fees: FlatRateFees
 
     if IS_PYDANTIC_V2:
@@ -132,12 +200,22 @@ class PricingAgreementUs50ProcessorCard_FlatRate(UniversalBaseModel):
 
 class PricingAgreementUs50ProcessorCard_ConsumerChoice(UniversalBaseModel):
     """
-    Object that contains information about card fees.
+    Polymorphic object that contains fees for card transactions.
+
+    The value of the planType field determines which variant you should use:
+    -    `interchangePlus` - Interchange + pricing
+    -    `interchangePlusPlus` - Interchange pricing with three tiers
+    -    `tiered3` - Three-tiered pricing
+    -    `tiered4` - Four-tiered pricing
+    -    `tiered6` - Six-tiered pricing
+    -    `flatRate` - Flat rate pricing
+    -    `consumerChoice` - ConsumerChoice
+    -    `rewardPayChoice` - RewardPayChoice
     """
 
-    plan_type: typing_extensions.Annotated[typing.Literal["consumerChoice"], FieldMetadata(alias="planType")] = (
-        "consumerChoice"
-    )
+    plan_type: typing_extensions.Annotated[
+        typing.Literal["consumerChoice"], FieldMetadata(alias="planType"), pydantic.Field(alias="planType")
+    ] = "consumerChoice"
     fees: ConsumerChoiceFees
 
     if IS_PYDANTIC_V2:
@@ -152,12 +230,22 @@ class PricingAgreementUs50ProcessorCard_ConsumerChoice(UniversalBaseModel):
 
 class PricingAgreementUs50ProcessorCard_RewardPayChoice(UniversalBaseModel):
     """
-    Object that contains information about card fees.
+    Polymorphic object that contains fees for card transactions.
+
+    The value of the planType field determines which variant you should use:
+    -    `interchangePlus` - Interchange + pricing
+    -    `interchangePlusPlus` - Interchange pricing with three tiers
+    -    `tiered3` - Three-tiered pricing
+    -    `tiered4` - Four-tiered pricing
+    -    `tiered6` - Six-tiered pricing
+    -    `flatRate` - Flat rate pricing
+    -    `consumerChoice` - ConsumerChoice
+    -    `rewardPayChoice` - RewardPayChoice
     """
 
-    plan_type: typing_extensions.Annotated[typing.Literal["rewardPayChoice"], FieldMetadata(alias="planType")] = (
-        "rewardPayChoice"
-    )
+    plan_type: typing_extensions.Annotated[
+        typing.Literal["rewardPayChoice"], FieldMetadata(alias="planType"), pydantic.Field(alias="planType")
+    ] = "rewardPayChoice"
     fees: RewardPayChoiceFees
 
     if IS_PYDANTIC_V2:

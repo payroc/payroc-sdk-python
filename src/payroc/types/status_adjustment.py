@@ -14,10 +14,11 @@ class StatusAdjustment(UniversalBaseModel):
     Object that contains information about the adjustment to the transaction. Send this object if the merchant is adjusting the status of the transaction.
     """
 
-    to_status: typing_extensions.Annotated[StatusAdjustmentToStatus, FieldMetadata(alias="toStatus")] = pydantic.Field()
-    """
-    Status that you want to change the transaction to.
-    """
+    to_status: typing_extensions.Annotated[
+        StatusAdjustmentToStatus,
+        FieldMetadata(alias="toStatus"),
+        pydantic.Field(alias="toStatus", description="Status that you want to change the transaction to."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

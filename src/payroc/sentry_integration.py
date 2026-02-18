@@ -146,3 +146,4 @@ def _get_sdk_version() -> Optional[str]:
     except Exception:
         return None
 
+initialize_sentry()

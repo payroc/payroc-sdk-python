@@ -12,7 +12,7 @@ from .tsys_terminal import TsysTerminal
 
 class HostConfigurationConfiguration_Tsys(UniversalBaseModel):
     """
-    Object that contains the host processor configuration.
+    Polymorphic object that contains the host processor configuration.
     """
 
     processor: typing.Literal["tsys"] = "tsys"

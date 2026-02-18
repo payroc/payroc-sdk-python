@@ -11,9 +11,19 @@ from ..core.serialization import FieldMetadata
 
 
 class SingleUseTokenPayloadPinDetails_Dukpt(UniversalBaseModel):
-    data_format: typing_extensions.Annotated[typing.Literal["dukpt"], FieldMetadata(alias="dataFormat")] = "dukpt"
+    """
+    Polymorphic object that contains information about a customer's PIN.
+
+    The value of the dataFormat parameter determines which variant you should use:
+    - `dukpt` - PIN information is encrypted.
+    - `raw` - PIN information is unencrypted.
+    """
+
+    data_format: typing_extensions.Annotated[
+        typing.Literal["dukpt"], FieldMetadata(alias="dataFormat"), pydantic.Field(alias="dataFormat")
+    ] = "dukpt"
     pin: str
-    pin_ksn: typing_extensions.Annotated[str, FieldMetadata(alias="pinKsn")]
+    pin_ksn: typing_extensions.Annotated[str, FieldMetadata(alias="pinKsn"), pydantic.Field(alias="pinKsn")]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -26,7 +36,17 @@ class SingleUseTokenPayloadPinDetails_Dukpt(UniversalBaseModel):
 
 
 class SingleUseTokenPayloadPinDetails_Raw(UniversalBaseModel):
-    data_format: typing_extensions.Annotated[typing.Literal["raw"], FieldMetadata(alias="dataFormat")] = "raw"
+    """
+    Polymorphic object that contains information about a customer's PIN.
+
+    The value of the dataFormat parameter determines which variant you should use:
+    - `dukpt` - PIN information is encrypted.
+    - `raw` - PIN information is unencrypted.
+    """
+
+    data_format: typing_extensions.Annotated[
+        typing.Literal["raw"], FieldMetadata(alias="dataFormat"), pydantic.Field(alias="dataFormat")
+    ] = "raw"
     pin: str
 
     if IS_PYDANTIC_V2:

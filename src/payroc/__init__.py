@@ -657,6 +657,7 @@ if typing.TYPE_CHECKING:
     )
     from . import (
         apple_pay_sessions,
+        attachments,
         auth,
         bank_transfer_payments,
         boarding,
@@ -670,6 +671,15 @@ if typing.TYPE_CHECKING:
         repeat_payments,
         reporting,
         tokenization,
+    )
+    from .attachments import (
+        Attachment,
+        AttachmentEntity,
+        AttachmentEntityType,
+        AttachmentType,
+        AttachmentUploadStatus,
+        UploadToProcessingAccountAttachmentsRequestAttachment,
+        UploadToProcessingAccountAttachmentsRequestAttachmentType,
     )
     from .auth import GetTokenResponse
     from .client import AsyncPayroc, Payroc
@@ -721,6 +731,11 @@ _dynamic_imports: typing.Dict[str, str] = {
     "Amount": ".types",
     "ApplePayResponseSession": ".types",
     "AsyncPayroc": ".client",
+    "Attachment": ".attachments",
+    "AttachmentEntity": ".attachments",
+    "AttachmentEntityType": ".attachments",
+    "AttachmentType": ".attachments",
+    "AttachmentUploadStatus": ".attachments",
     "Authorization": ".types",
     "AuthorizationAuthorizationResponse": ".types",
     "AuthorizationSummary": ".types",
@@ -1365,10 +1380,13 @@ _dynamic_imports: typing.Dict[str, str] = {
     "UnauthorizedError": ".errors",
     "UnitOfMeasure": ".types",
     "UnsupportedMediaTypeError": ".errors",
+    "UploadToProcessingAccountAttachmentsRequestAttachment": ".attachments",
+    "UploadToProcessingAccountAttachmentsRequestAttachmentType": ".attachments",
     "Voucher": ".types",
     "Webhook": ".types",
     "__version__": ".version",
     "apple_pay_sessions": ".apple_pay_sessions",
+    "attachments": ".attachments",
     "auth": ".auth",
     "bank_transfer_payments": ".bank_transfer_payments",
     "boarding": ".boarding",
@@ -1430,6 +1448,11 @@ __all__ = [
     "Amount",
     "ApplePayResponseSession",
     "AsyncPayroc",
+    "Attachment",
+    "AttachmentEntity",
+    "AttachmentEntityType",
+    "AttachmentType",
+    "AttachmentUploadStatus",
     "Authorization",
     "AuthorizationAuthorizationResponse",
     "AuthorizationSummary",
@@ -2074,10 +2097,13 @@ __all__ = [
     "UnauthorizedError",
     "UnitOfMeasure",
     "UnsupportedMediaTypeError",
+    "UploadToProcessingAccountAttachmentsRequestAttachment",
+    "UploadToProcessingAccountAttachmentsRequestAttachmentType",
     "Voucher",
     "Webhook",
     "__version__",
     "apple_pay_sessions",
+    "attachments",
     "auth",
     "bank_transfer_payments",
     "boarding",
@@ -2092,3 +2118,10 @@ __all__ = [
     "reporting",
     "tokenization",
 ]
+# Load user-defined files if present (e.g., for Sentry integration)
+# Files are loaded from payroc/ if they exist
+for _path in ["sentry_integration"]:
+    try:
+        import_module(f".{_path}", "payroc")
+    except ImportError:
+        pass

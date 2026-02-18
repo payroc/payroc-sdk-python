@@ -13,40 +13,42 @@ from .single_use_token_source import SingleUseTokenSource
 
 class SingleUseToken(UniversalBaseModel):
     processing_terminal_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="processingTerminalId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier that we assigned to the terminal.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(alias="processingTerminalId", description="Unique identifier that we assigned to the terminal."),
+    ] = None
     operator: typing.Optional[str] = pydantic.Field(default=None)
     """
     Operator who initiated the request.
     """
 
     payment_method: typing_extensions.Annotated[
-        typing.Optional[SingleUseTokenPaymentMethod], FieldMetadata(alias="paymentMethod")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains information about the customer's payment details.
-    """
-
+        typing.Optional[SingleUseTokenPaymentMethod],
+        FieldMetadata(alias="paymentMethod"),
+        pydantic.Field(alias="paymentMethod", description="Polymorphic object that contains payment card details."),
+    ] = None
     token: typing.Optional[str] = pydantic.Field(default=None)
     """
     Unique identifier that our gateway assigned to the payment details.  
     **Note:** Merchants can use the token with other terminals linked to their account.
     """
 
-    expires_at: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="expiresAt")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that the token expires. We return this value in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-    """
-
+    expires_at: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="expiresAt"),
+        pydantic.Field(
+            alias="expiresAt",
+            description="Date and time that the token expires. We return this value in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+        ),
+    ] = None
     source: SingleUseTokenSource = pydantic.Field()
     """
-    Object that contains information about the payment method that we tokenized.
+    Polymorphic object that contains the payment method that we tokenized.  
+    
+    The value of the type parameter determines which variant you should use:  
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
+    -    `card` - Payment card details
     """
 
     if IS_PYDANTIC_V2:

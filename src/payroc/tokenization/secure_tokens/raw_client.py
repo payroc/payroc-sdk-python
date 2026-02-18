@@ -251,7 +251,13 @@ class RawSecureTokensClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         source : TokenizationRequestSource
-            Object that contains information about the payment method to tokenize.
+            Polymorphic object that contains the payment method to tokenize.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `card` - Payment card details
+            -    `singleUseToken` - Single-use token details
 
         secure_token_id : typing.Optional[str]
             Unique identifier that the merchant created for the secure token that represents the customer's payment details.
@@ -272,7 +278,11 @@ class RawSecureTokensClient:
         ip_address : typing.Optional[IpAddress]
 
         three_d_secure : typing.Optional[TokenizationRequestThreeDSecure]
-            Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+            Polymorphic object that contains authentication information from 3-D Secure.
+
+            The value of the type parameter determines which variant you should use:
+            -    `gatewayThreeDSecure` - Use our gateway to run a 3-D Secure check.
+            -    `thirdPartyThreeDSecure` - Use a third party to run a 3-D Secure check.
 
         custom_fields : typing.Optional[typing.Sequence[CustomField]]
             Array of customField objects.
@@ -815,7 +825,7 @@ class RawSecureTokensClient:
         """
         Use this method to update a secure token if you have a single-use token from Hosted Fields.
 
-        **Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/integrate/update-saved-payment-details).
+        **Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/take-payments/update-saved-payment-details).
 
         Parameters
         ----------
@@ -1172,7 +1182,13 @@ class AsyncRawSecureTokensClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         source : TokenizationRequestSource
-            Object that contains information about the payment method to tokenize.
+            Polymorphic object that contains the payment method to tokenize.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `card` - Payment card details
+            -    `singleUseToken` - Single-use token details
 
         secure_token_id : typing.Optional[str]
             Unique identifier that the merchant created for the secure token that represents the customer's payment details.
@@ -1193,7 +1209,11 @@ class AsyncRawSecureTokensClient:
         ip_address : typing.Optional[IpAddress]
 
         three_d_secure : typing.Optional[TokenizationRequestThreeDSecure]
-            Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+            Polymorphic object that contains authentication information from 3-D Secure.
+
+            The value of the type parameter determines which variant you should use:
+            -    `gatewayThreeDSecure` - Use our gateway to run a 3-D Secure check.
+            -    `thirdPartyThreeDSecure` - Use a third party to run a 3-D Secure check.
 
         custom_fields : typing.Optional[typing.Sequence[CustomField]]
             Array of customField objects.
@@ -1736,7 +1756,7 @@ class AsyncRawSecureTokensClient:
         """
         Use this method to update a secure token if you have a single-use token from Hosted Fields.
 
-        **Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/integrate/update-saved-payment-details).
+        **Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/take-payments/update-saved-payment-details).
 
         Parameters
         ----------

@@ -92,8 +92,7 @@ class SharingEventsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.payment_links.sharing_events.list(
             payment_link_id="JZURRJBUPS",
@@ -175,15 +174,14 @@ class SharingEventsClient:
         Returns
         -------
         PaymentLinkEmailShareEvent
-            Successful request. We shared the payment link.
+            Successful request. We return a polymorphic object that contains information about how the merchant shared a payment link.
 
         Examples
         --------
         from payroc import PaymentLinkEmailRecipient, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payment_links.sharing_events.share(
             payment_link_id="JZURRJBUPS",
@@ -291,8 +289,7 @@ class AsyncSharingEventsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -381,7 +378,7 @@ class AsyncSharingEventsClient:
         Returns
         -------
         PaymentLinkEmailShareEvent
-            Successful request. We shared the payment link.
+            Successful request. We return a polymorphic object that contains information about how the merchant shared a payment link.
 
         Examples
         --------
@@ -390,8 +387,7 @@ class AsyncSharingEventsClient:
         from payroc import AsyncPayroc, PaymentLinkEmailRecipient
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

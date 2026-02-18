@@ -13,12 +13,11 @@ class PricingAgreementReminder(UniversalBaseModel):
     Object that contains information about the pricing agreement reminder.
     """
 
-    reminder_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="reminderId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique ID of the reminder.
-    """
+    reminder_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="reminderId"),
+        pydantic.Field(alias="reminderId", description="Unique ID of the reminder."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

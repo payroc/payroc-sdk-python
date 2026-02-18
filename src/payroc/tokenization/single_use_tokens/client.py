@@ -59,7 +59,12 @@ class SingleUseTokensClient:
             Channel that the merchant used to receive the payment details.
 
         source : SingleUseTokenRequestSource
-            Object that contains information about the payment method to tokenize.
+            Polymorphic object that contains the payment method to tokenize.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `card` - Payment card details
 
         operator : typing.Optional[str]
             Operator who initiated the request.
@@ -80,8 +85,7 @@ class SingleUseTokensClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.tokenization.single_use_tokens.create(
             processing_terminal_id="1234001",
@@ -156,7 +160,12 @@ class AsyncSingleUseTokensClient:
             Channel that the merchant used to receive the payment details.
 
         source : SingleUseTokenRequestSource
-            Object that contains information about the payment method to tokenize.
+            Polymorphic object that contains the payment method to tokenize.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `card` - Payment card details
 
         operator : typing.Optional[str]
             Operator who initiated the request.
@@ -179,8 +188,7 @@ class AsyncSingleUseTokensClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

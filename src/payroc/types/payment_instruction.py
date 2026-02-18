@@ -11,11 +11,12 @@ from .device_instruction import DeviceInstruction
 
 class PaymentInstruction(DeviceInstruction):
     payment_instruction_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="paymentInstructionId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier that we assigned to the payment instruction.
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="paymentInstructionId"),
+        pydantic.Field(
+            alias="paymentInstructionId", description="Unique identifier that we assigned to the payment instruction."
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

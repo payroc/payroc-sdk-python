@@ -17,35 +17,37 @@ class IccCardDetails(UniversalBaseModel):
     """
 
     downgrade_to: typing_extensions.Annotated[
-        typing.Optional[IccCardDetailsDowngradeTo], FieldMetadata(alias="downgradeTo")
-    ] = pydantic.Field(default=None)
-    """
-    If an offline transaction is not approved using the initial entry method, reprocess the transaction using a downgraded entry method. 
-    For example, an Integrated Circuit Card (ICC) transaction can be downgraded to a swiped transaction or a keyed transaction.
-    """
-
+        typing.Optional[IccCardDetailsDowngradeTo],
+        FieldMetadata(alias="downgradeTo"),
+        pydantic.Field(
+            alias="downgradeTo",
+            description="If an offline transaction is not approved using the initial entry method, reprocess the transaction using a downgraded entry method. \nFor example, an Integrated Circuit Card (ICC) transaction can be downgraded to a swiped transaction or a keyed transaction.",
+        ),
+    ] = None
     device: EncryptionCapableDevice
-    icc_data: typing_extensions.Annotated[str, FieldMetadata(alias="iccData")] = pydantic.Field()
-    """
-    Cardholder data from the ICC. The data consists of EMV tags in Tag-Length-Value (TLV) format.
-    """
-
-    first_digit_of_pan: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firstDigitOfPan")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    First digit of the card number.
-    """
-
+    icc_data: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="iccData"),
+        pydantic.Field(
+            alias="iccData",
+            description="Cardholder data from the ICC. The data consists of EMV tags in Tag-Length-Value (TLV) format.",
+        ),
+    ]
+    first_digit_of_pan: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="firstDigitOfPan"),
+        pydantic.Field(alias="firstDigitOfPan", description="First digit of the card number."),
+    ] = None
     cardholder_signature: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardholderSignature")
-    ] = pydantic.Field(default=None)
-    """
-    Cardholder's signature. For more information about how to format the signature, go to [How to send a signature to our gateway](https://docs.payroc.com/knowledge/basic-concepts/signature-capture).
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="cardholderSignature"),
+        pydantic.Field(
+            alias="cardholderSignature",
+            description="Cardholder's signature. For more information about how to format the signature, go to [How to send a signature to our gateway](https://docs.payroc.com/knowledge/basic-concepts/signature-capture).",
+        ),
+    ] = None
     ebt_details: typing_extensions.Annotated[
-        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails")
+        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails"), pydantic.Field(alias="ebtDetails")
     ] = None
 
     if IS_PYDANTIC_V2:

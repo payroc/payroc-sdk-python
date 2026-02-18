@@ -9,14 +9,14 @@ from ..core.serialization import FieldMetadata
 
 
 class ApplePayResponseSession(UniversalBaseModel):
-    start_session_response: typing_extensions.Annotated[str, FieldMetadata(alias="startSessionResponse")] = (
-        pydantic.Field()
-    )
-    """
-    Object that Apple returns when they start the merchant's Apple Pay session.  
-    
-    Send the content in this object to Apple to retrieve the cardholder's encrypted payment details.  
-    """
+    start_session_response: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="startSessionResponse"),
+        pydantic.Field(
+            alias="startSessionResponse",
+            description="Object that Apple returns when they start the merchant's Apple Pay session.  \n\nSend the content in this object to Apple to retrieve the cardholder's encrypted payment details.  ",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

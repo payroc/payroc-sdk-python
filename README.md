@@ -387,7 +387,7 @@ card_payment = PaymentRequestPaymentMethod_Card(
     card_details=CardPayloadCardDetails_Keyed(
         keyed_data=KeyedCardDetailsKeyedData_PlainText(
             card_number="4111111111111111",
-            expiry_date="1225",
+            expiry_date="1230",
             cvv="123"
         )
     )

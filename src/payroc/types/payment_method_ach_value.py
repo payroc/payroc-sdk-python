@@ -13,15 +13,16 @@ class PaymentMethodAchValue(UniversalBaseModel):
     Object that contains information about the funding account.
     """
 
-    routing_number: typing_extensions.Annotated[str, FieldMetadata(alias="routingNumber")] = pydantic.Field()
-    """
-    Routing number of the funding account.
-    """
-
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")] = pydantic.Field()
-    """
-    Account number of the funding account.
-    """
+    routing_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="routingNumber"),
+        pydantic.Field(alias="routingNumber", description="Routing number of the funding account."),
+    ]
+    account_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="accountNumber"),
+        pydantic.Field(alias="accountNumber", description="Account number of the funding account."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

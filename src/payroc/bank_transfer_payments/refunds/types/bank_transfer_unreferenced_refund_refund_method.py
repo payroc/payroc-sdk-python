@@ -16,17 +16,29 @@ from ....types.secure_token_payload_sec_code import SecureTokenPayloadSecCode
 
 class BankTransferUnreferencedRefundRefundMethod_Ach(UniversalBaseModel):
     """
-    Object that contains information about how the merchant refunds the customer.
+    Polymorphic object that contains payment details for the refund.
+
+    The value of the type parameter determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `secureToken` - Secure token details
     """
 
     type: typing.Literal["ach"] = "ach"
     account_type: typing_extensions.Annotated[
-        typing.Optional[AchPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[AchPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    sec_code: typing_extensions.Annotated[typing.Optional[AchPayloadSecCode], FieldMetadata(alias="secCode")] = None
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")]
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")]
-    routing_number: typing_extensions.Annotated[str, FieldMetadata(alias="routingNumber")]
+    sec_code: typing_extensions.Annotated[
+        typing.Optional[AchPayloadSecCode], FieldMetadata(alias="secCode"), pydantic.Field(alias="secCode")
+    ] = None
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount")
+    ]
+    account_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="accountNumber"), pydantic.Field(alias="accountNumber")
+    ]
+    routing_number: typing_extensions.Annotated[
+        str, FieldMetadata(alias="routingNumber"), pydantic.Field(alias="routingNumber")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -40,16 +52,22 @@ class BankTransferUnreferencedRefundRefundMethod_Ach(UniversalBaseModel):
 
 class BankTransferUnreferencedRefundRefundMethod_SecureToken(UniversalBaseModel):
     """
-    Object that contains information about how the merchant refunds the customer.
+    Polymorphic object that contains payment details for the refund.
+
+    The value of the type parameter determines which variant you should use:
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `secureToken` - Secure token details
     """
 
     type: typing.Literal["secureToken"] = "secureToken"
     account_type: typing_extensions.Annotated[
-        typing.Optional[SecureTokenPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[SecureTokenPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType"),
     ] = None
     token: str
     sec_code: typing_extensions.Annotated[
-        typing.Optional[SecureTokenPayloadSecCode], FieldMetadata(alias="secCode")
+        typing.Optional[SecureTokenPayloadSecCode], FieldMetadata(alias="secCode"), pydantic.Field(alias="secCode")
     ] = None
 
     if IS_PYDANTIC_V2:

@@ -17,13 +17,14 @@ class TransactionSummary(UniversalBaseModel):
     Object that contains summary information about the transaction that the dispute is linked to.
     """
 
-    transaction_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="transactionId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier of the transaction. If we can't match a dispute to a transaction, we don't return the transactionId or link object.
-    """
-
+    transaction_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="transactionId"),
+        pydantic.Field(
+            alias="transactionId",
+            description="Unique identifier of the transaction. If we can't match a dispute to a transaction, we don't return the transactionId or link object.",
+        ),
+    ] = None
     type: typing.Optional[TransactionSummaryType] = pydantic.Field(default=None)
     """
     Indicates the type of transaction.
@@ -35,12 +36,13 @@ class TransactionSummary(UniversalBaseModel):
     """
 
     entry_method: typing_extensions.Annotated[
-        typing.Optional[TransactionSummaryEntryMethod], FieldMetadata(alias="entryMethod")
-    ] = pydantic.Field(default=None)
-    """
-    Describes how the merchant received the payment details. If we can't match a dispute to a transaction, we don't return an entryMethod object.
-    """
-
+        typing.Optional[TransactionSummaryEntryMethod],
+        FieldMetadata(alias="entryMethod"),
+        pydantic.Field(
+            alias="entryMethod",
+            description="Describes how the merchant received the payment details. If we can't match a dispute to a transaction, we don't return an entryMethod object.",
+        ),
+    ] = None
     amount: typing.Optional[int] = pydantic.Field(default=None)
     """
     Total amount of the transaction. The value is in the currency's lowest denomination, for example, cents.

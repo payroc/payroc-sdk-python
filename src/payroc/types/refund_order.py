@@ -16,20 +16,19 @@ class RefundOrder(UniversalBaseModel):
     Object that contains information about the refund.
     """
 
-    order_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="orderId")] = pydantic.Field(
-        default=None
-    )
-    """
-    A unique identifier assigned by the merchant.
-    """
-
-    date_time: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="dateTime")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that our gateway processed the refund. The value follows the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) standard.
-    """
-
+    order_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="orderId"),
+        pydantic.Field(alias="orderId", description="A unique identifier assigned by the merchant."),
+    ] = None
+    date_time: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="dateTime"),
+        pydantic.Field(
+            alias="dateTime",
+            description="Date and time that our gateway processed the refund. The value follows the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) standard.",
+        ),
+    ] = None
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     Description of the transaction.
@@ -41,7 +40,9 @@ class RefundOrder(UniversalBaseModel):
     """
 
     currency: typing.Optional[Currency] = None
-    dcc_offer: typing_extensions.Annotated[typing.Optional[DccOffer], FieldMetadata(alias="dccOffer")] = None
+    dcc_offer: typing_extensions.Annotated[
+        typing.Optional[DccOffer], FieldMetadata(alias="dccOffer"), pydantic.Field(alias="dccOffer")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -14,13 +14,11 @@ class Shipping(UniversalBaseModel):
     Object that contains information about the customer and their shipping address.
     """
 
-    recipient_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="recipientName")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Recipient's name.
-    """
-
+    recipient_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="recipientName"),
+        pydantic.Field(alias="recipientName", description="Recipient's name."),
+    ] = None
     address: typing.Optional[Address] = None
 
     if IS_PYDANTIC_V2:

@@ -21,57 +21,58 @@ class DccOffer(UniversalBaseModel):
     Indicates if the cardholder accepted DCC offer.
     """
 
-    offer_reference: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="offerReference")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier of the DCC offer.
-    """
-
-    fx_amount: typing_extensions.Annotated[int, FieldMetadata(alias="fxAmount")] = pydantic.Field()
-    """
-    Amount in the cardholder’s currency in the currency’s lowest denomination, for example, cents.
-    """
-
-    fx_currency: typing_extensions.Annotated[Currency, FieldMetadata(alias="fxCurrency")] = pydantic.Field()
-    """
-    Currency of the transaction in the card’s currency. The value for the currency follows the [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) standard.
-    """
-
-    fx_currency_code: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="fxCurrencyCode")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Three-digit currency code for the card. This code follows the [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) standard.
-    """
-
+    offer_reference: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="offerReference"),
+        pydantic.Field(alias="offerReference", description="Unique identifier of the DCC offer."),
+    ] = None
+    fx_amount: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="fxAmount"),
+        pydantic.Field(
+            alias="fxAmount",
+            description="Amount in the cardholder’s currency in the currency’s lowest denomination, for example, cents.",
+        ),
+    ]
+    fx_currency: typing_extensions.Annotated[
+        Currency,
+        FieldMetadata(alias="fxCurrency"),
+        pydantic.Field(
+            alias="fxCurrency",
+            description="Currency of the transaction in the card’s currency. The value for the currency follows the [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) standard.",
+        ),
+    ]
+    fx_currency_code: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="fxCurrencyCode"),
+        pydantic.Field(
+            alias="fxCurrencyCode",
+            description="Three-digit currency code for the card. This code follows the [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) standard.",
+        ),
+    ] = None
     fx_currency_exponent: typing_extensions.Annotated[
-        typing.Optional[int], FieldMetadata(alias="fxCurrencyExponent")
-    ] = pydantic.Field(default=None)
-    """
-    Number of decimal places between the smallest currency unit and a whole currency unit. 
-    
-    For example, for GBP, the smallest currency unit is 1p and it is equal to £0.01. 
-    If you use GBP, the value for **fxCurrencyExponent** is 2.
-    """
-
-    fx_rate: typing_extensions.Annotated[float, FieldMetadata(alias="fxRate")] = pydantic.Field()
-    """
-    Foreign exchange rate for the card's currency.
-    """
-
+        typing.Optional[int],
+        FieldMetadata(alias="fxCurrencyExponent"),
+        pydantic.Field(
+            alias="fxCurrencyExponent",
+            description="Number of decimal places between the smallest currency unit and a whole currency unit. \n\nFor example, for GBP, the smallest currency unit is 1p and it is equal to £0.01. \nIf you use GBP, the value for **fxCurrencyExponent** is 2.",
+        ),
+    ] = None
+    fx_rate: typing_extensions.Annotated[
+        float,
+        FieldMetadata(alias="fxRate"),
+        pydantic.Field(alias="fxRate", description="Foreign exchange rate for the card's currency."),
+    ]
     markup: float = pydantic.Field()
     """
     Markup percentage rate that the DCC provider applies to the foreign exchange rate.
     """
 
-    markup_text: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="markupText")] = pydantic.Field(
-        default=None
-    )
-    """
-    Supporting text for the markup rate.
-    """
-
+    markup_text: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="markupText"),
+        pydantic.Field(alias="markupText", description="Supporting text for the markup rate."),
+    ] = None
     provider: typing.Optional[str] = pydantic.Field(default=None)
     """
     Name of the DCC provider.

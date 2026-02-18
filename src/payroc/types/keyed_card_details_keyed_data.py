@@ -13,12 +13,25 @@ from .encryption_capable_device import EncryptionCapableDevice
 
 
 class KeyedCardDetailsKeyedData_FullyEncrypted(UniversalBaseModel):
-    data_format: typing_extensions.Annotated[typing.Literal["fullyEncrypted"], FieldMetadata(alias="dataFormat")] = (
-        "fullyEncrypted"
-    )
+    """
+    Polymorphic object that contains payment card details that the merchant manually entered into the device.
+
+    The value of the dataFormat parameter determines which variant you should use:
+    -    `fullyEncrypted` - Some payment card details are encrypted.
+    -    `partiallyEncrypted` - Payment card details are in plain text.
+    -    `plainText` - All payment card details are encrypted.
+    """
+
+    data_format: typing_extensions.Annotated[
+        typing.Literal["fullyEncrypted"], FieldMetadata(alias="dataFormat"), pydantic.Field(alias="dataFormat")
+    ] = "fullyEncrypted"
     device: EncryptionCapableDevice
-    encrypted_data: typing_extensions.Annotated[str, FieldMetadata(alias="encryptedData")]
-    first_digit_of_pan: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firstDigitOfPan")] = None
+    encrypted_data: typing_extensions.Annotated[
+        str, FieldMetadata(alias="encryptedData"), pydantic.Field(alias="encryptedData")
+    ]
+    first_digit_of_pan: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="firstDigitOfPan"), pydantic.Field(alias="firstDigitOfPan")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -31,16 +44,31 @@ class KeyedCardDetailsKeyedData_FullyEncrypted(UniversalBaseModel):
 
 
 class KeyedCardDetailsKeyedData_PartiallyEncrypted(UniversalBaseModel):
+    """
+    Polymorphic object that contains payment card details that the merchant manually entered into the device.
+
+    The value of the dataFormat parameter determines which variant you should use:
+    -    `fullyEncrypted` - Some payment card details are encrypted.
+    -    `partiallyEncrypted` - Payment card details are in plain text.
+    -    `plainText` - All payment card details are encrypted.
+    """
+
     data_format: typing_extensions.Annotated[
-        typing.Literal["partiallyEncrypted"], FieldMetadata(alias="dataFormat")
+        typing.Literal["partiallyEncrypted"], FieldMetadata(alias="dataFormat"), pydantic.Field(alias="dataFormat")
     ] = "partiallyEncrypted"
     device: EncryptionCapableDevice
-    encrypted_pan: typing_extensions.Annotated[str, FieldMetadata(alias="encryptedPan")]
-    masked_pan: typing_extensions.Annotated[str, FieldMetadata(alias="maskedPan")]
-    expiry_date: typing_extensions.Annotated[str, FieldMetadata(alias="expiryDate")]
+    encrypted_pan: typing_extensions.Annotated[
+        str, FieldMetadata(alias="encryptedPan"), pydantic.Field(alias="encryptedPan")
+    ]
+    masked_pan: typing_extensions.Annotated[str, FieldMetadata(alias="maskedPan"), pydantic.Field(alias="maskedPan")]
+    expiry_date: typing_extensions.Annotated[str, FieldMetadata(alias="expiryDate"), pydantic.Field(alias="expiryDate")]
     cvv: typing.Optional[str] = None
-    cvv_encrypted: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cvvEncrypted")] = None
-    issue_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="issueNumber")] = None
+    cvv_encrypted: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="cvvEncrypted"), pydantic.Field(alias="cvvEncrypted")
+    ] = None
+    issue_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="issueNumber"), pydantic.Field(alias="issueNumber")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -53,14 +81,27 @@ class KeyedCardDetailsKeyedData_PartiallyEncrypted(UniversalBaseModel):
 
 
 class KeyedCardDetailsKeyedData_PlainText(UniversalBaseModel):
-    data_format: typing_extensions.Annotated[typing.Literal["plainText"], FieldMetadata(alias="dataFormat")] = (
-        "plainText"
-    )
+    """
+    Polymorphic object that contains payment card details that the merchant manually entered into the device.
+
+    The value of the dataFormat parameter determines which variant you should use:
+    -    `fullyEncrypted` - Some payment card details are encrypted.
+    -    `partiallyEncrypted` - Payment card details are in plain text.
+    -    `plainText` - All payment card details are encrypted.
+    """
+
+    data_format: typing_extensions.Annotated[
+        typing.Literal["plainText"], FieldMetadata(alias="dataFormat"), pydantic.Field(alias="dataFormat")
+    ] = "plainText"
     device: typing.Optional[Device] = None
-    card_number: typing_extensions.Annotated[str, FieldMetadata(alias="cardNumber")]
-    expiry_date: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="expiryDate")] = None
+    card_number: typing_extensions.Annotated[str, FieldMetadata(alias="cardNumber"), pydantic.Field(alias="cardNumber")]
+    expiry_date: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="expiryDate"), pydantic.Field(alias="expiryDate")
+    ] = None
     cvv: typing.Optional[str] = None
-    issue_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="issueNumber")] = None
+    issue_number: typing_extensions.Annotated[
+        typing.Optional[str], FieldMetadata(alias="issueNumber"), pydantic.Field(alias="issueNumber")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -175,7 +175,7 @@ class RawMerchantPlatformsClient:
         """
         Use this method to board a merchant with Payroc.
 
-        **Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/integrate/boarding).
+        **Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/board-merchants/boarding).
 
         In the request, include the following information:
         - Legal information, including its legal name and address.
@@ -635,9 +635,18 @@ class RawMerchantPlatformsClient:
         timezone : Timezone
 
         address : Address
+            Polymorphic object that contains address information for the processing account.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects. One contact method must be an email address.
+            Array of polymorphic objects, which contain contact information.
+
+            **Note:** You must provide an email address.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number.
 
         processing : Processing
 
@@ -924,7 +933,7 @@ class AsyncRawMerchantPlatformsClient:
         """
         Use this method to board a merchant with Payroc.
 
-        **Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/integrate/boarding).
+        **Note**: This method is part of our Boarding solution. To help you understand how this method works with other Boarding methods, go to [Board a Merchant](https://docs.payroc.com/guides/board-merchants/boarding).
 
         In the request, include the following information:
         - Legal information, including its legal name and address.
@@ -1384,9 +1393,18 @@ class AsyncRawMerchantPlatformsClient:
         timezone : Timezone
 
         address : Address
+            Polymorphic object that contains address information for the processing account.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects. One contact method must be an email address.
+            Array of polymorphic objects, which contain contact information.
+
+            **Note:** You must provide an email address.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number.
 
         processing : Processing
 

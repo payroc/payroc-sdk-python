@@ -13,26 +13,27 @@ class ProcessingCardAcceptanceSpecialityCardsOther(UniversalBaseModel):
     Object that contains information about other speciality cards that the merchant accepts.
     """
 
-    wex_merchant_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="wexMerchantNumber")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    If the merchant accepts WEX, provide their WEX merchant number.
-    """
-
-    voyager_merchant_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="voyagerMerchantId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    If the merchant accepts Voyager, provide their Voyager merchant ID.
-    """
-
-    fleet_merchant_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="fleetMerchantId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    If the merchant accepts Fleet, provide their Fleet merchant ID.
-    """
+    wex_merchant_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="wexMerchantNumber"),
+        pydantic.Field(
+            alias="wexMerchantNumber", description="If the merchant accepts WEX, provide their WEX merchant number."
+        ),
+    ] = None
+    voyager_merchant_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="voyagerMerchantId"),
+        pydantic.Field(
+            alias="voyagerMerchantId", description="If the merchant accepts Voyager, provide their Voyager merchant ID."
+        ),
+    ] = None
+    fleet_merchant_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="fleetMerchantId"),
+        pydantic.Field(
+            alias="fleetMerchantId", description="If the merchant accepts Fleet, provide their Fleet merchant ID."
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

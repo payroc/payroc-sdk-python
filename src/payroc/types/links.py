@@ -12,7 +12,10 @@ class Links(UniversalBaseModel):
     Array of links related to your order items.
     """
 
-    links: typing.Optional[typing.List[ProcessingTerminalSummary]] = None
+    links: typing.Optional[typing.List[ProcessingTerminalSummary]] = pydantic.Field(default=None)
+    """
+    Polymorphic object that contains information about the processing terminal that the order is linked to.
+    """
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

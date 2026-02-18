@@ -12,11 +12,15 @@ from ..core.serialization import FieldMetadata
 
 class BaseUsPlatinumSecurity_Monthly(UniversalBaseModel):
     """
-    Object that contains information about the Platinum Security fee.
+    Polymorphic object that contains billing details for Platinum Security.
+
+    The value of the billingFrequency field determines which variant you should use:
+    -    `monthly` - We collect the fee for Platinum Security each month.
+    -    `annual` - We collect the fee for Platinum Security each year.
     """
 
     billing_frequency: typing_extensions.Annotated[
-        typing.Literal["monthly"], FieldMetadata(alias="billingFrequency")
+        typing.Literal["monthly"], FieldMetadata(alias="billingFrequency"), pydantic.Field(alias="billingFrequency")
     ] = "monthly"
     amount: typing.Optional[int] = None
 
@@ -32,11 +36,15 @@ class BaseUsPlatinumSecurity_Monthly(UniversalBaseModel):
 
 class BaseUsPlatinumSecurity_Annual(UniversalBaseModel):
     """
-    Object that contains information about the Platinum Security fee.
+    Polymorphic object that contains billing details for Platinum Security.
+
+    The value of the billingFrequency field determines which variant you should use:
+    -    `monthly` - We collect the fee for Platinum Security each month.
+    -    `annual` - We collect the fee for Platinum Security each year.
     """
 
     billing_frequency: typing_extensions.Annotated[
-        typing.Literal["annual"], FieldMetadata(alias="billingFrequency")
+        typing.Literal["annual"], FieldMetadata(alias="billingFrequency"), pydantic.Field(alias="billingFrequency")
     ] = "annual"
     amount: typing.Optional[int] = None
 

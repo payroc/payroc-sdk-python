@@ -11,11 +11,13 @@ from .device_instruction import DeviceInstruction
 
 class SignatureInstruction(DeviceInstruction):
     signature_instruction_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="signatureInstructionId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier that our gateway assigned to the instruction.
-    """
+        typing.Optional[str],
+        FieldMetadata(alias="signatureInstructionId"),
+        pydantic.Field(
+            alias="signatureInstructionId",
+            description="Unique identifier that our gateway assigned to the instruction.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

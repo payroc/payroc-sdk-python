@@ -11,7 +11,7 @@ from .payment_link_email_share_event import PaymentLinkEmailShareEvent
 class SharingEventPaginatedList(PaginatedList):
     data: typing.Optional[typing.List[PaymentLinkEmailShareEvent]] = pydantic.Field(default=None)
     """
-    Array of sharing events for the payment link.
+    Array of polymorphic objects that contain information about how the merchant shared a payment link.
     """
 
     if IS_PYDANTIC_V2:

@@ -15,27 +15,28 @@ from .payment_methods import PaymentMethods
 
 
 class FundingAccount(UniversalBaseModel):
-    funding_account_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="fundingAccountId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the funding account.
-    """
-
-    created_date: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that we received your request to create the funding account in our system.
-    """
-
+    funding_account_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="fundingAccountId"),
+        pydantic.Field(
+            alias="fundingAccountId", description="Unique identifier that we assigned to the funding account."
+        ),
+    ] = None
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date and time that we received your request to create the funding account in our system.",
+        ),
+    ] = None
     last_modified_date: typing_extensions.Annotated[
-        typing.Optional[dt.datetime], FieldMetadata(alias="lastModifiedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date and time that the funding account was last modified.
-    """
-
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(
+            alias="lastModifiedDate", description="Date and time that the funding account was last modified."
+        ),
+    ] = None
     status: typing.Optional[FundingAccountStatus] = pydantic.Field(default=None)
     """
     Status of the funding account. The value is one of the following:
@@ -60,18 +61,16 @@ class FundingAccount(UniversalBaseModel):
     **Note:** If the funding account is associated with a funding recipient, we accept only a value of `credit`.   
     """
 
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")] = pydantic.Field()
-    """
-    Name of the account holder.
-    """
-
-    payment_methods: typing_extensions.Annotated[PaymentMethods, FieldMetadata(alias="paymentMethods")] = (
-        pydantic.Field()
-    )
-    """
-    Array of paymentMethod objects.
-    """
-
+    name_on_account: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="nameOnAccount"),
+        pydantic.Field(alias="nameOnAccount", description="Name of the account holder."),
+    ]
+    payment_methods: typing_extensions.Annotated[
+        PaymentMethods,
+        FieldMetadata(alias="paymentMethods"),
+        pydantic.Field(alias="paymentMethods", description="Array of paymentMethod objects."),
+    ]
     metadata: typing.Optional[typing.Dict[str, str]] = pydantic.Field(default=None)
     """
     [Metadata](https://docs.payroc.com/api/metadata) object you can use to include custom data with your request.

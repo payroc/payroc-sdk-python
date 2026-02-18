@@ -13,20 +13,19 @@ class AchSource(UniversalBaseModel):
     Object that contains the customer's account details.
     """
 
-    name_on_account: typing_extensions.Annotated[str, FieldMetadata(alias="nameOnAccount")] = pydantic.Field()
-    """
-    Customer's name.
-    """
-
-    account_number: typing_extensions.Annotated[str, FieldMetadata(alias="accountNumber")] = pydantic.Field()
-    """
-    Customer's account number.
-    """
-
-    routing_number: typing_extensions.Annotated[str, FieldMetadata(alias="routingNumber")] = pydantic.Field()
-    """
-    Routing number of the customer's account.
-    """
+    name_on_account: typing_extensions.Annotated[
+        str, FieldMetadata(alias="nameOnAccount"), pydantic.Field(alias="nameOnAccount", description="Customer's name.")
+    ]
+    account_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="accountNumber"),
+        pydantic.Field(alias="accountNumber", description="Customer's account number."),
+    ]
+    routing_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="routingNumber"),
+        pydantic.Field(alias="routingNumber", description="Routing number of the customer's account."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

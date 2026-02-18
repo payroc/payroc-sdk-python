@@ -16,7 +16,7 @@ class SubscriptionOrderBreakdownBase(UniversalBaseModel):
     """
 
     convenience_fee: typing_extensions.Annotated[
-        typing.Optional[ConvenienceFee], FieldMetadata(alias="convenienceFee")
+        typing.Optional[ConvenienceFee], FieldMetadata(alias="convenienceFee"), pydantic.Field(alias="convenienceFee")
     ] = None
 
     if IS_PYDANTIC_V2:

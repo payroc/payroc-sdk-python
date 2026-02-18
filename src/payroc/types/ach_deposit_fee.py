@@ -16,20 +16,21 @@ class AchDepositFee(UniversalBaseModel):
     Object that contains information about the ACH deposit fee.
     """
 
-    association_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="associationDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that we sent the transaction to the cards brands for clearing. The format of this value is **YYYY-MM-DD**.
-    """
-
-    adjustment_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="adjustmentDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date of the adjustment. The format of this value is **YYYY-MM-DD**.
-    """
-
+    association_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="associationDate"),
+        pydantic.Field(
+            alias="associationDate",
+            description="Date that we sent the transaction to the cards brands for clearing. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
+    adjustment_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="adjustmentDate"),
+        pydantic.Field(
+            alias="adjustmentDate", description="Date of the adjustment. The format of this value is **YYYY-MM-DD**."
+        ),
+    ] = None
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     Description of the ACH deposit fee.
@@ -41,9 +42,9 @@ class AchDepositFee(UniversalBaseModel):
     """
 
     merchant: typing.Optional[MerchantSummary] = None
-    ach_deposit: typing_extensions.Annotated[typing.Optional[AchDepositSummary], FieldMetadata(alias="achDeposit")] = (
-        None
-    )
+    ach_deposit: typing_extensions.Annotated[
+        typing.Optional[AchDepositSummary], FieldMetadata(alias="achDeposit"), pydantic.Field(alias="achDeposit")
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

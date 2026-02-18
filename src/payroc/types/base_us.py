@@ -16,45 +16,50 @@ class BaseUs(UniversalBaseModel):
     """
 
     address_verification: typing_extensions.Annotated[
-        typing.Optional[int], FieldMetadata(alias="addressVerification")
-    ] = pydantic.Field(default=None)
-    """
-    Fee for each address verification request. The value is in the currency's lowest denomination, for example, cents.
-    """
-
-    annual_fee: typing_extensions.Annotated[BaseUsAnnualFee, FieldMetadata(alias="annualFee")] = pydantic.Field()
-    """
-    Object that contains information about the annual fee.
-    """
-
+        typing.Optional[int],
+        FieldMetadata(alias="addressVerification"),
+        pydantic.Field(
+            alias="addressVerification",
+            description="Fee for each address verification request. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    annual_fee: typing_extensions.Annotated[
+        BaseUsAnnualFee,
+        FieldMetadata(alias="annualFee"),
+        pydantic.Field(alias="annualFee", description="Object that contains information about the annual fee."),
+    ]
     regulatory_assistance_program: typing_extensions.Annotated[
-        typing.Optional[int], FieldMetadata(alias="regulatoryAssistanceProgram")
-    ] = pydantic.Field(default=None)
-    """
-    Annual fee for the regulatory assistance program. The value is in the currency's lowest denomination, for example, cents.
-    """
-
-    pci_non_compliance: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="pciNonCompliance")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Fee that we apply each month if you aren't compliant with PCI standards. The value is in the currency's lowest denomination, for example, cents.
-    """
-
-    merchant_advantage: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="merchantAdvantage")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Monthly fee for Payroc Advantage. The value is in the currency's lowest denomination, for example, cents.
-    """
-
+        typing.Optional[int],
+        FieldMetadata(alias="regulatoryAssistanceProgram"),
+        pydantic.Field(
+            alias="regulatoryAssistanceProgram",
+            description="Annual fee for the regulatory assistance program. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    pci_non_compliance: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="pciNonCompliance"),
+        pydantic.Field(
+            alias="pciNonCompliance",
+            description="Fee that we apply each month if you aren't compliant with PCI standards. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    merchant_advantage: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="merchantAdvantage"),
+        pydantic.Field(
+            alias="merchantAdvantage",
+            description="Monthly fee for Payroc Advantage. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
     platinum_security: typing_extensions.Annotated[
-        typing.Optional[BaseUsPlatinumSecurity], FieldMetadata(alias="platinumSecurity")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains information about the Platinum Security fee.
-    """
-
+        typing.Optional[BaseUsPlatinumSecurity],
+        FieldMetadata(alias="platinumSecurity"),
+        pydantic.Field(
+            alias="platinumSecurity",
+            description="Polymorphic object that contains billing details for Platinum Security.  \n\nThe value of the billingFrequency field determines which variant you should use:  \n-\t`monthly` - We collect the fee for Platinum Security each month.\n-\t`annual` - We collect the fee for Platinum Security each year. ",
+        ),
+    ] = None
     maintenance: int = pydantic.Field()
     """
     Monthly fee for maintenance. The value is in the currency's lowest denomination, for example, cents.
@@ -66,12 +71,13 @@ class BaseUs(UniversalBaseModel):
     """
 
     voice_authorization: typing_extensions.Annotated[
-        typing.Optional[int], FieldMetadata(alias="voiceAuthorization")
-    ] = pydantic.Field(default=None)
-    """
-    Fee for each voice authorization. The value is in the currency's lowest denomination, for example, cents.
-    """
-
+        typing.Optional[int],
+        FieldMetadata(alias="voiceAuthorization"),
+        pydantic.Field(
+            alias="voiceAuthorization",
+            description="Fee for each voice authorization. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
     chargeback: typing.Optional[int] = pydantic.Field(default=None)
     """
     Fee for each chargeback. The value is in the currency's lowest denomination, for example, cents.
@@ -87,12 +93,14 @@ class BaseUs(UniversalBaseModel):
     Fee for each batch. The value is in the currency's lowest denomination, for example, cents.
     """
 
-    early_termination: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="earlyTermination")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Fee for early termination. The value is in the currency's lowest denomination, for example, cents.
-    """
+    early_termination: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="earlyTermination"),
+        pydantic.Field(
+            alias="earlyTermination",
+            description="Fee for early termination. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

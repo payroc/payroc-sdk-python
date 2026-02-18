@@ -27,7 +27,23 @@ def test_funding_fundingInstructions_create() -> None:
     """Test create endpoint with WireMock"""
     test_id = "funding.funding_instructions.create.0"
     client = get_client(test_id)
-    client.funding.funding_instructions.create(idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324")
+    client.funding.funding_instructions.create(
+        idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
+        merchants=[
+            {
+                "merchant_id": "4525644354",
+                "recipients": [
+                    {
+                        "funding_account_id": 123,
+                        "payment_method": "ACH",
+                        "amount": {"value": 120000, "currency": "USD"},
+                        "metadata": {"yourCustomField": "abc123"},
+                    }
+                ],
+            }
+        ],
+        metadata={"yourCustomField": "abc123"},
+    )
     verify_request_count(test_id, "POST", "/funding-instructions", None, 1)
 
 
@@ -43,7 +59,23 @@ def test_funding_fundingInstructions_update() -> None:
     """Test update endpoint with WireMock"""
     test_id = "funding.funding_instructions.update.0"
     client = get_client(test_id)
-    client.funding.funding_instructions.update(instruction_id_=1)
+    client.funding.funding_instructions.update(
+        instruction_id_=1,
+        merchants=[
+            {
+                "merchant_id": "9876543219",
+                "recipients": [
+                    {
+                        "funding_account_id": 124,
+                        "payment_method": "ACH",
+                        "amount": {"value": 69950, "currency": "USD"},
+                        "metadata": {"supplier": "IT Support Services"},
+                    }
+                ],
+            }
+        ],
+        metadata={"instructionCreatedBy": "Jane Doe"},
+    )
     verify_request_count(test_id, "PUT", "/funding-instructions/1", None, 1)
 
 

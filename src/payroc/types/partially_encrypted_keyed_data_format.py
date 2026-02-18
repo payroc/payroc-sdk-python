@@ -15,40 +15,39 @@ class PartiallyEncryptedKeyedDataFormat(UniversalBaseModel):
     """
 
     device: EncryptionCapableDevice
-    encrypted_pan: typing_extensions.Annotated[str, FieldMetadata(alias="encryptedPan")] = pydantic.Field()
-    """
-    Encrypted card number.
-    """
-
-    masked_pan: typing_extensions.Annotated[str, FieldMetadata(alias="maskedPan")] = pydantic.Field()
-    """
-    Masked card number. 
-    The gateway shows only the first six digits and the last four digits of the account number. For example, `453985******7062`.
-    """
-
-    expiry_date: typing_extensions.Annotated[str, FieldMetadata(alias="expiryDate")] = pydantic.Field()
-    """
-    Expiry date of the customer’s card.
-    """
-
+    encrypted_pan: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="encryptedPan"),
+        pydantic.Field(alias="encryptedPan", description="Encrypted card number."),
+    ]
+    masked_pan: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="maskedPan"),
+        pydantic.Field(
+            alias="maskedPan",
+            description="Masked card number. \nThe gateway shows only the first six digits and the last four digits of the account number. For example, `453985******7062`.",
+        ),
+    ]
+    expiry_date: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="expiryDate"),
+        pydantic.Field(alias="expiryDate", description="Expiry date of the customer’s card."),
+    ]
     cvv: typing.Optional[str] = pydantic.Field(default=None)
     """
     Security code of the customer’s card.
     """
 
-    cvv_encrypted: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cvvEncrypted")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Encrypted security code data.
-    """
-
-    issue_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="issueNumber")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Issue number of the customer’s card.
-    """
+    cvv_encrypted: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="cvvEncrypted"),
+        pydantic.Field(alias="cvvEncrypted", description="Encrypted security code data."),
+    ] = None
+    issue_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="issueNumber"),
+        pydantic.Field(alias="issueNumber", description="Issue number of the customer’s card."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

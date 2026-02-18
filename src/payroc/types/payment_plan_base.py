@@ -14,18 +14,21 @@ from .payment_plan_base_type import PaymentPlanBaseType
 
 
 class PaymentPlanBase(UniversalBaseModel):
-    payment_plan_id: typing_extensions.Annotated[str, FieldMetadata(alias="paymentPlanId")] = pydantic.Field()
-    """
-    Unique identifier that the merchant assigns to the payment plan.
-    """
-
+    payment_plan_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="paymentPlanId"),
+        pydantic.Field(
+            alias="paymentPlanId", description="Unique identifier that the merchant assigns to the payment plan."
+        ),
+    ]
     processing_terminal_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="processingTerminalId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier of the terminal that the payment plan is assigned to.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(
+            alias="processingTerminalId",
+            description="Unique identifier of the terminal that the payment plan is assigned to.",
+        ),
+    ] = None
     name: str = pydantic.Field()
     """
     Name of the payment plan.
@@ -56,26 +59,30 @@ class PaymentPlanBase(UniversalBaseModel):
     Indicates how often the merchant or the terminal collects a payment from the customer.
     """
 
-    on_update: typing_extensions.Annotated[PaymentPlanBaseOnUpdate, FieldMetadata(alias="onUpdate")] = pydantic.Field()
-    """
-    Indicates whether any changes that the merchant makes to the payment plan apply to existing subscriptions.
-    - `update` - Changes apply to existing subscriptions.
-    - `continue` - Changes don't apply to existing subscriptions.
-    """
-
-    on_delete: typing_extensions.Annotated[PaymentPlanBaseOnDelete, FieldMetadata(alias="onDelete")] = pydantic.Field()
-    """
-    Indicates what happens to existing subscriptions if the merchant deletes the payment plan.
-    - `complete` - Stops existing subscriptions.
-    - `continue` - Continues existing subscriptions.
-    """
-
+    on_update: typing_extensions.Annotated[
+        PaymentPlanBaseOnUpdate,
+        FieldMetadata(alias="onUpdate"),
+        pydantic.Field(
+            alias="onUpdate",
+            description="Indicates whether any changes that the merchant makes to the payment plan apply to existing subscriptions.\n- `update` - Changes apply to existing subscriptions.\n- `continue` - Changes don't apply to existing subscriptions.",
+        ),
+    ]
+    on_delete: typing_extensions.Annotated[
+        PaymentPlanBaseOnDelete,
+        FieldMetadata(alias="onDelete"),
+        pydantic.Field(
+            alias="onDelete",
+            description="Indicates what happens to existing subscriptions if the merchant deletes the payment plan.\n- `complete` - Stops existing subscriptions.\n- `continue` - Continues existing subscriptions.",
+        ),
+    ]
     custom_field_names: typing_extensions.Annotated[
-        typing.Optional[typing.List[str]], FieldMetadata(alias="customFieldNames")
-    ] = pydantic.Field(default=None)
-    """
-    Array of custom fields that you can use in subscriptions linked to the payment plan.
-    """
+        typing.Optional[typing.List[str]],
+        FieldMetadata(alias="customFieldNames"),
+        pydantic.Field(
+            alias="customFieldNames",
+            description="Array of custom fields that you can use in subscriptions linked to the payment plan.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

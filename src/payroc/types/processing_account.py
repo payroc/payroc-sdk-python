@@ -23,26 +23,25 @@ from .timezone import Timezone
 
 class ProcessingAccount(UniversalBaseModel):
     processing_account_id: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="processingAccountId")
-    ] = pydantic.Field(default=None)
-    """
-    Unique identifier of the processing account.
-    """
-
-    created_date: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that we received your request to create the processing account in our system.
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="processingAccountId"),
+        pydantic.Field(alias="processingAccountId", description="Unique identifier of the processing account."),
+    ] = None
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date and time that we received your request to create the processing account in our system.",
+        ),
+    ] = None
     last_modified_date: typing_extensions.Annotated[
-        typing.Optional[dt.datetime], FieldMetadata(alias="lastModifiedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date and time that the processing account was last modified.
-    """
-
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(
+            alias="lastModifiedDate", description="Date and time that the processing account was last modified."
+        ),
+    ] = None
     status: typing.Optional[ProcessingAccountStatus] = pydantic.Field(default=None)
     """
     Status of the processing account.  
@@ -55,14 +54,14 @@ class ProcessingAccount(UniversalBaseModel):
     - `rejected` - We rejected the application for the processing account.  
     - `terminated` - Processing account is closed.  
     - `cancelled` - Merchant withdrew the application for the processing account.  
-    **Note**: You can subscribe to our processingAccount.status.changed event to get notifications when we change the status of a processing account. For more information about how to subscribe to events, go to [Event Subscriptions](https://docs.payroc.com/guides/integrate/event-subscriptions).
+    **Note**: You can subscribe to our processingAccount.status.changed event to get notifications when we change the status of a processing account. For more information about how to subscribe to events, go to [Event Subscriptions](https://docs.payroc.com/guides/board-merchants/event-subscriptions).
     """
 
-    doing_business_as: typing_extensions.Annotated[str, FieldMetadata(alias="doingBusinessAs")] = pydantic.Field()
-    """
-    Trading name of the business.
-    """
-
+    doing_business_as: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="doingBusinessAs"),
+        pydantic.Field(alias="doingBusinessAs", description="Trading name of the business."),
+    ]
     owners: typing.Optional[typing.List[ProcessingAccountOwnersItem]] = pydantic.Field(default=None)
     """
     Object that contains information about the owners of the business.
@@ -73,41 +72,46 @@ class ProcessingAccount(UniversalBaseModel):
     Website address of the business.
     """
 
-    business_type: typing_extensions.Annotated[ProcessingAccountBusinessType, FieldMetadata(alias="businessType")] = (
-        pydantic.Field()
-    )
-    """
-    Type of business.
-    """
-
-    category_code: typing_extensions.Annotated[int, FieldMetadata(alias="categoryCode")] = pydantic.Field()
-    """
-    Merchant Category Code (MCC) for the type of business.
-    """
-
-    merchandise_or_service_sold: typing_extensions.Annotated[str, FieldMetadata(alias="merchandiseOrServiceSold")] = (
-        pydantic.Field()
-    )
-    """
-    Description of the services or merchandise sold by the business.
-    """
-
+    business_type: typing_extensions.Annotated[
+        ProcessingAccountBusinessType,
+        FieldMetadata(alias="businessType"),
+        pydantic.Field(alias="businessType", description="Type of business."),
+    ]
+    category_code: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="categoryCode"),
+        pydantic.Field(alias="categoryCode", description="Merchant Category Code (MCC) for the type of business."),
+    ]
+    merchandise_or_service_sold: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="merchandiseOrServiceSold"),
+        pydantic.Field(
+            alias="merchandiseOrServiceSold",
+            description="Description of the services or merchandise sold by the business.",
+        ),
+    ]
     business_start_date: typing_extensions.Annotated[
-        typing.Optional[dt.date], FieldMetadata(alias="businessStartDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date that the business was established. The format of the value is **YYYY-MM-DD**.
-    """
-
+        typing.Optional[dt.date],
+        FieldMetadata(alias="businessStartDate"),
+        pydantic.Field(
+            alias="businessStartDate",
+            description="Date that the business was established. The format of the value is **YYYY-MM-DD**.",
+        ),
+    ] = None
     timezone: Timezone
-    address: Address
-    contact_methods: typing_extensions.Annotated[typing.List[ContactMethod], FieldMetadata(alias="contactMethods")] = (
-        pydantic.Field()
-    )
+    address: Address = pydantic.Field()
     """
-    Array of contactMethods objects for the processing account. At least one contactMethod must be an email address.
+    Polymorphic object that contains address information for the processing account.
     """
 
+    contact_methods: typing_extensions.Annotated[
+        typing.List[ContactMethod],
+        FieldMetadata(alias="contactMethods"),
+        pydantic.Field(
+            alias="contactMethods",
+            description="Array of polymorphic objects, which contain contact information.  \n\n**Note:** You must provide an email address.\n\nThe value of the type parameter determines which variant you should use:  \n-\t`email` - Email address\n-\t`phone` - Phone number\n-\t`mobile` - Mobile number\n-\t`fax` - Fax number",
+        ),
+    ]
     processing: Processing
     funding: Funding
     pricing: ProcessingAccountPricing = pydantic.Field()

@@ -9,13 +9,11 @@ from ..core.serialization import FieldMetadata
 
 
 class BankAccountVerificationResult(UniversalBaseModel):
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier that we assigned to the terminal.
-    """
-
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(alias="processingTerminalId", description="Unique identifier that we assigned to the terminal."),
+    ]
     verified: bool = pydantic.Field()
     """
     Indicates if the customer's bank account details are valid.  

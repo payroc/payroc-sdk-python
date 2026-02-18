@@ -605,7 +605,11 @@ class RawRefundsClient:
         order : RefundOrder
 
         refund_method : UnreferencedRefundRefundMethod
-            Object that contains information about how the merchant refunds the customer.
+            Polymorphic object that contains information about the payment method that the merchant uses to refund the customer.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
 
         operator : typing.Optional[str]
             Operator who initiated the request.
@@ -901,7 +905,11 @@ class RawRefundsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         adjustments : typing.Sequence[RefundAdjustmentAdjustmentsItem]
-            Array of objects that contain information about the adjustments to the refund.
+            Array of polymorphic objects that contain information about adjustments to the refund.
+
+            The value of the type parameter determines which variant you should use:
+            -    `status` - Status of the transaction.
+            -    `customer` - Customer's contact information and shipping address.
 
         operator : typing.Optional[str]
             Operator who requested the adjustment to the refund.
@@ -1734,7 +1742,11 @@ class AsyncRawRefundsClient:
         order : RefundOrder
 
         refund_method : UnreferencedRefundRefundMethod
-            Object that contains information about how the merchant refunds the customer.
+            Polymorphic object that contains information about the payment method that the merchant uses to refund the customer.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
 
         operator : typing.Optional[str]
             Operator who initiated the request.
@@ -2030,7 +2042,11 @@ class AsyncRawRefundsClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         adjustments : typing.Sequence[RefundAdjustmentAdjustmentsItem]
-            Array of objects that contain information about the adjustments to the refund.
+            Array of polymorphic objects that contain information about adjustments to the refund.
+
+            The value of the type parameter determines which variant you should use:
+            -    `status` - Status of the transaction.
+            -    `customer` - Customer's contact information and shipping address.
 
         operator : typing.Optional[str]
             Operator who requested the adjustment to the refund.

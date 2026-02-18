@@ -18,22 +18,30 @@ class FlatRateFees(UniversalBaseModel):
     Object that contains information about the Flat Rate fees.
     """
 
-    standard_cards: typing_extensions.Annotated[ProcessorFee, FieldMetadata(alias="standardCards")] = pydantic.Field()
-    """
-    Object that contains the fees for standard card transactions.
-    """
-
+    standard_cards: typing_extensions.Annotated[
+        ProcessorFee,
+        FieldMetadata(alias="standardCards"),
+        pydantic.Field(
+            alias="standardCards", description="Object that contains the fees for standard card transactions."
+        ),
+    ]
     amex: typing.Optional[FlatRateFeesAmex] = pydantic.Field(default=None)
     """
-    Object that contains the fees for American Express transactions.
+    Polymorphic object that contains fees for American Express transactions.
     """
 
-    pin_debit: typing_extensions.Annotated[typing.Optional[PinDebit], FieldMetadata(alias="pinDebit")] = None
+    pin_debit: typing_extensions.Annotated[
+        typing.Optional[PinDebit], FieldMetadata(alias="pinDebit"), pydantic.Field(alias="pinDebit")
+    ] = None
     electronic_benefits_transfer: typing_extensions.Annotated[
-        typing.Optional[ElectronicBenefitsTransfer], FieldMetadata(alias="electronicBenefitsTransfer")
+        typing.Optional[ElectronicBenefitsTransfer],
+        FieldMetadata(alias="electronicBenefitsTransfer"),
+        pydantic.Field(alias="electronicBenefitsTransfer"),
     ] = None
     speciality_cards: typing_extensions.Annotated[
-        typing.Optional[SpecialityCards], FieldMetadata(alias="specialityCards")
+        typing.Optional[SpecialityCards],
+        FieldMetadata(alias="specialityCards"),
+        pydantic.Field(alias="specialityCards"),
     ] = None
 
     if IS_PYDANTIC_V2:

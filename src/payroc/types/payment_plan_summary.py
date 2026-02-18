@@ -10,11 +10,13 @@ from .link import Link
 
 
 class PaymentPlanSummary(UniversalBaseModel):
-    payment_plan_id: typing_extensions.Annotated[str, FieldMetadata(alias="paymentPlanId")] = pydantic.Field()
-    """
-    Unique identifier that the merchant assigns to the payment plan.
-    """
-
+    payment_plan_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="paymentPlanId"),
+        pydantic.Field(
+            alias="paymentPlanId", description="Unique identifier that the merchant assigns to the payment plan."
+        ),
+    ]
     name: str = pydantic.Field()
     """
     Name of the payment plan.

@@ -14,16 +14,18 @@ from ....types.secure_token_payload_sec_code import SecureTokenPayloadSecCode
 
 class SubscriptionRequestPaymentMethod_SecureToken(UniversalBaseModel):
     """
-    Object that contains information about the customer's payment details.
+    Polymorphic object that contains information about the secure token.
     """
 
     type: typing.Literal["secureToken"] = "secureToken"
     account_type: typing_extensions.Annotated[
-        typing.Optional[SecureTokenPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[SecureTokenPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType"),
     ] = None
     token: str
     sec_code: typing_extensions.Annotated[
-        typing.Optional[SecureTokenPayloadSecCode], FieldMetadata(alias="secCode")
+        typing.Optional[SecureTokenPayloadSecCode], FieldMetadata(alias="secCode"), pydantic.Field(alias="secCode")
     ] = None
 
     if IS_PYDANTIC_V2:

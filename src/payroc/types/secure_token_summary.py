@@ -15,16 +15,16 @@ class SecureTokenSummary(UniversalBaseModel):
     Object that contains information about the secure token.
     """
 
-    secure_token_id: typing_extensions.Annotated[str, FieldMetadata(alias="secureTokenId")] = pydantic.Field()
-    """
-    Unique identifier that the merchant assigned to the secure token.
-    """
-
-    customer_name: typing_extensions.Annotated[str, FieldMetadata(alias="customerName")] = pydantic.Field()
-    """
-    Customer's name.
-    """
-
+    secure_token_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="secureTokenId"),
+        pydantic.Field(
+            alias="secureTokenId", description="Unique identifier that the merchant assigned to the secure token."
+        ),
+    ]
+    customer_name: typing_extensions.Annotated[
+        str, FieldMetadata(alias="customerName"), pydantic.Field(alias="customerName", description="Customer's name.")
+    ]
     token: str = pydantic.Field()
     """
     Token that the merchant can use in future transactions to represent the customer's payment details. The token:  

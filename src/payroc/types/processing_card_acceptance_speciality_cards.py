@@ -23,19 +23,19 @@ class ProcessingCardAcceptanceSpecialityCards(UniversalBaseModel):
     american_express_direct: typing_extensions.Annotated[
         typing.Optional[ProcessingCardAcceptanceSpecialityCardsAmericanExpressDirect],
         FieldMetadata(alias="americanExpressDirect"),
-    ] = pydantic.Field(default=None)
-    """
-    Object that indicates if the merchant accepts American Express Direct cards and contains the merchant’s American Express merchant number.
-    """
-
+        pydantic.Field(
+            alias="americanExpressDirect",
+            description="Object that indicates if the merchant accepts American Express Direct cards and contains the merchant’s American Express merchant number.",
+        ),
+    ] = None
     electronic_benefits_transfer: typing_extensions.Annotated[
         typing.Optional[ProcessingCardAcceptanceSpecialityCardsElectronicBenefitsTransfer],
         FieldMetadata(alias="electronicBenefitsTransfer"),
-    ] = pydantic.Field(default=None)
-    """
-    Object that indicates if the merchant accepts Electronic Benefits Transfer (EBT) cards and contains the merchant’s Food and Nutrition Services (FNS) number.
-    """
-
+        pydantic.Field(
+            alias="electronicBenefitsTransfer",
+            description="Object that indicates if the merchant accepts Electronic Benefits Transfer (EBT) cards and contains the merchant’s Food and Nutrition Services (FNS) number.",
+        ),
+    ] = None
     other: typing.Optional[ProcessingCardAcceptanceSpecialityCardsOther] = pydantic.Field(default=None)
     """
     Object that contains information about other speciality cards that the merchant accepts.

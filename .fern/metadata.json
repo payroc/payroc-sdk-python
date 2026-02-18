@@ -1,18 +1,19 @@
 {
-  "cliVersion": "3.0.3",
+  "cliVersion": "3.78.0",
   "generatorName": "fernapi/fern-python-sdk",
-  "generatorVersion": "4.46.4-rc0",
+  "generatorVersion": "4.57.1",
   "generatorConfig": {
     "client": {
-      "class_name": "BasePayroc",
-      "filename": "base_client.py",
-      "exported_class_name": "Payroc",
-      "exported_filename": "client.py"
+      "class_name": "Payroc"
     },
     "custom_pager_name": "PayrocPager",
     "enable_wire_tests": true,
     "extra_dependencies": {
       "sentry-sdk": ">=2.0.0"
-    }
-  }
+    },
+    "import_paths": [
+      "sentry_integration"
+    ]
+  },
+  "sdkVersion": "0.0.3698"
 }

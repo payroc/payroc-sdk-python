@@ -11,9 +11,15 @@ from ..core.serialization import FieldMetadata
 
 
 class KeyedCardDetailsPinDetails_Dukpt(UniversalBaseModel):
-    data_format: typing_extensions.Annotated[typing.Literal["dukpt"], FieldMetadata(alias="dataFormat")] = "dukpt"
+    """
+    Polymorphic object that contains information about the customer's PIN.
+    """
+
+    data_format: typing_extensions.Annotated[
+        typing.Literal["dukpt"], FieldMetadata(alias="dataFormat"), pydantic.Field(alias="dataFormat")
+    ] = "dukpt"
     pin: str
-    pin_ksn: typing_extensions.Annotated[str, FieldMetadata(alias="pinKsn")]
+    pin_ksn: typing_extensions.Annotated[str, FieldMetadata(alias="pinKsn"), pydantic.Field(alias="pinKsn")]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

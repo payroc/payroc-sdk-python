@@ -14,50 +14,56 @@ from .terminal_order_training_provider import TerminalOrderTrainingProvider
 
 
 class TerminalOrder(UniversalBaseModel):
-    terminal_order_id: typing_extensions.Annotated[str, FieldMetadata(alias="terminalOrderId")] = pydantic.Field()
-    """
-    Unique identifier that we assigned to the terminal order.
-    """
-
+    terminal_order_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="terminalOrderId"),
+        pydantic.Field(
+            alias="terminalOrderId", description="Unique identifier that we assigned to the terminal order."
+        ),
+    ]
     status: TerminalOrderStatus = pydantic.Field()
     """
     Status of the terminal order.  
     
-    **Note**: You can subscribe to our terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Event Subscriptions](https://docs.payroc.com/guides/integrate/event-subscriptions).  
+    **Note**: You can subscribe to our terminalOrder.status.changed event to get notifications when we update the status of a terminal order. For more information about how to subscribe to events, go to [Event Subscriptions](https://docs.payroc.com/guides/board-merchants/event-subscriptions).  
     """
 
     training_provider: typing_extensions.Annotated[
-        typing.Optional[TerminalOrderTrainingProvider], FieldMetadata(alias="trainingProvider")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates who provides training to the merchant for the solution.
-    """
-
+        typing.Optional[TerminalOrderTrainingProvider],
+        FieldMetadata(alias="trainingProvider"),
+        pydantic.Field(
+            alias="trainingProvider", description="Indicates who provides training to the merchant for the solution."
+        ),
+    ] = None
     shipping: typing.Optional[TerminalOrderShipping] = pydantic.Field(default=None)
     """
     Object that contains the shipping details for the terminal order. If you don't provide a shipping address, we use the Doing Business As (DBA) address of the processing account.
     """
 
     order_items: typing_extensions.Annotated[
-        typing.List[TerminalOrderOrderItemsItem], FieldMetadata(alias="orderItems")
-    ] = pydantic.Field()
-    """
-    Array of orderItem objects. Provide a minimum of 1 order item and a maximum of 20 order items.
-    """
-
-    created_date: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that we received the terminal order. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-    """
-
+        typing.List[TerminalOrderOrderItemsItem],
+        FieldMetadata(alias="orderItems"),
+        pydantic.Field(
+            alias="orderItems",
+            description="Array of orderItem objects. Provide a minimum of 1 order item and a maximum of 20 order items.",
+        ),
+    ]
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date that we received the terminal order. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+        ),
+    ] = None
     last_modified_date: typing_extensions.Annotated[
-        typing.Optional[dt.datetime], FieldMetadata(alias="lastModifiedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date that the terminal order was last changed.  We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-    """
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(
+            alias="lastModifiedDate",
+            description="Date that the terminal order was last changed.  We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

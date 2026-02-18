@@ -14,13 +14,14 @@ class OrderItemSolutionSetupApplicationSettings(UniversalBaseModel):
     Object that contains the application settings for the solution.
     """
 
-    clerk_prompt: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="clerkPrompt")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal should prompt the clerk, for example, if the terminal should prompt when the clerk needs to enter an amount on the terminal.
-    """
-
+    clerk_prompt: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="clerkPrompt"),
+        pydantic.Field(
+            alias="clerkPrompt",
+            description="Indicates if the terminal should prompt the clerk, for example, if the terminal should prompt when the clerk needs to enter an amount on the terminal.",
+        ),
+    ] = None
     security: typing.Optional[OrderItemSolutionSetupApplicationSettingsSecurity] = pydantic.Field(default=None)
     """
     Object that contains the password settings when running specific transaction types.

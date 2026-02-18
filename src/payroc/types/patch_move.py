@@ -13,12 +13,14 @@ class PatchMove(UniversalBaseModel):
     A Patch Move Operation.
     """
 
-    from_: typing_extensions.Annotated[str, FieldMetadata(alias="from")] = pydantic.Field()
-    """
-    Location of the value that you want to move.
-    The format for this value is JSON Pointer.
-    """
-
+    from_: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="from"),
+        pydantic.Field(
+            alias="from",
+            description="Location of the value that you want to move.\nThe format for this value is JSON Pointer.",
+        ),
+    ]
     path: str = pydantic.Field()
     """
     Location where you want to move the value to.

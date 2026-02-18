@@ -14,25 +14,23 @@ class PaginatedList(UniversalBaseModel):
     Contains the pagination properties that you use to navigate through a list of results.
     """
 
-    limit: typing.Optional[float] = pydantic.Field(default=None)
+    limit: typing.Optional[int] = pydantic.Field(default=None)
     """
     Maximum number of results that we return for each page.
     """
 
-    count: typing.Optional[float] = pydantic.Field(default=None)
+    count: typing.Optional[int] = pydantic.Field(default=None)
     """
     Number of results we returned on this page. 
     
     **Note:** This might not be the total number of results that match your query. 
     """
 
-    has_more: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="hasMore")] = pydantic.Field(
-        default=None
-    )
-    """
-    Indicates whether there is another page of results available.
-    """
-
+    has_more: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="hasMore"),
+        pydantic.Field(alias="hasMore", description="Indicates whether there is another page of results available."),
+    ] = None
     links: typing.Optional[typing.List[Link]] = pydantic.Field(default=None)
     """
     Reference links to navigate to the previous page of results or to the next page of results.

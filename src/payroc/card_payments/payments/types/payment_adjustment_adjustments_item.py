@@ -31,7 +31,9 @@ class PaymentAdjustmentAdjustmentsItem_Order(UniversalBaseModel):
 
 class PaymentAdjustmentAdjustmentsItem_Status(UniversalBaseModel):
     type: typing.Literal["status"] = "status"
-    to_status: typing_extensions.Annotated[StatusAdjustmentToStatus, FieldMetadata(alias="toStatus")]
+    to_status: typing_extensions.Annotated[
+        StatusAdjustmentToStatus, FieldMetadata(alias="toStatus"), pydantic.Field(alias="toStatus")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -45,11 +47,13 @@ class PaymentAdjustmentAdjustmentsItem_Status(UniversalBaseModel):
 
 class PaymentAdjustmentAdjustmentsItem_Customer(UniversalBaseModel):
     type: typing.Literal["customer"] = "customer"
-    shipping_address: typing_extensions.Annotated[typing.Optional[Shipping], FieldMetadata(alias="shippingAddress")] = (
-        None
-    )
+    shipping_address: typing_extensions.Annotated[
+        typing.Optional[Shipping], FieldMetadata(alias="shippingAddress"), pydantic.Field(alias="shippingAddress")
+    ] = None
     contact_methods: typing_extensions.Annotated[
-        typing.Optional[typing.List[ContactMethod]], FieldMetadata(alias="contactMethods")
+        typing.Optional[typing.List[ContactMethod]],
+        FieldMetadata(alias="contactMethods"),
+        pydantic.Field(alias="contactMethods"),
     ] = None
 
     if IS_PYDANTIC_V2:
@@ -64,7 +68,9 @@ class PaymentAdjustmentAdjustmentsItem_Customer(UniversalBaseModel):
 
 class PaymentAdjustmentAdjustmentsItem_Signature(UniversalBaseModel):
     type: typing.Literal["signature"] = "signature"
-    cardholder_signature: typing_extensions.Annotated[str, FieldMetadata(alias="cardholderSignature")]
+    cardholder_signature: typing_extensions.Annotated[
+        str, FieldMetadata(alias="cardholderSignature"), pydantic.Field(alias="cardholderSignature")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

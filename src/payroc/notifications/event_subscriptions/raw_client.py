@@ -178,7 +178,7 @@ class RawEventSubscriptionsClient:
             Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).
 
         notifications : typing.Sequence[Notification]
-            Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+            Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
 
         id : typing.Optional[int]
             Unique identifier that we assigned to the event subscription.
@@ -310,7 +310,7 @@ class RawEventSubscriptionsClient:
 
         In your request, include the subscriptionId that we sent to you when we created the event subscription.
 
-        **Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](#listEventSubscriptions).
+        **Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](https://docs.payroc.com/api/schema/notifications/event-subscriptions/list).
 
         Parameters
         ----------
@@ -431,7 +431,7 @@ class RawEventSubscriptionsClient:
             Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).
 
         notifications : typing.Sequence[Notification]
-            Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+            Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
 
         id : typing.Optional[int]
             Unique identifier that we assigned to the event subscription.
@@ -895,7 +895,7 @@ class AsyncRawEventSubscriptionsClient:
             Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).
 
         notifications : typing.Sequence[Notification]
-            Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+            Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
 
         id : typing.Optional[int]
             Unique identifier that we assigned to the event subscription.
@@ -1027,7 +1027,7 @@ class AsyncRawEventSubscriptionsClient:
 
         In your request, include the subscriptionId that we sent to you when we created the event subscription.
 
-        **Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](#listEventSubscriptions).
+        **Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](https://docs.payroc.com/api/schema/notifications/event-subscriptions/list).
 
         Parameters
         ----------
@@ -1148,7 +1148,7 @@ class AsyncRawEventSubscriptionsClient:
             Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).
 
         notifications : typing.Sequence[Notification]
-            Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+            Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
 
         id : typing.Optional[int]
             Unique identifier that we assigned to the event subscription.

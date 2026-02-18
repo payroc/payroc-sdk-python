@@ -14,13 +14,14 @@ class CardSummary(UniversalBaseModel):
     Object that contains information about the card.
     """
 
-    card_number: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardNumber")] = pydantic.Field(
-        default=None
-    )
-    """
-    Masked card number. Our gateway shows only the first six digits and the last four digits of the card number, for example, `500165******0000`.
-    """
-
+    card_number: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="cardNumber"),
+        pydantic.Field(
+            alias="cardNumber",
+            description="Masked card number. Our gateway shows only the first six digits and the last four digits of the card number, for example, `500165******0000`.",
+        ),
+    ] = None
     type: typing.Optional[CardSummaryType] = pydantic.Field(default=None)
     """
     Card type, for example, Visa.  
@@ -29,25 +30,26 @@ class CardSummary(UniversalBaseModel):
     """
 
     cvv_presence_indicator: typing_extensions.Annotated[
-        typing.Optional[bool], FieldMetadata(alias="cvvPresenceIndicator")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates whether the cardholder provided the Card Verification Value (CVV).
-    """
-
-    avs_request: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="avsRequest")] = pydantic.Field(
-        default=None
-    )
-    """
-    Indicates whether the merchant used the Address Verification Service (AVS) to verify the cardholder's address.
-    """
-
-    avs_response: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="avsResponse")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Response from the Address Verification Service (AVS).
-    """
+        typing.Optional[bool],
+        FieldMetadata(alias="cvvPresenceIndicator"),
+        pydantic.Field(
+            alias="cvvPresenceIndicator",
+            description="Indicates whether the cardholder provided the Card Verification Value (CVV).",
+        ),
+    ] = None
+    avs_request: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="avsRequest"),
+        pydantic.Field(
+            alias="avsRequest",
+            description="Indicates whether the merchant used the Address Verification Service (AVS) to verify the cardholder's address.",
+        ),
+    ] = None
+    avs_response: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="avsResponse"),
+        pydantic.Field(alias="avsResponse", description="Response from the Address Verification Service (AVS)."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

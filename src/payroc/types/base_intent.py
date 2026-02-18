@@ -20,20 +20,22 @@ class BaseIntent(UniversalBaseModel):
     Unique identifier of the pricing intent.
     """
 
-    created_date: typing_extensions.Annotated[typing.Optional[dt.datetime], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date and time that we received your request to create the pricing intent. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-    """
-
+    created_date: typing_extensions.Annotated[
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date and time that we received your request to create the pricing intent. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+        ),
+    ] = None
     last_updated_date: typing_extensions.Annotated[
-        typing.Optional[dt.datetime], FieldMetadata(alias="lastUpdatedDate")
-    ] = pydantic.Field(default=None)
-    """
-    Date and time that the pricing intent was last modified. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
-    """
-
+        typing.Optional[dt.datetime],
+        FieldMetadata(alias="lastUpdatedDate"),
+        pydantic.Field(
+            alias="lastUpdatedDate",
+            description="Date and time that the pricing intent was last modified. We return this value in the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.",
+        ),
+    ] = None
     status: typing.Optional[BaseIntentStatus] = pydantic.Field(default=None)
     """
     Status of the pricing intent. The value can be one of the following:

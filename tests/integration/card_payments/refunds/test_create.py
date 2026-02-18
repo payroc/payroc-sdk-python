@@ -51,6 +51,7 @@ class TestCreateRefunds:
         with open(file_path, 'r') as f:
             return json.load(f)
 
+    @pytest.mark.smoke
     def test_smoke_test(self, payments_client, terminal_id_avs):
         """
         Smoke test for creating an unreferenced refund.

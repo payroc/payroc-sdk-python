@@ -22,22 +22,21 @@ class StandingInstructions(UniversalBaseModel):
     """
 
     processing_model: typing_extensions.Annotated[
-        StandingInstructionsProcessingModel, FieldMetadata(alias="processingModel")
-    ] = pydantic.Field()
-    """
-    Indicates the type of payment instruction.
-    
-    - 'unscheduled' – The payment is not part of a regular billing cycle.
-    - 'recurring' – The payment is part of a regular billing cycle with no end date.
-    - 'installment' – The payment is part of a regular billing cycle with an end date.
-    """
-
+        StandingInstructionsProcessingModel,
+        FieldMetadata(alias="processingModel"),
+        pydantic.Field(
+            alias="processingModel",
+            description="Indicates the type of payment instruction.\n\n- 'unscheduled' – The payment is not part of a regular billing cycle.\n- 'recurring' – The payment is part of a regular billing cycle with no end date.\n- 'installment' – The payment is part of a regular billing cycle with an end date.",
+        ),
+    ]
     reference_data_of_first_txn: typing_extensions.Annotated[
-        typing.Optional[FirstTxnReferenceData], FieldMetadata(alias="referenceDataOfFirstTxn")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains information about the initial payment for the payment instruction.
-    """
+        typing.Optional[FirstTxnReferenceData],
+        FieldMetadata(alias="referenceDataOfFirstTxn"),
+        pydantic.Field(
+            alias="referenceDataOfFirstTxn",
+            description="Object that contains information about the initial payment for the payment instruction.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

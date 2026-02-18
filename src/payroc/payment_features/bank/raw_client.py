@@ -62,7 +62,11 @@ class RawBankClient:
             Unique identifier that we assigned to the terminal.
 
         bank_account : BankAccountVerificationRequestBankAccount
-            Object that contains information about the bank account.
+            Polymorphic object that contains bank account information.
+
+            The value of the type field determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -224,7 +228,11 @@ class AsyncRawBankClient:
             Unique identifier that we assigned to the terminal.
 
         bank_account : BankAccountVerificationRequestBankAccount
-            Object that contains information about the bank account.
+            Polymorphic object that contains bank account information.
+
+            The value of the type field determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.

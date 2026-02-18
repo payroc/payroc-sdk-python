@@ -19,53 +19,64 @@ class ProcessingTerminalFeatures(UniversalBaseModel):
 
     tips: typing.Optional[ProcessingTerminalFeaturesTips] = pydantic.Field(default=None)
     """
-    Object that contains the tip settings for the processing terminal.
+    Polymorphic object that indicates if the terminal accepts tips.  
+    
+    The value of the enabled field determines which variant you should use:  
+    -    `true` - Terminal allows tips.
+    -    `false` - Terminal doesn't allow tips.
     """
 
     enhanced_processing: typing_extensions.Annotated[
-        ProcessingTerminalFeaturesEnhancedProcessing, FieldMetadata(alias="enhancedProcessing")
-    ] = pydantic.Field()
-    """
-    Object that contains details about level two and level three transactions.
-    """
-
+        ProcessingTerminalFeaturesEnhancedProcessing,
+        FieldMetadata(alias="enhancedProcessing"),
+        pydantic.Field(
+            alias="enhancedProcessing",
+            description="Object that contains details about level two and level three transactions.",
+        ),
+    ]
     ebt: ProcessingTerminalFeaturesEbt = pydantic.Field()
     """
-    Object that contains details about EBT transactions.
+    Polymorphic object that indicates if the terminal accepts EBT transactions.  
+    
+    The value of the enabled field determines which variant you should use:  
+    -    `true` - Terminal allows EBT transactions.
+    -    `false` - Terminal doesn't allow EBT transactions.
     """
 
-    pin_debit_cashback: typing_extensions.Annotated[bool, FieldMetadata(alias="pinDebitCashback")] = pydantic.Field()
-    """
-    Indicates if the terminal prompts for cashback on PIN debit transactions.
-    """
-
-    recurring_payments: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="recurringPayments")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal can run repeat payments. For more information about repeat payments, go to [Payment Plans](https://docs.payroc.com/guides/integrate/repeat-payments).
-    """
-
+    pin_debit_cashback: typing_extensions.Annotated[
+        bool,
+        FieldMetadata(alias="pinDebitCashback"),
+        pydantic.Field(
+            alias="pinDebitCashback",
+            description="Indicates if the terminal prompts for cashback on PIN debit transactions.",
+        ),
+    ]
+    recurring_payments: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="recurringPayments"),
+        pydantic.Field(
+            alias="recurringPayments",
+            description="Indicates if the terminal can run repeat payments. For more information about repeat payments, go to [Payment Plans](https://docs.payroc.com/guides/take-payments/repeat-payments).",
+        ),
+    ] = None
     payment_links: typing_extensions.Annotated[
-        typing.Optional[ProcessingTerminalFeaturesPaymentLinks], FieldMetadata(alias="paymentLinks")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains details about payment links.
-    """
-
-    pre_authorizations: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="preAuthorizations")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal can run pre-authorizations.
-    """
-
-    offline_payments: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="offlinePayments")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Indicates if the terminal can accept payments when it can't connect to the gateway. For more information about offline processing, go to [Offline Processing](https://docs.payroc.com/knowledge/card-payments/offline-processing).
-    """
+        typing.Optional[ProcessingTerminalFeaturesPaymentLinks],
+        FieldMetadata(alias="paymentLinks"),
+        pydantic.Field(alias="paymentLinks", description="Object that contains details about payment links."),
+    ] = None
+    pre_authorizations: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="preAuthorizations"),
+        pydantic.Field(alias="preAuthorizations", description="Indicates if the terminal can run pre-authorizations."),
+    ] = None
+    offline_payments: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="offlinePayments"),
+        pydantic.Field(
+            alias="offlinePayments",
+            description="Indicates if the terminal can accept payments when it can't connect to the gateway. For more information about offline processing, go to [Offline Processing](https://docs.payroc.com/knowledge/card-payments/offline-processing).",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

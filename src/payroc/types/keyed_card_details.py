@@ -16,26 +16,36 @@ class KeyedCardDetails(UniversalBaseModel):
     Object that contains information about the keyed card details.
     """
 
-    keyed_data: typing_extensions.Annotated[KeyedCardDetailsKeyedData, FieldMetadata(alias="keyedData")]
-    cardholder_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardholderName")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Cardholder’s name.
-    """
-
+    keyed_data: typing_extensions.Annotated[
+        KeyedCardDetailsKeyedData,
+        FieldMetadata(alias="keyedData"),
+        pydantic.Field(
+            alias="keyedData",
+            description="Polymorphic object that contains payment card details that the merchant manually entered into the device.  \n\nThe value of the dataFormat parameter determines which variant you should use:  \n-\t`fullyEncrypted` - Some payment card details are encrypted.\n-\t`partiallyEncrypted` - Payment card details are in plain text.\n-\t`plainText` - All payment card details are encrypted.",
+        ),
+    ]
+    cardholder_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="cardholderName"),
+        pydantic.Field(alias="cardholderName", description="Cardholder’s name."),
+    ] = None
     cardholder_signature: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardholderSignature")
-    ] = pydantic.Field(default=None)
-    """
-    Cardholder's signature. For more information about how to format the signature, go to [How to send a signature to our gateway](https://docs.payroc.com/knowledge/basic-concepts/signature-capture).
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="cardholderSignature"),
+        pydantic.Field(
+            alias="cardholderSignature",
+            description="Cardholder's signature. For more information about how to format the signature, go to [How to send a signature to our gateway](https://docs.payroc.com/knowledge/basic-concepts/signature-capture).",
+        ),
+    ] = None
     pin_details: typing_extensions.Annotated[
-        typing.Optional[KeyedCardDetailsPinDetails], FieldMetadata(alias="pinDetails")
+        typing.Optional[KeyedCardDetailsPinDetails],
+        FieldMetadata(alias="pinDetails"),
+        pydantic.Field(
+            alias="pinDetails", description="Polymorphic object that contains information about the customer's PIN."
+        ),
     ] = None
     ebt_details: typing_extensions.Annotated[
-        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails")
+        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails"), pydantic.Field(alias="ebtDetails")
     ] = None
 
     if IS_PYDANTIC_V2:

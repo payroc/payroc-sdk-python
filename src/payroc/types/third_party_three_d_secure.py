@@ -29,12 +29,14 @@ class ThirdPartyThreeDSecure(UniversalBaseModel):
     Cardholder Authentication Verification Value (CAVV) that the card issuer provided to prove that they authorized the online payment.
     """
 
-    ds_transaction_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="dsTransactionId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Directory Server Transaction ID that the processor assigned to the request.
-    """
+    ds_transaction_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="dsTransactionId"),
+        pydantic.Field(
+            alias="dsTransactionId",
+            description="Directory Server Transaction ID that the processor assigned to the request.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

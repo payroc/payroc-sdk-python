@@ -120,8 +120,7 @@ class SecureTokensClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.tokenization.secure_tokens.list(
             processing_terminal_id="1234001",
@@ -194,7 +193,13 @@ class SecureTokensClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         source : TokenizationRequestSource
-            Object that contains information about the payment method to tokenize.
+            Polymorphic object that contains the payment method to tokenize.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `card` - Payment card details
+            -    `singleUseToken` - Single-use token details
 
         secure_token_id : typing.Optional[str]
             Unique identifier that the merchant created for the secure token that represents the customer's payment details.
@@ -215,7 +220,11 @@ class SecureTokensClient:
         ip_address : typing.Optional[IpAddress]
 
         three_d_secure : typing.Optional[TokenizationRequestThreeDSecure]
-            Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+            Polymorphic object that contains authentication information from 3-D Secure.
+
+            The value of the type parameter determines which variant you should use:
+            -    `gatewayThreeDSecure` - Use our gateway to run a 3-D Secure check.
+            -    `thirdPartyThreeDSecure` - Use a third party to run a 3-D Secure check.
 
         custom_fields : typing.Optional[typing.Sequence[CustomField]]
             Array of customField objects.
@@ -246,8 +255,7 @@ class SecureTokensClient:
         from payroc.tokenization.secure_tokens import TokenizationRequestSource_Card
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.tokenization.secure_tokens.create(
             processing_terminal_id="1234001",
@@ -366,8 +374,7 @@ class SecureTokensClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.tokenization.secure_tokens.retrieve(
             processing_terminal_id="1234001",
@@ -413,8 +420,7 @@ class SecureTokensClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.tokenization.secure_tokens.delete(
             processing_terminal_id="1234001",
@@ -486,8 +492,7 @@ class SecureTokensClient:
         from payroc import PatchDocument_Remove, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.tokenization.secure_tokens.partially_update(
             processing_terminal_id="1234001",
@@ -527,7 +532,7 @@ class SecureTokensClient:
         """
         Use this method to update a secure token if you have a single-use token from Hosted Fields.
 
-        **Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/integrate/update-saved-payment-details).
+        **Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/take-payments/update-saved-payment-details).
 
         Parameters
         ----------
@@ -555,8 +560,7 @@ class SecureTokensClient:
         from payroc import AccountUpdate_SingleUseToken, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.tokenization.secure_tokens.update_account(
             processing_terminal_id="1234001",
@@ -677,8 +681,7 @@ class AsyncSecureTokensClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -758,7 +761,13 @@ class AsyncSecureTokensClient:
             Unique identifier that you generate for each request. You must use the [UUID v4 format](https://www.rfc-editor.org/rfc/rfc4122) for the identifier. For more information about the idempotency key, go to [Idempotency](https://docs.payroc.com/api/idempotency).
 
         source : TokenizationRequestSource
-            Object that contains information about the payment method to tokenize.
+            Polymorphic object that contains the payment method to tokenize.
+
+            The value of the type parameter determines which variant you should use:
+            -    `ach` - Automated Clearing House (ACH) details
+            -    `pad` - Pre-authorized debit (PAD) details
+            -    `card` - Payment card details
+            -    `singleUseToken` - Single-use token details
 
         secure_token_id : typing.Optional[str]
             Unique identifier that the merchant created for the secure token that represents the customer's payment details.
@@ -779,7 +788,11 @@ class AsyncSecureTokensClient:
         ip_address : typing.Optional[IpAddress]
 
         three_d_secure : typing.Optional[TokenizationRequestThreeDSecure]
-            Object that contains information for an authentication check on the customer's payment details using the 3-D Secure protocol.
+            Polymorphic object that contains authentication information from 3-D Secure.
+
+            The value of the type parameter determines which variant you should use:
+            -    `gatewayThreeDSecure` - Use our gateway to run a 3-D Secure check.
+            -    `thirdPartyThreeDSecure` - Use a third party to run a 3-D Secure check.
 
         custom_fields : typing.Optional[typing.Sequence[CustomField]]
             Array of customField objects.
@@ -811,8 +824,7 @@ class AsyncSecureTokensClient:
         from payroc.tokenization.secure_tokens import TokenizationRequestSource_Card
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -939,8 +951,7 @@ class AsyncSecureTokensClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -996,8 +1007,7 @@ class AsyncSecureTokensClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1079,8 +1089,7 @@ class AsyncSecureTokensClient:
         from payroc import AsyncPayroc, PatchDocument_Remove
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1126,7 +1135,7 @@ class AsyncSecureTokensClient:
         """
         Use this method to update a secure token if you have a single-use token from Hosted Fields.
 
-        **Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/integrate/update-saved-payment-details).
+        **Note:** If you don't have a single-use token, you can update saved payment details with our [Update Secure Token](https://docs.payroc.com/api/resources#updateSecureToken) method. For more information about our two options to update a secure token, go to [Update saved payment details](https://docs.payroc.com/guides/take-payments/update-saved-payment-details).
 
         Parameters
         ----------
@@ -1156,8 +1165,7 @@ class AsyncSecureTokensClient:
         from payroc import AccountUpdate_SingleUseToken, AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

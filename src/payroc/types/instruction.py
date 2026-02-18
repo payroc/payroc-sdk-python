@@ -15,27 +15,29 @@ class Instruction(UniversalBaseModel):
     Inform the payfac what to do with the specified funds. **
     """
 
-    instruction_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="instructionId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the funding instruction.
-    """
-
-    created_date: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="createdDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that we created the funding instruction. The date format follows the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) standard.
-    """
-
-    last_modified_date: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="lastModifiedDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date of the most recent change to the funding instruction. The date format follows the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) standard.
-    """
-
+    instruction_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="instructionId"),
+        pydantic.Field(
+            alias="instructionId", description="Unique identifier that we assigned to the funding instruction."
+        ),
+    ] = None
+    created_date: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="createdDate"),
+        pydantic.Field(
+            alias="createdDate",
+            description="Date that we created the funding instruction. The date format follows the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) standard.",
+        ),
+    ] = None
+    last_modified_date: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="lastModifiedDate"),
+        pydantic.Field(
+            alias="lastModifiedDate",
+            description="Date of the most recent change to the funding instruction. The date format follows the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) standard.",
+        ),
+    ] = None
     status: typing.Optional[InstructionStatus] = pydantic.Field(default=None)
     """
     Status of the funding instruction. Our gateway returns one of the following values:  

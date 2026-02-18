@@ -11,33 +11,30 @@ class BaseClientWrapper:
     def __init__(
         self,
         *,
-        token: typing.Optional[typing.Union[str, typing.Callable[[], str]]] = None,
+        auth_headers: typing.Optional[typing.Callable[[], typing.Dict[str, str]]] = None,
         headers: typing.Optional[typing.Dict[str, str]] = None,
         environment: PayrocEnvironment,
         timeout: typing.Optional[float] = None,
     ):
-        self._token = token
+        self._auth_headers = auth_headers
         self._headers = headers
         self._environment = environment
         self._timeout = timeout
 
     def get_headers(self) -> typing.Dict[str, str]:
+        import platform
+
         headers: typing.Dict[str, str] = {
             "X-Fern-Language": "Python",
+            "X-Fern-Runtime": f"python/{platform.python_version()}",
+            "X-Fern-Platform": f"{platform.system().lower()}/{platform.release()}",
             "X-Fern-SDK-Name": "payroc",
-            "X-Fern-SDK-Version": "0.0.1545",
+            "X-Fern-SDK-Version": "0.0.3698",
             **(self.get_custom_headers() or {}),
         }
-        token = self._get_token()
-        if token is not None:
-            headers["Authorization"] = f"Bearer {token}"
+        if self._auth_headers is not None:
+            headers.update(self._auth_headers())
         return headers
-
-    def _get_token(self) -> typing.Optional[str]:
-        if isinstance(self._token, str) or self._token is None:
-            return self._token
-        else:
-            return self._token()
 
     def get_custom_headers(self) -> typing.Optional[typing.Dict[str, str]]:
         return self._headers
@@ -53,13 +50,13 @@ class SyncClientWrapper(BaseClientWrapper):
     def __init__(
         self,
         *,
-        token: typing.Optional[typing.Union[str, typing.Callable[[], str]]] = None,
+        auth_headers: typing.Optional[typing.Callable[[], typing.Dict[str, str]]] = None,
         headers: typing.Optional[typing.Dict[str, str]] = None,
         environment: PayrocEnvironment,
         timeout: typing.Optional[float] = None,
         httpx_client: httpx.Client,
     ):
-        super().__init__(token=token, headers=headers, environment=environment, timeout=timeout)
+        super().__init__(auth_headers=auth_headers, headers=headers, environment=environment, timeout=timeout)
         self.httpx_client = HttpClient(
             httpx_client=httpx_client, base_headers=self.get_headers, base_timeout=self.get_timeout
         )
@@ -69,15 +66,17 @@ class AsyncClientWrapper(BaseClientWrapper):
     def __init__(
         self,
         *,
-        token: typing.Optional[typing.Union[str, typing.Callable[[], str]]] = None,
+        auth_headers: typing.Optional[typing.Callable[[], typing.Dict[str, str]]] = None,
         headers: typing.Optional[typing.Dict[str, str]] = None,
         environment: PayrocEnvironment,
         timeout: typing.Optional[float] = None,
         async_token: typing.Optional[typing.Callable[[], typing.Awaitable[str]]] = None,
+        async_auth_headers: typing.Optional[typing.Callable[[], typing.Awaitable[typing.Dict[str, str]]]] = None,
         httpx_client: httpx.AsyncClient,
     ):
-        super().__init__(token=token, headers=headers, environment=environment, timeout=timeout)
+        super().__init__(auth_headers=auth_headers, headers=headers, environment=environment, timeout=timeout)
         self._async_token = async_token
+        self._async_auth_headers = async_auth_headers
         self.httpx_client = AsyncHttpClient(
             httpx_client=httpx_client,
             base_headers=self.get_headers,
@@ -90,4 +89,6 @@ class AsyncClientWrapper(BaseClientWrapper):
         if self._async_token is not None:
             token = await self._async_token()
             headers["Authorization"] = f"Bearer {token}"
+        if self._async_auth_headers is not None:
+            headers.update(await self._async_auth_headers())
         return headers

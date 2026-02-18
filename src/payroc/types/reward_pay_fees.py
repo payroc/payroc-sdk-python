@@ -16,27 +16,30 @@ class RewardPayFees(UniversalBaseModel):
     Object that contains information about the fees.
     """
 
-    monthly_subscription: typing_extensions.Annotated[Amount, FieldMetadata(alias="monthlySubscription")] = (
-        pydantic.Field()
-    )
-    """
-    Fee for the monthly subscription for the processing plan. The value is in the currency's lowest denomination, for example, cents.
-    """
-
+    monthly_subscription: typing_extensions.Annotated[
+        Amount,
+        FieldMetadata(alias="monthlySubscription"),
+        pydantic.Field(
+            alias="monthlySubscription",
+            description="Fee for the monthly subscription for the processing plan. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
     card_charge_percentage: typing_extensions.Annotated[
-        typing.Optional[float], FieldMetadata(alias="cardChargePercentage")
-    ] = pydantic.Field(default=None)
-    """
-    Percentage of the total transaction amount that the processor charges the cardholder.
-    """
-
+        typing.Optional[float],
+        FieldMetadata(alias="cardChargePercentage"),
+        pydantic.Field(
+            alias="cardChargePercentage",
+            description="Percentage of the total transaction amount that the processor charges the cardholder.",
+        ),
+    ] = None
     merchant_charge_percentage: typing_extensions.Annotated[
-        typing.Optional[float], FieldMetadata(alias="merchantChargePercentage")
-    ] = pydantic.Field(default=None)
-    """
-    Percentage of the total transaction amount that the processor charges the merchant.
-    """
-
+        typing.Optional[float],
+        FieldMetadata(alias="merchantChargePercentage"),
+        pydantic.Field(
+            alias="merchantChargePercentage",
+            description="Percentage of the total transaction amount that the processor charges the merchant.",
+        ),
+    ] = None
     transaction: typing.Optional[int] = pydantic.Field(default=None)
     """
     Fee for each transaction. The value is in the currency's lowest denomination, for example, cents.
@@ -48,7 +51,9 @@ class RewardPayFees(UniversalBaseModel):
     """
 
     speciality_cards: typing_extensions.Annotated[
-        typing.Optional[SpecialityCards], FieldMetadata(alias="specialityCards")
+        typing.Optional[SpecialityCards],
+        FieldMetadata(alias="specialityCards"),
+        pydantic.Field(alias="specialityCards"),
     ] = None
 
     if IS_PYDANTIC_V2:

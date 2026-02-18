@@ -87,8 +87,7 @@ class RefundInstructionsClient:
         from payroc import CustomizationOptions, Payroc, RefundInstructionOrder
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payroc_cloud.refund_instructions.submit(
             serial_number="1850010868",
@@ -147,8 +146,7 @@ class RefundInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payroc_cloud.refund_instructions.retrieve(
             refund_instruction_id="a37439165d134678a9100ebba3b29597",
@@ -182,8 +180,7 @@ class RefundInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payroc_cloud.refund_instructions.delete(
             refund_instruction_id="a37439165d134678a9100ebba3b29597",
@@ -267,8 +264,7 @@ class AsyncRefundInstructionsClient:
         from payroc import AsyncPayroc, CustomizationOptions, RefundInstructionOrder
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -335,8 +331,7 @@ class AsyncRefundInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -380,8 +375,7 @@ class AsyncRefundInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

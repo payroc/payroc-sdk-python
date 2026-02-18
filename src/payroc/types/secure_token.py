@@ -18,33 +18,36 @@ class SecureToken(UniversalBaseModel):
     Object that contains information about the secure token.
     """
 
-    secure_token_id: typing_extensions.Annotated[str, FieldMetadata(alias="secureTokenId")] = pydantic.Field()
-    """
-    Unique identifier that the merchant created for the secure token that represents the customer's payment details.
-    """
-
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier that we assigned to the terminal.
-    """
-
+    secure_token_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="secureTokenId"),
+        pydantic.Field(
+            alias="secureTokenId",
+            description="Unique identifier that the merchant created for the secure token that represents the customer's payment details.",
+        ),
+    ]
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(alias="processingTerminalId", description="Unique identifier that we assigned to the terminal."),
+    ]
     mit_agreement: typing_extensions.Annotated[
-        typing.Optional[SecureTokenMitAgreement], FieldMetadata(alias="mitAgreement")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates how the merchant can use the customer's card details, as agreed by the customer:
-    
-    - `unscheduled` - Transactions for a fixed or variable amount that are run at a certain pre-defined event.
-    - `recurring` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Recurring transactions don't have a fixed duration and run until the customer cancels the agreement.
-    - `installment` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Installment transactions have a fixed duration.
-    """
-
+        typing.Optional[SecureTokenMitAgreement],
+        FieldMetadata(alias="mitAgreement"),
+        pydantic.Field(
+            alias="mitAgreement",
+            description="Indicates how the merchant can use the customer's card details, as agreed by the customer:\n\n- `unscheduled` - Transactions for a fixed or variable amount that are run at a certain pre-defined event.\n- `recurring` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Recurring transactions don't have a fixed duration and run until the customer cancels the agreement.\n- `installment` - Transactions for a fixed amount that are run at regular intervals, for example, monthly. Installment transactions have a fixed duration.",
+        ),
+    ] = None
     customer: typing.Optional[RetrievedCustomer] = None
     source: SecureTokenSource = pydantic.Field()
     """
-    Object that contains information about the payment method that we tokenized.
+    Polymorphic object that contains the payment method that we tokenized.  
+    
+    The value of the type parameter determines which variant you should use:  
+    -    `ach` - Automated Clearing House (ACH) details
+    -    `pad` - Pre-authorized debit (PAD) details
+    -    `card` - Payment card details
     """
 
     token: str = pydantic.Field()
@@ -63,11 +66,10 @@ class SecureToken(UniversalBaseModel):
     """
 
     custom_fields: typing_extensions.Annotated[
-        typing.Optional[typing.List[CustomField]], FieldMetadata(alias="customFields")
-    ] = pydantic.Field(default=None)
-    """
-    Array of customField objects.
-    """
+        typing.Optional[typing.List[CustomField]],
+        FieldMetadata(alias="customFields"),
+        pydantic.Field(alias="customFields", description="Array of customField objects."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

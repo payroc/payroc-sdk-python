@@ -19,20 +19,27 @@ from .subscription_type import SubscriptionType
 
 
 class Subscription(UniversalBaseModel):
-    subscription_id: typing_extensions.Annotated[str, FieldMetadata(alias="subscriptionId")] = pydantic.Field()
-    """
-    Unique identifier that the merchant assigned to the subscription.
-    """
-
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier of the terminal that the subscription is linked to.
-    """
-
-    payment_plan: typing_extensions.Annotated[PaymentPlanSummary, FieldMetadata(alias="paymentPlan")]
-    secure_token: typing_extensions.Annotated[SecureTokenSummary, FieldMetadata(alias="secureToken")]
+    subscription_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="subscriptionId"),
+        pydantic.Field(
+            alias="subscriptionId", description="Unique identifier that the merchant assigned to the subscription."
+        ),
+    ]
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(
+            alias="processingTerminalId",
+            description="Unique identifier of the terminal that the subscription is linked to.",
+        ),
+    ]
+    payment_plan: typing_extensions.Annotated[
+        PaymentPlanSummary, FieldMetadata(alias="paymentPlan"), pydantic.Field(alias="paymentPlan")
+    ]
+    secure_token: typing_extensions.Annotated[
+        SecureTokenSummary, FieldMetadata(alias="secureToken"), pydantic.Field(alias="secureToken")
+    ]
     name: str = pydantic.Field()
     """
     Name of the subscription.
@@ -45,28 +52,29 @@ class Subscription(UniversalBaseModel):
 
     currency: Currency
     setup_order: typing_extensions.Annotated[
-        typing.Optional[SubscriptionPaymentOrder], FieldMetadata(alias="setupOrder")
+        typing.Optional[SubscriptionPaymentOrder], FieldMetadata(alias="setupOrder"), pydantic.Field(alias="setupOrder")
     ] = None
     recurring_order: typing_extensions.Annotated[
-        typing.Optional[SubscriptionRecurringOrder], FieldMetadata(alias="recurringOrder")
+        typing.Optional[SubscriptionRecurringOrder],
+        FieldMetadata(alias="recurringOrder"),
+        pydantic.Field(alias="recurringOrder"),
     ] = None
-    current_state: typing_extensions.Annotated[SubscriptionState, FieldMetadata(alias="currentState")]
-    start_date: typing_extensions.Annotated[dt.date, FieldMetadata(alias="startDate")] = pydantic.Field()
-    """
-    Format: **YYYY-MM-DD**  
-    Subscription's start date.
-    """
-
-    end_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="endDate")] = pydantic.Field(
-        default=None
-    )
-    """
-    Format: **YYYY-MM-DD** 
-    Subscription's end date.  
-    **Note:** If you provide values for both **length** and **endDate**, 
-    our gateway uses the value for **endDate** to determine when the subscription should end. 
-    """
-
+    current_state: typing_extensions.Annotated[
+        SubscriptionState, FieldMetadata(alias="currentState"), pydantic.Field(alias="currentState")
+    ]
+    start_date: typing_extensions.Annotated[
+        dt.date,
+        FieldMetadata(alias="startDate"),
+        pydantic.Field(alias="startDate", description="Format: **YYYY-MM-DD**  \nSubscription's start date."),
+    ]
+    end_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="endDate"),
+        pydantic.Field(
+            alias="endDate",
+            description="Format: **YYYY-MM-DD** \nSubscription's end date.  \n**Note:** If you provide values for both **length** and **endDate**, \nour gateway uses the value for **endDate** to determine when the subscription should end. ",
+        ),
+    ] = None
     length: typing.Optional[int] = pydantic.Field(default=None)
     """
     Total number of billing cycles. To indicate that the subscription should run indefinitely, send a value of `0`. This value replaces the **length** inherited from the payment plan.  
@@ -86,19 +94,18 @@ class Subscription(UniversalBaseModel):
     """
 
     pause_collection_for: typing_extensions.Annotated[
-        typing.Optional[int], FieldMetadata(alias="pauseCollectionFor")
-    ] = pydantic.Field(default=None)
-    """
-    Number of billing cycles that the merchant wants to pause payments for. 
-    For example, if the merchant wants to offer a free trial period.
-    """
-
+        typing.Optional[int],
+        FieldMetadata(alias="pauseCollectionFor"),
+        pydantic.Field(
+            alias="pauseCollectionFor",
+            description="Number of billing cycles that the merchant wants to pause payments for. \nFor example, if the merchant wants to offer a free trial period.",
+        ),
+    ] = None
     custom_fields: typing_extensions.Annotated[
-        typing.Optional[typing.List[CustomField]], FieldMetadata(alias="customFields")
-    ] = pydantic.Field(default=None)
-    """
-    Array of customField objects.
-    """
+        typing.Optional[typing.List[CustomField]],
+        FieldMetadata(alias="customFields"),
+        pydantic.Field(alias="customFields", description="Array of customField objects."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

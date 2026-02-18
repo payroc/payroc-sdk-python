@@ -60,8 +60,7 @@ class ContactsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.contacts.retrieve(
             contact_id=1,
@@ -115,8 +114,15 @@ class ContactsClient:
             Array of identifier objects.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects.
+            Array of polymorphic objects, which contain contact information.
+
             **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         contact_id : typing.Optional[int]
             Unique identifier of the contact.
@@ -136,8 +142,7 @@ class ContactsClient:
         from payroc import ContactMethod_Email, Identifier, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.contacts.update(
             contact_id_=1,
@@ -196,8 +201,7 @@ class ContactsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.contacts.delete(
             contact_id=1,
@@ -255,8 +259,7 @@ class AsyncContactsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -316,8 +319,15 @@ class AsyncContactsClient:
             Array of identifier objects.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects.
+            Array of polymorphic objects, which contain contact information.
+
             **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         contact_id : typing.Optional[int]
             Unique identifier of the contact.
@@ -339,8 +349,7 @@ class AsyncContactsClient:
         from payroc import AsyncPayroc, ContactMethod_Email, Identifier
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -407,8 +416,7 @@ class AsyncContactsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

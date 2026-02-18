@@ -15,13 +15,13 @@ class DisputeStatus(UniversalBaseModel):
     Object that contains information about the current status of the dispute.
     """
 
-    dispute_status_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="disputeStatusId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the status of the dispute.
-    """
-
+    dispute_status_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="disputeStatusId"),
+        pydantic.Field(
+            alias="disputeStatusId", description="Unique identifier that we assigned to the status of the dispute."
+        ),
+    ] = None
     status: typing.Optional[DisputeStatusStatus] = pydantic.Field(default=None)
     """
     Status of the dispute.  
@@ -29,12 +29,14 @@ class DisputeStatus(UniversalBaseModel):
     **Note:** If you want to view the status history of the dispute, use our [List Dispute Statuses](https://docs.payroc.com/api/schema/reporting/settlement/list-disputes-statuses) method.  
     """
 
-    status_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="statusDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that the status of the dispute was last changed. The format of this value is **YYYY-MM-DD**.
-    """
+    status_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="statusDate"),
+        pydantic.Field(
+            alias="statusDate",
+            description="Date that the status of the dispute was last changed. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

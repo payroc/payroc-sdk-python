@@ -17,18 +17,20 @@ class OrderItemSolutionSetupDeviceSettings(UniversalBaseModel):
     """
 
     number_of_mobile_users: typing_extensions.Annotated[
-        typing.Optional[float], FieldMetadata(alias="numberOfMobileUsers")
-    ] = pydantic.Field(default=None)
-    """
-    Number of users that we need to set up for mobile solutions.
-    """
-
+        typing.Optional[int],
+        FieldMetadata(alias="numberOfMobileUsers"),
+        pydantic.Field(
+            alias="numberOfMobileUsers", description="Number of users that we need to set up for mobile solutions."
+        ),
+    ] = None
     communication_type: typing_extensions.Annotated[
-        typing.Optional[OrderItemSolutionSetupDeviceSettingsCommunicationType], FieldMetadata(alias="communicationType")
-    ] = pydantic.Field(default=None)
-    """
-    Method of connection between a terminal or a peripheral device and the host.
-    """
+        typing.Optional[OrderItemSolutionSetupDeviceSettingsCommunicationType],
+        FieldMetadata(alias="communicationType"),
+        pydantic.Field(
+            alias="communicationType",
+            description="Method of connection between a terminal or a peripheral device and the host.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

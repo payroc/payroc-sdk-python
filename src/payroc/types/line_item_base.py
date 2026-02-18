@@ -14,44 +14,37 @@ class LineItemBase(UniversalBaseModel):
     List of line items.
     """
 
-    commodity_code: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="commodityCode")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Commodity code of the item.
-    """
-
-    product_code: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="productCode")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Product code of the item.
-    """
-
+    commodity_code: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="commodityCode"),
+        pydantic.Field(alias="commodityCode", description="Commodity code of the item."),
+    ] = None
+    product_code: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="productCode"),
+        pydantic.Field(alias="productCode", description="Product code of the item."),
+    ] = None
     description: typing.Optional[str] = pydantic.Field(default=None)
     """
     Description of the item.
     """
 
     unit_of_measure: typing_extensions.Annotated[
-        typing.Optional[UnitOfMeasure], FieldMetadata(alias="unitOfMeasure")
+        typing.Optional[UnitOfMeasure], FieldMetadata(alias="unitOfMeasure"), pydantic.Field(alias="unitOfMeasure")
     ] = None
-    unit_price: typing_extensions.Annotated[float, FieldMetadata(alias="unitPrice")] = pydantic.Field()
-    """
-    Price of each unit.
-    """
-
+    unit_price: typing_extensions.Annotated[
+        int, FieldMetadata(alias="unitPrice"), pydantic.Field(alias="unitPrice", description="Price of each unit.")
+    ]
     quantity: float = pydantic.Field()
     """
     Number of units.
     """
 
-    discount_rate: typing_extensions.Annotated[typing.Optional[float], FieldMetadata(alias="discountRate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Discount rate that the merchant applies to the item.
-    """
+    discount_rate: typing_extensions.Annotated[
+        typing.Optional[float],
+        FieldMetadata(alias="discountRate"),
+        pydantic.Field(alias="discountRate", description="Discount rate that the merchant applies to the item."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

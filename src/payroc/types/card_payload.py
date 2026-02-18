@@ -16,20 +16,21 @@ class CardPayload(UniversalBaseModel):
     """
 
     account_type: typing_extensions.Annotated[
-        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates the customer’s account type.  
-    
-    **Note:** Send a value for accountType only for bank account details.
-    """
-
-    card_details: typing_extensions.Annotated[CardPayloadCardDetails, FieldMetadata(alias="cardDetails")] = (
-        pydantic.Field()
-    )
-    """
-    Object that contains the details of the payment card.
-    """
+        typing.Optional[CardPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(
+            alias="accountType",
+            description="Indicates the customer’s account type.  \n\n**Note:** Send a value for accountType only for bank account details.",
+        ),
+    ] = None
+    card_details: typing_extensions.Annotated[
+        CardPayloadCardDetails,
+        FieldMetadata(alias="cardDetails"),
+        pydantic.Field(
+            alias="cardDetails",
+            description="Polymorphic object that contains payment card information.  \n\nThe value of the entryMethod parameter determines which variant you should use:  \n- `raw` - Unencrypted payment data directly from the device.\n- `icc` - Payment data that the device captured from the chip.\n- `keyed` - Payment data that the merchant entered manually.\n- `swiped` - Payment data that the device captured from the magnetic strip.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

@@ -13,17 +13,21 @@ class FxRateInquiryResult(UniversalBaseModel):
     Object that indicates if the customer's card is eligible for Dynamic Currency Conversion (DCC).
     """
 
-    dcc_offered: typing_extensions.Annotated[bool, FieldMetadata(alias="dccOffered")] = pydantic.Field()
-    """
-    Indicates if the card is eligible for Dynamic Currency Conversion (DCC).
-    """
-
-    cause_of_rejection: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="causeOfRejection")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Explains why the DCC service did not offer a currency conversion rate to the customer.
-    """
+    dcc_offered: typing_extensions.Annotated[
+        bool,
+        FieldMetadata(alias="dccOffered"),
+        pydantic.Field(
+            alias="dccOffered", description="Indicates if the card is eligible for Dynamic Currency Conversion (DCC)."
+        ),
+    ]
+    cause_of_rejection: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="causeOfRejection"),
+        pydantic.Field(
+            alias="causeOfRejection",
+            description="Explains why the DCC service did not offer a currency conversion rate to the customer.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

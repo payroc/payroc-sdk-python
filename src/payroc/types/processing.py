@@ -19,59 +19,65 @@ class Processing(UniversalBaseModel):
     Object that contains information about how we process transactions for the account.
     """
 
-    merchant_id: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="merchantId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier that the acquiring platform assigns to the merchant.
-    """
-
+    merchant_id: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="merchantId"),
+        pydantic.Field(
+            alias="merchantId", description="Unique identifier that the acquiring platform assigns to the merchant."
+        ),
+    ] = None
     transaction_amounts: typing_extensions.Annotated[
-        ProcessingTransactionAmounts, FieldMetadata(alias="transactionAmounts")
-    ] = pydantic.Field()
-    """
-    Object that contains information about transaction amounts for the processing account.
-    """
-
-    monthly_amounts: typing_extensions.Annotated[ProcessingMonthlyAmounts, FieldMetadata(alias="monthlyAmounts")] = (
-        pydantic.Field()
-    )
-    """
-    Object that contains information about the monthly processing amounts for the processing account.
-    """
-
-    volume_breakdown: typing_extensions.Annotated[ProcessingVolumeBreakdown, FieldMetadata(alias="volumeBreakdown")] = (
-        pydantic.Field()
-    )
-    """
-    Object that contains information about the types of transactions ran by the processing account. The percentages for transaction types must total 100%.
-    """
-
-    is_seasonal: typing_extensions.Annotated[typing.Optional[bool], FieldMetadata(alias="isSeasonal")] = pydantic.Field(
-        default=None
-    )
-    """
-    Indicates if the processing account runs transactions on a seasonal basis. For example, if the processing account runs transactions during only the winter months, send a value of `true`.
-    """
-
+        ProcessingTransactionAmounts,
+        FieldMetadata(alias="transactionAmounts"),
+        pydantic.Field(
+            alias="transactionAmounts",
+            description="Object that contains information about transaction amounts for the processing account.",
+        ),
+    ]
+    monthly_amounts: typing_extensions.Annotated[
+        ProcessingMonthlyAmounts,
+        FieldMetadata(alias="monthlyAmounts"),
+        pydantic.Field(
+            alias="monthlyAmounts",
+            description="Object that contains information about the monthly processing amounts for the processing account.",
+        ),
+    ]
+    volume_breakdown: typing_extensions.Annotated[
+        ProcessingVolumeBreakdown,
+        FieldMetadata(alias="volumeBreakdown"),
+        pydantic.Field(
+            alias="volumeBreakdown",
+            description="Object that contains information about the types of transactions ran by the processing account. The percentages for transaction types must total 100%.",
+        ),
+    ]
+    is_seasonal: typing_extensions.Annotated[
+        typing.Optional[bool],
+        FieldMetadata(alias="isSeasonal"),
+        pydantic.Field(
+            alias="isSeasonal",
+            description="Indicates if the processing account runs transactions on a seasonal basis. For example, if the processing account runs transactions during only the winter months, send a value of `true`.",
+        ),
+    ] = None
     months_of_operation: typing_extensions.Annotated[
-        typing.Optional[typing.List[ProcessingMonthsOfOperationItem]], FieldMetadata(alias="monthsOfOperation")
-    ] = pydantic.Field(default=None)
-    """
-    Months of the year that the processing account runs transactions.
-    """
-
+        typing.Optional[typing.List[ProcessingMonthsOfOperationItem]],
+        FieldMetadata(alias="monthsOfOperation"),
+        pydantic.Field(
+            alias="monthsOfOperation", description="Months of the year that the processing account runs transactions."
+        ),
+    ] = None
     ach: typing.Optional[ProcessingAch] = pydantic.Field(default=None)
     """
     Object that contains information about Automated Clearing House (ACH) transactions.
     """
 
     card_acceptance: typing_extensions.Annotated[
-        typing.Optional[ProcessingCardAcceptance], FieldMetadata(alias="cardAcceptance")
-    ] = pydantic.Field(default=None)
-    """
-    Object that contains information about the types of cards that the processing account accepts.
-    """
+        typing.Optional[ProcessingCardAcceptance],
+        FieldMetadata(alias="cardAcceptance"),
+        pydantic.Field(
+            alias="cardAcceptance",
+            description="Object that contains information about the types of cards that the processing account accepts.",
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

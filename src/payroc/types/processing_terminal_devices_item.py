@@ -24,13 +24,15 @@ class ProcessingTerminalDevicesItem(UniversalBaseModel):
     Model of the terminal.
     """
 
-    serial_number: typing_extensions.Annotated[str, FieldMetadata(alias="serialNumber")] = pydantic.Field()
-    """
-    Serial number of the terminal.
-    """
-
+    serial_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="serialNumber"),
+        pydantic.Field(alias="serialNumber", description="Serial number of the terminal."),
+    ]
     communication_type: typing_extensions.Annotated[
-        typing.Optional[CommunicationType], FieldMetadata(alias="communicationType")
+        typing.Optional[CommunicationType],
+        FieldMetadata(alias="communicationType"),
+        pydantic.Field(alias="communicationType"),
     ] = None
 
     if IS_PYDANTIC_V2:

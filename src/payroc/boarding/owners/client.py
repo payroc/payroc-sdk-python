@@ -62,8 +62,7 @@ class OwnersClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.owners.retrieve(
             owner_id=1,
@@ -123,8 +122,15 @@ class OwnersClient:
             Array of IDs.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects.
+            Array of polymorphic objects, which contain contact information.
+
             **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         relationship : OwnerRelationship
             Object that contains information about the owner's relationship to the business.
@@ -155,8 +161,7 @@ class OwnersClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.owners.update(
             owner_id_=1,
@@ -236,8 +241,7 @@ class OwnersClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.boarding.owners.delete(
             owner_id=1,
@@ -295,8 +299,7 @@ class AsyncOwnersClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -362,8 +365,15 @@ class AsyncOwnersClient:
             Array of IDs.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects.
+            Array of polymorphic objects, which contain contact information.
+
             **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         relationship : OwnerRelationship
             Object that contains information about the owner's relationship to the business.
@@ -395,8 +405,7 @@ class AsyncOwnersClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -484,8 +493,7 @@ class AsyncOwnersClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

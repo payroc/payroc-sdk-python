@@ -13,20 +13,30 @@ class ProcessingAchLimits(UniversalBaseModel):
     Object that contains information about transaction limits for the processing account.
     """
 
-    single_transaction: typing_extensions.Annotated[int, FieldMetadata(alias="singleTransaction")] = pydantic.Field()
-    """
-    Maximum amount allowed for a single debit or credit transaction. The value is in the currency's lowest denomination, for example, cents.
-    """
-
-    daily_deposit: typing_extensions.Annotated[int, FieldMetadata(alias="dailyDeposit")] = pydantic.Field()
-    """
-    Maximum amount of total transactions allowed per day. The value is in the currency's lowest denomination, for example, cents.
-    """
-
-    monthly_deposit: typing_extensions.Annotated[int, FieldMetadata(alias="monthlyDeposit")] = pydantic.Field()
-    """
-    Maximum amount of total transactions allowed per month. The value is in the currency's lowest denomination, for example, cents.
-    """
+    single_transaction: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="singleTransaction"),
+        pydantic.Field(
+            alias="singleTransaction",
+            description="Maximum amount allowed for a single debit or credit transaction. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
+    daily_deposit: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="dailyDeposit"),
+        pydantic.Field(
+            alias="dailyDeposit",
+            description="Maximum amount of total transactions allowed per day. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
+    monthly_deposit: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="monthlyDeposit"),
+        pydantic.Field(
+            alias="monthlyDeposit",
+            description="Maximum amount of total transactions allowed per month. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

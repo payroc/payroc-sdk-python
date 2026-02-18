@@ -16,14 +16,20 @@ from ....types.secure_token_payload_sec_code import SecureTokenPayloadSecCode
 
 class UnreferencedRefundRefundMethod_Card(UniversalBaseModel):
     """
-    Object that contains information about how the merchant refunds the customer.
+    Polymorphic object that contains information about the payment method that the merchant uses to refund the customer.
+
+    The value of the type parameter determines which variant you should use:
+    -    `card` - Payment card details
+    -    `secureToken` - Secure token details
     """
 
     type: typing.Literal["card"] = "card"
     account_type: typing_extensions.Annotated[
-        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[CardPayloadAccountType], FieldMetadata(alias="accountType"), pydantic.Field(alias="accountType")
     ] = None
-    card_details: typing_extensions.Annotated[CardPayloadCardDetails, FieldMetadata(alias="cardDetails")]
+    card_details: typing_extensions.Annotated[
+        CardPayloadCardDetails, FieldMetadata(alias="cardDetails"), pydantic.Field(alias="cardDetails")
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2
@@ -37,16 +43,22 @@ class UnreferencedRefundRefundMethod_Card(UniversalBaseModel):
 
 class UnreferencedRefundRefundMethod_SecureToken(UniversalBaseModel):
     """
-    Object that contains information about how the merchant refunds the customer.
+    Polymorphic object that contains information about the payment method that the merchant uses to refund the customer.
+
+    The value of the type parameter determines which variant you should use:
+    -    `card` - Payment card details
+    -    `secureToken` - Secure token details
     """
 
     type: typing.Literal["secureToken"] = "secureToken"
     account_type: typing_extensions.Annotated[
-        typing.Optional[SecureTokenPayloadAccountType], FieldMetadata(alias="accountType")
+        typing.Optional[SecureTokenPayloadAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType"),
     ] = None
     token: str
     sec_code: typing_extensions.Annotated[
-        typing.Optional[SecureTokenPayloadSecCode], FieldMetadata(alias="secCode")
+        typing.Optional[SecureTokenPayloadSecCode], FieldMetadata(alias="secCode"), pydantic.Field(alias="secCode")
     ] = None
 
     if IS_PYDANTIC_V2:

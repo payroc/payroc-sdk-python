@@ -13,12 +13,11 @@ class AutomaticBatchClose(UniversalBaseModel):
     Indicates how the merchant batches their transactions.
     """
 
-    batch_close_time: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="batchCloseTime")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Time that the batch automatically closes.
-    """
+    batch_close_time: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="batchCloseTime"),
+        pydantic.Field(alias="batchCloseTime", description="Time that the batch automatically closes."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

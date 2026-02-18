@@ -18,24 +18,31 @@ class ConsumerChoiceFees(UniversalBaseModel):
     Object that contains information about the fees.
     """
 
-    monthly_subscription: typing_extensions.Annotated[Amount, FieldMetadata(alias="monthlySubscription")] = (
-        pydantic.Field()
-    )
-    """
-    Fee for the monthly subscription for the processing plan. The value is in the currency's lowest denomination, for example, cents.
-    """
-
+    monthly_subscription: typing_extensions.Annotated[
+        Amount,
+        FieldMetadata(alias="monthlySubscription"),
+        pydantic.Field(
+            alias="monthlySubscription",
+            description="Fee for the monthly subscription for the processing plan. The value is in the currency's lowest denomination, for example, cents.",
+        ),
+    ]
     volume: Percentage = pydantic.Field()
     """
     Merchant-authorized percentage on non-cash transactions.
     """
 
-    pin_debit: typing_extensions.Annotated[typing.Optional[PinDebit], FieldMetadata(alias="pinDebit")] = None
+    pin_debit: typing_extensions.Annotated[
+        typing.Optional[PinDebit], FieldMetadata(alias="pinDebit"), pydantic.Field(alias="pinDebit")
+    ] = None
     electronic_benefits_transfer: typing_extensions.Annotated[
-        typing.Optional[ElectronicBenefitsTransfer], FieldMetadata(alias="electronicBenefitsTransfer")
+        typing.Optional[ElectronicBenefitsTransfer],
+        FieldMetadata(alias="electronicBenefitsTransfer"),
+        pydantic.Field(alias="electronicBenefitsTransfer"),
     ] = None
     speciality_cards: typing_extensions.Annotated[
-        typing.Optional[SpecialityCards], FieldMetadata(alias="specialityCards")
+        typing.Optional[SpecialityCards],
+        FieldMetadata(alias="specialityCards"),
+        pydantic.Field(alias="specialityCards"),
     ] = None
 
     if IS_PYDANTIC_V2:

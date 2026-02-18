@@ -18,33 +18,43 @@ class SwipedCardDetails(UniversalBaseModel):
     """
 
     downgrade_to: typing_extensions.Annotated[
-        typing.Optional[SwipedCardDetailsDowngradeTo], FieldMetadata(alias="downgradeTo")
-    ] = pydantic.Field(default=None)
-    """
-    If an offline transaction is not approved using the initial entry method, reprocess the transaction using a downgraded entry method. 
-    For example, a swiped transaction can be downgraded to a keyed transaction.
-    """
-
-    swiped_data: typing_extensions.Annotated[SwipedCardDetailsSwipedData, FieldMetadata(alias="swipedData")]
-    cardholder_name: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="cardholderName")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Cardholder’s name.
-    """
-
+        typing.Optional[SwipedCardDetailsDowngradeTo],
+        FieldMetadata(alias="downgradeTo"),
+        pydantic.Field(
+            alias="downgradeTo",
+            description="If an offline transaction is not approved using the initial entry method, reprocess the transaction using a downgraded entry method. \nFor example, a swiped transaction can be downgraded to a keyed transaction.",
+        ),
+    ] = None
+    swiped_data: typing_extensions.Annotated[
+        SwipedCardDetailsSwipedData,
+        FieldMetadata(alias="swipedData"),
+        pydantic.Field(
+            alias="swipedData",
+            description="Polymorphic object that contains payment card details that a device captured from the magnetic strip.  \n\nThe value of the dataFormat parameter determines which variant you should use:  \n-\t`encrypted` - Payment card details are encrypted.\n-\t`plainText` - Payment card details are in plain text.",
+        ),
+    ]
+    cardholder_name: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="cardholderName"),
+        pydantic.Field(alias="cardholderName", description="Cardholder’s name."),
+    ] = None
     cardholder_signature: typing_extensions.Annotated[
-        typing.Optional[str], FieldMetadata(alias="cardholderSignature")
-    ] = pydantic.Field(default=None)
-    """
-    Cardholder's signature. For more information about how to format the signature, go to [How to send a signature to our gateway](https://docs.payroc.com/knowledge/basic-concepts/signature-capture).
-    """
-
+        typing.Optional[str],
+        FieldMetadata(alias="cardholderSignature"),
+        pydantic.Field(
+            alias="cardholderSignature",
+            description="Cardholder's signature. For more information about how to format the signature, go to [How to send a signature to our gateway](https://docs.payroc.com/knowledge/basic-concepts/signature-capture).",
+        ),
+    ] = None
     pin_details: typing_extensions.Annotated[
-        typing.Optional[SwipedCardDetailsPinDetails], FieldMetadata(alias="pinDetails")
+        typing.Optional[SwipedCardDetailsPinDetails],
+        FieldMetadata(alias="pinDetails"),
+        pydantic.Field(
+            alias="pinDetails", description="Polymorphic object that contains information about the customer's PIN."
+        ),
     ] = None
     ebt_details: typing_extensions.Annotated[
-        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails")
+        typing.Optional[EbtDetailsWithVoucher], FieldMetadata(alias="ebtDetails"), pydantic.Field(alias="ebtDetails")
     ] = None
 
     if IS_PYDANTIC_V2:

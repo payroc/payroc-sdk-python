@@ -16,34 +16,35 @@ class AchDeposit(UniversalBaseModel):
     Object that contains information about the ACH deposit.
     """
 
-    ach_deposit_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="achDepositId")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Unique identifier that we assigned to the ACH deposit.
-    """
-
-    association_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="associationDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that we sent the transactions to the card brands for clearing. The format of this value is **YYYY-MM-DD**.
-    """
-
-    ach_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="achDate")] = pydantic.Field(
-        default=None
-    )
-    """
-    Date that we sent the ACH deposit. The format of this value is **YYYY-MM-DD**.
-    """
-
-    payment_date: typing_extensions.Annotated[typing.Optional[dt.date], FieldMetadata(alias="paymentDate")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Date that the merchant received the ACH deposit. The format of this value is **YYYY-MM-DD**.
-    """
-
+    ach_deposit_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="achDepositId"),
+        pydantic.Field(alias="achDepositId", description="Unique identifier that we assigned to the ACH deposit."),
+    ] = None
+    association_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="associationDate"),
+        pydantic.Field(
+            alias="associationDate",
+            description="Date that we sent the transactions to the card brands for clearing. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
+    ach_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="achDate"),
+        pydantic.Field(
+            alias="achDate",
+            description="Date that we sent the ACH deposit. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
+    payment_date: typing_extensions.Annotated[
+        typing.Optional[dt.date],
+        FieldMetadata(alias="paymentDate"),
+        pydantic.Field(
+            alias="paymentDate",
+            description="Date that the merchant received the ACH deposit. The format of this value is **YYYY-MM-DD**.",
+        ),
+    ] = None
     transactions: typing.Optional[int] = pydantic.Field(default=None)
     """
     Number of transactions in the ACH deposit.
@@ -59,46 +60,51 @@ class AchDeposit(UniversalBaseModel):
     Amount of returns in the ACH deposit. We return the value in the currency's lowest denomination, for example, cents.
     """
 
-    daily_fees: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="dailyFees")] = pydantic.Field(
-        default=None
-    )
-    """
-    Amount of fees that were applied to the transactions in the ACH deposit. We return the value in the currency's lowest denomination, for example cents.
-    """
-
-    held_sales: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="heldSales")] = pydantic.Field(
-        default=None
-    )
-    """
-    Amount of funds that we held if the merchant was in full suspense. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
-    ach_adjustment: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="achAdjustment")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Amount of adjustments that we made to the ACH deposit. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
+    daily_fees: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="dailyFees"),
+        pydantic.Field(
+            alias="dailyFees",
+            description="Amount of fees that were applied to the transactions in the ACH deposit. We return the value in the currency's lowest denomination, for example cents.",
+        ),
+    ] = None
+    held_sales: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="heldSales"),
+        pydantic.Field(
+            alias="heldSales",
+            description="Amount of funds that we held if the merchant was in full suspense. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    ach_adjustment: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="achAdjustment"),
+        pydantic.Field(
+            alias="achAdjustment",
+            description="Amount of adjustments that we made to the ACH deposit. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
     holdback: typing.Optional[int] = pydantic.Field(default=None)
     """
     Amount of funds that we held as reserve from the ACH deposit. We return the value in the currency's lowest denomination, for example, cents.
     """
 
-    reserve_release: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="reserveRelease")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Amount of funds that we released from holdback. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
-    net_amount: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="netAmount")] = pydantic.Field(
-        default=None
-    )
-    """
-    Total amount that we paid the merchant after fees and adjustments. We return the value in the currency's lowest denomination, for example, cents.
-    """
-
+    reserve_release: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="reserveRelease"),
+        pydantic.Field(
+            alias="reserveRelease",
+            description="Amount of funds that we released from holdback. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
+    net_amount: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="netAmount"),
+        pydantic.Field(
+            alias="netAmount",
+            description="Total amount that we paid the merchant after fees and adjustments. We return the value in the currency's lowest denomination, for example, cents.",
+        ),
+    ] = None
     merchant: typing.Optional[MerchantSummary] = None
     links: typing.Optional[typing.List[Link]] = None
 

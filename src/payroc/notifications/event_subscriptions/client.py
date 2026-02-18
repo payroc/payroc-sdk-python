@@ -75,8 +75,7 @@ class EventSubscriptionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.notifications.event_subscriptions.list(
             status="registered",
@@ -123,7 +122,7 @@ class EventSubscriptionsClient:
             Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).
 
         notifications : typing.Sequence[Notification]
-            Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+            Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
 
         id : typing.Optional[int]
             Unique identifier that we assigned to the event subscription.
@@ -150,8 +149,7 @@ class EventSubscriptionsClient:
         from payroc import Notification_Webhook, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.notifications.event_subscriptions.create(
             idempotency_key="8e03978e-40d5-43e8-bc93-6894a57f9324",
@@ -187,7 +185,7 @@ class EventSubscriptionsClient:
 
         In your request, include the subscriptionId that we sent to you when we created the event subscription.
 
-        **Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](#listEventSubscriptions).
+        **Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](https://docs.payroc.com/api/schema/notifications/event-subscriptions/list).
 
         Parameters
         ----------
@@ -208,8 +206,7 @@ class EventSubscriptionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.notifications.event_subscriptions.retrieve(
             subscription_id=1,
@@ -258,7 +255,7 @@ class EventSubscriptionsClient:
             Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).
 
         notifications : typing.Sequence[Notification]
-            Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+            Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
 
         id : typing.Optional[int]
             Unique identifier that we assigned to the event subscription.
@@ -284,8 +281,7 @@ class EventSubscriptionsClient:
         from payroc import Notification_Webhook, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.notifications.event_subscriptions.update(
             subscription_id=1,
@@ -341,8 +337,7 @@ class EventSubscriptionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.notifications.event_subscriptions.delete(
             subscription_id=1,
@@ -395,8 +390,7 @@ class EventSubscriptionsClient:
         from payroc import PatchDocument_Remove, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.notifications.event_subscriptions.partially_update(
             subscription_id=1,
@@ -474,8 +468,7 @@ class AsyncEventSubscriptionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -529,7 +522,7 @@ class AsyncEventSubscriptionsClient:
             Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).
 
         notifications : typing.Sequence[Notification]
-            Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+            Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
 
         id : typing.Optional[int]
             Unique identifier that we assigned to the event subscription.
@@ -558,8 +551,7 @@ class AsyncEventSubscriptionsClient:
         from payroc import AsyncPayroc, Notification_Webhook
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -601,7 +593,7 @@ class AsyncEventSubscriptionsClient:
 
         In your request, include the subscriptionId that we sent to you when we created the event subscription.
 
-        **Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](#listEventSubscriptions).
+        **Note:** If you don't know the subscriptionId of the event subscription, go to [List event subscriptions](https://docs.payroc.com/api/schema/notifications/event-subscriptions/list).
 
         Parameters
         ----------
@@ -624,8 +616,7 @@ class AsyncEventSubscriptionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -680,7 +671,7 @@ class AsyncEventSubscriptionsClient:
             Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).
 
         notifications : typing.Sequence[Notification]
-            Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+            Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
 
         id : typing.Optional[int]
             Unique identifier that we assigned to the event subscription.
@@ -708,8 +699,7 @@ class AsyncEventSubscriptionsClient:
         from payroc import AsyncPayroc, Notification_Webhook
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -773,8 +763,7 @@ class AsyncEventSubscriptionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -835,8 +824,7 @@ class AsyncEventSubscriptionsClient:
         from payroc import AsyncPayroc, PatchDocument_Remove
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

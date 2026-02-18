@@ -18,24 +18,35 @@ class Tiered3Fees(UniversalBaseModel):
     Object that contains information about the fees.
     """
 
-    mastercard_visa_discover: typing_extensions.Annotated[QualRates, FieldMetadata(alias="mastercardVisaDiscover")] = (
-        pydantic.Field()
-    )
-    """
-    Object that contains the fees for Mastercard, Visa, and Discover transactions.
-    """
-
+    mastercard_visa_discover: typing_extensions.Annotated[
+        QualRates,
+        FieldMetadata(alias="mastercardVisaDiscover"),
+        pydantic.Field(
+            alias="mastercardVisaDiscover",
+            description="Object that contains the fees for Mastercard, Visa, and Discover transactions.",
+        ),
+    ]
     amex: typing.Optional[Tiered3FeesAmex] = pydantic.Field(default=None)
     """
-    Object that contains the fees for American Express transactions.
+    Polymorphic object that contains fees for American Express transactions.  
+    
+    The value of the type field determines which variant you should use:  
+    -    `optBlue` - Amex OptBlue pricing program.
+    -    `direct` - Amex Direct pricing program.
     """
 
-    pin_debit: typing_extensions.Annotated[typing.Optional[PinDebit], FieldMetadata(alias="pinDebit")] = None
+    pin_debit: typing_extensions.Annotated[
+        typing.Optional[PinDebit], FieldMetadata(alias="pinDebit"), pydantic.Field(alias="pinDebit")
+    ] = None
     electronic_benefits_transfer: typing_extensions.Annotated[
-        typing.Optional[ElectronicBenefitsTransfer], FieldMetadata(alias="electronicBenefitsTransfer")
+        typing.Optional[ElectronicBenefitsTransfer],
+        FieldMetadata(alias="electronicBenefitsTransfer"),
+        pydantic.Field(alias="electronicBenefitsTransfer"),
     ] = None
     speciality_cards: typing_extensions.Annotated[
-        typing.Optional[SpecialityCards], FieldMetadata(alias="specialityCards")
+        typing.Optional[SpecialityCards],
+        FieldMetadata(alias="specialityCards"),
+        pydantic.Field(alias="specialityCards"),
     ] = None
 
     if IS_PYDANTIC_V2:

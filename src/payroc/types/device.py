@@ -26,18 +26,16 @@ class Device(UniversalBaseModel):
     Indicates if the device is attended or unattended.
     """
 
-    serial_number: typing_extensions.Annotated[str, FieldMetadata(alias="serialNumber")] = pydantic.Field()
-    """
-    Serial number of the physical device.
-    """
-
-    firmware_version: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="firmwareVersion")] = (
-        pydantic.Field(default=None)
-    )
-    """
-    Firmware version of the physical device.
-    """
-
+    serial_number: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="serialNumber"),
+        pydantic.Field(alias="serialNumber", description="Serial number of the physical device."),
+    ]
+    firmware_version: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="firmwareVersion"),
+        pydantic.Field(alias="firmwareVersion", description="Firmware version of the physical device."),
+    ] = None
     config: typing.Optional[DeviceConfig] = None
 
     if IS_PYDANTIC_V2:

@@ -15,13 +15,11 @@ class BatchSummary(UniversalBaseModel):
     Object that contains information about the batch. If we can't match a dispute to a batch, we don't return 'batch' object.
     """
 
-    batch_id: typing_extensions.Annotated[typing.Optional[int], FieldMetadata(alias="batchId")] = pydantic.Field(
-        default=None
-    )
-    """
-    Unique identifier of the batch.
-    """
-
+    batch_id: typing_extensions.Annotated[
+        typing.Optional[int],
+        FieldMetadata(alias="batchId"),
+        pydantic.Field(alias="batchId", description="Unique identifier of the batch."),
+    ] = None
     date: typing.Optional[dt.date] = pydantic.Field(default=None)
     """
     Date that the merchant submitted the batch.

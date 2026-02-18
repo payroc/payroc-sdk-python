@@ -12,11 +12,10 @@ from .pad_source_with_account_type_account_type import PadSourceWithAccountTypeA
 
 class PadSourceWithAccountType(PadSource):
     account_type: typing_extensions.Annotated[
-        typing.Optional[PadSourceWithAccountTypeAccountType], FieldMetadata(alias="accountType")
-    ] = pydantic.Field(default=None)
-    """
-    Indicates the customer's account type.
-    """
+        typing.Optional[PadSourceWithAccountTypeAccountType],
+        FieldMetadata(alias="accountType"),
+        pydantic.Field(alias="accountType", description="Indicates the customer's account type."),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

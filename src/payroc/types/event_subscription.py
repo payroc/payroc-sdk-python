@@ -31,14 +31,17 @@ class EventSubscription(UniversalBaseModel):
     - `failed` - We couldn't contact your URI endpoint. We email the supportEmailAddress.  
     """
 
-    event_types: typing_extensions.Annotated[typing.List[str], FieldMetadata(alias="eventTypes")] = pydantic.Field()
-    """
-    Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).
-    """
-
+    event_types: typing_extensions.Annotated[
+        typing.List[str],
+        FieldMetadata(alias="eventTypes"),
+        pydantic.Field(
+            alias="eventTypes",
+            description="Array of events that you want to subscribe to. For a list of events, go to [Events List](https://docs.payroc.com/knowledge/events/events-list).",
+        ),
+    ]
     notifications: typing.List[Notification] = pydantic.Field()
     """
-    Array of notifications objects. Each object contains information about how we contact you when an event occurs.
+    Array of polymorphic notification objects that contain information about how we contact you when an event occurs.
     """
 
     metadata: typing.Optional[typing.Dict[str, typing.Any]] = pydantic.Field(default=None)

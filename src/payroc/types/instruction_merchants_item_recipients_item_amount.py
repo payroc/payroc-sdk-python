@@ -14,7 +14,7 @@ class InstructionMerchantsItemRecipientsItemAmount(UniversalBaseModel):
     Object that contains information about the funds that we send to the funding account.
     """
 
-    value: float = pydantic.Field()
+    value: int = pydantic.Field()
     """
     Amount of funds in the currency's lowest denomination, for example, cents.
     """

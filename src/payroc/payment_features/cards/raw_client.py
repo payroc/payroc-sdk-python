@@ -70,7 +70,7 @@ class RawCardsClient:
             Unique identifier that we assigned to the terminal.
 
         card : CardVerificationRequestCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
 
         operator : typing.Optional[str]
             Operator who requested to verify the card.
@@ -232,7 +232,11 @@ class RawCardsClient:
         currency : Currency
 
         card : BalanceInquiryCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `singleUseToken` - Single-use token details
 
         operator : typing.Optional[str]
             Operator who requested the balance inquiry.
@@ -392,7 +396,13 @@ class RawCardsClient:
         Parameters
         ----------
         card : BinLookupCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `cardBin` - Bank identification number (BIN) of the payment card
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
 
         processing_terminal_id : typing.Optional[str]
             Unique identifier that we assigned to the terminal.
@@ -574,7 +584,12 @@ class RawCardsClient:
         base_currency : Currency
 
         payment_method : FxRateInquiryPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
 
         operator : typing.Optional[str]
             Operator who ran the transaction.
@@ -741,7 +756,7 @@ class AsyncRawCardsClient:
             Unique identifier that we assigned to the terminal.
 
         card : CardVerificationRequestCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
 
         operator : typing.Optional[str]
             Operator who requested to verify the card.
@@ -903,7 +918,11 @@ class AsyncRawCardsClient:
         currency : Currency
 
         card : BalanceInquiryCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `singleUseToken` - Single-use token details
 
         operator : typing.Optional[str]
             Operator who requested the balance inquiry.
@@ -1063,7 +1082,13 @@ class AsyncRawCardsClient:
         Parameters
         ----------
         card : BinLookupCard
-            Object that contains information about the card.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `cardBin` - Bank identification number (BIN) of the payment card
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
 
         processing_terminal_id : typing.Optional[str]
             Unique identifier that we assigned to the terminal.
@@ -1245,7 +1270,12 @@ class AsyncRawCardsClient:
         base_currency : Currency
 
         payment_method : FxRateInquiryPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains payment details.
+
+            The value of the type parameter determines which variant you should use:
+            -    `card` - Payment card details
+            -    `secureToken` - Secure token details
+            -    `digitalWallet` - Digital wallet details
 
         operator : typing.Optional[str]
             Operator who ran the transaction.

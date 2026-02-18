@@ -19,11 +19,12 @@ class TipProcessingEnabledSuggestedTips(UniversalBaseModel):
     """
 
     tip_percentages: typing_extensions.Annotated[
-        typing.Optional[typing.List[str]], FieldMetadata(alias="tipPercentages")
-    ] = pydantic.Field(default=None)
-    """
-    Array of the tip amounts that the terminal displays during a sale.
-    """
+        typing.Optional[typing.List[str]],
+        FieldMetadata(alias="tipPercentages"),
+        pydantic.Field(
+            alias="tipPercentages", description="Array of the tip amounts that the terminal displays during a sale."
+        ),
+    ] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

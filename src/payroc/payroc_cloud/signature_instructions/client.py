@@ -65,8 +65,7 @@ class SignatureInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payroc_cloud.signature_instructions.submit(
             serial_number="1850010868",
@@ -110,8 +109,7 @@ class SignatureInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payroc_cloud.signature_instructions.retrieve(
             signature_instruction_id="a37439165d134678a9100ebba3b29597",
@@ -143,8 +141,7 @@ class SignatureInstructionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.payroc_cloud.signature_instructions.delete(
             signature_instruction_id="a37439165d134678a9100ebba3b29597",
@@ -210,8 +207,7 @@ class AsyncSignatureInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -263,8 +259,7 @@ class AsyncSignatureInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -306,8 +301,7 @@ class AsyncSignatureInstructionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

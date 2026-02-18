@@ -17,27 +17,34 @@ class FxRate(UniversalBaseModel):
     Foreign exchange rate for the transaction.
     """
 
-    processing_terminal_id: typing_extensions.Annotated[str, FieldMetadata(alias="processingTerminalId")] = (
-        pydantic.Field()
-    )
-    """
-    Unique identifier that we assigned to the terminal.
-    """
-
+    processing_terminal_id: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="processingTerminalId"),
+        pydantic.Field(alias="processingTerminalId", description="Unique identifier that we assigned to the terminal."),
+    ]
     operator: typing.Optional[str] = pydantic.Field(default=None)
     """
     Operator who ran the transaction.
     """
 
-    base_amount: typing_extensions.Annotated[int, FieldMetadata(alias="baseAmount")] = pydantic.Field()
-    """
-    Total amount of the transaction in the local currency. The value is in the currency’s lowest denomination, for example, cents.
-    """
-
-    base_currency: typing_extensions.Annotated[Currency, FieldMetadata(alias="baseCurrency")]
-    inquiry_result: typing_extensions.Annotated[FxRateInquiryResult, FieldMetadata(alias="inquiryResult")]
-    dcc_offer: typing_extensions.Annotated[typing.Optional[DccOffer], FieldMetadata(alias="dccOffer")] = None
-    card_info: typing_extensions.Annotated[CardInfo, FieldMetadata(alias="cardInfo")]
+    base_amount: typing_extensions.Annotated[
+        int,
+        FieldMetadata(alias="baseAmount"),
+        pydantic.Field(
+            alias="baseAmount",
+            description="Total amount of the transaction in the local currency. The value is in the currency’s lowest denomination, for example, cents.",
+        ),
+    ]
+    base_currency: typing_extensions.Annotated[
+        Currency, FieldMetadata(alias="baseCurrency"), pydantic.Field(alias="baseCurrency")
+    ]
+    inquiry_result: typing_extensions.Annotated[
+        FxRateInquiryResult, FieldMetadata(alias="inquiryResult"), pydantic.Field(alias="inquiryResult")
+    ]
+    dcc_offer: typing_extensions.Annotated[
+        typing.Optional[DccOffer], FieldMetadata(alias="dccOffer"), pydantic.Field(alias="dccOffer")
+    ] = None
+    card_info: typing_extensions.Annotated[CardInfo, FieldMetadata(alias="cardInfo"), pydantic.Field(alias="cardInfo")]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

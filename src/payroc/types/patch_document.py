@@ -72,7 +72,7 @@ class PatchDocument_Move(UniversalBaseModel):
     """
 
     op: typing.Literal["move"] = "move"
-    from_: typing_extensions.Annotated[str, FieldMetadata(alias="from")]
+    from_: typing_extensions.Annotated[str, FieldMetadata(alias="from"), pydantic.Field(alias="from")]
     path: str
 
     if IS_PYDANTIC_V2:
@@ -91,7 +91,7 @@ class PatchDocument_Copy(UniversalBaseModel):
     """
 
     op: typing.Literal["copy"] = "copy"
-    from_: typing_extensions.Annotated[str, FieldMetadata(alias="from")]
+    from_: typing_extensions.Annotated[str, FieldMetadata(alias="from"), pydantic.Field(alias="from")]
     path: str
 
     if IS_PYDANTIC_V2:

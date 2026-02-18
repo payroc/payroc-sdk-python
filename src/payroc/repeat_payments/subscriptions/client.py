@@ -127,8 +127,7 @@ class SubscriptionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         response = client.repeat_payments.subscriptions.list(
             processing_terminal_id="1234001",
@@ -190,7 +189,7 @@ class SubscriptionsClient:
         """
         Use this method to assign a customer to a payment plan.
 
-        **Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Payment plans endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/integrate/repeat-payments).
+        **Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Payment plans endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/take-payments/repeat-payments).
 
         When you create a subscription you need to provide a unique subscriptionId that you use to run follow-on actions:
 
@@ -222,7 +221,7 @@ class SubscriptionsClient:
             Unique identifier that the merchant assigned to the payment plan.
 
         payment_method : SubscriptionRequestPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains information about the secure token.
 
         start_date : dt.date
             Format: **YYYY-MM-DD**
@@ -283,8 +282,7 @@ class SubscriptionsClient:
         )
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.subscriptions.create(
             processing_terminal_id="1234001",
@@ -389,8 +387,7 @@ class SubscriptionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.subscriptions.retrieve(
             processing_terminal_id="1234001",
@@ -455,8 +452,7 @@ class SubscriptionsClient:
         from payroc import PatchDocument_Remove, Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.subscriptions.partially_update(
             processing_terminal_id="1234001",
@@ -523,8 +519,7 @@ class SubscriptionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.subscriptions.deactivate(
             processing_terminal_id="1234001",
@@ -575,8 +570,7 @@ class SubscriptionsClient:
         from payroc import Payroc
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.subscriptions.reactivate(
             processing_terminal_id="1234001",
@@ -643,8 +637,7 @@ class SubscriptionsClient:
         from payroc import Payroc, SubscriptionPaymentOrder
 
         client = Payroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
         client.repeat_payments.subscriptions.pay(
             processing_terminal_id="1234001",
@@ -775,8 +768,7 @@ class AsyncSubscriptionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -845,7 +837,7 @@ class AsyncSubscriptionsClient:
         """
         Use this method to assign a customer to a payment plan.
 
-        **Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Payment plans endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/integrate/repeat-payments).
+        **Note:** This method is part of our Repeat Payments feature. To help you understand how this method works with our Payment plans endpoints, go to [Repeat Payments](https://docs.payroc.com/guides/take-payments/repeat-payments).
 
         When you create a subscription you need to provide a unique subscriptionId that you use to run follow-on actions:
 
@@ -877,7 +869,7 @@ class AsyncSubscriptionsClient:
             Unique identifier that the merchant assigned to the payment plan.
 
         payment_method : SubscriptionRequestPaymentMethod
-            Object that contains information about the customer's payment details.
+            Polymorphic object that contains information about the secure token.
 
         start_date : dt.date
             Format: **YYYY-MM-DD**
@@ -939,8 +931,7 @@ class AsyncSubscriptionsClient:
         )
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1053,8 +1044,7 @@ class AsyncSubscriptionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1129,8 +1119,7 @@ class AsyncSubscriptionsClient:
         from payroc import AsyncPayroc, PatchDocument_Remove
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1205,8 +1194,7 @@ class AsyncSubscriptionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1265,8 +1253,7 @@ class AsyncSubscriptionsClient:
         from payroc import AsyncPayroc
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 
@@ -1341,8 +1328,7 @@ class AsyncSubscriptionsClient:
         from payroc import AsyncPayroc, SubscriptionPaymentOrder
 
         client = AsyncPayroc(
-            client_id="YOUR_CLIENT_ID",
-            client_secret="YOUR_CLIENT_SECRET",
+            api_key="YOUR_API_KEY",
         )
 
 

@@ -13,25 +13,19 @@ class Address(UniversalBaseModel):
     Object that contains information about the address.
     """
 
-    address_1: typing_extensions.Annotated[str, FieldMetadata(alias="address1")] = pydantic.Field()
-    """
-    Address line 1.
-    """
-
-    address_2: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="address2")] = pydantic.Field(
-        default=None
-    )
-    """
-    Address line 2.
-    """
-
-    address_3: typing_extensions.Annotated[typing.Optional[str], FieldMetadata(alias="address3")] = pydantic.Field(
-        default=None
-    )
-    """
-    Address line 3.
-    """
-
+    address_1: typing_extensions.Annotated[
+        str, FieldMetadata(alias="address1"), pydantic.Field(alias="address1", description="Address line 1.")
+    ]
+    address_2: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="address2"),
+        pydantic.Field(alias="address2", description="Address line 2."),
+    ] = None
+    address_3: typing_extensions.Annotated[
+        typing.Optional[str],
+        FieldMetadata(alias="address3"),
+        pydantic.Field(alias="address3", description="Address line 3."),
+    ] = None
     city: str = pydantic.Field()
     """
     City.
@@ -47,10 +41,11 @@ class Address(UniversalBaseModel):
     Two-digit country code for the country that the business operates in. The format follows the [ISO-3166-1](https://www.iso.org/iso-3166-country-codes.html) standard.
     """
 
-    postal_code: typing_extensions.Annotated[str, FieldMetadata(alias="postalCode")] = pydantic.Field()
-    """
-    Zip code or postal code.
-    """
+    postal_code: typing_extensions.Annotated[
+        str,
+        FieldMetadata(alias="postalCode"),
+        pydantic.Field(alias="postalCode", description="Zip code or postal code."),
+    ]
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

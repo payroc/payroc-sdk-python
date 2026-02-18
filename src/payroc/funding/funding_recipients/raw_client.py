@@ -208,10 +208,18 @@ class RawFundingRecipientsClient:
             Trading name of the business or organization.
 
         address : Address
-            Address of the funding recipient.
+            Polymorphic object that contains address information for a funding recipient.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects that you can use to add contact methods for the funding recipient. You must provide at least an email address.
+            Array of polymorphic objects, which contain contact information.
+
+            **Note:** You must provide an email address.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         owners : typing.Sequence[Owner]
             Array of owner objects. Each object contains information about an individual who owns or manages the funding recipient.
@@ -495,10 +503,16 @@ class RawFundingRecipientsClient:
             Legal name of the business or organization.
 
         address : Address
-            Address of the funding recipient.
+            Polymorphic object that contains address information for a funding recipient.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects for the funding recipient.
+            Array of polymorphic objects, which contain contact information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         recipient_id : typing.Optional[int]
             Unique identifier that we assigned to the funding recipient.
@@ -1202,8 +1216,15 @@ class RawFundingRecipientsClient:
             Array of IDs.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects.
+            Array of polymorphic objects, which contain contact information.
+
             **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         relationship : OwnerRelationship
             Object that contains information about the owner's relationship to the business.
@@ -1505,10 +1526,18 @@ class AsyncRawFundingRecipientsClient:
             Trading name of the business or organization.
 
         address : Address
-            Address of the funding recipient.
+            Polymorphic object that contains address information for a funding recipient.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects that you can use to add contact methods for the funding recipient. You must provide at least an email address.
+            Array of polymorphic objects, which contain contact information.
+
+            **Note:** You must provide an email address.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         owners : typing.Sequence[Owner]
             Array of owner objects. Each object contains information about an individual who owns or manages the funding recipient.
@@ -1792,10 +1821,16 @@ class AsyncRawFundingRecipientsClient:
             Legal name of the business or organization.
 
         address : Address
-            Address of the funding recipient.
+            Polymorphic object that contains address information for a funding recipient.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects for the funding recipient.
+            Array of polymorphic objects, which contain contact information.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         recipient_id : typing.Optional[int]
             Unique identifier that we assigned to the funding recipient.
@@ -2499,8 +2534,15 @@ class AsyncRawFundingRecipientsClient:
             Array of IDs.
 
         contact_methods : typing.Sequence[ContactMethod]
-            Array of contactMethod objects.
+            Array of polymorphic objects, which contain contact information.
+
             **Note:** If you are adding information about an owner, you must provide at least an email address. If you are adding information about a contact, you must provide at least a contact number.
+
+            The value of the type parameter determines which variant you should use:
+            -    `email` - Email address
+            -    `phone` - Phone number
+            -    `mobile` - Mobile number
+            -    `fax` - Fax number
 
         relationship : OwnerRelationship
             Object that contains information about the owner's relationship to the business.
