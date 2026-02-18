@@ -14,9 +14,9 @@ def test_attachments_upload_to_processing_account() -> None:
     verify_request_count(test_id, "POST", "/processing-accounts/38765/attachments", None, 1)
 
 
-def test_attachments_get_attachment() -> None:
-    """Test getAttachment endpoint with WireMock"""
-    test_id = "attachments.get_attachment.0"
+def test_attachments_retrieve() -> None:
+    """Test retrieve endpoint with WireMock"""
+    test_id = "attachments.retrieve.0"
     client = get_client(test_id)
-    client.attachments.get_attachment(attachment_id="12876")
+    client.attachments.retrieve(attachment_id="12876")
     verify_request_count(test_id, "GET", "/attachments/12876", None, 1)
